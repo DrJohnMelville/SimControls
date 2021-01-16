@@ -86,7 +86,7 @@ namespace SimControls.FlightDisplays
                      new XElement("AppVersion", 
                          new XElement("AppVersionMajor", "11"),
                          new XElement("AppVersionBuild", "282174")),
-                     Waypoint("Airport", Origin.WorldPosition, origin.Ident),
+                     Waypoint("Airport", Origin.WorldPosition, Origin.Ident),
                      TryDestinationFinal()!,
                      Waypoint("Airport", Destination.WorldPosition, Destination.Ident)
                  ));
@@ -123,6 +123,6 @@ namespace SimControls.FlightDisplays
              );
 
          private XElement DescrElement(string descr) => 
-             new(descr, $"{Origin.Name} to {Destination.Name}");
+             new(descr, $"{Origin?.Name??"Origin"} to {Destination?.Name??"Destination"}");
     }
 }
