@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="SimControls.FlightDisplays.AirportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:SimControls.FlightDisplays"
+             xmlns:easyGrids="clr-namespace:Melville.WpfControls.EasyGrids;assembly=Melville.WpfControls"
+             xmlns:airportDatabase="clr-namespace:SimControls.Model.AirportDatabase;assembly=SimControls.Model"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <easyGrids:EasyGrid easyGrids:GridOperations.ColsAndRows="*,*/auto,auto,*" Grid.IsSharedSizeScope="True">
+        <easyGrids:EasyGrid Margin="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition SharedSizeGroup="Title"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition SharedSizeGroup="Length"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Margin="0 0 10 0">Altitude</TextBlock>
+            <TextBlock Margin="0 0 10 0" Text="{Binding Airport.Altitude}"/>
+            <TextBlock>Feet</TextBlock>
+        </easyGrids:EasyGrid>
+        <local:AirportDiagram Runways="{Binding DisplayRunways}" Grid.RowSpan="3" Margin="10"
+                              SelectedRunway="{Binding SelectedRunway}"/>
+        <TextBlock>Runways</TextBlock>
+        <ListBox ItemsSource="{Binding DisplayRunways}" 
+                 SelectedItem="{Binding SelectedRunway, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+           <ItemsControl.ItemTemplate>
+               <DataTemplate DataType="{x:Type airportDatabase:Runway}">
+                   <easyGrids:EasyGrid >
+                       <Grid.ColumnDefinitions>
+                           <ColumnDefinition SharedSizeGroup="Title"/>
+                           <ColumnDefinition Width="*"/>
+                           <ColumnDefinition SharedSizeGroup="Length"/>
+                       </Grid.ColumnDefinitions>
+                       <TextBlock Margin="0 0 10 0" Text="{Binding Name}"/> 
+                       <TextBlock Margin="0 0 10 0" Text="{Binding LengthInFeet, StringFormat=#####0}"/> 
+                       <TextBlock Margin="0 0 10 0" Text="{Binding Surface}"/>
+                   </easyGrids:EasyGrid>
+               </DataTemplate>
+           </ItemsControl.ItemTemplate>
+        </ListBox>
+    </easyGrids:EasyGrid>
+</UserControl>

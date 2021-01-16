@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+        <Nullable>Enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Melville.WpfAppFramework" Version="0.1.12" />
+      <PackageReference Include="Melville.WpfControls" Version="0.2.8" />
+      <PackageReference Include="System.Linq.Async" Version="5.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SimControls.AirportDatabase\SimControls.AirportDatabase.csproj" />
+      <ProjectReference Include="..\SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj" />
+      <ProjectReference Include="..\SimControls.YokeConnector\SimControls.YokeConnector.csproj" />
+    </ItemGroup>
+</Project>

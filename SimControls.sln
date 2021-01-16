@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls", "SimControls\SimControls.csproj", "{48E5151B-1D5C-4ABA-9672-CDEDB225496E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.SimulatorConnection", "SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj", "{A6E92156-A226-4372-8DD9-E0DF749DD8C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.Model", "SimControls.Model\SimControls.Model.csproj", "{B2A2615B-E23C-48B2-8B1C-2977C789520D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.YokeConnector", "SimControls.YokeConnector\SimControls.YokeConnector.csproj", "{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.Test", "SimControls.Test\SimControls.Test.csproj", "{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacadeGenerator", "FacadeGenerator\FacadeGenerator.csproj", "{45825D59-7471-4D3B-AFF2-B08A46CC311E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.AirportDatabase", "SimControls.AirportDatabase\SimControls.AirportDatabase.csproj", "{61C54781-3857-45EF-B860-EA035009EC0D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48E5151B-1D5C-4ABA-9672-CDEDB225496E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E5151B-1D5C-4ABA-9672-CDEDB225496E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E5151B-1D5C-4ABA-9672-CDEDB225496E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E5151B-1D5C-4ABA-9672-CDEDB225496E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E92156-A226-4372-8DD9-E0DF749DD8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E92156-A226-4372-8DD9-E0DF749DD8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E92156-A226-4372-8DD9-E0DF749DD8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E92156-A226-4372-8DD9-E0DF749DD8C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2A2615B-E23C-48B2-8B1C-2977C789520D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2A2615B-E23C-48B2-8B1C-2977C789520D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2A2615B-E23C-48B2-8B1C-2977C789520D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2A2615B-E23C-48B2-8B1C-2977C789520D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45825D59-7471-4D3B-AFF2-B08A46CC311E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45825D59-7471-4D3B-AFF2-B08A46CC311E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45825D59-7471-4D3B-AFF2-B08A46CC311E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45825D59-7471-4D3B-AFF2-B08A46CC311E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C54781-3857-45EF-B860-EA035009EC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C54781-3857-45EF-B860-EA035009EC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C54781-3857-45EF-B860-EA035009EC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C54781-3857-45EF-B860-EA035009EC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
