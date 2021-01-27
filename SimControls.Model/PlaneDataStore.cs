@@ -11,7 +11,7 @@ namespace SimControls.Model
 
     public interface IVariableCache
     {
-        public TResult GetVariable<T, TResult>(string name, string units, string dataType)
+        public TResult GetVariable<T, TResult>(string name, string units, string dataType, ushort uniqueId)
             where TResult : ReadOnlyDataItem<T>, new();
 
         public SimEventTrigger GetEvent(string simEventName);
@@ -31,7 +31,7 @@ namespace SimControls.Model
           data.GetOrCreate(name, create) as T ??
           throw new InvalidOperationException("Type Mismatch: " + name);
 
-      public TResult GetVariable<T, TResult>(string name, string units, string dataType)
+      public TResult GetVariable<T, TResult>(string name, string units, string dataType, ushort uniqueId)
           where TResult : ReadOnlyDataItem<T>, new()
       {
           return Get(name, Create);

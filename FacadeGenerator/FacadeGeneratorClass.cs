@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.IO;
 using System.Linq;
@@ -44,26 +45,28 @@ namespace FacadeGenerator
 
         private string CreateText(string[] variableLines, string[] eventLines)
         {
+            var variableDeclarations = variableLines.Skip(1).Select(SingleVariableFromString).ToList();
             return Prefix()
-                   + SimVariableDeclarations(variableLines)
+                   + SimVariableDeclarations(variableDeclarations)
                    + SimEventDeclarations(eventLines)
                    + Suffix();
         }
 
 
-        private string SimVariableDeclarations(string[] variables)
+        private string SimVariableDeclarations(IEnumerable<VariableDeclaration> variableDeclarations)
         {
-            return string.Join("\r\n", variables.Skip(1).Select(SingleVariableFromString))
+            return string.Join("\r\n", variableDeclarations
+                       .Select(i=>i.DeclareCreatorFunction()))
                 +Environment.NewLine;
         }
 
-        private string SingleVariableFromString(string varDecl)
+        private VariableDeclaration SingleVariableFromString(string varDecl, int index)
         {
             var components = varDecl.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
             return 
                 components.Length > 2?
-                    GenerateDeclaration.DeclareVariable(components[0], components[1], components[2]):
-                    "// Not enough Elements: "+ varDecl;
+                    new VariableDeclaration(components[0], components[1], components[2] == "Y", (ushort)index):
+                    new VariableDeclaration(varDecl, "", false, (ushort)index);
         }
 
         private string SimEventDeclarations(string[] eventLines) => 

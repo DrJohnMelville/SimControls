@@ -14,6 +14,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacadeGenerator", "FacadeGe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.AirportDatabase", "SimControls.AirportDatabase\SimControls.AirportDatabase.csproj", "{61C54781-3857-45EF-B860-EA035009EC0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.WASM", "SimControls.WASM\SimControls.WASM.csproj", "{3034C0BD-793D-402A-BC4D-E40F9B215091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.NetworkCommon", "Src\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj", "{78ECC126-8E46-4BD5-9875-F84B4E259EE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +52,13 @@ Global
 		{61C54781-3857-45EF-B860-EA035009EC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{61C54781-3857-45EF-B860-EA035009EC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{61C54781-3857-45EF-B860-EA035009EC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3034C0BD-793D-402A-BC4D-E40F9B215091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3034C0BD-793D-402A-BC4D-E40F9B215091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3034C0BD-793D-402A-BC4D-E40F9B215091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3034C0BD-793D-402A-BC4D-E40F9B215091}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78ECC126-8E46-4BD5-9875-F84B4E259EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78ECC126-8E46-4BD5-9875-F84B4E259EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78ECC126-8E46-4BD5-9875-F84B4E259EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78ECC126-8E46-4BD5-9875-F84B4E259EE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
