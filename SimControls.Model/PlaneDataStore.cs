@@ -18,7 +18,7 @@ namespace SimControls.Model
     }
     public class VariableCache:IVariableCache
     {
-      private readonly Dictionary<string, DataItem> data = new();
+      private readonly Dictionary<int, DataItem> data = new();
       private readonly Dictionary<string, SimEventTrigger> events = new();
       private readonly ISimVariableBinder binder;
 
@@ -27,17 +27,17 @@ namespace SimControls.Model
           this.binder = binder;
       }
 
-      private T Get<T>(string name, Func<T> create) where T:DataItem =>
-          data.GetOrCreate(name, create) as T ??
-          throw new InvalidOperationException("Type Mismatch: " + name);
+      private T Get<T>(ushort uniqueId, Func<T> create) where T:DataItem =>
+          data.GetOrCreate(uniqueId, create) as T ??
+          throw new InvalidOperationException("Type Mismatch: " + uniqueId);
 
       public TResult GetVariable<T, TResult>(string name, string units, string dataType, ushort uniqueId)
           where TResult : ReadOnlyDataItem<T>, new()
       {
-          return Get(name, Create);
+          return Get(uniqueId, Create);
           TResult Create()
           {
-              var ret = new TResult();
+              var ret = new TResult() {UniqueIndex = uniqueId};
               binder.BindVariableToSimulator<T>(name, units, dataType, ret);
               return ret;
           }

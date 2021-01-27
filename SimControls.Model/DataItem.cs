@@ -8,6 +8,7 @@ namespace SimControls.Model
 {
     public abstract  class DataItem: IExternalNotifyPropertyChanged
     {
+        public ushort UniqueIndex { get; init; }
         public event PropertyChangedEventHandler? PropertyChanged;
         
         public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>

@@ -6,28 +6,18 @@ using SequenceReaderExtensions = Melville.P2P.Raw.BinaryObjectPipes.SequenceRead
 
 namespace SimControls.NetworkCommon.DataClasses
 {
-    public record BindingRequest(string Name, string Unit, string SimType, ushort Index): ICanWriteToPipe
+    public record BindingRequest(ushort Index): ICanWriteToPipe
     {
            
         public void WriteToPipe(PipeWriter write)
         {
-            var len = 2 + 
-                      SerialPipeWriter.SpaceForString(Name) + 
-                      SerialPipeWriter.SpaceForString(Unit) +
-                      SerialPipeWriter.SpaceForString(SimType);
-            using var writer = new SerialPipeWriter(write, len);
-            writer.Write(Name);
-            writer.Write(Unit);
-            writer.Write(SimType);
+            using var writer = new SerialPipeWriter(write, sizeof(ushort));
             writer.Write(Index);
         }
 
         public static BindingRequest? ReadFromPipe(ref SequenceReader<byte> src) =>
-            src.TryRead(out string? name) &&
-            src.TryRead(out string? unit) &&
-            src.TryRead(out string? simType) &&
             src.TryReadLittleEndian(out ushort index)
-                ? new BindingRequest(name, unit, simType, index)
+                ? new BindingRequest(index)
                 : null;
     }
 

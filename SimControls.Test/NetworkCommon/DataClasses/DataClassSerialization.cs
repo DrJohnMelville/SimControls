@@ -29,6 +29,6 @@ namespace SimControls.Test.NetworkCommon.DataClasses
 
         [Fact]
         public Task SerializeBindingRequest() =>
-            TestSerialization(new BindingRequest("Var", "Unit", "type", 2342));
+            TestSerialization(new BindingRequest(2342));
     }
 }

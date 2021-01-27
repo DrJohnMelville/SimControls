@@ -47,9 +47,26 @@ namespace FacadeGenerator
         {
             var variableDeclarations = variableLines.Skip(1).Select(SingleVariableFromString).ToList();
             return Prefix()
-                   + SimVariableDeclarations(variableDeclarations)
+                   + SimVariableDeclarations(variableDeclarations) 
+                   + DeclareVariableByNumber(variableDeclarations)
                    + SimEventDeclarations(eventLines)
                    + Suffix();
+        }
+
+        private string DeclareVariableByNumber(List<VariableDeclaration> variableDeclarations)
+        {
+            var ret = new StringBuilder();
+            ret.AppendLine("        public static DataItem VariableByNumber(this IVariableCache innerStore, ushort index) => index switch");
+            ret.AppendLine("        {");
+            foreach (var declaration in variableDeclarations.Where(i=>i.CSharpType.Length > 0))
+            {
+                
+                ret.AppendLine(declaration.SwitchBranch());
+            }
+            
+            ret.AppendLine("            _ => throw new System.IO.InvalidDataException(\"No such variable: \"+index)");
+            ret.AppendLine("        };");
+            return ret.ToString();
         }
 
 

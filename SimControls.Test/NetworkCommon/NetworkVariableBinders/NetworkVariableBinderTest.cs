@@ -63,9 +63,6 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
             writer.Setup(i => i.Write(It.IsAny<BindingRequest>())).Returns((BindingRequest message) =>
             {
                 var br = (BindingRequest) message;
-                Assert.Equal("VarName", br.Name);
-                Assert.Equal("Number", br.Unit);
-                Assert.Equal("SimType", br.SimType);
                 Assert.Equal(0, br.Index);
                 return new ValueTask<FlushResult>(new FlushResult());
             });

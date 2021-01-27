@@ -61,9 +61,9 @@ namespace FacadeGenerator
 
         public string Documentation()
         {
-            return "/// <summary>\r\n" +
-                   $"/// {VarName} ({UnitName}) {(CanWrite?"Writeable":"Read Only")}\r\n" +
-                   "/// </summary>\r\n";
+            return  "        /// <summary>\r\n" +
+                   $"        /// {VarName} ({UnitName}) {(CanWrite?"Writeable":"Read Only")}\r\n" +
+                    "        /// </summary>\r\n";
         }
 
         public string DeclareCreatorFunction() =>
@@ -83,10 +83,12 @@ namespace FacadeGenerator
         private string DeclarationSyntax() =>
             Documentation() + 
             $"        public static {OutputType} {CSharpName}(this IVariableCache innerStore) " 
-            + Implementation();
+            + Implementation() + ";";
  
         private string Implementation() =>
             $"=> innerStore.GetVariable<{CSharpType}, {OutputType}>(\"{VarName}\", " +
-            $"\"{UnitName}\", \"{SimulatorType}\", {Index});";
+            $"\"{UnitName}\", \"{SimulatorType}\", {Index})";
+
+        public string SwitchBranch() => $"            {Index} {Implementation()},";
     }
 }

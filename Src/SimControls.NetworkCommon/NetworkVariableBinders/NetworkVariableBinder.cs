@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using SimControls.Model;
 using SimControls.NetworkCommon.DataClasses;
@@ -17,9 +16,10 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
             this.destination = destination;
         }
 
-        public void BindVariableToSimulator<T>(string name, string unit, string simType, ReadOnlyDataItem<T> variable)
+        public void BindVariableToSimulator<T>(string name, string unit, string simType,
+            ReadOnlyDataItem<T> variable)
         {
-            GC.KeepAlive(destination.Write(new BindingRequest(name, unit, simType, 0)));
+            GC.KeepAlive(destination.Write(new BindingRequest(variable.UniqueIndex)));
         }
 
         public void BindEventToSimulator(SimEventTrigger simEvent)
@@ -52,14 +52,9 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
         {
             if (req.Index != NextIndex())
                 throw new InvalidOperationException();
-            var variable = CreateVariableFrom(req);
+            var variable = varCache.VariableByNumber(req.Index);
             var entry = RegisterVariable(variable);
             entry.TrySendValue();
-        }
-
-        private DataItem CreateVariableFrom(BindingRequest req)
-        {
-            throw new NotImplementedException("Not Done Yet");
         }
     }
 }
