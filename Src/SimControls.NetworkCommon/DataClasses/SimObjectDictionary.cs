@@ -7,6 +7,7 @@ namespace SimControls.NetworkCommon.DataClasses
         public SimObjectDictionary()
         {
             Register<BindingRequest>(BindingRequest.ReadFromPipe);
+            Register<TerminateConnection>(TerminateConnection.ReadFromPipe);
             Register<DoubleValueRecord>(DoubleValueRecord.ReadFromPipe);
         }
     }

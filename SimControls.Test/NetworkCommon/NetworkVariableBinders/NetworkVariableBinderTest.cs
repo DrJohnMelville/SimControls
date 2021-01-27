@@ -9,10 +9,10 @@ using Xunit;
 
 namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
 {
-    public class NetworkVariableBinderTest
+    public class NetworkVariableBinderTest: IAsyncLifetime
     {
-        private readonly DataItem<double> serverDoubleValue = new DataItem<double>();
-        private readonly DataItem<double> clientDoubleValue = new DataItem<double>();
+        private readonly DataItem<double> serverDoubleValue = new DataItem<double>() {UniqueIndex = 11};
+        private readonly DataItem<double> clientDoubleValue = new DataItem<double>() {UniqueIndex = 11};
         private readonly Mock<IVariableCache> varCache = new();
         private readonly Pipe clientToServer = new();
         private readonly Pipe serverToClient = new();
@@ -22,7 +22,8 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         public NetworkVariableBinderTest()
         {
             varCache.Setup(i => i.GetVariable<double, DataItem<double>>
-                ("name", "unit", "double", It.IsAny<ushort>())).Returns(serverDoubleValue);
+                (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 11))
+                .Returns(serverDoubleValue);
             
             var dict = new SimObjectDictionary();
             server = new (varCache.Object, 
@@ -36,38 +37,24 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         }
 
         [Fact]
-        public void ReadValueFromServer()
+        public async Task ReadValueFromServer()
         {
             serverDoubleValue.Value = 1234;
-            
             client.BindVariableToSimulator("name", "unit", "double", clientDoubleValue);
 
+            while (clientDoubleValue.Value < 1233) ; // do nothing
             Assert.Equal(1234, clientDoubleValue.Value);
-            
-        }
-    }
-    public class NetworkVariableBinderTest2
-    {
-        private readonly Mock<IBinaryObjectPipeWriter> writer = new();
-        private readonly Mock<IBinaryObjectPipeReader> reader = new();
-        private readonly NetworkVariableBinder sut;
-
-        public NetworkVariableBinderTest2()
-        {
-            sut = new NetworkVariableBinder(reader.Object, writer.Object);
+            clientDoubleValue.Value = 12;
+            while (serverDoubleValue.Value > 13) ;//do nothing
+            Assert.Equal(12, serverDoubleValue.Value);
         }
 
-        [Fact]
-        public void RegisterSendsToNetwork()
+        public Task InitializeAsync() => Task.CompletedTask;
+
+        public async Task DisposeAsync()
         {
-            writer.Setup(i => i.Write(It.IsAny<BindingRequest>())).Returns((BindingRequest message) =>
-            {
-                var br = (BindingRequest) message;
-                Assert.Equal(0, br.Index);
-                return new ValueTask<FlushResult>(new FlushResult());
-            });
-            sut.BindVariableToSimulator("VarName", "Number", "SimType", new ReadOnlyBoolItem());
-            writer.Verify(i=>i.Write(It.IsAny<ICanWriteToPipe>()));
+            await server.DisposeAsync();
+            await client.DisposeAsync();
         }
     }
 }

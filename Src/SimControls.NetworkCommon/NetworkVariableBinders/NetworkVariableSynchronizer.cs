@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Melville.INPC;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using SimControls.Model;
@@ -11,10 +12,10 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
     {
         private readonly IBinaryObjectPipeWriter writer;
 
-        public static NetworkVariableEntry Create(DataItem variable, IBinaryObjectPipeWriter writer, ushort index) =>
+        public static NetworkVariableEntry Create(DataItem variable, IBinaryObjectPipeWriter writer) =>
             variable switch
             {
-                ReadOnlyDataItem<double> dbl => new DoubleEntry(dbl, writer, index),
+                ReadOnlyDataItem<double> dbl => new DoubleEntry(dbl, writer),
                 _ => throw new InvalidOperationException("Unknown Data Type")
             };
 
@@ -51,17 +52,16 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
 
         private sealed class DoubleEntry : NetworkVariableEntry
         {
-            private readonly ushort index;
             private readonly ReadOnlyDataItem<double> variable;
 
             public DoubleEntry(ReadOnlyDataItem<double> variable,
-                IBinaryObjectPipeWriter writer, ushort index) : base(variable, writer)
+                IBinaryObjectPipeWriter writer) : base(variable, writer)
             {
                 this.variable = variable;
-                this.index = index;
             }
 
-            public override ICanWriteToPipe ToWireFormat() => new DoubleValueRecord(index, variable.Value);
+            public override ICanWriteToPipe ToWireFormat() => 
+                new DoubleValueRecord(variable.UniqueIndex, variable.Value);
 
             protected override void ParseWireFormat(ICanWriteToPipe value)
             {
@@ -72,28 +72,28 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
         }
     }
 
-    public class NetworkVariableSynchronizer
+    public class NetworkVariableSynchronizer: IAsyncDisposable
     {
         private readonly IBinaryObjectPipeReader source;
         private readonly IBinaryObjectPipeWriter destination;
-        private readonly List<NetworkVariableEntry> monitoredVariables = new();
-        protected ushort NextIndex() => (ushort)monitoredVariables.Count;
+        private readonly Dictionary<ushort, NetworkVariableEntry> monitoredVariables = new();
 
         public NetworkVariableSynchronizer(IBinaryObjectPipeReader source, IBinaryObjectPipeWriter destination)
         {
             this.source = source;
             this.destination = destination;
+            RunMessageLoop();
         }
 
         public NetworkVariableEntry RegisterVariable(DataItem variable)
         {
-            var entry = NetworkVariableEntry.Create(variable, destination, NextIndex()); 
-            monitoredVariables.Add(entry);
+            var entry = NetworkVariableEntry.Create(variable, destination); 
+            monitoredVariables.Add(variable.UniqueIndex, entry);
             return entry;
         }
 
 
-        public async void RunMessageLoop()
+        private async void RunMessageLoop()
         {
             await foreach (var item in source.Read())
             {
@@ -102,6 +102,7 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
                     case DoubleValueRecord dvr:
                         monitoredVariables[dvr.Index].AcceptWireFormat(dvr);
                         break;
+                    case TerminateConnection: return;
                     default:
                         HandleOtherMessage(item);
                         break;
@@ -112,5 +113,7 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
         protected  virtual void HandleOtherMessage(object message)
         {
        }
+
+        public ValueTask DisposeAsync() => destination.Write(new TerminateConnection()).AsValueTask();
     }
 }

@@ -21,6 +21,14 @@ namespace SimControls.NetworkCommon.DataClasses
                 : null;
     }
 
+    public record TerminateConnection():ICanWriteToPipe
+    {
+        public static TerminateConnection? ReadFromPipe(ref SequenceReader<byte> src) => new();
+        public void WriteToPipe(PipeWriter write)
+        {
+        }
+    }
+
     public record DoubleValueRecord(ushort Index, double Value) : ICanWriteToPipe
     {
         public void WriteToPipe(PipeWriter write)
