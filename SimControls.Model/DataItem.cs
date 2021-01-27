@@ -46,6 +46,7 @@ namespace SimControls.Model
 
     public interface IReadOnlyBoolItem : INotifyPropertyChanged
     {
+        public ushort UniqueIndex { get; }
         public bool BoolValue { get; }
     }
     

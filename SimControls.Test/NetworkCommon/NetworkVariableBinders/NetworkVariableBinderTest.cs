@@ -13,6 +13,8 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
     {
         private readonly DataItem<double> serverDoubleValue = new DataItem<double>() {UniqueIndex = 11};
         private readonly DataItem<double> clientDoubleValue = new DataItem<double>() {UniqueIndex = 11};
+        private readonly BoolItem servertBoolValue = new BoolItem() {UniqueIndex = 6};
+        private readonly BoolItem clientBoolValue = new BoolItem() {UniqueIndex = 6};
         private readonly Mock<IVariableCache> varCache = new();
         private readonly Pipe clientToServer = new();
         private readonly Pipe serverToClient = new();
@@ -24,6 +26,9 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
             varCache.Setup(i => i.GetVariable<double, DataItem<double>>
                 (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 11))
                 .Returns(serverDoubleValue);
+            varCache.Setup(i => i.GetVariable<int, BoolItem>
+                (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 6))
+                .Returns(servertBoolValue);
             
             var dict = new SimObjectDictionary();
             server = new (varCache.Object, 
@@ -37,7 +42,7 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         }
 
         [Fact]
-        public async Task ReadValueFromServer()
+        public async Task SyncDoubleToServer()
         {
             serverDoubleValue.Value = 1234;
             client.BindVariableToSimulator("name", "unit", "double", clientDoubleValue);
@@ -47,6 +52,18 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
             clientDoubleValue.Value = 12;
             while (serverDoubleValue.Value > 13) ;//do nothing
             Assert.Equal(12, serverDoubleValue.Value);
+        }
+        [Fact]
+        public async Task SyncBoolToServer()
+        {
+            servertBoolValue.BoolValue = true;
+            client.BindVariableToSimulator("name", "unit", "double", clientBoolValue);
+
+            while (!clientBoolValue.BoolValue) ; // do nothing
+            Assert.True(clientBoolValue.BoolValue);
+            clientBoolValue.BoolValue = false;
+            while (servertBoolValue.BoolValue) ;//do nothing
+            Assert.False(servertBoolValue.BoolValue);
         }
 
         public Task InitializeAsync() => Task.CompletedTask;

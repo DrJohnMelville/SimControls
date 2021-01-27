@@ -1,77 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Melville.INPC;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using SimControls.Model;
 using SimControls.NetworkCommon.DataClasses;
 
 namespace SimControls.NetworkCommon.NetworkVariableBinders
 {
-    public abstract class NetworkVariableEntry
-    {
-        private readonly IBinaryObjectPipeWriter writer;
-
-        public static NetworkVariableEntry Create(DataItem variable, IBinaryObjectPipeWriter writer) =>
-            variable switch
-            {
-                ReadOnlyDataItem<double> dbl => new DoubleEntry(dbl, writer),
-                _ => throw new InvalidOperationException("Unknown Data Type")
-            };
-
-        public NetworkVariableEntry(DataItem variable, IBinaryObjectPipeWriter writer)
-        {
-            this.writer = writer;
-            variable.WhenMemberChanges("Value", TrySendValue);
-        }
-
-        private bool writeSuppressed;
-
-        public void TrySendValue()
-        {
-            if (writeSuppressed) return;
-            GC.KeepAlive(writer.Write(ToWireFormat()));
-        }
-
-        public abstract ICanWriteToPipe ToWireFormat();
-
-        public void AcceptWireFormat(ICanWriteToPipe value)
-        {
-            writeSuppressed = true;
-            try
-            {
-                ParseWireFormat(value);
-            }
-            finally
-            {
-                writeSuppressed = false;
-            }
-        }
-
-        protected abstract void ParseWireFormat(ICanWriteToPipe value);
-
-        private sealed class DoubleEntry : NetworkVariableEntry
-        {
-            private readonly ReadOnlyDataItem<double> variable;
-
-            public DoubleEntry(ReadOnlyDataItem<double> variable,
-                IBinaryObjectPipeWriter writer) : base(variable, writer)
-            {
-                this.variable = variable;
-            }
-
-            public override ICanWriteToPipe ToWireFormat() => 
-                new DoubleValueRecord(variable.UniqueIndex, variable.Value);
-
-            protected override void ParseWireFormat(ICanWriteToPipe value)
-            {
-                writeSuppressed = true;
-                variable.TryUpdateFromSimulator(((DoubleValueRecord) value).Value);
-                writeSuppressed = false;
-            }
-        }
-    }
-
     public class NetworkVariableSynchronizer: IAsyncDisposable
     {
         private readonly IBinaryObjectPipeReader source;
@@ -101,6 +36,9 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
                 {
                     case DoubleValueRecord dvr:
                         monitoredVariables[dvr.Index].AcceptWireFormat(dvr);
+                        break;
+                    case ByteValueRecord bvr:
+                        monitoredVariables[bvr.Index].AcceptWireFormat(bvr);
                         break;
                     case TerminateConnection: return;
                     default:
