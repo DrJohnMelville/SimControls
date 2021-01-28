@@ -35,7 +35,11 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
         public ValueTask DisposeAsync() => synchronizer.DisposeAsync();
     }
 
-    public class NetworkVariableServer: NetworkVariableSynchronizer
+    public interface INetworkVariableServer
+    {
+    }
+
+    public class NetworkVariableServer: NetworkVariableSynchronizer, INetworkVariableServer
     {
         private readonly IVariableCache varCache;
 

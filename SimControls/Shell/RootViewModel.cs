@@ -4,6 +4,7 @@ using Melville.MVVM.WaitingServices;
 using Melville.MVVM.Wpf.DiParameterSources;
 using Melville.MVVM.Wpf.RootWindows;
 using SimControls.FlightDisplays;
+using SimControls.NetworkServer;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
 
@@ -12,12 +13,11 @@ namespace SimControls.Shell
     public class RootViewModel
     {
         private readonly INavigationWindow navWindow;
-       // private readonly IVoiceCommand voice; // just holding this reference keeps the voice command working
-       private IYokeConnection yoke; // create the singleton and it will stay
-        public RootViewModel(INavigationWindow navWindow, IYokeConnection yoke)
+        public RootViewModel(INavigationWindow navWindow, IYokeConnection yoke, SimServer server)
         {
             this.navWindow = navWindow;
-            this.yoke = yoke;
+            // Yoke and server are singletons, we demand that they exist at this point and then
+            // the IOC framework will keep the active.
         }
 
         public async Task ConnectToSim(IWaitingService wait,

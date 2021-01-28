@@ -6,10 +6,13 @@ using Melville.MVVM.USB;
 using Melville.MVVM.WindowMessages;
 using Melville.MVVM.Wpf.RootWindows;
 using Melville.MVVM.Wpf.WindowMessages;
+using Melville.P2P.Raw.BinaryObjectPipes;
+using Melville.P2P.Raw.Matchmaker;
 using Melville.WpfAppFramework.StartupBases;
 using SimControls.AirportDatabase;
 using SimControls.Model;
 using SimControls.Model.AirportDatabase;
+using SimControls.NetworkCommon.DataClasses;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
 
@@ -32,6 +35,13 @@ namespace SimControls.Shell
             RegisterDataStore(service);
             RegisterHardware(service);
             RegisterAirportDatabase(service);
+            RegisterTabletServer(service);
+        }
+
+        private void RegisterTabletServer(IBindableIocService service)
+        {
+            service.Bind<BinaryObjectDictionary>().To<SimObjectDictionary>().AsSingleton();
+            service.Bind<MatchmakerServer>().ToSelf().WithParameters(70).DisposeIfInsideScope();
         }
 
         private static void RegisterDataStore(IBindableIocService service)
