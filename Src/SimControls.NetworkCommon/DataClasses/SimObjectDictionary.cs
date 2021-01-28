@@ -10,6 +10,7 @@ namespace SimControls.NetworkCommon.DataClasses
             Register<TerminateConnection>(TerminateConnection.ReadFromPipe);
             Register<DoubleValueRecord>(DoubleValueRecord.ReadFromPipe);
             Register<ByteValueRecord>(ByteValueRecord.ReadFromPipe);
+            Register<FireEventRecord>(FireEventRecord.ReadFromPipe);
         }
     }
 }

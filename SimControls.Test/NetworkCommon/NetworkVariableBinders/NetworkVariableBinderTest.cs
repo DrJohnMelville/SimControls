@@ -15,6 +15,8 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         private readonly DataItem<double> clientDoubleValue = new DataItem<double>() {UniqueIndex = 11};
         private readonly BoolItem servertBoolValue = new BoolItem() {UniqueIndex = 6};
         private readonly BoolItem clientBoolValue = new BoolItem() {UniqueIndex = 6};
+        private readonly SimEventTrigger serverEvent = new SimEventTrigger("XXYYY");
+        private readonly SimEventTrigger clientEvent = new SimEventTrigger("XXYYY");
         private readonly Mock<IVariableCache> varCache = new();
         private readonly Pipe clientToServer = new();
         private readonly Pipe serverToClient = new();
@@ -29,6 +31,7 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
             varCache.Setup(i => i.GetVariable<int, BoolItem>
                 (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 6))
                 .Returns(servertBoolValue);
+            varCache.Setup(i => i.GetEvent("XXYYY")).Returns(serverEvent);
             
             var dict = new SimObjectDictionary();
             server = new (varCache.Object, 
@@ -42,7 +45,25 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         }
 
         [Fact]
-        public async Task SyncDoubleToServer()
+        public async Task ClientEventTransmitsToServer()
+        {
+            int fired = 0;
+            var tcs = new TaskCompletionSource();
+            serverEvent.RegisterEffector((_,data)=>
+            {
+                fired++;
+                Assert.Equal(1234u, data);
+                tcs.SetResult();
+            });
+            client.BindEventToSimulator(clientEvent);
+            clientEvent.Fire(1234);
+            await tcs.Task;
+            Assert.Equal(1, fired);
+            
+        }
+
+        [Fact]
+        public void SyncDoubleToServer()
         {
             serverDoubleValue.Value = 1234;
             client.BindVariableToSimulator("name", "unit", "double", clientDoubleValue);
@@ -54,7 +75,7 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
             Assert.Equal(12, serverDoubleValue.Value);
         }
         [Fact]
-        public async Task SyncBoolToServer()
+        public void SyncBoolToServer()
         {
             servertBoolValue.BoolValue = true;
             client.BindVariableToSimulator("name", "unit", "double", clientBoolValue);

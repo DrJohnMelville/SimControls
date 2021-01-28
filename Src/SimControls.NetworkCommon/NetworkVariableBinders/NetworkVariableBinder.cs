@@ -28,7 +28,8 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
 
         public void BindEventToSimulator(SimEventTrigger simEvent)
         {
-            throw new System.NotImplementedException();
+            simEvent.RegisterEffector(
+                (_,v)=>destination.Write(new FireEventRecord(simEvent.SimulatorEventName, v)));
         }
 
         public ValueTask DisposeAsync() => synchronizer.DisposeAsync();
@@ -47,9 +48,14 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
 
         protected override void HandleOtherMessage(object message)
         {
-            if (message is BindingRequest req)
+            switch (message)
             {
-                RegisterRemoteVariable(req);
+                case BindingRequest req:
+                    RegisterRemoteVariable(req);
+                    break;
+                case FireEventRecord fer:
+                    varCache.GetEvent(fer.EventName).Fire(fer.Value);
+                    break;
             }
         }
 

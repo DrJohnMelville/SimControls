@@ -1,5 +1,6 @@
 ﻿using System.Buffers;
 using System.IO.Pipelines;
+using System.Net.Http.Headers;
 using System.Text;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using SequenceReaderExtensions = Melville.P2P.Raw.BinaryObjectPipes.SequenceReaderExtensions;
@@ -57,6 +58,22 @@ namespace SimControls.NetworkCommon.DataClasses
         public static ByteValueRecord? ReadFromPipe(ref SequenceReader<byte> src) =>
             src.TryReadLittleEndian(out ushort index) && src.TryReadLittleEndian(out byte value)
                 ? new ByteValueRecord(index, value)
+                : null;
+    }
+
+    public record FireEventRecord(string EventName, uint Value): ICanWriteToPipe
+    {
+        public void WriteToPipe(PipeWriter write)
+        {
+            var len = SerialPipeWriter.SpaceForString(EventName) + sizeof(uint);
+            using var mem = new SerialPipeWriter(write, len);
+            mem.Write(EventName);
+            mem.Write(Value);
+        }
+
+        public static FireEventRecord? ReadFromPipe(ref SequenceReader<byte> src) =>
+            src.TryRead(out string? eventName) && src.TryReadLittleEndian(out uint value)
+                ? new FireEventRecord(eventName, value)
                 : null;
     }
 }
