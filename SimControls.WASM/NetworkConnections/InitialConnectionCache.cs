@@ -14,14 +14,13 @@ namespace SimControls.WASM.NetworkConnections
     public class InitialConnectionCache: ISimVariableBinder, IInitialConnectionCache
     {
         private ISimVariableBinder? innerBinder;
-        private readonly MatchMakerClient client;
 
         private readonly Func<BinaryObjectPipeReader, BinaryObjectPipeWriter, ISimVariableBinder>
             binderFactory;
 
-        public InitialConnectionCache(MatchMakerClient client)
+        public InitialConnectionCache(Func<BinaryObjectPipeReader, BinaryObjectPipeWriter, ISimVariableBinder> binderFactory)
         {
-            this.client = client;
+            this.binderFactory = binderFactory;
         }
 
         public void BindVariableToSimulator<T>(
@@ -31,10 +30,11 @@ namespace SimControls.WASM.NetworkConnections
         public void BindEventToSimulator(SimEventTrigger simEvent) =>
             innerBinder?.BindEventToSimulator(simEvent);
 
-        public async Task WaitForConnection()
+        public Task WaitForConnection()
         {
-            var (reader, writer) = await client.Connect();
-            innerBinder = binderFactory(reader, writer);
+            return new TaskCompletionSource().Task; 
+//            var (reader, writer) = await client.Connect();
+//            innerBinder = binderFactory(reader, writer);
         }
     }
 }

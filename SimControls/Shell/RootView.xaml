@@ -8,7 +8,9 @@
              d:DataContext="{d:DesignData Type={x:Type local:RootViewModel}}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Button Click="{eventBindings:EventBinding ConnectToSim}">Connect To Flight Simulator</Button>
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <Button DockPanel.Dock="Top" Height="40"
+                Click="{eventBindings:EventBinding ConnectToSim}">Connect To Flight Simulator</Button>
+        <local:QRCodeDisplay Text="{Binding Server.ClientAddress}" />
+    </DockPanel>
 </UserControl>

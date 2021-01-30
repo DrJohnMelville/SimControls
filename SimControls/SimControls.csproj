@@ -11,6 +11,7 @@
       <PackageReference Include="Melville.WpfAppFramework" Version="0.1.12" />
       <PackageReference Include="Melville.WpfControls" Version="0.2.8" />
       <PackageReference Include="System.Linq.Async" Version="5.0.0" />
+      <PackageReference Include="ZXing.Net" Version="0.16.6" />
     </ItemGroup>
 
     <ItemGroup>

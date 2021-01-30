@@ -40,8 +40,6 @@ namespace SimControls.WASM
             svc.AddSingleton<IVariableCache, VariableCache>();
             svc.AddSingleton<Func<BinaryObjectPipeReader, BinaryObjectPipeWriter, ISimVariableBinder>>(
                 (reader,writer) => new NetworkVariableBinder(reader, writer));
-            svc.AddTransient<MatchMakerClient>(i =>
-                new MatchMakerClient(70, i.GetRequiredService<BinaryObjectDictionary>()));
         }
     }
 }
