@@ -1,6 +1,17 @@
 ﻿@page "/MainPanel"
+@using SimControls.Model
+@inject IVariableCache Variables;
 <h3>MainPanel</h3>
-
+<p>Elevator Trim: @elevatorTrim?.Value</p>
 @code {
+    private DataItem<double>? elevatorTrim;
     
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        var elt = Variables.ElevatorTrimPosition();
+        elt.PropertyChanged += (s, e) => StateHasChanged();
+        elevatorTrim = elt;
+    }
+
 }

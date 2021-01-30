@@ -9,4 +9,8 @@
       <ProjectReference Include="..\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Nerdbank.Streams" Version="2.6.81" />
+    </ItemGroup>
+
 </Project>

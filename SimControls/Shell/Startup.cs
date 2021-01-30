@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.IO.Pipelines;
 using System.Windows;
+using Melville.IOC.BindingRequests;
 using Melville.IOC.IocContainers;
+using Melville.IOC.IocContainers.ActivationStrategies.TypeActivation;
 using Melville.MVVM.USB;
 using Melville.MVVM.WindowMessages;
 using Melville.MVVM.Wpf.RootWindows;
@@ -13,6 +16,7 @@ using SimControls.AirportDatabase;
 using SimControls.Model;
 using SimControls.Model.AirportDatabase;
 using SimControls.NetworkCommon.DataClasses;
+using SimControls.NetworkCommon.NetworkVariableBinders;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
 
@@ -41,7 +45,23 @@ namespace SimControls.Shell
         private void RegisterTabletServer(IBindableIocService service)
         {
             service.Bind<BinaryObjectDictionary>().To<SimObjectDictionary>().AsSingleton();
-            service.Bind<MatchmakerServer>().ToSelf().WithParameters(70).DisposeIfInsideScope();
+            service.Bind<IBinaryObjectPipeReader>().To<BinaryObjectPipeReader>(
+                i => i.WithArgumentTypes<PipeReader, BinaryObjectDictionary>());
+            service.Bind<IBinaryObjectPipeWriter>().To<BinaryObjectPipeWriter>(
+                i => i.WithArgumentTypes<PipeWriter, BinaryObjectDictionary>());
+            service.Bind<Func<PipeReader, PipeWriter, INetworkVariableServer>>()
+                .ToMethod(CreateNetworkVariableServer);
+        }
+
+        private Func<PipeReader, PipeWriter, INetworkVariableServer> 
+            CreateNetworkVariableServer(IIocService ioc, IBindingRequest br)
+        {
+            return (r, w) =>
+            {
+                var dict = ioc.Get<BinaryObjectDictionary>();
+                return new NetworkVariableServer(ioc.Get<IVariableCache>(),
+                    new BinaryObjectPipeReader(r, dict), new BinaryObjectPipeWriter(w, dict));
+            };
         }
 
         private static void RegisterDataStore(IBindableIocService service)

@@ -1,18 +1,22 @@
 ﻿@page "/"
 @using SimControls.WASM.NetworkConnections
+@using System.Net.WebSockets
+@using System.Text
+@using System.Threading
 @inject IInitialConnectionCache clientConnection
 @inject NavigationManager nav;
 
 <h1>SimControls.WASM</h1>
-<p>Connecting to the server ...</p>
+<p>Connecting to the server</p>
 
 @code {
 
     protected override async void OnInitialized()
     {
+        // we are async overriding the static initialized because we do not want to
+        // wait for a connection to show the UI.
         base.OnInitialized();
-
-        await clientConnection.WaitForConnection();
+        await clientConnection.WaitForConnectionAsync();
         nav.NavigateTo("MainPanel");
     }
 

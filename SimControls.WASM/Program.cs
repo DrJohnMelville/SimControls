@@ -1,6 +1,8 @@
 using System;
 using System.Net.Http;
 using System.Collections.Generic;
+using System.IO.Pipelines;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Text;
 using Melville.P2P.Raw.BinaryObjectPipes;
@@ -33,13 +35,17 @@ namespace SimControls.WASM
 
         private static void RegisterVariableCache(IServiceCollection svc)
         {
-            svc.AddSingleton<BinaryObjectDictionary, SimObjectDictionary>();
+            BinaryObjectDictionary dict = new SimObjectDictionary();
+            svc.AddSingleton<BinaryObjectDictionary>(dict);
             svc.AddSingleton<ISimVariableBinder, InitialConnectionCache>();
             svc.AddSingleton<IInitialConnectionCache>(i =>
                 (IInitialConnectionCache) i.GetRequiredService<ISimVariableBinder>());
             svc.AddSingleton<IVariableCache, VariableCache>();
-            svc.AddSingleton<Func<BinaryObjectPipeReader, BinaryObjectPipeWriter, ISimVariableBinder>>(
-                (reader,writer) => new NetworkVariableBinder(reader, writer));
+            svc.AddSingleton<Func<PipeReader, PipeWriter, ISimVariableBinder>>(
+                (reader,writer) => 
+                    new NetworkVariableBinder(
+                        new BinaryObjectPipeReader(reader, dict), 
+                        new BinaryObjectPipeWriter(writer, dict)));
         }
     }
 }
