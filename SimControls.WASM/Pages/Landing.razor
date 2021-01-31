@@ -1,25 +1,54 @@
 ﻿@page "/Landing"
+@implements IDisposable
 @using SimControls.Model
+@using System.ComponentModel
 @inject IVariableCache Variables;
-@if (elevatorTrim != null)
+@if (elevatorTrim != null && flapsPosition != null && flapsPositionCount != null && gearDown != null &&
+     gearRetractable != null && toggleGear != null)
 {
     <div id="root">
         <div id="EL">Elevator</div>
         <input id ="ELC" class="vert" type="range" min="-0.35" max="0.35" Step="0.02" @bind="elevatorTrim.Value"/>
         <div id="FL">Flaps</div>
-        <input id ="FLC" class="vert" type="range" min="-0.35" max="0.35" Step="0.02" @bind="elevatorTrim.Value"/>
-        <button>Gear Up</button>
+        <input id ="FLC" class="vert" type="range" min="0" max="@flapsPosition" Step="1" 
+               @bind="elevatorTrim.Value"/>
+        @if (gearRetractable.BoolValue)
+        {
+            <button @onclick="()=>toggleGear.Fire(0)">Gear @(gearDown.BoolValue?"Down":"Up")</button>
+        }
     </div>
 }
 @code {
     private DataItem<double>? elevatorTrim;
+    private DataItem<double>? flapsPosition;
+    private ReadOnlyDataItem<double>? flapsPositionCount;
+    private ReadOnlyBoolItem? gearDown;
+    private BoolItem? gearRetractable;
+    private SimEventTrigger toggleGear;
+    
     
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        var elt = Variables.ElevatorTrimPosition();
-        elt.PropertyChanged += (s, e) => StateHasChanged();
-        elevatorTrim = elt;
+        elevatorTrim = Monitor(Variables.ElevatorTrimPosition());
+        flapsPosition = Monitor(Variables.FlapsHandleIndex());
+        flapsPositionCount = Monitor(Variables.FlapsNumHandlePositions());
+        gearDown = Monitor(Variables.GearHandlePosition());
+        gearRetractable = Monitor(Variables.IsGearRetractable());
+        toggleGear = Variables.GearToggleEvent();
+    }
+
+
+    private T Monitor<T>(T item) where T : INotifyPropertyChanged
+    {
+        item.PropertyChanged += UpdateView;
+        return item;
+    }
+    private void UpdateView(object? s, PropertyChangedEventArgs e) => StateHasChanged();
+
+    public void Dispose()
+    {
+        elevatorTrim.PropertyChanged -= UpdateView;
     }
 
 }
