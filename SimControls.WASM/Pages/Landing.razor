@@ -1,8 +1,13 @@
-﻿@page "/MainPanel"
+﻿@page "/Landing"
 @using SimControls.Model
 @inject IVariableCache Variables;
-<h3>MainPanel</h3>
-<p>Elevator Trim: @elevatorTrim?.Value</p>
+@if (elevatorTrim != null)
+{
+    <div id="root">
+        <div id="EL">Elevator</div>
+        <input id ="ELC" class="vert" type="range" min="-0.35" max="0.35" Step="0.02" @bind="elevatorTrim.Value"/>
+    </div>
+}
 @code {
     private DataItem<double>? elevatorTrim;
     

@@ -13,12 +13,13 @@ namespace SimControls.WASM.NetworkConnections
     public interface IInitialConnectionCache
     {
         Task WaitForConnectionAsync();
+        bool Connected { get; }
     }
 
     public class InitialConnectionCache: ISimVariableBinder, IInitialConnectionCache
     {
         private ISimVariableBinder? innerBinder;
-
+        public bool Connected => innerBinder != null;
         private readonly Func<PipeReader, PipeWriter, ISimVariableBinder>
             binderFactory;
 

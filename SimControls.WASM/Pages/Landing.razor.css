@@ -1,0 +1,19 @@
+﻿#root {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: 
+       "EleLabel FlapLabel GearLabel"
+       "Elev Flaps Gear";
+}
+
+#EL {
+    grid-area: EleLabel;
+    justify-self: center;
+}
+
+#ELC {
+    grid-area: Elev;
+    justify-self: center;
+    align-self: stretch;
+}
