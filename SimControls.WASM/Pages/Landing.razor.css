@@ -5,15 +5,34 @@
     grid-template-areas: 
        "EleLabel FlapLabel GearLabel"
        "Elev Flaps Gear";
+    width: 100%;
+    height: 100%;
 }
+
+
 
 #EL {
     grid-area: EleLabel;
     justify-self: center;
 }
+#FL {
+    grid-area: FlapLabel;
+    justify-self: center;
+}
+
+button{
+    grid-area: Gear;
+    justify-self: stretch;
+    align-self: stretch;
+}
 
 #ELC {
     grid-area: Elev;
+    justify-self: center;
+    align-self: stretch;
+}
+#FLC {
+    grid-area: Flaps;
     justify-self: center;
     align-self: stretch;
 }

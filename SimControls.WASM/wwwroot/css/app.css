@@ -50,17 +50,15 @@ a, .btn-link {
     }
     
     .invVert {
-        writing-mode: tb-lr; /* IE */
+        writing-mode: tb-rl; /* IE */
         -webkit-appearance: slider-vertical; /* WebKit */
         width: 8px;
-        height: 175px;
         padding: 0 5px;
     }
     .vert {
         writing-mode: bt-lr; /* IE */
         -webkit-appearance: slider-vertical; /* WebKit */
         width: 8px;
-        height: 175px;
         padding: 0 5px;
     }
     
@@ -73,4 +71,10 @@ a, .btn-link {
 }
 .likeabutton:active {
     border-color: ButtonShadow ButtonHighlight ButtonHighlight ButtonShadow;
+}
+
+html, body, .page{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
