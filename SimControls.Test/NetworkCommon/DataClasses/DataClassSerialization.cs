@@ -20,7 +20,7 @@ namespace SimControls.Test.NetworkCommon.DataClasses
             reader = new BinaryObjectPipeReader(pipe.Reader, dict);
         }
 
-        private async Task TestSerialization<T>(T obj) where T:ICanWriteToPipe
+        private async Task TestSerializationAsync<T>(T obj) where T:ICanWriteToPipe
         {
             await writer.Write(obj);
             var copy = await reader.Read().FirstAsync();
@@ -28,7 +28,7 @@ namespace SimControls.Test.NetworkCommon.DataClasses
         }
 
         [Fact]
-        public Task SerializeBindingRequest() =>
-            TestSerialization(new BindingRequest(2342));
+        public Task SerializeBindingRequestAsync() =>
+            TestSerializationAsync(new BindingRequest(2342));
     }
 }

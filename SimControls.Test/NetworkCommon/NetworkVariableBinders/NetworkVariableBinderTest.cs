@@ -45,7 +45,7 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
         }
 
         [Fact]
-        public async Task ClientEventTransmitsToServer()
+        public async Task ClientEventTransmitsToServerAsync()
         {
             int fired = 0;
             var tcs = new TaskCompletionSource();

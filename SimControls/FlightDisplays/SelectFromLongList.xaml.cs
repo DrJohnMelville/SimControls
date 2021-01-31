@@ -55,12 +55,12 @@ namespace SimControls.FlightDisplays
         {
             if (QueryBox.Text == Value?.ToString()) return;
             Value = null;
-            Requery().FireAndForget();
+            RequeryAsync().FireAndForget();
         }
 
-        private async Task Requery()
+        private async Task RequeryAsync()
         {
-            if (await repeatFilter.DoesSucceedingEventHappen(TimeSpan.FromSeconds(0.5))) return;
+            if (await repeatFilter.DoesSucceedingEventHappenAsync(TimeSpan.FromSeconds(0.5))) return;
             SetCandidates(await Source.SearchAirports(QueryBox.Text).OfType<object>().ToListAsync());
         }
 
@@ -104,7 +104,7 @@ namespace SimControls.FlightDisplays
     {
         private volatile int eventCount = 0;
 
-        public async Task<bool> DoesSucceedingEventHappen(TimeSpan span)
+        public async Task<bool> DoesSucceedingEventHappenAsync(TimeSpan span)
         {
             var myTicketNumber = Interlocked.Increment(ref eventCount);
             await Task.Delay(span);
