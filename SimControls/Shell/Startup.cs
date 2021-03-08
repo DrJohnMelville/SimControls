@@ -18,6 +18,7 @@ using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
+using SimVariableList = SimControls.SimulatorConnection.SimVariableList;
 
 namespace SimControls.Shell
 {

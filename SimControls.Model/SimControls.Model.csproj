@@ -20,4 +20,8 @@
       <ProjectReference Include="..\FacadeGenerator\FacadeGenerator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="ISimulatorInterface.cs" />
+    </ItemGroup>
+
 </Project>
