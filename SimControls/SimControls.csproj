@@ -16,8 +16,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SimControls.AirportDatabase\SimControls.AirportDatabase.csproj" />
+      <ProjectReference Include="..\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj" />
+      <ProjectReference Include="..\SimControls.NetworkServer\SimControls.NetworkServer.csproj" />
       <ProjectReference Include="..\SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj" />
       <ProjectReference Include="..\SimControls.YokeConnector\SimControls.YokeConnector.csproj" />
-      <ProjectReference Include="..\Src\SimControls.NetworkServer\SimControls.NetworkServer.csproj" />
     </ItemGroup>
 </Project>

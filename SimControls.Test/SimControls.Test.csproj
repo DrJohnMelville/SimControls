@@ -23,7 +23,6 @@
     <ItemGroup>
       <ProjectReference Include="..\SimControls.Model\SimControls.Model.csproj" />
       <ProjectReference Include="..\SimControls\SimControls.csproj" />
-      <ProjectReference Include="..\Src\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj" />
     </ItemGroup>
 
     <ItemGroup>

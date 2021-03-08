@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Src\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj" />
+    <ProjectReference Include="..\SimControls.NetworkCommon\SimControls.NetworkCommon.csproj" />
   </ItemGroup>
 
 </Project>

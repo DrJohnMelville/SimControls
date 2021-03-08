@@ -1,17 +1,10 @@
 using System;
 using System.Net.Http;
-using System.Collections.Generic;
 using System.IO.Pipelines;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Text;
 using Melville.P2P.Raw.BinaryObjectPipes;
-using Melville.P2P.Raw.Matchmaker;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using SimControls.Model;
 using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;

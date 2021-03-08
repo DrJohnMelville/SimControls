@@ -24,7 +24,7 @@
     private ReadOnlyDataItem<double>? flapsPositionCount;
     private ReadOnlyBoolItem? gearDown;
     private BoolItem? gearRetractable;
-    private SimEventTrigger toggleGear;
+    private SimEventTrigger? toggleGear;
     
     
     protected override void OnInitialized()
@@ -48,7 +48,7 @@
 
     public void Dispose()
     {
-        elevatorTrim.PropertyChanged -= UpdateView;
+        if (elevatorTrim != null) elevatorTrim.PropertyChanged -= UpdateView;
     }
 
 }

@@ -10,7 +10,6 @@ using Melville.MVVM.WindowMessages;
 using Melville.MVVM.Wpf.RootWindows;
 using Melville.MVVM.Wpf.WindowMessages;
 using Melville.P2P.Raw.BinaryObjectPipes;
-using Melville.P2P.Raw.Matchmaker;
 using Melville.WpfAppFramework.StartupBases;
 using SimControls.AirportDatabase;
 using SimControls.Model;
