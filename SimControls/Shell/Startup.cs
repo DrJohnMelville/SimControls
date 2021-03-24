@@ -40,6 +40,17 @@ namespace SimControls.Shell
             RegisterHardware(service);
             RegisterAirportDatabase(service);
             RegisterTabletServer(service);
+            RegisterDebugger(service);
+        }
+
+        private void RegisterDebugger(IBindableIocService service)
+        {
+            service.Bind<Func<object, IRootNavigationWindow>>().ToConstant(o =>
+            {
+                var navWindow = new NavigationWindow();
+                navWindow.NavigateTo(o);
+                return new RootNavigationWindow(navWindow);
+            });
         }
 
         private void RegisterTabletServer(IBindableIocService service)

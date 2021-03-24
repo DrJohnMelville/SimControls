@@ -32,7 +32,7 @@ namespace SimControls.Shell
                 {
                     await simulator.Connect();
                     simulator.LostConnection += NavigateToThisPage;
-                    navWindow.NavigateTo(displayFactory());
+                    FlightDisplay(displayFactory);
                 }
                 catch (Exception e)
                 {
@@ -40,6 +40,16 @@ namespace SimControls.Shell
                     throw;
                 }
             }
+        }
+
+        public void LaunchDebugger([FromServices]Func<object, IRootNavigationWindow> winFactory)
+        {
+            winFactory("hello workd").Show();
+        }
+
+        public void FlightDisplay([FromServices]Func<FlightDisplayViewModel> displayFactory)
+        {
+            navWindow.NavigateTo(displayFactory());
         }
 
         private void NavigateToThisPage(object? sender, EventArgs e) => navWindow.NavigateTo(this);

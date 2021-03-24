@@ -11,6 +11,10 @@
     <DockPanel LastChildFill="True">
         <Button DockPanel.Dock="Top" Height="40"
                 Click="{eventBindings:EventBinding ConnectToSim}">Connect To Flight Simulator</Button>
+        <Button DockPanel.Dock="Top" Height="40"
+                Click="{eventBindings:EventBinding LaunchDebugger}">Launch Debugger</Button>
+        <Button DockPanel.Dock="Top" Height="40"
+                Click="{eventBindings:EventBinding FlightDisplay}">Launch FlightDisplay</Button>
         <local:QRCodeDisplay Text="{Binding Server.ClientAddress}" />
     </DockPanel>
 </UserControl>
