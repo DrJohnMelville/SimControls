@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Melville.MVVM.WaitingServices;
 using Melville.MVVM.Wpf.DiParameterSources;
 using Melville.MVVM.Wpf.RootWindows;
+using SimControls.Debuggers;
 using SimControls.FlightDisplays;
 using SimControls.Model;
 using SimControls.NetworkServer;
@@ -42,9 +43,10 @@ namespace SimControls.Shell
             }
         }
 
-        public void LaunchDebugger([FromServices]Func<object, IRootNavigationWindow> winFactory)
+        public void LaunchDebugger([FromServices]Func<object, IRootNavigationWindow> winFactory,
+            [FromServices]DebuggerViewModel debuggerViewModel)
         {
-            winFactory("hello workd").Show();
+            winFactory(debuggerViewModel).Show();
         }
 
         public void FlightDisplay([FromServices]Func<FlightDisplayViewModel> displayFactory)

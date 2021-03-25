@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace SimControls.Model
 {
@@ -11,7 +12,7 @@ namespace SimControls.Model
     {
         public string SimulatorEventName { get; }
         public int SimEventNumber { get; }
-        private Action<int, uint>? effector;
+        private List<Action<int, uint>> effectors = new();
 
         public SimEventTrigger(string simulatorEventName)
         {
@@ -19,11 +20,14 @@ namespace SimControls.Model
             SimEventNumber = EventCounter.Next();
         }
 
-        public void RegisterEffector(Action<int, uint> newEffector) => effector = newEffector;
+        public void RegisterEffector(Action<int, uint> newEffector) => effectors.Add(newEffector);
 
         public void Fire(uint data = 1)
         {
-            effector?.Invoke(SimEventNumber, data);
+            foreach (var effector in effectors)
+            {
+                effector.Invoke(SimEventNumber, data);
+            }
         }
     }
 }

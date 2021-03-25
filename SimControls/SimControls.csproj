@@ -21,8 +21,4 @@
       <ProjectReference Include="..\SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj" />
       <ProjectReference Include="..\SimControls.YokeConnector\SimControls.YokeConnector.csproj" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Debuggers" />
-    </ItemGroup>
 </Project>
