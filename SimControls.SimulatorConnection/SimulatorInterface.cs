@@ -8,18 +8,23 @@ using SimControls.Model;
 
 namespace SimControls.SimulatorConnection
 {
+    public interface ISimulatorCommandTarget
+    {
+        public void LoadFlightPlan(string plan);
+    }
     public interface ISimulatorInterface
     {
+        public ISimulatorCommandTarget CommandTarget { get; }
         public Task Connect();
-        public void LoadFlightPlan(string plan);
-        public event EventHandler<EventArgs> LostConnection;
+        public event EventHandler<EventArgs>? LostConnection;
     }
-
-    public class SimulatorInterface : ISimulatorInterface
+    /* Keep around until I prove I can actually connect to simulator
+    public class SimulatorInterface : ISimulatorInterface, ISimulatorCommandTarget
     {
         private SimConnect? connection;
         private readonly IWindowMessageSource msgSrc;
         private readonly SimVariableList variables;
+        public ISimulatorCommandTarget CommandTarget => this;
 
         public SimulatorInterface(IWindowMessageSource msgSrc, SimVariableList variables)
         {
@@ -102,5 +107,5 @@ namespace SimControls.SimulatorConnection
             connection?.TransmitClientEvent(0u, (FakeEnum)eventNum, data, FakeEnum.Foo,
                 SIMCONNECT_EVENT_FLAG.GROUPID_IS_PRIORITY);
         }
-    }
+    }*/
 }

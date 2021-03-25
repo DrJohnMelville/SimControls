@@ -6,15 +6,7 @@ using SimControls.Model.VariableBinders;
 
 namespace SimControls.SimulatorConnection
 {
-    public class SimVariableList2
-    {
-        private List<ISimVariable> variables = new();
-        
-        public void UpdateVariables(uint eventRequest, object planeInfo)
-        {
-            variables[(int)eventRequest].UpdateVariable(planeInfo);
-        }
-    }
+    /* Keep arround until we prove the news code connects to the simulator.
     public class SimVariableList: ISimVariableBinder
     {
         private List<ISimVariable> variables = new();
@@ -70,4 +62,5 @@ namespace SimControls.SimulatorConnection
 
         #endregion
     }
+    */
 }

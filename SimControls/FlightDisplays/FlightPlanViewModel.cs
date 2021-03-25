@@ -63,7 +63,7 @@ namespace SimControls.FlightDisplays
          {
              var fp = FlightPlan();
              if (fp == null) return;
-             sim.LoadFlightPlan(fp);
+             sim.CommandTarget.LoadFlightPlan(fp);
          }
 
          public string? FlightPlan()

@@ -19,7 +19,6 @@ using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
-using SimVariableList = SimControls.SimulatorConnection.SimVariableList;
 
 namespace SimControls.Shell
 {
@@ -29,7 +28,6 @@ namespace SimControls.Shell
         public static int Main(string[] commandLineArgs)
         {
             ApplicationRootImplementation.Run(new Startup());
-            
             return 0;
         }
 
@@ -78,8 +76,10 @@ namespace SimControls.Shell
 
         private static void RegisterDataStore(IBindableIocService service)
         {
-            service.Bind<ISimulatorInterface>().To<SimulatorInterface>().AsSingleton();
-            service.Bind<ISimVariableBinder>().And<SimVariableList>().To<SimVariableList>().AsSingleton();
+            service.Bind<ICompositeVariableBinder>()
+                .And<ISimVariableBinder>()
+                .To<CompositeVariableBinder>().AsSingleton();
+            service.Bind<ISimulatorInterface>().To<SimulatorConnectionManager>().AsSingleton();
             service.Bind<IVariableCache>().To<VariableCache>().AsSingleton();
         }
 
