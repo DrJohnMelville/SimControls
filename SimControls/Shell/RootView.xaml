@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <DockPanel LastChildFill="True">
         <Button DockPanel.Dock="Top" Height="40"
-                Click="{eventBindings:EventBinding ConnectToSim}">Connect To Flight Simulator</Button>
+                Click="{eventBindings:EventBinding ConnectToSimAsync}">Connect To Flight Simulator</Button>
         <Button DockPanel.Dock="Top" Height="40"
                 Click="{eventBindings:EventBinding LaunchDebugger}">Launch Debugger</Button>
         <Button DockPanel.Dock="Top" Height="40"

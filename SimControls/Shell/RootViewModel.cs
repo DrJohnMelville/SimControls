@@ -22,7 +22,7 @@ namespace SimControls.Shell
             // Yoke and server are singletons, we demand that they exist at this point and then
             // the IOC framework will keep the active.
         }
-        public async Task ConnectToSim(IWaitingService wait,
+        public async Task ConnectToSimAsync(IWaitingService wait,
             [FromServices] ISimulatorInterface simulator,
             [FromServices] Func<FlightDisplayViewModel> displayFactory)
         {

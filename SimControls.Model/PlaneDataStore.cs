@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using SimControls.Model.VariableBinders;
 
 namespace SimControls.Model
 {
-    public interface ISimVariableBinder
-    {
-        void BindVariableToSimulator<T>(string name, string unit, string simType, ReadOnlyDataItem<T> variable);
-        void BindEventToSimulator(SimEventTrigger simEvent);
-    }
-
     public interface IVariableCache
     {
         public TResult GetVariable<T, TResult>(string name, string units, string dataType, ushort uniqueId)
@@ -16,6 +11,7 @@ namespace SimControls.Model
 
         public SimEventTrigger GetEvent(string simEventName);
     }
+    
     public class VariableCache:IVariableCache
     {
       private readonly Dictionary<int, DataItem> data = new();

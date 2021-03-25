@@ -6,6 +6,7 @@ using Melville.P2P.Raw.BinaryObjectPipes;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using SimControls.Model;
+using SimControls.Model.VariableBinders;
 using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;
 using SimControls.WASM.NetworkConnections;

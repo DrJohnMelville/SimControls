@@ -2,12 +2,22 @@
 using System.Collections.Generic;
 using Microsoft.FlightSimulator.SimConnect;
 using SimControls.Model;
+using SimControls.Model.VariableBinders;
 
 namespace SimControls.SimulatorConnection
 {
+    public class SimVariableList2
+    {
+        private List<ISimVariable> variables = new();
+        
+        public void UpdateVariables(uint eventRequest, object planeInfo)
+        {
+            variables[(int)eventRequest].UpdateVariable(planeInfo);
+        }
+    }
     public class SimVariableList: ISimVariableBinder
     {
-        private List<ISimVariable> variables = new List<ISimVariable>();
+        private List<ISimVariable> variables = new();
         private Action<ISimVariable> bindToSimulator = GC.KeepAlive;
        
         public SimVariableList()

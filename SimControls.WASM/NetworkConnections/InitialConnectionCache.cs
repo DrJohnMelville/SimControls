@@ -7,6 +7,7 @@ using Melville.P2P.Raw.BinaryObjectPipes;
 using Melville.P2P.Raw.Matchmaker;
 using Nerdbank.Streams;
 using SimControls.Model;
+using SimControls.Model.VariableBinders;
 
 namespace SimControls.WASM.NetworkConnections
 {

@@ -14,6 +14,7 @@ using Melville.WpfAppFramework.StartupBases;
 using SimControls.AirportDatabase;
 using SimControls.Model;
 using SimControls.Model.AirportDatabase;
+using SimControls.Model.VariableBinders;
 using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;
 using SimControls.SimulatorConnection;

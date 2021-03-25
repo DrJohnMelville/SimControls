@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using SimControls.Model;
+using SimControls.Model.VariableBinders;
 using SimControls.NetworkCommon.DataClasses;
 
 namespace SimControls.NetworkCommon.NetworkVariableBinders
