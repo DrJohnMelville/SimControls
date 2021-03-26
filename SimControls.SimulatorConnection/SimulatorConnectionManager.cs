@@ -11,18 +11,18 @@ namespace SimControls.SimulatorConnection
     {
         private readonly IWindowMessageSource msgSrc;
         private readonly ICompositeVariableBinder rootBinder;
-        
+        public ISimulatorCommandTarget CommandTarget { get; set; } =
+            new NullSimulatorCommandTarget();
+
         public SimulatorConnectionManager(IWindowMessageSource msgSrc, ICompositeVariableBinder rootBinder)
         {
             this.msgSrc = msgSrc;
             this.rootBinder = rootBinder;
         }
 
-        public ISimulatorCommandTarget CommandTarget { get; set; }
-
         public Task Connect()
         {
-            TaskCompletionSource<int> tcs = new TaskCompletionSource<int>();
+            TaskCompletionSource<int> tcs = new();
             try
             {
                 var connection = new SimConnect("SimControls", msgSrc.SourceWindowHWnd, 0x402, null, 0);

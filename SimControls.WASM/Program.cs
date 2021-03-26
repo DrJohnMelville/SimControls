@@ -33,6 +33,7 @@ namespace SimControls.WASM
         {
             BinaryObjectDictionary dict = new SimObjectDictionary();
             svc.AddSingleton<BinaryObjectDictionary>(dict);
+            svc.AddTransient<HostConnectionFactory, HostConnectionFactory>();
             svc.AddSingleton<ICompositeVariableBinder, CompositeVariableBinder>();
             svc.AddSingleton<ISimVariableBinder>(i => i.GetRequiredService<ICompositeVariableBinder>());
             svc.AddSingleton<IVariableCache, VariableCache>();

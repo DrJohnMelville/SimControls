@@ -23,6 +23,11 @@ namespace SimControls.NetworkServer
             listener.Prefixes.Add("http://+:5432/");
         }
 
+        private static string LocalIp() =>
+            Dns.GetHostEntry(Dns.GetHostName()).AddressList
+                .First(i => i.AddressFamily == AddressFamily.InterNetwork)
+                .ToString();
+
         public async IAsyncEnumerable<WebSocket> WaitForConnectionsAsync()
         {
             listener.Start();
@@ -62,14 +67,13 @@ namespace SimControls.NetworkServer
 
         private Stream GetResponseStream(string path)
         {
-            if (path == "/") return GetResponseStream("/index.html");
-            var fileName = @"C:\Users\jmelv\Documents\Scratch\WASM\wwwroot" + path;
+            var fileName = WebToLocalPath(CheckForDefaultPath(path));
             return new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
 
-        private static string LocalIp() =>
-            Dns.GetHostEntry(Dns.GetHostName()).AddressList
-                .First(i => i.AddressFamily == AddressFamily.InterNetwork)
-                .ToString();
+        private static string CheckForDefaultPath(string path) => path == "/"?"/index.html":path;
+
+        private static string WebToLocalPath(string path) => 
+            $@"{AppDomain.CurrentDomain.BaseDirectory}\WASM\wwwroot{path}";
     }
 }

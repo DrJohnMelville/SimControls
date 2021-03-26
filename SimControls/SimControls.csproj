@@ -21,4 +21,8 @@
       <ProjectReference Include="..\SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj" />
       <ProjectReference Include="..\SimControls.YokeConnector\SimControls.YokeConnector.csproj" />
     </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="dotnet publish &quot;$(ProjectDir)..\SimControls.Wasm&quot; -o &quot;$(TargetDir)\WASM&quot; --self-contained true -r win-x64" />
+    </Target>
 </Project>
