@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
 using System.IO.Pipelines;
+using System.Net.WebSockets;
 using System.Threading.Tasks;
 using Melville.P2P.Raw.BinaryObjectPipes;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Nerdbank.Streams;
 using SimControls.Model;
 using SimControls.Model.VariableBinders;
 using SimControls.NetworkCommon.DataClasses;
@@ -31,15 +33,14 @@ namespace SimControls.WASM
         {
             BinaryObjectDictionary dict = new SimObjectDictionary();
             svc.AddSingleton<BinaryObjectDictionary>(dict);
-            svc.AddSingleton<ISimVariableBinder, InitialConnectionCache>();
-            svc.AddSingleton<IInitialConnectionCache>(i =>
-                (IInitialConnectionCache) i.GetRequiredService<ISimVariableBinder>());
+            svc.AddSingleton<ICompositeVariableBinder, CompositeVariableBinder>();
+            svc.AddSingleton<ISimVariableBinder>(i => i.GetRequiredService<ICompositeVariableBinder>());
             svc.AddSingleton<IVariableCache, VariableCache>();
-            svc.AddSingleton<Func<PipeReader, PipeWriter, ISimVariableBinder>>(
-                (reader,writer) => 
+            svc.AddSingleton<Func<WebSocket, ISimVariableBinder>>(
+                (socket) => 
                     new NetworkVariableBinder(
-                        new BinaryObjectPipeReader(reader, dict), 
-                        new BinaryObjectPipeWriter(writer, dict)));
+                        new BinaryObjectPipeReader(socket.UsePipeReader(), dict), 
+                        new BinaryObjectPipeWriter(socket.UsePipeWriter(), dict)));
         }
     }
 }

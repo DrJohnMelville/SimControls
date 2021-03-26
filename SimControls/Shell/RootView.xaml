@@ -15,6 +15,7 @@
                 Click="{eventBindings:EventBinding LaunchDebugger}">Launch Debugger</Button>
         <Button DockPanel.Dock="Top" Height="40"
                 Click="{eventBindings:EventBinding FlightDisplay}">Launch FlightDisplay</Button>
-        <local:QRCodeDisplay Text="{Binding Server.ClientAddress}" />
+        <local:QRCodeDisplay Text="{Binding Server.ClientAddress}"
+                             MouseRightButtonDown="{eventBindings:EventBinding StartWebView}"/>
     </DockPanel>
 </UserControl>

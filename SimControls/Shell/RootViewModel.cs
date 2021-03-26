@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Melville.MVVM.RunShellCommands;
 using Melville.MVVM.WaitingServices;
 using Melville.MVVM.Wpf.DiParameterSources;
 using Melville.MVVM.Wpf.RootWindows;
@@ -43,17 +44,16 @@ namespace SimControls.Shell
             }
         }
 
-        public void LaunchDebugger([FromServices]Func<object, IRootNavigationWindow> winFactory,
-            [FromServices]DebuggerViewModel debuggerViewModel)
-        {
-            winFactory(debuggerViewModel).Show();
-        }
-
-        public void FlightDisplay([FromServices]Func<FlightDisplayViewModel> displayFactory)
-        {
-            navWindow.NavigateTo(displayFactory());
-        }
-
         private void NavigateToThisPage(object? sender, EventArgs e) => navWindow.NavigateTo(this);
+
+        public void LaunchDebugger([FromServices]Func<object, IRootNavigationWindow> winFactory,
+            [FromServices]DebuggerViewModel debuggerViewModel) =>
+            winFactory(debuggerViewModel).Show();
+
+        public void FlightDisplay([FromServices]Func<FlightDisplayViewModel> displayFactory) => 
+            navWindow.NavigateTo(displayFactory());
+
+        public void StartWebView([FromServices] IRunShellCommand runner) =>
+            runner.ShellExecute(Server.ClientAddress);
     }
 }

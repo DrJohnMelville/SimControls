@@ -1,14 +1,10 @@
 @using SimControls.WASM.NetworkConnections
 @inherits LayoutComponentBase
-@inject IInitialConnectionCache clientConnection
 
 <div class="page">
     <div>
-        @if (clientConnection.Connected)
-        {
             <a href="/Landing" class="likeabutton">Landing</a>
             <a href="/AutoPilot" class="likeabutton">Auto Pilot</a>
-        }
     </div>
     <div id="bodyPosition">
         <div class="fingerSize">
