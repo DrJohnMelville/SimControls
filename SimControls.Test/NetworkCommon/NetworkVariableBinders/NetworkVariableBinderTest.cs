@@ -13,8 +13,8 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
     {
         private readonly DataItem<double> serverDoubleValue = new DataItem<double>() {UniqueIndex = 11};
         private readonly DataItem<double> clientDoubleValue = new DataItem<double>() {UniqueIndex = 11};
-        private readonly BoolItem servertBoolValue = new BoolItem() {UniqueIndex = 6};
-        private readonly BoolItem clientBoolValue = new BoolItem() {UniqueIndex = 6};
+        private readonly BoolItem servertBoolValue = new BoolItem() {UniqueIndex = 10};
+        private readonly BoolItem clientBoolValue = new BoolItem() {UniqueIndex = 10};
         private readonly SimEventTrigger serverEvent = new SimEventTrigger("XXYYY");
         private readonly SimEventTrigger clientEvent = new SimEventTrigger("XXYYY");
         private readonly Mock<IVariableCache> varCache = new();
@@ -29,7 +29,7 @@ namespace SimControls.Test.NetworkCommon.NetworkVariableBinders
                 (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 11))
                 .Returns(serverDoubleValue);
             varCache.Setup(i => i.GetVariable<int, BoolItem>
-                (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 6))
+                (It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), 10))
                 .Returns(servertBoolValue);
             varCache.Setup(i => i.GetEvent("XXYYY")).Returns(serverEvent);
             
