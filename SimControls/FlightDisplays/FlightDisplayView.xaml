@@ -8,6 +8,7 @@
              xmlns:viewFrames="clr-namespace:Melville.MVVM.Wpf.ViewFrames;assembly=Melville.MVVM.Wpf"
              xmlns:diParameterSources="clr-namespace:Melville.MVVM.Wpf.DiParameterSources;assembly=Melville.MVVM.Wpf"
              xmlns:eventBindings="clr-namespace:Melville.MVVM.Wpf.EventBindings;assembly=Melville.MVVM.Wpf"
+             xmlns:wpfHacks="clr-namespace:Melville.MVVM.Wpf.WpfHacks;assembly=Melville.MVVM.Wpf"
              mc:Ignorable="d"
              d:DataContext="{d:DesignData {x:Type local:FlightDisplayViewModel}}"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -42,10 +43,12 @@
             <TextBlock Margin="5" Text="{Binding Item.Value}"></TextBlock>
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:DoubleUpDownDisplayModel}">
-            <easyGrids:EasyGrid easyGrids:GridOperations.ColsAndRows="auto,*,auto/auto">
-                <Button Click="{eventBindings:EventBinding BumpDown}">-</Button>
-                <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
-                <Button Click="{eventBindings:EventBinding BumpUp}">+</Button>
+            <easyGrids:EasyGrid easyGrids:GridOperations.ColsAndRows="auto,auto,*,auto,auto/auto">
+                <Button Click="{eventBindings:EventBinding Item.BigDecrement}" wpfHacks:VisibilityHack.CollapseUnless="{Binding SmallIncrementVisible}">&lt;&lt;</Button>
+                <Button Click="{eventBindings:EventBinding Item.Decrement}" wpfHacks:VisibilityHack.CollapseUnless="{Binding SmallIncrementVisible}">&lt;</Button>
+                <TextBox Text="{Binding Item.Value, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+                <Button Click="{eventBindings:EventBinding Item.Increment}" wpfHacks:VisibilityHack.CollapseUnless="{Binding SmallIncrementVisible}">&gt;</Button>
+                <Button Click="{eventBindings:EventBinding Item.BigIncrement}" wpfHacks:VisibilityHack.CollapseUnless="{Binding SmallIncrementVisible}">&gt;&gt;</Button>
             </easyGrids:EasyGrid>
         </DataTemplate>
     </UserControl.Resources>

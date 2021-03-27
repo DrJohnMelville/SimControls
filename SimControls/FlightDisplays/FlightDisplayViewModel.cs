@@ -3,7 +3,6 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
-using Melville.MVVM.BusinessObjects;
 using Melville.MVVM.Wpf.Bindings;
 using SimControls.Model;
 using Orientation = System.Windows.Controls.Orientation;
@@ -44,21 +43,15 @@ namespace SimControls.FlightDisplays
             GearRetractable = store.IsGearRetractable();
             GearDown = new ToggleButtonModel("Landing Gear", store.GearDownElement());
             
-            SimulationRate = new DoubleUpDownDisplayModel(store.SimulationRate(),
-                    store.SimRateDecrEvent(), store.SimRateIncrEvent(),
-                    store.SimRateEvent())
-                .WithLabel("Time Factor", Dock.Left);
+            SimulationRate = new DoubleUpDownDisplayModel(store.SimulationRateElement())
+                .WithLabel("Time Factor", Dock.Left); 
 
             AutoPilotActive = new ToggleButtonModel("Auto Pilot Active", store.AutopilotElement()); 
             AutoPilotAvialable = store.AutopilotAvailable();
-            HeadingBug = new DoubleUpDownDisplayModel(store.AutopilotHeadingLockDir(),
-                store.HeadingBugDecEvent(), store.HeadingBugIncEvent(), store.HeadingBugSetEvent());
-            AltitudeBug = new DoubleUpDownDisplayModel(store.AutopilotAltitudeLockVar(),
-                store.ApAltVarSetEnglishEvent(), 100);
-            VSIBug = new DoubleUpDownDisplayModel(store.AutopilotVerticalHoldVar(),
-                store.ApVsVarSetEnglishEvent(), 100);
-            AirspeedBug = new DoubleUpDownDisplayModel(store.AutopilotAirspeedHoldVar(),
-                store.ApSpdVarSetEvent(), 5);
+            HeadingBug = new DoubleUpDownDisplayModel(store.AutopilotHeadingElement());
+            AltitudeBug = new DoubleUpDownDisplayModel(store.AutopilotAltitudeLockElement());
+            VSIBug = new DoubleUpDownDisplayModel(store.AutopilotVerticalSpeedElement());
+            AirspeedBug = new DoubleUpDownDisplayModel(store.AutopilotAirSpeedElement());
 
             AltitudeHold = new ToggleButtonModel("Alt Hold", store.AutopilotAltitudeHoldElement());
             VSIHold = new ToggleButtonModel("VSI Hold", store.AutopilotVsiHoldElement());
@@ -76,36 +69,4 @@ namespace SimControls.FlightDisplays
           new LabeledDisplayModel(model, label, location);
     }
     public interface IDisplayModel{}
-
-    public class DoubleUpDownDisplayModel: NotifyBase, IDisplayModel
-    {
-        private readonly ReadOnlyDataItem<double> item;
-        private readonly Action down;
-        private readonly Action up;
-        private readonly SimEventTrigger? setter;
-
-        public DoubleUpDownDisplayModel(
-            ReadOnlyDataItem<double> item, SimEventTrigger? setter, double increment): 
-            this(item, null, null, setter, increment) {}
-        
-        public DoubleUpDownDisplayModel(
-            ReadOnlyDataItem<double> item, SimEventTrigger? down, 
-            SimEventTrigger? up, SimEventTrigger? setter, double increment = 1)
-        {
-            this.item = item;
-            this.setter = setter;
-            this.up = up == null ? () => Value += increment: ()=>up.Fire();
-            this.down = down == null ? () => Value -= increment: ()=>down.Fire();
-            DelegatePropertyChangeFrom(item, nameof(item.Value), nameof(Value));
-        }
-
-        public double Value
-        {
-            get => Math.Round(item.Value);
-            set => setter?.Fire((uint)value);
-        }
-
-        public void BumpDown() => down();
-        public void BumpUp() => up();
-    }
 }
