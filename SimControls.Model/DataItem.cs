@@ -59,8 +59,12 @@ namespace SimControls.Model
             this.DelegatePropertyChangeFrom(this, nameof(Value), nameof(BoolValue));
         }
     }
-    
-    public class BoolItem: DataItem<int>, IReadOnlyBoolItem
+
+    public interface IBoolItem: IReadOnlyBoolItem
+    {
+        new bool BoolValue { get; set; }
+    }
+    public class BoolItem: DataItem<int>, IBoolItem
     {
         public bool BoolValue
         {

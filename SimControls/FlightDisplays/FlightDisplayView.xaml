@@ -30,7 +30,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:ToggleButtonModel}">
             <ToggleButton Content="{Binding Title}"
-                          IsChecked="{Binding Value}"/>
+                          IsChecked="{Binding Item.BoolValue}"/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:LabeledDisplayModel}">
             <DockPanel LastChildFill="True">

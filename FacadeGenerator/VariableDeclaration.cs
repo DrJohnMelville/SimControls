@@ -27,8 +27,8 @@ namespace FacadeGenerator
 
         public string OutputType => (CanWrite, UnitName) switch
         {
-            (true, "Bool") =>"ReadOnlyBoolItem",
-            (false, "Bool") =>"BoolItem",
+            (false, "Bool") =>"ReadOnlyBoolItem",
+            (true, "Bool") =>"BoolItem",
             (true, _) =>$"DataItem<{CSharpType}>",
             (false, _) => $"ReadOnlyDataItem<{CSharpType}>"
         }; 

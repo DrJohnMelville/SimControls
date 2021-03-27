@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Melville.WpfAppFramework" Version="0.4.1" />
-      <PackageReference Include="Melville.WpfControls" Version="0.4.0" />
+      <PackageReference Include="Melville.WpfAppFramework" Version="0.4.2" />
+      <PackageReference Include="Melville.WpfControls" Version="0.4.2" />
       <PackageReference Include="System.Linq.Async" Version="5.0.0" />
       <PackageReference Include="ZXing.Net" Version="0.16.6" />
     </ItemGroup>

@@ -8,7 +8,13 @@ namespace SimControls.Model
         private static int nextEventNumber;
         public static int Next() => nextEventNumber++;
     }
-    public class SimEventTrigger
+
+    public interface ISimEventTrigger
+    {
+        void Fire(uint data = 1);
+    }
+
+    public class SimEventTrigger : ISimEventTrigger
     {
         public string SimulatorEventName { get; }
         public int SimEventNumber { get; }

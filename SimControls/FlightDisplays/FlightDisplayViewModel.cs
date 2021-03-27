@@ -44,19 +44,16 @@ namespace SimControls.FlightDisplays
                 store.FlapsHandleIndex(),
                 store.FlapsNumHandlePositions(), Orientation.Vertical, true)
                 .WithLabel("Flaps");
-            ParkingBreak = new ToggleButtonModel(store.BrakeParkingIndicator(),"Parking Break", 
-                store.ParkingBrakesEvent());
+            ParkingBreak = new ToggleButtonModel("Parking Break", store.ParkingBreakElement());
             GearRetractable = store.IsGearRetractable();
-            GearDown = new ToggleButtonModel(store.GearHandlePosition(), "Landing Gear",
-                store.GearToggleEvent());
+            GearDown = new ToggleButtonModel("Landing Gear", store.GearDownElement());
             
             SimulationRate = new DoubleUpDownDisplayModel(store.SimulationRate(),
                     store.SimRateDecrEvent(), store.SimRateIncrEvent(),
                     store.SimRateEvent())
                 .WithLabel("Time Factor", Dock.Left);
 
-            AutoPilotActive = new ToggleButtonModel(store.AutopilotMaster(), "Auto Pilot Active",
-                store.ApMasterEvent()); 
+            AutoPilotActive = new ToggleButtonModel("Auto Pilot Active", store.AutopilotElement()); 
             AutoPilotAvialable = store.AutopilotAvailable();
             HeadingBug = new DoubleUpDownDisplayModel(store.AutopilotHeadingLockDir(),
                 store.HeadingBugDecEvent(), store.HeadingBugIncEvent(), store.HeadingBugSetEvent());
@@ -67,19 +64,13 @@ namespace SimControls.FlightDisplays
             AirspeedBug = new DoubleUpDownDisplayModel(store.AutopilotAirspeedHoldVar(),
                 store.ApSpdVarSetEvent(), 5);
 
-            AltitudeHold = new ToggleButtonModel(store.AutopilotAltitudeLock(), "Alt Hold",
-                store.ApPanelAltitudeHoldEvent());
-            VSIHold = new ToggleButtonModel(store.AutopilotVerticalHold(), "VSI Hold",
-                store.ApPanelSpeedHoldEvent());
-            AirspeedHold = new ToggleButtonModel(store.AutopilotAirspeedHold(), "Airspeed Hold",
-                store.ApPanelSpeedHoldEvent());
+            AltitudeHold = new ToggleButtonModel("Alt Hold", store.AutopilotAltitudeHoldElement());
+            VSIHold = new ToggleButtonModel("VSI Hold", store.AutopilotVsiHoldElement());
+            AirspeedHold = new ToggleButtonModel("Airspeed Hold", store.AutopilotAirspeedHoldElement());
 
-            WingLeveler = new ToggleButtonModel(store.AutopilotWingLeveler(), "Wings Level",
-                store.ApWingLevelerEvent());
-            HeadingMode = new ToggleButtonModel(store.AutopilotHeadingLock(), "Hdg Lock",
-                store.ApPanelHeadingHoldEvent());
-            NavMode = new ToggleButtonModel(store.AutopilotNav1Lock(), "Nav Lock",
-                store.ApNav1HoldEvent());
+            WingLeveler = new ToggleButtonModel("Wings Level", store.AutoPilotWingLevelerElement());
+            HeadingMode = new ToggleButtonModel("Hdg Lock", store.AutopilotHeadingLockElement());
+            NavMode = new ToggleButtonModel("Nav Lock", store.AutoPilotNav1LockElement());
         }
     }
 
