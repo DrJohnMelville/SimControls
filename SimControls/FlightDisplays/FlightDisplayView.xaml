@@ -14,8 +14,8 @@
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type local:SliderModel}">
             <Slider Orientation="{Binding Orientation}"
-                         Minimum="{Binding Minimum}"
-                         Maximum="{Binding Maximum}"
+                         Minimum="{Binding Item.Minimum.Value}"
+                         Maximum="{Binding Item.Maximum.Value}"
                          Value="{Binding Item.Value}"
                          IsDirectionReversed="{Binding IsReversed}"
                          ToolTip="{Binding Item.Value}"
@@ -23,8 +23,8 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type local:ConstrainedSliderModel}">
             <Slider Orientation="{Binding Orientation}"
-                    Minimum="0" Maximum="{Binding TotalPositions.Value}"
-                    Value="{Binding Position.Value}" TickPlacement="BottomRight"
+                    Minimum="{Binding Item.Minimum.Value}" Maximum="{Binding Item.Maximum.Value}"
+                    Value="{Binding Item.Value}" TickPlacement="BottomRight"
                     IsSnapToTickEnabled="True" IsDirectionReversed="{Binding IsReversed}"
                     ToolTip="{Binding Item.Value}"></Slider>
         </DataTemplate>

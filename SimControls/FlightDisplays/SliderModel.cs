@@ -1,22 +1,23 @@
 ﻿using System;
 using System.Windows.Controls;
 using SimControls.Model;
+using SimControls.Model.CompositeElements;
 
 namespace SimControls.FlightDisplays
 {
-    public class SliderModel : DisplayModel<double>
+    public class SliderModel : IDisplayModel
     {
-        public double Minimum { get; }
-        public double Maximum { get; }
+        public BoundedDoubleItem Item { get; }
         public Orientation Orientation { get; }
         public bool IsReversed { get; }
 
-        public SliderModel(DataItem<double> item, double minimum, double maximum, Orientation orientation) : base(item)
+        public SliderModel(BoundedDoubleItem item, 
+            Orientation orientation = Orientation.Vertical, 
+            bool isReversed = false)
         {
-            Minimum = Math.Min(minimum, maximum);
-            Maximum = Math.Max(minimum, maximum);
-            IsReversed = minimum > maximum;
+            Item = item;
             Orientation = orientation;
+            IsReversed = isReversed;
         }
     }
 }

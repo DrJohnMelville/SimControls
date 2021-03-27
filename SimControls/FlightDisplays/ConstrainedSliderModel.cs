@@ -1,22 +1,13 @@
 ﻿using System.Windows.Controls;
 using SimControls.Model;
+using SimControls.Model.CompositeElements;
 
 namespace SimControls.FlightDisplays
 {
-    public class ConstrainedSliderModel : IDisplayModel
+    public class ConstrainedSliderModel : SliderModel
     {
-        public DataItem<double> Position { get; }
-        public ReadOnlyDataItem<double> TotalPositions { get; }
-        public Orientation Orientation { get; }
-        public bool IsReversed { get; }
-
-        public ConstrainedSliderModel(DataItem<double> position, ReadOnlyDataItem<double> totalPositions,
-            Orientation orientation, bool isReversed)
+        public ConstrainedSliderModel(BoundedDoubleItem item, Orientation orientation = Orientation.Vertical, bool isReversed = false) : base(item, orientation, isReversed)
         {
-            Position = position;
-            TotalPositions = totalPositions;
-            Orientation = orientation;
-            IsReversed = isReversed;
         }
     }
 }

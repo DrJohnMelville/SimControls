@@ -4,18 +4,18 @@ using Melville.INPC;
 namespace SimControls.Model.CompositeElements
 {
     public delegate double DoubleClampStratey(BoundedDoubleItem item, double value);
+
     public partial class BoundedDoubleItem : IDataItem<double>
     {
-        [DelegateTo()]
-        private readonly IDataItem<double> source;
-        private IReadOnlyDataItem<double> Minimum {get;}
-        private IReadOnlyDataItem<double> Maximum {get;}
+        [DelegateTo()] private readonly IDataItem<double> source;
+        public IReadOnlyDataItem<double> Minimum { get; }
+        public IReadOnlyDataItem<double> Maximum { get; }
         private readonly DoubleClampStratey clampStrategy;
 
         public BoundedDoubleItem(
-            IDataItem<double> source, 
-            IReadOnlyDataItem<double> minimum, 
-            IReadOnlyDataItem<double> maximum, 
+            IDataItem<double> source,
+            IReadOnlyDataItem<double> minimum,
+            IReadOnlyDataItem<double> maximum,
             DoubleClampStratey? clampStrategy = null)
         {
             this.source = source;
@@ -23,6 +23,7 @@ namespace SimControls.Model.CompositeElements
             Maximum = maximum;
             this.clampStrategy = clampStrategy ?? Clamping;
         }
+
         public double Value
         {
             get => source.Value;
@@ -38,5 +39,42 @@ namespace SimControls.Model.CompositeElements
             while (value < item.Minimum.Value) value += delta;
             while (value >= item.Maximum.Value) value -= delta;
             return value;
+        }
+    }
+    
+    public class SingleStepDoubleItem: BoundedDoubleItem
+    {
+        public IReadOnlyDataItem<double> StepSize { get; }
+        public SingleStepDoubleItem(
+            IDataItem<double> source, 
+            IReadOnlyDataItem<double> minimum, 
+            IReadOnlyDataItem<double> maximum, 
+            IReadOnlyDataItem<double> stepSize, 
+            DoubleClampStratey? clampStrategy = null) : 
+            base(source, minimum, maximum, clampStrategy)
+        {
+            StepSize = stepSize;
+        }
+
+        public void Increment() => Value += StepSize.Value;
+        public void Decrement() => Value -= StepSize.Value;
+    }
+
+    public class TwoStepDoubleItem : SingleStepDoubleItem
+    {
+        public IReadOnlyDataItem<double> BigStepSize { get; }
+        public TwoStepDoubleItem(
+            IDataItem<double> source, 
+            IReadOnlyDataItem<double> minimum, 
+            IReadOnlyDataItem<double> maximum, 
+            IReadOnlyDataItem<double> stepSize, 
+            IReadOnlyDataItem<double> bigStepSize, 
+            DoubleClampStratey? clampStrategy = null) : 
+            base(source, minimum, maximum, stepSize, clampStrategy)
+        {
+            BigStepSize = bigStepSize;
+        }
+        public void BigIncrement() => Value += BigStepSize.Value;
+        public void BigDecrement() => Value -= BigStepSize.Value;
     }
 }

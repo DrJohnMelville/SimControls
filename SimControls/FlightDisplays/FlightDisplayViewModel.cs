@@ -36,13 +36,9 @@ namespace SimControls.FlightDisplays
         public IDisplayModel NavMode { get; }
         public FlightDisplayViewModel(IVariableCache store)
         {
-            var storeElevatorTrim = store.ElevatorTrimPosition();
-            ElevatorTrim = new SliderModel(storeElevatorTrim,
-                20*degreesToRadians,-20*degreesToRadians, Orientation.Vertical).WithLabel("Elevator");
+            ElevatorTrim = new SliderModel(store.ElevatorTrimElement()).WithLabel("Elevator");
             
-            Flaps = new ConstrainedSliderModel(
-                store.FlapsHandleIndex(),
-                store.FlapsNumHandlePositions(), Orientation.Vertical, true)
+            Flaps = new ConstrainedSliderModel(store.FlapsElement(), Orientation.Vertical, true)
                 .WithLabel("Flaps");
             ParkingBreak = new ToggleButtonModel("Parking Break", store.ParkingBreakElement());
             GearRetractable = store.IsGearRetractable();
@@ -111,14 +107,5 @@ namespace SimControls.FlightDisplays
 
         public void BumpDown() => down();
         public void BumpUp() => up();
-    }
-
-    public class DisplayModel<T>: IDisplayModel
-    {
-        public DataItem<T> Item { get; }
-        public DisplayModel(DataItem<T> item)
-        {
-            Item = item;
-        }
     }
 }

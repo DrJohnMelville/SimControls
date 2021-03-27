@@ -43,6 +43,5 @@ namespace SimControls.Test.Model
             sut.Value = set;
             Assert.Equal(result, sut.Value);
         }
-
     }
 }
