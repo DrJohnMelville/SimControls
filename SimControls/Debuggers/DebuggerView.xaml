@@ -17,7 +17,7 @@
               <DataGridTextColumn Binding="{Binding Name}" Header="Variable" IsReadOnly="True"/>
               <DataGridTextColumn Binding="{Binding Unit}" Header="Unit" IsReadOnly="True"/>
               <DataGridTextColumn Binding="{Binding SimType}" Header="Type" IsReadOnly="True"/>
-              <DataGridTextColumn Binding="{Binding Item.Value}" Header="Value" IsReadOnly="True"/>
+              <DataGridTextColumn Binding="{Binding Item.DebugValue}" Header="Value"/>
           </DataGrid.Columns>
       </DataGrid>
         <ScrollViewer HorizontalScrollBarVisibility="Disabled" Margin="0 0 5 0">

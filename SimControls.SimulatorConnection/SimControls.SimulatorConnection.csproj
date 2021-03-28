@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Melville.MVVM" Version="0.4.2" />
+      <PackageReference Include="Melville.MVVM" Version="0.4.3" />
     </ItemGroup>
 
     <ItemGroup>

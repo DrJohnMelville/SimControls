@@ -9,6 +9,7 @@ namespace SimControls.Model
     {
         public ushort UniqueIndex { get; init; }
         public event PropertyChangedEventHandler? PropertyChanged;
+        public abstract string DebugValue { get; set; }
         
         public void OnPropertyChanged([CallerMemberName] string propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -21,13 +22,20 @@ namespace SimControls.Model
     
     public class ReadOnlyDataItem<T> : DataItem, IReadOnlyDataItem<T>
     {
-        protected T value = default!;
-        public T Value => value;
+        protected T _value = default!;
+        public T Value => _value;
+
+        public override string DebugValue
+        {
+            get => _value?.ToString() ?? "<Null>";
+            set { TryUpdateFromSimulator((T) Convert.ChangeType(value, typeof(T))); }
+        }
         public bool TryUpdateFromSimulator(T newValue)
         {
             if (Value?.Equals(newValue) ?? false) return false;
-            value = newValue;
+            _value = newValue;
             OnPropertyChanged(nameof(Value));
+            OnPropertyChanged(nameof(DebugValue));
             return true;
         }
     }
@@ -40,7 +48,7 @@ namespace SimControls.Model
     {
         public new T Value
         {
-            get => value;
+            get => _value;
             set
             {
                 TryUpdateFromSimulator(value);

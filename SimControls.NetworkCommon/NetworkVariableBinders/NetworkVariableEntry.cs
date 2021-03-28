@@ -15,7 +15,6 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
             {
                 ReadOnlyDataItem<double> dbl => new DoubleEntry(dbl, writer),
                 ReadOnlyBoolItem bi=> new BooleanEntry(bi, writer),
-                BoolItem bi=> new BooleanEntry(bi, writer),
                 _ => throw new InvalidOperationException("Unknown Data Type")
             };
 

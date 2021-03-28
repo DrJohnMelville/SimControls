@@ -2,53 +2,38 @@
 @implements IDisposable
 @using SimControls.Model
 @using System.ComponentModel
-@inject IVariableCache Variables;
-@if (elevatorTrim != null && flapsPosition != null && flapsPositionCount != null && gearDown != null &&
-     gearRetractable != null && toggleGear != null)
-{
-    <div id="root">
+@inject LandingModel Variables;
+
+<div id="root">
         <div id="EL">Elevator</div>
-        <input id ="ELC" class="vert" type="range" min="-0.35" max="0.35" Step="0.02" @bind="elevatorTrim.Value"/>
+    <input id ="ELC" class="vert" type="range" 
+           min="@Variables.ElevatorTrim.Minimum.Value" 
+           max="@Variables.ElevatorTrim.Maximum.Value" Step="0.02" 
+           @bind="Variables.ElevatorTrim.Value"/>
         <div id="FL">Flaps</div>
-        <input id ="FLC" class="vert" type="range" min="0" max="@flapsPosition" Step="1" 
-               @bind="elevatorTrim.Value"/>
-        @if (gearRetractable.BoolValue)
+    <input id ="FLC" class="vert" type="range" min="0" 
+           max="@Variables.Flaps.Maximum" Step="1" 
+               @bind="Variables.Flaps.Value"/>
+        @if (Variables.GearRetractable.BoolValue)
         {
-            <button @onclick="()=>toggleGear.Fire(0)">Gear @(gearDown.BoolValue?"Down":"Up")</button>
+            <button @onclick="() => Variables.GearDown.Toggle()">
+                Gear @(Variables.GearDown.BoolValue ? "Down" : "Up")
+            </button>
         }
     </div>
-}
 @code {
-    private DataItem<double>? elevatorTrim;
-    private DataItem<double>? flapsPosition;
-    private ReadOnlyDataItem<double>? flapsPositionCount;
-    private BoolItem? gearDown;
-    private ReadOnlyBoolItem? gearRetractable;
-    private SimEventTrigger? toggleGear;
-    
     
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        elevatorTrim = Monitor(Variables.ElevatorTrimPosition());
-        flapsPosition = Monitor(Variables.FlapsHandleIndex());
-        flapsPositionCount = Monitor(Variables.FlapsNumHandlePositions());
-        gearDown = Monitor(Variables.GearHandlePosition());
-        gearRetractable = Monitor(Variables.IsGearRetractable());
-        toggleGear = Variables.GearToggleEvent();
+        Variables.PropertyChanged += UpdateView;
     }
-
-
-    private T Monitor<T>(T item) where T : INotifyPropertyChanged
-    {
-        item.PropertyChanged += UpdateView;
-        return item;
-    }
+    
     private void UpdateView(object? s, PropertyChangedEventArgs e) => StateHasChanged();
 
     public void Dispose()
     {
-        if (elevatorTrim != null) elevatorTrim.PropertyChanged -= UpdateView;
+        if (Variables != null) Variables.PropertyChanged -= UpdateView;
     }
 
 }

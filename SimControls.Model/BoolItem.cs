@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Linq;
 using Melville.INPC;
 
 namespace SimControls.Model
@@ -12,6 +14,16 @@ namespace SimControls.Model
     {
         public bool BoolValue => Value != 0;
 
+        private static readonly char[] trueValues = new[]
+            {'t', 'y', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+
+        public override string DebugValue
+        {
+            get => BoolValue.ToString();
+            set => base.DebugValue = value.Length > 0 && trueValues.Contains(Char.ToLower(value[0]))?
+                "1":"0";
+        }
+
         public ReadOnlyBoolItem()
         {
             this.DelegatePropertyChangeFrom(this, nameof(Value), nameof(BoolValue));
@@ -21,18 +33,24 @@ namespace SimControls.Model
     public interface IBoolItem: IReadOnlyBoolItem
     {
         new bool BoolValue { get; set; }
+        
     }
-    
-    public class BoolItem: DataItem<int>, IBoolItem
+
+    public static class BoolItemOperations
     {
-        public bool BoolValue
+        public static void Toggle(this IBoolItem item) =>
+            item.BoolValue = !item.BoolValue;
+    }
+
+    public class BoolItem: ReadOnlyBoolItem, IBoolItem
+    {
+        public new bool BoolValue
         {
             get => Value != 0;
             set => Value = value ? 1 : 0;
         }
         public BoolItem()
         {
-            this.DelegatePropertyChangeFrom(this, nameof(Value), nameof(BoolValue));
         }
     }
 }

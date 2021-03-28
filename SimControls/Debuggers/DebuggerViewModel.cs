@@ -7,7 +7,9 @@ using SimControls.Model.VariableBinders;
 
 namespace SimControls.Debuggers
 {
-    public record DebugVariableLine (string Name, string Unit, string SimType, DataItem Item);
+    public record DebugVariableLine (string Name, string Unit, string SimType, DataItem Item)
+    {
+    }
     public class DebuggerViewModel: ISimVariableBinder
     {
         public IList<DebugVariableLine> Variables { get; } =
