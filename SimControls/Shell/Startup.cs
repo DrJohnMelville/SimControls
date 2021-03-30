@@ -5,6 +5,7 @@ using System.Windows;
 using Melville.IOC.BindingRequests;
 using Melville.IOC.IocContainers;
 using Melville.IOC.IocContainers.ActivationStrategies.TypeActivation;
+using Melville.MVVM.FileSystem;
 using Melville.MVVM.USB;
 using Melville.MVVM.WindowMessages;
 using Melville.MVVM.Wpf.RootWindows;
@@ -17,6 +18,7 @@ using SimControls.Model.AirportDatabase;
 using SimControls.Model.VariableBinders;
 using SimControls.NetworkCommon.DataClasses;
 using SimControls.NetworkCommon.NetworkVariableBinders;
+using SimControls.NetworkServer;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;
 
@@ -25,12 +27,11 @@ namespace SimControls.Shell
     public sealed class Startup:StartupBase
     {
         [STAThread]
-        public static int Main(string[] commandLineArgs)
+        public static void Main()
         {
-            ApplicationRootImplementation.Run(new Startup());
-            return 0;
+            ApplicationRootImplementation.Run(new SimControls.Shell. Startup());
         }
-
+        
         protected override void RegisterWithIocContainer(IBindableIocService service)
         {
             service.AddLogging();
@@ -61,6 +62,9 @@ namespace SimControls.Shell
                 i => i.WithArgumentTypes<PipeWriter, BinaryObjectDictionary>());
             service.Bind<Func<PipeReader, PipeWriter, INetworkVariableServer>>()
                 .ToMethod(CreateNetworkVariableServer);
+            service.Bind<IDirectory>().ToConstant(
+                    new FileSystemDirectory($@"{AppDomain.CurrentDomain.BaseDirectory}\WASM\wwwroot"))
+                .WhenConstructingType<LocalFileMapper>();
         }
 
         private Func<PipeReader, PipeWriter, INetworkVariableServer> 

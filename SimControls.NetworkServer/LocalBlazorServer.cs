@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
+using Melville.MVVM.CSharpHacks;
+using Melville.MVVM.FileSystem;
 
 namespace SimControls.NetworkServer
 {
@@ -13,9 +16,11 @@ namespace SimControls.NetworkServer
     {
         public string PublicAddress { get; }
         private readonly HttpListener listener;
+        private readonly LocalFileMapper fileMapper;
 
-        public LocalBlazorServer()
+        public LocalBlazorServer(LocalFileMapper fileMapper)
         {
+            this.fileMapper = fileMapper;
             PublicAddress = $"http://{LocalIp()}:5432/";
             listener = new HttpListener();
             // the shell command to allow normal users to do this is
@@ -45,13 +50,31 @@ namespace SimControls.NetworkServer
             }
         }
 
-        private async Task ServeStaticFileAsync(HttpListenerContext context)
+        private async Task<WebSocket> OpenWebSocketAsync(HttpListenerContext context)
+        {
+            var wsc = await context.AcceptWebSocketAsync(null!);
+            return wsc.WebSocket;
+        }
+
+        private  Task ServeStaticFileAsync(HttpListenerContext context)
         {
             HttpListenerResponse response = context.Response;
-            await using var output = response.OutputStream;
+            var path = CheckForDefaultPath(context.Request.Url?.AbsolutePath??"");
+            var (responseFile, encoding) = 
+                fileMapper.GetResponseFile(path, context.Request.Headers.Get("Accept-Encoding"));
+            if (responseFile == null) return Task.CompletedTask;
+            response.ContentType = MimeMap.FromPath(path);
+            if (encoding != null) response.Headers.Add("Content-Encoding", encoding);
+
+            return DoCopyOperationAsync(responseFile, response);
+        }
+
+        private static async Task DoCopyOperationAsync(IFile responseFile, HttpListenerResponse response)
+        {
             try
             {
-                await using var input = GetResponseStream(context.Request.Url?.AbsolutePath??"");
+                await using var input = await responseFile.OpenRead();
+                await using var output = response.OutputStream;
                 await input.CopyToAsync(output);
             }
             catch (IOException)
@@ -59,21 +82,6 @@ namespace SimControls.NetworkServer
             }
         }
 
-        private async Task<WebSocket> OpenWebSocketAsync(HttpListenerContext context)
-        {
-            var wsc = await context.AcceptWebSocketAsync(null!);
-            return wsc.WebSocket;
-        }
-
-        private Stream GetResponseStream(string path)
-        {
-            var fileName = WebToLocalPath(CheckForDefaultPath(path));
-            return new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-        }
-
         private static string CheckForDefaultPath(string path) => path == "/"?"/index.html":path;
-
-        private static string WebToLocalPath(string path) => 
-            $@"{AppDomain.CurrentDomain.BaseDirectory}\WASM\wwwroot{path}";
     }
 }

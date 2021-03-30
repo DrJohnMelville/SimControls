@@ -2,11 +2,12 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0-windows</TargetFramework>
-
+        <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Melville.Mvvm.TestHelpers" Version="0.1.7" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
         <PackageReference Include="Moq" Version="4.16.1" />
         <PackageReference Include="xunit" Version="2.4.1" />
