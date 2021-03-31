@@ -34,7 +34,9 @@ namespace SimControls.WASM
 
         private void ConfigureServerConnection()
         {
-            ioc.Bind<HttpClient>().ToSelf().FixResult(SetBaseAddressToHomeSite).AsSingleton();
+            ioc.Bind<HttpClient>()
+                .ToMethod(i=>new HttpClient{BaseAddress = new Uri(hostEnvironment.BaseAddress)})
+                .AsSingleton();
             var dict = new SimObjectDictionary();
             ioc.Bind<BinaryObjectDictionary>().ToConstant(dict);
             ioc.Bind<Func<WebSocket, ISimVariableBinder>>().ToConstant(s =>
@@ -43,8 +45,5 @@ namespace SimControls.WASM
                     new BinaryObjectPipeWriter(s.UsePipeWriter(), dict))
             );
         }
-
-        private void SetBaseAddressToHomeSite(HttpClient h) => 
-            h.BaseAddress = new Uri(hostEnvironment.BaseAddress);
     }
 }

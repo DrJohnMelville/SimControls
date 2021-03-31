@@ -6,7 +6,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Melville.P2P.Raw" Version="0.1.4" />
+      <PackageReference Include="Melville.P2P.Raw" Version="0.4.3" />
     </ItemGroup>
 
     <ItemGroup>
