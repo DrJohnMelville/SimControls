@@ -50,10 +50,11 @@ a, .btn-link {
 }
 
 .invVert {
-    writing-mode: tb-rl; /* IE */
+    writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
     width: 8px;
     padding: 0 5px;
+    transform: rotate(180deg);
 }
 .vert {
     writing-mode: bt-lr; /* IE */

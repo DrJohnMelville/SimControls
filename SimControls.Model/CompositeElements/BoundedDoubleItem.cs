@@ -30,6 +30,14 @@ namespace SimControls.Model.CompositeElements
             set => source.Value = clampStrategy(this, value);
         }
 
+        public double InvertedValue
+        {
+            get =>  InvertValue(Value);
+            set => Value = InvertValue(value);
+        }
+
+        private double InvertValue(double value) => Maximum.Value - (value - Minimum.Value);
+
         public static double Clamping(BoundedDoubleItem item, double value) =>
             Math.Clamp(value, item.Minimum.Value, item.Maximum.Value);
 
