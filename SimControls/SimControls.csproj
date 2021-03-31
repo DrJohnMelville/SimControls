@@ -23,6 +23,6 @@
     </ItemGroup>
 
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-        <Exec Command="dotnet publish &quot;$(ProjectDir)..\SimControls.Wasm&quot; -o &quot;$(TargetDir)\WASM&quot; --self-contained true -r win-x64" />
+        <Exec Command="dotnet publish &quot;$(ProjectDir)..\SimControls.Wasm&quot; -o &quot;$(TargetDir)\WASM&quot; --self-contained true -r win-x64 -p:PublishTrimmed=true" />
     </Target>
 </Project>

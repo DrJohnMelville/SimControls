@@ -42,25 +42,25 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
-    
-    .invVert {
-        writing-mode: tb-rl; /* IE */
-        -webkit-appearance: slider-vertical; /* WebKit */
-        width: 8px;
-        padding: 0 5px;
-    }
-    .vert {
-        writing-mode: bt-lr; /* IE */
-        -webkit-appearance: slider-vertical; /* WebKit */
-        width: 8px;
-        padding: 0 5px;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.invVert {
+    writing-mode: tb-rl; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    padding: 0 5px;
+}
+.vert {
+    writing-mode: bt-lr; /* IE */
+    -webkit-appearance: slider-vertical; /* WebKit */
+    width: 8px;
+    padding: 0 5px;
+}
     
 .likeabutton {
     text-decoration: none; font: menu;
