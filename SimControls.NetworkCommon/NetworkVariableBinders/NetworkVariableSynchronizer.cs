@@ -32,31 +32,22 @@ namespace SimControls.NetworkCommon.NetworkVariableBinders
         {
             await foreach (var item in source.Read())
             {
-                if (item is TerminateConnection) return;
-                HandleReceivedObject(item);
-            }
-        }
-
-        private void HandleReceivedObject(object item)
-        {
-            switch (item)
-            {
-                #warning -- make an interface to join these two cases.
-                case DoubleValueRecord dvr:
-                    monitoredVariables[dvr.Index].AcceptWireFormat(dvr);
-                    break;
-                case ByteValueRecord bvr:
-                    monitoredVariables[bvr.Index].AcceptWireFormat(bvr);
-                    break;
-                default:
-                    HandleOtherMessage(item);
-                    break;
+                switch (item)
+                {
+                    case IValueRecord dvr:
+                        monitoredVariables[dvr.Index].AcceptWireFormat(dvr);
+                        break;
+                    case TerminateConnection: return;
+                    default:
+                        HandleOtherMessage(item);
+                        break;
+                }
             }
         }
 
         protected  virtual void HandleOtherMessage(object message)
         {
-       }
+        }
 
         public ValueTask DisposeAsync() => destination.Write(new TerminateConnection()).AsValueTask();
     }

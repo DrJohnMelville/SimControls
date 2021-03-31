@@ -4,7 +4,8 @@ using Melville.P2P.Raw.BinaryObjectPipes;
 
 namespace SimControls.NetworkCommon.DataClasses
 {
-    public record ByteValueRecord(ushort Index, byte Value): ICanWriteToPipe{
+    public record ByteValueRecord(ushort Index, byte Value): IValueRecord
+    {
         public void WriteToPipe(PipeWriter write)
         {
             using var mem = new SerialPipeWriter(write, sizeof(ushort) + 1);

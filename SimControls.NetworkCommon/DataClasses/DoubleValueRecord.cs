@@ -4,7 +4,11 @@ using Melville.P2P.Raw.BinaryObjectPipes;
 
 namespace SimControls.NetworkCommon.DataClasses
 {
-    public record DoubleValueRecord(ushort Index, double Value) : ICanWriteToPipe
+    public interface IValueRecord : ICanWriteToPipe
+    {
+        ushort Index { get; }
+    }
+    public record DoubleValueRecord(ushort Index, double Value) : IValueRecord
     {
         public void WriteToPipe(PipeWriter write)
         {
