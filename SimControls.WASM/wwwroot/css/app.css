@@ -79,3 +79,8 @@ html, body, .page{
     height: 100vh;
     overflow: hidden;
 }
+
+.toggledButton:not([disabled]) {
+    background-color: blue;
+    color: white;
+}

@@ -13,14 +13,14 @@
         <div id="FL">Flaps</div>
     <input id ="FLC" class="vert" type="range" min="0" 
            max="@Variables.Flaps.Maximum.Value" Step="1" 
-               @bind="Variables.Flaps.Value"/>
-        @if (Variables.GearRetractable.BoolValue)
-        {
-            <button @onclick="() => Variables.GearDown.Toggle()">
+           @bind="Variables.Flaps.Value"/>
+    <div id="buttonsPanel">
+            <ToggleButton Value="@Variables.GearDown"
+                          Disabled="@(!Variables.GearRetractable.BoolValue)">
                 Gear @(Variables.GearDown.BoolValue ? "Down" : "Up")
-            </button>
-        }
+            </ToggleButton>
     </div>
+</div>
 @code {
     
     protected override void OnInitialized()

@@ -20,7 +20,7 @@
     justify-self: center;
 }
 
-button{
+#buttonsPanel{
     grid-area: Gear;
     justify-self: stretch;
     align-self: stretch;
