@@ -15,10 +15,21 @@
            max="@Variables.Flaps.Maximum.Value" Step="1" 
            @bind="Variables.Flaps.Value"/>
     <div id="buttonsPanel">
-            <ToggleButton Value="@Variables.GearDown"
-                          Disabled="@(!Variables.GearRetractable.BoolValue)">
-                Gear @(Variables.GearDown.BoolValue ? "Down" : "Up")
-            </ToggleButton>
+        <ToggleButton Value="@Variables.GearDown"
+                      Disabled="@(!Variables.GearRetractable.BoolValue)">
+            Gear @(Variables.GearDown.BoolValue ? "Down" : "Up")
+        </ToggleButton>
+        <div>Lights</div>
+        <ToggleButton Value="@Variables.TaxiLights">Taxi</ToggleButton>
+        <ToggleButton Value="@Variables.LandingLights">Landing</ToggleButton>
+        <ToggleButton Value="@Variables.NavLights">Nav</ToggleButton>
+        <ToggleButton Value="@Variables.RecognitionLights">Recognition</ToggleButton>
+        <ToggleButton Value="@Variables.StrobeLights">Strobe</ToggleButton>
+        <ToggleButton Value="@Variables.BeaconLights">Beacon</ToggleButton>
+        <ToggleButton Value="@Variables.WingLights">Wing</ToggleButton>
+        <ToggleButton Value="@Variables.LogoLights">Logo</ToggleButton>
+        <ToggleButton Value="@Variables.CabinLights">Cabin</ToggleButton>
+        <ToggleButton Value="@Variables.PanelLights">Panel</ToggleButton>
     </div>
 </div>
 @code {

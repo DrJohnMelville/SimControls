@@ -9,9 +9,12 @@ namespace SimControls.WASM.Pages
         {
             foreach (var item in elts)
             {
-                item.PropertyChanged += RelayPropertyChange;
+                RegisterPropertyChangeForwarding(item);
             }
         }
+
+        public void RegisterPropertyChangeForwarding(INotifyPropertyChanged item) => 
+            item.PropertyChanged += RelayPropertyChange;
 
         private void RelayPropertyChange(object? sender, PropertyChangedEventArgs e) => 
             PropertyChanged?.Invoke(sender, e);

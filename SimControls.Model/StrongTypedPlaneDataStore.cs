@@ -32,8 +32,10 @@ namespace SimControls.Model
     {
     }
 
+    //Gear and parking
     [MacroItem("ParkingBreakElement", "BrakeParkingIndicator", "ParkingBrakesEvent")]
     [MacroItem("GearDownElement", "GearHandlePosition", "GearToggleEvent")]
+    //AutoPilot
     [MacroItem("AutopilotElement", "AutopilotMaster", "ApMasterEvent")]
     [MacroItem("AutopilotAltitudeHoldElement", "AutopilotAltitudeLock", "ApPanelAltitudeHoldEvent")]
     [MacroItem("AutopilotVsiHoldElement", "AutopilotVerticalHold", "ApVsHoldEvent")]
@@ -41,6 +43,17 @@ namespace SimControls.Model
     [MacroItem("AutoPilotWingLevelerElement","AutopilotWingLeveler","ApWingLevelerEvent")]
     [MacroItem("AutopilotHeadingLockElement","AutopilotHeadingLock", "ApPanelHeadingHoldEvent")]
     [MacroItem("AutoPilotNav1LockElement","AutopilotNav1Lock","ApNav1HoldEvent")]
+    //Lights
+    [MacroItem("LandingLightElement", "LightLanding","LandingLightsToggleEvent")]
+    [MacroItem("CabinLightElement", "LightCabin","ToggleCabinLightsEvent")]
+    [MacroItem("BeaconLightElement", "LightBeacon","ToggleBeaconLightsEvent")]
+    [MacroItem("LogoLightElement", "LightLogo","ToggleLogoLightsEvent")]
+    [MacroItem("NavLightElement", "LightNav","ToggleNavLightsEvent")]
+    [MacroItem("PanelLightElement", "LightPanel","PanelLightsToggleEvent")]
+    [MacroItem("RecognitionLightElement", "LightRecognition","ToggleRecognitionLightsEvent")]
+    [MacroItem("StrobeLightElement", "LightStrobe","StrobesToggleEvent")]
+    [MacroItem("TaxiLightElement", "LightTaxi","ToggleTaxiLightsEvent")]
+    [MacroItem("WingLightElement", "LightWing","ToggleWingLightsEvent")]
     [MacroCode(@" public static IBoolItem ~0~(this IVariableCache vc) =>
     new BoolWithToggleElement(vc.~1~(), vc.~2~());")]
     public static partial class BooleanPlaneElements
