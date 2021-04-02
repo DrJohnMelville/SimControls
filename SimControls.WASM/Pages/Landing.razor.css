@@ -1,15 +1,27 @@
 ﻿#root {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 1fr 2fr 2fr;
+    grid-template-rows: 1fr 5fr;
     grid-template-areas: 
-       "EleLabel FlapLabel GearLabel"
-       "Elev Flaps Gear";
+       "EleLabel FlapLabel GearButton GearButton"
+       "Elev Flaps LightsL LightsR";
     width: 100%;
     height: 100%;
 }
 
+#Lights1{
+    grid-area: LightsL;
+    justify-self: stretch;
+}
+#Lights2{
+    grid-area: LightsR;
+    justify-self: stretch;
+}
 
+#GearButton {
+    grid-area: GearButton;
+    justify-self: stretch;
+}
 
 #EL {
     grid-area: EleLabel;
@@ -18,12 +30,6 @@
 #FL {
     grid-area: FlapLabel;
     justify-self: center;
-}
-
-#buttonsPanel{
-    grid-area: Gear;
-    justify-self: stretch;
-    align-self: stretch;
 }
 
 #ELC {

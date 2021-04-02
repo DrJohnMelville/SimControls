@@ -49,13 +49,6 @@ a, .btn-link {
     top: 0.5rem;
 }
 
-.invVert {
-    writing-mode: bt-lr; /* IE */
-    -webkit-appearance: slider-vertical; /* WebKit */
-    width: 8px;
-    padding: 0 5px;
-    transform: rotate(180deg);
-}
 .vert {
     writing-mode: bt-lr; /* IE */
     -webkit-appearance: slider-vertical; /* WebKit */
@@ -83,4 +76,21 @@ html, body, .page{
 .toggledButton:not([disabled]) {
     background-color: blue;
     color: white;
+}
+
+
+.buttonsPanel{
+    grid-area: Gear;
+    justify-self: stretch;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: stretch;
+}
+
+.buttonsPanel >* {
+    flex: 1;
 }

@@ -9,10 +9,3 @@
 #bodyPosition{
     flex-grow: 1;
 }
-
-.fingerSize {
-    transform: scale(2.0,2.0);
-    transform-origin: top left;
-    height: 50%;
-    width: 50%;
-}
