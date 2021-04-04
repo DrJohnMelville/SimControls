@@ -1,0 +1,11 @@
+﻿div {
+    display: flex;
+}
+
+div  > span {
+    flex-grow: 1;
+    text-align: center;
+    margin-bottom: auto;
+    margin-top: auto;
+    font-size: 7vh;
+}

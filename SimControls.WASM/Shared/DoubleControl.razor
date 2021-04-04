@@ -1,0 +1,32 @@
+﻿@using SimControls.Model
+@using SimControls.Model.CompositeElements
+@if (Value != null)
+{
+    <div>
+        @if (Value is TwoStepDoubleItem)
+        {
+            <button @onclick="()=>((TwoStepDoubleItem)Value).BigDecrement()">&lt;&lt;</button>
+        }
+        @if (Value is SingleStepDoubleItem)
+        {
+            <button @onclick="()=>((SingleStepDoubleItem)Value).Decrement()">&lt;</button>
+        }
+        <span>@Value.Value.ToString(FormatString)</span>
+        @if (Value is SingleStepDoubleItem)
+        {
+            <button @onclick="()=>((SingleStepDoubleItem)Value).Increment()">&gt;</button>
+        }
+        @if (Value is TwoStepDoubleItem)
+        {
+            <button @onclick="()=>((TwoStepDoubleItem)Value).BigIncrement()">&gt;&gt;</button>
+        }
+    </div>
+}
+@code {
+    [Parameter]
+    public IDataItem<double>? Value { get; set; }
+
+    [Parameter]
+    public string FormatString { get; set; } = "####0";
+
+}

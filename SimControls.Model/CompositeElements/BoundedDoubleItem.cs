@@ -64,8 +64,24 @@ namespace SimControls.Model.CompositeElements
             StepSize = stepSize;
         }
 
-        public void Increment() => Value += StepSize.Value;
-        public void Decrement() => Value -= StepSize.Value;
+        public virtual void Increment() => Value += StepSize.Value;
+        public virtual void Decrement() => Value -= StepSize.Value;
+    }
+
+    public class LogrithmicStepDoubleItem : SingleStepDoubleItem
+    {
+        public LogrithmicStepDoubleItem(
+            IDataItem<double> source, 
+            IReadOnlyDataItem<double> minimum, 
+            IReadOnlyDataItem<double> maximum, 
+            IReadOnlyDataItem<double> stepSize, 
+            DoubleClampStratey? clampStrategy = null) 
+            : base(source, minimum, maximum, stepSize, clampStrategy)
+        {
+        }
+
+        public override void Increment() => Value *= StepSize.Value;
+        public override void Decrement() => Value /= StepSize.Value;
     }
 
     public class TwoStepDoubleItem : SingleStepDoubleItem

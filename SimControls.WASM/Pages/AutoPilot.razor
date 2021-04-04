@@ -1,0 +1,28 @@
+﻿@page "/AutoPilot"
+@using System.ComponentModel
+@inject AutoPilotModel Model
+<div>
+<ToggleButton Value="@Model.AutopilotHeadingLock">Heading</ToggleButton>
+<DoubleControl Value="@Model.AutopilotHeading"/>
+<ToggleButton Value="@Model.AutopilotWingLeveler">Level Wings</ToggleButton>
+<ToggleButton Value="@Model.AutopilotNav1Lock">Navigation Lock</ToggleButton>
+<ToggleButton Value="@Model.AutopilotAltitudeHold">Altitude Hold</ToggleButton>
+<DoubleControl Value="@Model.AutopilotAltitudeLock"/>
+<ToggleButton Value="@Model.AutopilotVsiHold">Vertical Speed</ToggleButton>
+<DoubleControl Value="@Model.AutopilotVerticalSpeed"/>
+<ToggleButton Value="@Model.AutopilotAirspeedHold">Airspeed</ToggleButton>
+<DoubleControl Value="@Model.AutopilotAirSpeed"/>
+</div>
+
+
+@code {
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Model.PropertyChanged += UpdateView;
+    }
+
+    private void UpdateView(object? sender, PropertyChangedEventArgs e) => StateHasChanged();
+
+}

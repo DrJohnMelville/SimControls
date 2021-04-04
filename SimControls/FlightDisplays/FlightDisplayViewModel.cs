@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using Melville.MVVM.Wpf.Bindings;
 using SimControls.Model;
-using Orientation = System.Windows.Controls.Orientation;
 
 namespace SimControls.FlightDisplays
 {
@@ -18,7 +13,6 @@ namespace SimControls.FlightDisplays
         public IReadOnlyBoolItem GearRetractable { get; }
         
         public IDisplayModel SimulationRate { get; }
-        private const double degreesToRadians = Math.PI / 180.0;
         
         public IReadOnlyBoolItem AutoPilotAvialable { get; }
         public IDisplayModel AutoPilotActive { get; }
@@ -57,9 +51,9 @@ namespace SimControls.FlightDisplays
             VSIHold = new ToggleButtonModel("VSI Hold", store.AutopilotVsiHoldElement());
             AirspeedHold = new ToggleButtonModel("Airspeed Hold", store.AutopilotAirspeedHoldElement());
 
-            WingLeveler = new ToggleButtonModel("Wings Level", store.AutoPilotWingLevelerElement());
+            WingLeveler = new ToggleButtonModel("Wings Level", store.AutopilotWingLevelerElement());
             HeadingMode = new ToggleButtonModel("Hdg Lock", store.AutopilotHeadingLockElement());
-            NavMode = new ToggleButtonModel("Nav Lock", store.AutoPilotNav1LockElement());
+            NavMode = new ToggleButtonModel("Nav Lock", store.AutopilotNav1LockElement());
         }
     }
 
