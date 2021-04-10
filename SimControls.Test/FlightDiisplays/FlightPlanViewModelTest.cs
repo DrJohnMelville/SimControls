@@ -1,7 +1,5 @@
-﻿using System.Buffers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Moq;
 using SimControls.FlightDisplays;
 using SimControls.Model.AirportDatabase;

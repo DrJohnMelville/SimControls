@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Printing;
-using Melville.MVVM.AdvancedLists;
+﻿using System.Collections.Generic;
+using Melville.Lists;
 using SimControls.Model;
 using SimControls.Model.VariableBinders;
 

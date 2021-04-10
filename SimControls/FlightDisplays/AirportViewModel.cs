@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using Melville.Linq;
 using Melville.MVVM.BusinessObjects;
-using Melville.MVVM.Functional;
 using SimControls.Model.AirportDatabase;
 
 namespace SimControls.FlightDisplays

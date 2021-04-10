@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using SimControls.Model;
+﻿using SimControls.Model;
 
 namespace SimControls.FlightDisplays
 {

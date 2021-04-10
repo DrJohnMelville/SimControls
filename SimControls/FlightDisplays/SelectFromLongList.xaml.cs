@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using Melville.MVVM.CSharpHacks;
+using Melville.Hacks;
 using Melville.MVVM.Wpf.Bindings;
 using SimControls.Model.AirportDatabase;
 

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-namespace SimControls.SimulatorConnection
+﻿namespace SimControls.SimulatorConnection
 {
     public class NullSimulatorCommandTarget : ISimulatorCommandTarget
     {

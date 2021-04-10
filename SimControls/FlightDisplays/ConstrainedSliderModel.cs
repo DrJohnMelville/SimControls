@@ -1,5 +1,4 @@
 ﻿using System.Windows.Controls;
-using SimControls.Model;
 using SimControls.Model.CompositeElements;
 
 namespace SimControls.FlightDisplays

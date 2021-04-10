@@ -1,10 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Net.Sockets;
 using System.Threading.Tasks;
-using Melville.MVVM.WindowMessages;
-using Microsoft.FlightSimulator.SimConnect;
-using SimControls.Model;
 
 namespace SimControls.SimulatorConnection
 {

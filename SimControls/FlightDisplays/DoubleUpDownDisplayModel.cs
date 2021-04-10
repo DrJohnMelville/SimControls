@@ -1,7 +1,4 @@
-﻿using System;
-using System.Windows;
-using Melville.MVVM.BusinessObjects;
-using SimControls.Model;
+﻿using Melville.MVVM.BusinessObjects;
 using SimControls.Model.CompositeElements;
 
 namespace SimControls.FlightDisplays

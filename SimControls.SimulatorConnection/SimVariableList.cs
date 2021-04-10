@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.FlightSimulator.SimConnect;
-using SimControls.Model;
-using SimControls.Model.VariableBinders;
-
-namespace SimControls.SimulatorConnection
+﻿namespace SimControls.SimulatorConnection
 {
     /* Keep arround until we prove the news code connects to the simulator.
     public class SimVariableList: ISimVariableBinder

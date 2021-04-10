@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows.Controls;
-using SimControls.Model;
+﻿using System.Windows.Controls;
 using SimControls.Model.CompositeElements;
 
 namespace SimControls.FlightDisplays

@@ -1,9 +1,6 @@
 ﻿using System.Buffers;
 using System.IO.Pipelines;
-using System.Net.Http.Headers;
-using System.Text;
 using Melville.P2P.Raw.BinaryObjectPipes;
-using SequenceReaderExtensions = Melville.P2P.Raw.BinaryObjectPipes.SequenceReaderExtensions;
 
 namespace SimControls.NetworkCommon.DataClasses
 {

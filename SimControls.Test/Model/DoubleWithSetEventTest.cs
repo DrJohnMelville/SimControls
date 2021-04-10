@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using Moq;
+﻿using Moq;
 using SimControls.Model;
 using SimControls.Model.CompositeElements;
 using Xunit;

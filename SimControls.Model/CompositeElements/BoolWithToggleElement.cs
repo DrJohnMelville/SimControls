@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Melville.INPC;
+﻿using Melville.INPC;
 
 namespace SimControls.Model.CompositeElements
 {

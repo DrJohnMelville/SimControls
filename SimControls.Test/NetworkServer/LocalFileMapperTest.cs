@@ -1,4 +1,4 @@
-﻿using Melville.MVVM.FileSystem;
+﻿using Melville.FileSystem;
 using Melville.Mvvm.TestHelpers.MockFiles;
 using SimControls.NetworkServer;
 using Xunit;

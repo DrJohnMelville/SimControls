@@ -22,7 +22,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Melville.MVVM" Version="0.4.3" />
+      <PackageReference Include="Melville.SystemInterface" Version="0.5.1" />
+      <PackageReference Include="Melville.FileSystem" Version="0.5.1" />
     </ItemGroup>
 
     <ItemGroup>

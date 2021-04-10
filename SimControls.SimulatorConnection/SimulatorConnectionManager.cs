@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Melville.INPC;
-using Melville.MVVM.WindowMessages;
+using Melville.SystemInterface.WindowMessages;
 using Microsoft.FlightSimulator.SimConnect;
 using SimControls.Model.VariableBinders;
 

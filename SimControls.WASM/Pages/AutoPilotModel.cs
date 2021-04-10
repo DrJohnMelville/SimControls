@@ -1,6 +1,6 @@
 ﻿using Melville.INPC;
-using SimControls.Model;
 using SimControls.Model.CompositeElements;
+using SimControls.Model;
 
 namespace SimControls.WASM.Pages
 {

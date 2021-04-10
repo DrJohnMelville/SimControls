@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using System.Xml.Linq;
 using Melville.MVVM.BusinessObjects;
 using Melville.MVVM.Wpf.DiParameterSources;

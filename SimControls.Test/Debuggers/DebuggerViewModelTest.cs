@@ -3,7 +3,6 @@ using SimControls.Debuggers;
 using SimControls.Model;
 using SimControls.Model.VariableBinders;
 using Xunit;
-using ZXing.QrCode.Internal;
 
 namespace SimControls.Test.Debuggers
 {

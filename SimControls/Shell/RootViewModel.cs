@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Melville.MVVM.RunShellCommands;
 using Melville.MVVM.WaitingServices;
 using Melville.MVVM.Wpf.DiParameterSources;
 using Melville.MVVM.Wpf.RootWindows;
+using Melville.SystemInterface.RunShellCommands;
 using SimControls.Debuggers;
 using SimControls.FlightDisplays;
-using SimControls.Model;
 using SimControls.NetworkServer;
 using SimControls.SimulatorConnection;
 using SimControls.YokeConnector;

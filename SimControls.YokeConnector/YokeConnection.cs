@@ -1,6 +1,6 @@
 ﻿using System;
-using Melville.MVVM.Functional;
-using Melville.MVVM.USB.Joysticks;
+using Melville.Hacks;
+using Melville.SystemInterface.USB.Joysticks;
 using SimControls.Model;
 
 namespace SimControls.YokeConnector
