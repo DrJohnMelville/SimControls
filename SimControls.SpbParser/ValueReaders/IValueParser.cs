@@ -65,6 +65,7 @@ internal class BoolParser : ValueParser<bool>
 [MacroItem("GUID", "BltParser<Guid>")]
 [MacroItem("PBH", "BltParser<PbhStruct>")]
 [MacroItem("PBH32", "BltParser<PbhStruct>")]
+[MacroItem("LLA", "BltParser<LlaStruct>")]
 [MacroCode("public static readonly IValueParser Parse~0~ = new ~1~();")]
 internal static partial class ValueReaderFactory
 {

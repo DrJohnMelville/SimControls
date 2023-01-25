@@ -1,4 +1,10 @@
-﻿namespace SimControls.SpbParser.ValueReaders;
+﻿using Microsoft.VisualBasic.CompilerServices;
+
+namespace SimControls.SpbParser.ValueReaders;
+
+#pragma warning disable 0649
+// These structures are read out of the file in unsafe code that the compiler does not know about so the
+// field is never writeen warning is inaccurate.
 
 public readonly struct PbhStruct
 {
@@ -12,5 +18,19 @@ public readonly struct PbhStruct
     public double B => b * Factor;
     public double H => h * Factor;
 
-    public override string ToString() => $"(P: {P:##0.0}, B: {B:##0.0}, H: {H:##0.0})";
+    public override string ToString() => $"(P: {P:##0.0}, B: {B:##0.0}, H: {H:##0.0} Pad: {pad})";
+}
+
+public readonly struct LlaStruct
+{
+    private readonly long latitude;
+    private readonly long longitude;
+    private readonly uint altitude;
+    private readonly int altitude2;
+
+    public double Latitude => latitude*(90.0 / (10001750.0 * 65536.0 * 65536.0));
+    public double Longitude => longitude * (360.0 / (65536.0 * 65536.0 * 65536.0 * 65536.0));
+    public double Altitude => altitude2 + (altitude / (65536.0 * 65536.0));
+
+    public override string ToString() => $"(Lat: {Latitude}, Lon: {Longitude}, Alt:{Altitude}, )";
 }

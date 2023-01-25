@@ -7,7 +7,7 @@ using Xunit;
 
 namespace SimControls.Test.SpbParser.ValueReaders;
 
-public class BltValueReaders
+public class ValueReaders
 {
     [Fact]
     public void RoundTripGuid()
