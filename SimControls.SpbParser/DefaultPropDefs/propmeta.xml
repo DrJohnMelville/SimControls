@@ -1,0 +1,154 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "Meta"
+    id           = "{8F7C7C90-4788-4277-A2D4-D810527B31C7}"    
+    descr        = "SimProp Meta property, type and set definitions."
+    chdr         = "propmeta.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propmeta.h
+//
+//  FlightSim event trigger AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+	</cpptext>
+
+	<PropertyDefs
+        symbolprefix = "SPID_FLOW_META_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+		</cpptext>
+
+    <PropertyDef
+            name        = "Name"
+            id          = "{02E8FC84-6ED9-4DC2-8B6E-48727CBC6652}"
+            type        = "TEXT"
+            cardinality = "multiple"
+            descr       = "Name of the gauge">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "TT_Title"
+            id          = "{7A786086-4F50-4E78-9296-D231E39A3C94}"
+            type        = "TEXT"
+            descr       = "Title of the gauge">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "TT_Desc"
+            id          = "{22244760-6664-42B3-9057-EF6BC9C35166}"
+            type        = "TEXT"
+            descr       = "Desc of the gauge">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Weight"
+            id          = "{35A3299F-C3C6-4ECE-AC3E-23FDE5A7EAFA}"
+            type        = "FLOAT"
+            descr       = "Weight of the gauge">
+    </PropertyDef>
+   
+    <PropertyDef
+            name        = "Tracker"
+            id          = "{47D6F40C-292E-4AD3-8ADE-6EF77428AFA3}"
+            type        = "TEXT"
+            descr       = "Tracker linked to the gauge">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Formula"
+            id          = "{7A31A8EA-83E2-40BA-8FA2-6795C466BFE6}"
+            type        = "TEXT"
+            descr       = "Formula to compute gauge">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "GaugeType"
+            id          = "{87E113E7-023D-4964-88CE-C64E626EED76}"
+            type        = "ENUM"
+            default     = "PERCENTAGE">
+      <EnumDef symbolprefix="GAUGETYPE">
+        <EnumVal
+            name = "FLOAT"
+            xml_name = "Float"/>
+        <EnumVal
+            name = "NUMBER"
+            xml_name = "Number"/>
+        <EnumVal
+            name = "PERCENTAGE"
+            xml_name = "Percentage"/>
+        <EnumVal
+            name = "DURATION"
+            xml_name = "Duration"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "GaugeUnit"
+            id          = "{35CC8A69-DFBC-4CA4-9594-00B1F007D6BE}"
+            type        = "TEXT"
+            descr       = "unit of the value">
+    </PropertyDef>
+    
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_FLOW_META_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+		</cpptext>
+
+    
+
+    <SetDef
+            id          = "{F0FCE088-F78E-454A-86BC-971B93511D0C}"
+            name        = "Gauge"
+            descr       = "Gauge">
+      <property name = "Name"/>
+      <property name = "TT_Title"/>
+      <property name = "TT_Desc"/>
+      <property name = "Weight"/>
+      <property name = "Tracker"/>
+      <property name = "Formula"/>
+      <property name = "GaugeType"/>
+      <property name = "GaugeUnit"/>
+      
+    </SetDef>
+
+    <SetDef
+            id          = "{BCD9F66D-C6DD-4986-B847-970AADC0DAC0}"
+            name        = "MetaGauge"
+            descr       = "MetaGauge">
+      <property name = "Name"/>
+      <property name = "Gauges"/>
+      <property name = "TT_Title"/>
+      <property name = "TT_Desc"/>
+      <property name = "Weight"/>
+      <property name = "Formula"/>
+
+    </SetDef>
+
+    <SetDef
+         id          = "{388080D4-C455-43D5-A5A8-1D74DB676B50}"
+         name        = "Gauges"
+         descr       = "List of flow Gauges">
+      <property name = "Name"/>
+    </SetDef>
+
+  </SetDefs>
+</SymbolDef>

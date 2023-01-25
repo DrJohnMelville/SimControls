@@ -1,0 +1,112 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+
+see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+ <SymbolDef
+name         = "AircraftsICAO"
+id           = "{2C8519B6-CC45-45F0-ACE6-902ABB4143CD}"
+descr        = "Aircrafts property ICAO"
+chdr         = "propicao.h"
+version      = "1,0" >
+
+	<SymbolInclude
+	filename = "Common\propworldbase.xml"
+	id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+	version  = "1,0" />
+   
+  <PropertyDefs
+	symbolprefix = "SPID_">
+
+    <PropertyDef
+		id          = "{479DC8D4-C6FD-4846-9EDA-8BE35E55F992}"
+		name        = "TypeDesignator"
+		type		= "TEXT"
+		descr       = "ICAO type designator code">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{9495E3CF-9E58-4022-B81B-45B532B7CEDD}"
+		name        = "Manufacturer"
+		type		= "TEXT"
+		descr       = "Manufacturer name">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{CD362F2F-C375-4A85-B7E9-2B3FA2BE165B}"
+		name        = "Model"
+		type		= "TEXT"
+		descr       = "Model name">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{B5A23B75-459D-4672-9F47-49CA716DC7A4}"
+		name        = "Description"
+		type		= "TEXT"
+		descr       = "ICAO Description">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{5B1A6434-A7BD-48CE-A583-F58B9E71D663}"
+		name        = "Engine"
+		type		= "ENUM"
+    default     = "NO_ENGINE"
+		descr       = "Engine type: Piston,Turboprop/Turboshaft,Jet,Electric,Rocket">
+      <EnumDef symbolprefix="ICAOENGINE_">
+        <EnumVal name = "NO_ENGINE"/>
+        <EnumVal name = "Piston"/>
+        <EnumVal name = "Turboprop/Turboshaft"/>
+        <EnumVal name = "Jet"/>
+        <EnumVal name = "Electric"/>
+        <EnumVal name = "Rocket"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+    id          = "{352546D7-BCF7-482B-95E0-17D2D85DC2B3}"
+    name        = "Count"
+    type		= "ULONG"
+    default     = "0"
+    descr       = "Number of Engines">
+    </PropertyDef>
+    <PropertyDef
+    id          = "{342B5A8E-C9F0-4BC7-9DEE-E8E50DE06A4A}"
+    name        = "WTC"
+    type		= "ENUM"
+    default = "L"
+    descr       = "WTC code: L, L/M, M, H">
+      <EnumDef symbolprefix="ICAOWTC_">
+        <EnumVal name = "L"/>
+        <EnumVal name = "L/M"/>
+        <EnumVal name = "M"/>
+        <EnumVal name = "H"/>
+      </EnumDef>
+    </PropertyDef>
+  </PropertyDefs>
+
+   <SetDefs symbolprefix = "SSID_">
+
+     <SetDef
+          name ="Aircrafts"
+          id ="{8CE3627C-565B-433B-BAC3-A6921951905F}"
+          descr = "All Aircrafts">
+       <property name ="Aircraft"/>
+     </SetDef>
+
+     <SetDef
+          name ="Aircraft"
+          id ="{BD607DA9-E9AE-4C9C-9986-A88BCB2AE8DA}"
+          cardinality = "multiple"
+          descr = "Single Aircraft ICAO">
+       <property name ="TypeDesignator"/>
+       <property name ="Manufacturer"/>
+       <property name ="Model"/>
+       <property name ="Description"/>
+       <property name ="Engine"/>
+       <property name ="Count"/>
+       <property name ="WTC"/>
+     </SetDef>
+   </SetDefs>
+
+ </SymbolDef>

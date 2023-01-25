@@ -1,0 +1,290 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+
+see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "WorldmapFilters"
+    id           = "{5959892C-17C3-416C-A2EF-3312EC287FA1}"
+    descr        = "SimProp Worldmap filters property, type and set definitions."
+    chdr         = "propworldmapfilters.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+  <SymbolInclude
+		filename = "Common\propbaseui.xml"
+		id="{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}"
+		version  = "1,0" />
+
+	<cpptext pass="1">
+		//-------------------------------------------------------------------------//
+		//  propworldmapfilters.h
+		//
+		//  FlightSim World Map Fitlers AceXML property and property set symbol definitions
+		//-------------------------------------------------------------------------//
+
+		//
+		//  Namespace
+		//
+		namespace WorldmapFilters
+		{
+
+	</cpptext>
+
+
+	<PropertyDefs
+        symbolprefix = "SPID_">
+
+		<cpptext pass="2">
+			//
+			//  Property Identifiers
+			//
+		</cpptext>
+
+		<PropertyDef
+            name        = "FilterID"
+            id          = "{18469F82-203C-4A77-9469-8E36E8FB64B7}"
+            type        = "ENUM"
+			default	  	= "NONE"
+            descr       = "A type for an item.">
+
+			<!-- DO NOT CHANGE THE ORDER, REMOVE OR ADD INBETWEEN (or change the game save version) ! -->
+			<EnumDef symbolprefix="FILTER">
+				<EnumVal name = "NONE" />
+				<!-- MUST STAY FIRST -->
+
+				<EnumVal name = "MAP_BACKGROUND" />
+				
+				<EnumVal name = "TYPE_AIRPORT" />
+				<EnumVal name = "TYPE_STAR_AIRPORT" />
+				<EnumVal name = "TYPE_LANDMARK" />
+				<EnumVal name = "TYPE_STAR_LANDMARK" />
+				<EnumVal name = "TYPE_CITY" />
+				<EnumVal name = "TYPE_STAR_CITY" />
+				<EnumVal name = "TYPE_FAUNA" />
+				<EnumVal name = "TYPE_NAVAID" />
+
+				<EnumVal name = "ACTIVITY_LANDING" />
+				<EnumVal name = "ACTIVITY_BUSH" />
+				<EnumVal name = "ACTIVITY_NEW" />
+				<EnumVal name = "ACTIVITY_DONE" />
+
+				<EnumVal name = "MAP_AIRWAYS" />
+				<EnumVal name = "MAP_AIRSPACES" />
+				<EnumVal name = "MAP_MAX_ELEVATION_FIGURE" />
+
+				<EnumVal name = "RUNWAY_HARD" />
+				<EnumVal name = "RUNWAY_GRASS" />
+				<EnumVal name = "RUNWAY_WATER" />
+				<EnumVal name = "RUNWAY_SNOW" />
+				<EnumVal name = "RUNWAY_SAND" />
+				<EnumVal name = "RUNWAY_HELI" />
+				<EnumVal name = "RUNWAY_OTHER" />
+
+				<EnumVal name = "PLANE_FRIEND" />
+				<EnumVal name = "PLANE_TRAFFIC" />
+				<EnumVal name = "PLANE_MULTI" />
+
+				<EnumVal name = "WEATHER_LAYER" />
+				<EnumVal name = "WEATHER_WIND_PARTICLES" />
+
+				<EnumVal name = "TYPE_RNAV_FIX" />
+				
+				<EnumVal name = "THIRD_PARTY_CONTENT" />
+        <EnumVal name = "STORE_ITEM_CONTENT" />
+
+        <EnumVal name = "TYPE_NATURE" />
+        <EnumVal name = "MAP_LIGHTING" />
+        
+        <EnumVal name = "GLIDER_FRIENDLY" />
+        
+        <EnumVal name = "TYPE_HELIPORT" />
+
+				<EnumVal name = "COUNT" />
+				<!-- MUST STAY LAST -->
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "MapType"
+            id          = "{7EB601E6-D6EA-421A-8F1C-F1A55BCE17FF}"
+            type        = "ENUM"
+						default	  	= "BLEND">
+			<EnumDef symbolprefix="MAP">
+				<EnumVal name = "BLEND" />
+				<EnumVal name = "SATELLITE" />
+				<EnumVal name = "IFR" />
+
+				<EnumVal name = "COUNT" />
+			</EnumDef>
+		</PropertyDef>
+
+    <PropertyDef
+          name        = "LightType"
+          id          = "{769882F4-6D60-4D22-8F41-ABFA2249C0E9}"
+          type        = "ENUM"
+          default	  	= "SUNLIGHT">
+      <EnumDef symbolprefix="LIGHTING">
+        <EnumVal name = "SUNLIGHT" />
+        <EnumVal name = "HEADLIGHT" />        
+        <EnumVal name = "COUNT" />
+      </EnumDef>
+    </PropertyDef>
+
+		<PropertyDef
+            name        = "ValueType"
+            id          = "{B37A546D-E0F0-41DD-B566-5180D7DEF595}"
+            type        = "ENUM"
+						default	  	= "ONOFF">
+			<EnumDef symbolprefix="VALUETYPE">
+				<EnumVal name = "ONOFF" />
+				<EnumVal name = "ALTLEVEL" />
+				<EnumVal name = "WEATHERLAYER" />
+				<EnumVal name = "MAPTYPE" />
+        <EnumVal name = "LIGHTTYPE" />
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "OnOff"
+            id          = "{D6112A9D-B5D1-41B0-A87E-908CDA76B799}"
+            type        = "ENUM"
+						default	  	= "OFF">
+			<EnumDef symbolprefix="ONOFF">
+				<EnumVal name = "OFF" />
+				<EnumVal name = "ON" />
+
+				<EnumVal name = "COUNT" />
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "AltLevel"
+            id          = "{13992550-7EC7-4F0B-938B-11CF8A9B8C38}"
+            type        = "ENUM"
+						default	  	= "OFF">
+			<EnumDef symbolprefix="LEVEL">
+				<EnumVal name = "OFF" />
+				<EnumVal name = "GROUND" />
+				<EnumVal name = "LOW" />
+				<EnumVal name = "HIGH" />
+
+				<EnumVal name = "COUNT" />
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "WeatherLayer"
+            id          = "{F73CC20A-FE7F-4E57-8F10-B98FE405523D}"
+            type        = "ENUM"
+						default	  	= "OFF">
+			<EnumDef symbolprefix="WEATHER">
+				<EnumVal name = "OFF" />
+				<EnumVal name = "CLOUDS" />
+				<EnumVal name = "RAIN" />
+				<!--<EnumVal name = "ISOBARE" />
+				<EnumVal name = "PRESSURE_SPOTS" />
+				<EnumVal name = "FRONTS" />
+				<EnumVal name = "STORMCELLS" />
+				<EnumVal name = "ICING" />
+				<EnumVal name = "TURBULENCES" />
+				<EnumVal name = "TEMPERATURE" />-->
+
+				<EnumVal name = "COUNT" />
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+						name        = "Icon"
+						id          = "{648E3F30-BF82-41D0-9296-143F79683F5F}"
+						type				= "TEXT">
+		</PropertyDef>
+
+		<PropertyDef
+						name        = "Standalone"
+						id          = "{FF8784CA-E348-4FCC-964D-A56D1CDE47CB}"
+						type				= "BOOL"
+						default			= "FALSE">
+		</PropertyDef>
+
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+			//
+			//  Property Set Identifiers
+			//
+		</cpptext>
+
+		<SetDef
+            id          = "{AC50AF7F-FB27-44C1-8C2D-D839176EA417}"
+            name        = "FilterDefinition"
+            descr       = "World map filter definition and their default values">
+			<property name = "FilterID"/>
+			<property name = "Title"/>
+			<property name = "Descr"/>
+			<property name = "id"/>
+			<property name = "Standalone"/>
+			<!-- Optional, meaning this will not be changed by a preset -->
+			<property name = "Disabled"/>
+      <property name = "Visible"/>
+			<!-- Optional, meaning this is not working for now -->
+
+			<property name = "ValueType"/>
+			<!-- And then only one of the following type -->
+			<property name = "OnOff"/>
+			<property name = "AltLevel"/>
+			<property name = "WeatherLayer"/>
+			<property name = "MapType"/>
+      <property name = "LightType"/>
+		</SetDef>
+
+		<SetDef
+            id          = "{2095D7B7-0B3C-4349-ACD3-F0E6767D122C}"
+            name        = "FilterSection"
+            descr       = "World map filter section">
+			<property name = "Title"/>
+			<property name = "Descr"/>
+			<property name = "id"/>
+			<property name = "FilterDefinition"/>
+		</SetDef>
+
+		<SetDef
+            id          = "{A73D965E-05A1-4045-9EAD-71A95A90DC42}"
+            name        = "Filter"
+            descr       = "World map filter in preset">
+			<property name = "FilterID"/>
+			<!-- And then only one of the following type -->
+			<property name = "OnOff"/>
+			<property name = "AltLevel"/>
+			<property name = "WeatherLayer"/>
+			<property name = "MapType"/>
+      <property name = "LightType"/>
+		</SetDef>
+
+
+		<SetDef
+            id          = "{D0DD769D-9F6D-42CE-BA07-3E36120172F4}"
+            name        = "FilterPreset"
+            descr       = "World map preset of filters">
+			<property name = "Title"/>
+			<property name = "Descr"/>
+			<property name = "id"/>
+			<property name = "Icon"/>
+			<property name = "Disabled"/>
+			<!-- Optional, meaning this is not locked for now -->
+			<property name = "Filter"/>
+		</SetDef>
+
+	</SetDefs>
+	<cpptext pass="2">
+		}
+	</cpptext>
+</SymbolDef>

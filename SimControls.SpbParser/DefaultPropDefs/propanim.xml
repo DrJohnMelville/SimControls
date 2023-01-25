@@ -1,0 +1,213 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- Animation property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimAnim"
+    id           = "{25D2097F-A1E9-4ba8-A8DD-2CCA3FC5F27B}"
+    descr        = "SimProp animation related definitions."
+    chdr         = "propanim.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propui.h    
+//
+//  FlightSim UI AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property identifiers
+//
+        </cpptext>
+    
+        <PropertyDef
+            name        = "AnimationPartId"
+            id          = "{A963BD60-90A7-4826-8E81-DA9BEDDF2E51}"
+            type        = "ULONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationValueType"
+            id          = "{0D7EAFEA-5D77-4b23-AB55-559669B6A4D3}"
+            type        = "ULONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AnimationValueData"
+            id          = "{A4F9FBFB-EFA1-41bc-B976-5D7F3D6D0086}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationIsPlaying"
+            id          = "{C73CFADE-CBBB-45d0-A8FA-420A3F42BCAD}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationIsLooping"
+            id          = "{793C3278-3FF8-4b56-9D01-49F8C59CAE39}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationIsPaused"
+            id          = "{7D72B3F8-2BDC-47f4-9BE6-19DCC6D657C8}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AnimationSkipFrame"
+            id          = "{BDA21407-D1B5-42fd-90E2-F612AB1FA02E}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationFrameSkipTime"
+            id          = "{6CE24214-E0BC-40e8-A154-550BF22FEB52}"
+            type        = "FLOAT">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "AnimationStartTime"
+            id          = "{A90D1779-F951-4a34-9681-A0E801C540A1}"
+            type        = "FLOAT">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "AnimationLastTime"
+            id          = "{F626BF29-081F-43b7-A92D-FB9D3023467A}"
+            type        = "FLOAT">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "AnimationLastFrame"
+            id          = "{27BBDE85-C825-4fb5-A2E1-45E891195C27}"
+            type        = "FLOAT">
+        </PropertyDef>
+
+      <PropertyDef
+           name        = "AnimationLastRatio"
+           id          = "{5EAD3810-67C2-489F-9D4D-FFCB85E1C536}"
+           type        = "FLOAT">
+      </PropertyDef>
+
+        <PropertyDef
+            name        = "ModelIdx"
+            id          = "{0100431A-60A9-4690-88B4-133B1DDB60A0}"
+            type        = "ULONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimGUID"
+            id          = "{AEC79876-C977-4e51-A6B0-F5BA93AB728D}"
+            type        = "GUID">
+        </PropertyDef>
+        
+    </PropertyDefs>
+
+    <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <SetDef
+            id          = "{CCFAA6F9-B03A-4ea0-AE42-9191050669A6}"
+            name        = "AnimationValue"
+            policy      = "unrestricted">
+
+            <property name = "AnimationValueType"/>
+            <property name = "AnimationValueData"/>
+            
+        </SetDef>
+
+        <SetDef
+            id          = "{466F57FE-85AD-45a7-B74B-79A7C9A0E88E}"
+            name        = "AnimationStandard"
+            policy      = "unrestricted">
+
+
+            <property name = "AnimationIsPlaying"/>
+            <property name = "AnimationIsLooping"/>
+            <property name = "AnimationIsPaused"/>
+            <property name = "AnimationSkipFrame"/>
+            <property name = "AnimationFrameSkipTime"/>
+            <property name = "AnimationStartTime"/>
+            <property name = "AnimationLastTime"/>
+            <property name = "AnimationLastFrame"/>
+          <property name = "AnimationLastRatio"/>
+          
+
+        </SetDef>
+
+        <SetDef
+            id          = "{596C815D-78FA-406d-819C-86625E3B52EE}"
+            name        = "AnimationPartState"
+            policy      = "unrestricted">
+
+        </SetDef>
+
+        <SetDef
+            id          = "{F1292C43-1045-4d30-AEFE-B260CA20C1AC}"
+            name        = "AnimationPartStatePart"
+            policy      = "unrestricted">
+
+            <property name = "AnimationPartId"/>
+            
+        </SetDef>
+
+        <SetDef
+            id          = "{6550651B-770E-4d79-8B44-6D5A47904A3F}"
+            name        = "ModelAnimation"
+            policy      = "unrestricted">
+           
+        </SetDef>
+
+        <SetDef
+            id          = "{4EC4EC4E-6E84-48dc-A2CF-5EE1BE817E22}"
+            name        = "AnimationStatePart"
+            policy      = "unrestricted">
+           
+        </SetDef>
+
+        <SetDef
+            id          = "{548B5E4A-880B-4f34-BD1A-B00F020CCB04}"
+            name        = "AnimationStateAnim"
+            policy      = "unrestricted">
+           
+        </SetDef>
+
+        <SetDef
+            id          = "{AF49D882-D1D0-40a8-9682-50FE69CF5B11}"
+            name        = "ModelAnimationInstance"
+            policy      = "unrestricted">
+           
+            <property name = "ModelIdx"/>
+        </SetDef>
+
+    
+    </SetDefs>
+
+</SymbolDef>

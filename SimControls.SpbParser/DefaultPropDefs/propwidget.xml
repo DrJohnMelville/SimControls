@@ -1,0 +1,441 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+
+see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+name         = "Widgets"
+id           = "{82EE6DF3-CC14-4FB8-903C-AD0F8C96E8C8}"
+descr        = "Widget description"
+chdr         = "propwidget.h"
+version      = "1,0" >
+
+	<SymbolInclude
+	filename = "Common\propbase.xml"
+	id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+	version  = "1,0" />
+
+  <SymbolInclude
+filename = "Common\propUIComponent.xml"
+id       = "{97B792B0-FBE4-41D6-896D-713B0AFD193F}"
+version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propwidget.h
+//
+//  Description of the home page widgets
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+namespace PropWidget
+{
+	</cpptext>
+
+	<PropertyDefs
+	symbolprefix = "SPID_">
+
+		<cpptext pass="2">
+		//
+		//  Property Identifiers
+		//
+		</cpptext>
+
+		<PropertyDef
+		id          = "{153BBF4A-9680-4B09-A532-95668955853C}"
+		name        = "WWiseState"
+		type		= "TEXT"
+		descr       = "WWise state to set">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{09E0EEA7-0AF9-486E-870F-365A1ABD9812}"
+		name        = "BackgroundImage"
+		type		= "TEXT"
+		descr       = "Background image state to set">
+		</PropertyDef>
+
+		<PropertyDef
+		id      = "{829E648C-BF65-45BD-BE01-13CEF9A940D3}"
+		name    = "TitleImage"
+		type    = "TEXT"
+		descr   = "Image to set instead of the title"
+		default = "NAME_NULL">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{6CCCC959-7BC4-4C6F-9415-ABA041E6F0FF}"
+		name        = "ContentType"
+		type		= "ENUM"
+		descr       = "Widget content type"
+		default     = "HTML">
+			<EnumDef symbolprefix="WIDGET_CONTENT_TYPE_">
+				<EnumVal name = "PAGE_LIST"/>
+				<EnumVal name = "ITEM_LIST"/>
+				<EnumVal name = "HTML"/>
+				<EnumVal name = "PLANE" />
+				<EnumVal name = "XML" />
+				<EnumVal name = "FLIGHT" />
+				<EnumVal name = "ACTIVITY_LIST" />
+				<EnumVal name = "CATEGORY_LIST" />
+				<EnumVal name = "MARKET_STORE" />
+				<EnumVal name = "HYPERLINK" />
+				<EnumVal name = "MOVIE" />
+				<EnumVal name = "MARKET_ITEM" />
+				<EnumVal name = "POPUP" />
+				<EnumVal name = "MARKET_ITEM_LIST" />
+				<EnumVal name = "TOUCHPOINT" />
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{5E3D9BAE-2CDD-418D-8647-4A637D548FDD}"
+		name        = "DisplayStyle"
+		type        = "ENUM"
+		descr       = "Display style of the expanded popup"
+		default     = "NORMAL">
+			<EnumDef symbolprefix="WIDGET_DISPLAY_STYLE_">
+				<EnumVal name = "NORMAL"/>
+				<EnumVal name = "NO_HEADER"/>
+				<EnumVal name = "FULLSCREEN"/>
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+		id			= "{612E67F2-1C26-4325-A9D7-AAAF78A6C847}"
+		name		= "PageSize"
+		type		= "LONG2"
+		descr		= "Widget page size (w;h)">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{A8429838-3EA8-41EA-A9A9-8010F6D09AB0}"
+		name        = "ContentSource"
+		type		= "TEXT"
+		descr       = "Widget content source">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{472CEA6F-39C9-497D-B175-21BAFE353B1F}"
+		name        = "DetailType"
+		type		= "TEXT"
+		descr       = "Widget detail type"
+		default		= "NAME_NULL">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{4B6A6A3B-6BF7-480E-8AF4-BD819B36F291}"
+		name        = "WidgetListener"
+		type		= "TEXT"
+		descr       = "Widget Listener Name">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{9006425C-A011-4CEF-BD26-82EA3DC5462D}"
+		name        = "FlightFile"
+		type		= "TEXT"
+		descr       = "Flight file name">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{148525E1-F8ED-4835-ACFB-50E279DAE929}"
+		name        = "DependsOnStoreItemId"
+		type		   = "TEXT"
+		descr       = "Store dependency item id">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{3A6168CC-D703-48A6-9ACD-BC093018F89C}"
+		name        = "Label"
+		type		   = "TEXT"
+		descr       = "Store banner's text label">
+		</PropertyDef>
+
+		<cpptext pass="2">// POPUPHEADER IS DEPRECATED, USE DISPLAYSTYLE
+		</cpptext>
+
+		<PropertyDef
+		id          = "{90F7EEFD-CDB0-4A68-A3CE-67173D4348EB}"
+		name        = "PopupHeader"
+		type				= "BOOL"
+		descr       = "[DEPRECATED - Use DisplayStyle] Show the popup header when expanded">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{71461348-35D7-4D3C-9BDA-55FEDDC37479}"
+		name        = "PosAndSize"
+		type		= "BYTE4"
+		descr       = "Position(x,y) and dimension(width, height)">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{CCCF9779-A4F9-4B16-955E-D7B8837EC443}"
+		name		= "ContentDisplay"
+		type		= "ENUM"
+		descr       = "Widget content display type"
+		default     = "NONE">
+			<EnumDef symbolprefix="WIDGET_CONTENT_DISPLAY_">
+				<EnumVal name = "EXPANDABLE"/>
+				<EnumVal name = "EXPANDABLE_KEEP_CURRENT"/>
+				<EnumVal name = "ALWAYS"/>
+				<EnumVal name = "NONE"/>				
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{FB919D84-188F-49A8-A676-ECC46F8E18C5}"
+		name        = "ClosePopUp"
+		type		= "BOOL"
+		descr       = "Can it Close pop up"
+		default		= "True">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{37D6C8B1-59C5-473F-A27E-66ECF37FC9EC}"
+		name        = "Image"
+		type		= "TEXT"
+		descr       = "The background image, NameZ or file path"
+		default		= "NAME_NULL">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{396DD49B-6524-4A7D-8BF6-C74389A6CBAF}"
+		name        = "CategoriesTTPackage"
+		type		    = "TEXT"
+		descr       = "Package used to scope all sub-categories TTs"
+		default		  = "NAME_NULL">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{7BE5D7C1-8B9C-4EC5-A0F7-1C08B47145BE}"
+		name        = "PlayfabDataId"
+		type		    = "TEXT"
+		descr       = "Item friendlyId on playfab in which to find title/descr/image"
+		default		  = "NAME_NULL">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{50DCB23E-23B5-460B-81C2-6115A732F19F}"
+		name        = "ComponentURL"
+		type		= "TEXT"
+		descr       = "The Component URL"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{6F31FD00-382F-49F9-806E-8C28F034C0F8}"
+		name        = "ComponentTag"
+		type		= "TEXT"
+		descr       = "The Component html tag"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{CBC6B13A-17EE-407C-B45F-CE01375987A0}"
+		name        = "ComponentData"
+		type		= "TEXT"
+		descr       = "The Component html data"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{226D837A-C1D6-4EDA-B527-AE10CE27CE64}"
+		name        = "ContentURL"
+		type		= "TEXT"
+		descr       = "The content URL to import"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{E84877D6-8414-46E9-A873-D0622D97024E}"
+		name        = "ContentTag"
+		type		= "TEXT"
+		descr       = "The Content html tag"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{6F5D4371-BB64-4601-9DFC-BAEE79ED5993}"
+		name        = "ContentData"
+		type		= "TEXT"
+		descr       = "The content html data"
+		default		= "NAME_NULL">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{388E6CDC-56F2-40F6-AC82-8194E289BD44}"
+		name        = "ContentTheme"
+		type		= "TEXT"
+		descr       = "The content html class"
+		default		= "NAME_NULL">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{AA6DD653-E58D-4D5E-BF8B-2B3EFD68AC2B}"
+		name        = "Departure"
+		type		= "LLA"
+		descr       = "A position from where to start">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{862293A3-D447-48DD-A0C5-362956158BF3}"
+		name        = "ButtonEvent"
+		type		= "TEXT"
+		descr       = "An event to send">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{5DE5D400-FFCF-45D9-B36D-2343287066CC}"
+		name        = "TelemetryEvent"
+		type		= "TEXT"
+		descr       = "An event to send to telemetry">
+		</PropertyDef>
+		
+		<PropertyDef
+		id          = "{B66078B9-F1B2-43E3-B684-7C3C042BD5ED}"
+		name        = "Condition"
+		type		= "TEXT"
+		descr       = "The name of the condition">
+		</PropertyDef>
+
+	</PropertyDefs>
+  	<!-- 
+	Element: SetDefs - Optional block of property set definitions
+
+	symbolprefix:   optional prefix for C/C++ property identifier.
+	-->
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+		//
+		//  Property Set Identifiers
+		//
+		</cpptext>
+
+		<SetDef
+		id          = "{47B18587-5374-4F38-85D3-77112F0CC18F}"
+		name        = "WidgetPage"
+		descr       = "Pages of widget">
+		<property name 	= "PageSize" />
+		<property name 	= "WidgetDefinition" />
+		</SetDef>
+
+    <SetDef
+		id          = "{AA9201C3-13DD-4345-BA5B-6FE7C2826A2D}"
+		name        = "Overlay"
+		descr       = "Overlay component">
+      <property name 	= "UIComponent" />
+    </SetDef>
+
+		<SetDef
+   id          = "{202E64D0-3FC2-407E-BB15-3D206213C92A}"
+   name        = "ContentComponent"
+   descr       = "Content component">
+      <property name 	= "UIComponent" />
+    </SetDef>
+
+		<SetDef
+		id          = "{58B3D4AF-800D-40A1-856B-1C323E7C767D}"
+		name        = "WidgetDefinition"
+		descr       = "Definition of one widget">
+			<property name 	= "PosAndSize" />
+			<property name 	= "id" />
+			<property name 	= "Title" />
+			<property name 	= "ContentDisplay" />
+			<property name 	= "ContentType" />
+			<property name 	= "ContentSource" />
+			<property name  = "Image" />
+			<property name  = "Disabled" />
+			<property name  = "GameContent" />
+		</SetDef>
+		
+		<SetDef
+		id          = "{0B0221CE-E958-439D-A8F1-71984EEAFFE9}"
+		name        = "Header"
+		descr       = "Description of the header for a PAGE_LIST widget">
+	  <property name 	= "UIComponent" />
+      <property name 	= "ComponentUrl" />
+      <property name 	= "ComponentTag" />
+      <property name 	= "ComponentData" />
+		</SetDef>
+
+		<SetDef
+		id          = "{2E4A179A-28EC-4CEC-92D0-768081806B52}"
+		name        = "ContentPage"
+		descr       = "Description of the content for a PAGE_LIST widget">
+			<property name 	= "ContentType" />	
+			<property name 	= "ContentComponent" />		
+      		<property name 	= "ContentURL" />
+      		<property name 	= "ContentTag" />
+			<property name 	= "ContentTheme" /> 
+      		<property name 	= "ContentData" />
+			<property name 	= "ContentSource" />
+			<property name 	= "DetailType" />
+			<property name 	= "WidgetListener" />
+			<property name  = "PlayfabDataId" />
+			<property name  = "Title" />
+			<property name  = "Descr" />    
+			<property name  = "Image" />
+			<property name  = "CategoriesTTPackage" />
+			<property name  = "Departure" />
+			<property name  = "Overlay" />
+		    <property name  = "ComponentURL" />
+            <property name  = "ComponentTag" />
+			<property name  = "DependsOnStoreItemId" />
+			<property name  = "DisplayStyle" />
+		</SetDef>
+
+		<SetDef
+		id          = "{D6817D3E-28B3-4F3A-9924-386885D8D7A7}"
+		name        = "SideBanner"
+		descr       = "Description of the optional side banner for a PAGE_LIST widget">
+			<property name 	= "VisibleCondition" />
+			<property name 	= "Label" />
+		</SetDef>
+		
+		<SetDef
+		id          = "{13FA00D8-3281-4DC5-A48D-CCB5AB70CA81}"
+		name        = "WidgetButton"
+		descr       = "A button to add">
+			<property name 	= "Descr" />
+			<property name 	= "ButtonEvent" />
+			<property name 	= "ClosePopUp" />
+			<property name 	= "id" />
+		</SetDef>
+
+		<SetDef
+		id          = "{68C7205D-82BF-454D-AE2F-D6239808D2A2}"
+		name        = "VisibleCondition"
+		descr       = "A condition to display the parent">
+			<property name 	= "Condition" />
+			<property name 	= "Bool" />
+		</SetDef>
+
+		<SetDef
+		id          = "{4484157F-9F18-490B-BF67-9FED2632D118}"
+		name        = "DisableCondition"
+		descr       = "A condition to disable the widget">
+			<property name 	= "Condition" />
+			<property name 	= "Bool" />
+		</SetDef>
+
+		<SetDef
+		id          = "{C2F16122-6150-4C99-87EF-65D377A669E4}"
+		name        = "GameContent"
+		descr       = "Game content type tied to this widget">
+			<property name 	= "Type" />
+		</SetDef>
+
+	</SetDefs>
+	
+	<cpptext pass="2">
+} // namespace PropWidget
+	</cpptext>
+
+</SymbolDef>

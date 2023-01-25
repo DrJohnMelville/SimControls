@@ -1,0 +1,1222 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- FlightSim container property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "SimContain"
+    id           = "{37232F83-DC75-46b3-BC26-F142957A50FF}"
+    descr        = "FlightSim container property, type and set definitions."
+    chdr         = "propcontain.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propflightplan.xml"
+        id       = "{94407AEB-45AB-46c7-AE32-854F590DDCE9}"
+        version  = "1,0" />
+    <SymbolInclude
+        filename = "Common\propsceneryobjects.xml"
+        id       = "{9EE96FC0-10FB-4702-9CCA-F945242661E6}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propcontain.h
+//
+//  FlightSim container AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+      <PropertyDef
+          id          = "{0E4FB8AE-E59B-43ed-8E7F-B0132FE71E95}"
+          name        = "BaggageLoaderArmAngle"
+          type        = "FLOAT"
+          default     = "0.0">
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{09D35BE9-94DC-4c26-96A2-FC1B97F3F1AB}"
+            name        = "SpeedKnots"
+            type        = "FLOAT"
+            descr       = "speed measured in knots"
+            default     = "0.0">
+        </PropertyDef>
+
+      <PropertyDef
+        id          = "{0D4AA3C4-F10D-463C-BBD9-C84DCDCAF782}"
+        name        = "SpeedKnotsTooHighBegin"
+        type        = "FLOAT"
+        descr       = "speed measured in knots"
+        default     = "0.0">
+      </PropertyDef>
+
+      <PropertyDef
+        id          = "{1EF7F7D5-83B3-4203-9B44-E17E26946BB1}"
+        name        = "SpeedKnotsTooHighEnd"
+        type        = "FLOAT"
+        descr       = "speed measured in knots"
+        default     = "0.0">
+      </PropertyDef>
+      
+      
+      <PropertyDef
+        id          = "{22306C7F-7FF4-414D-9A43-6815262E8900}"
+        name        = "SpeedKnotsTooSlowBegin"
+        type        = "FLOAT"
+        descr       = "speed measured in knots"
+        default     = "0.0">
+      </PropertyDef>
+
+      <PropertyDef
+        id          = "{72C06A3E-2657-450E-B69B-C601C142B68D}"
+        name        = "SpeedKnotsTooSlowEnd"
+        type        = "FLOAT"
+        descr       = "speed measured in knots"
+        default     = "0.0">
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{B343D2CB-EA7C-423c-9479-B447C5AF4A80}"
+            name        = "EngineStarted"
+            type        = "BOOL"
+            descr       = "Engine(s) on"
+            default     = "True">
+        </PropertyDef>
+
+      <PropertyDef
+            id          = "{12D1F154-D8AD-4f87-9680-99C638909760}"
+            name        = "WrapWaypoints"
+            type        = "BOOL"
+            serialize   = "default"
+            default     = "False"
+            descr       = "Travel in a loop or stop at end of path?">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{4293A8C4-7E15-4d33-B4D8-A26701432732}"
+            name        = "CurrentWaypoint"
+            type        = "LONG"
+            serialize   = "default"
+            default     = "0"
+            descr       = "Index of the waypoint we are currently tracking">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{D75C9878-B6C7-4eb9-9759-386EE0C7749D}"
+            name        = "BackupToFirst"
+            type        = "BOOL"
+            serialize   = "default"
+            default     = "False"
+            descr       = "Do we drive in reverse to the first waypoint?">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{EA4ED74B-9808-4C9D-91B1-FDF92C90CC2F}"
+            name        = "AlwaysBackUp"
+            type        = "BOOL"
+            serialize   = "default"
+            default     = "False"
+            descr       = "Do we drive in reverse all the way?">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{14148ABD-7BFB-4287-86CC-0C4A6C9843B7}"
+            name        = "GroundCruiseSpeed"
+            type        = "FLOAT"
+            serialize   = "default"
+            default     = "35.0"
+            descr       = "Default speed in knots for this pilot">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{04686CBA-98DC-460a-8B23-02C2C27FEF93}"
+            name        = "GroundTurnSpeed"
+            type        = "FLOAT"
+            serialize   = "default"
+            default     = "10.0"
+            descr       = "AI Pilot slows to this speed in knots when making sharp turns">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{6E885A48-C011-4040-8005-B3DBFE1C29F4}"
+            name        = "GroundTurnTime"
+            type        = "FLOAT"
+            serialize   = "default"
+            default     = "3.5"
+            descr       = "AI Pilot attempts to make 90 degree turns in this amount of time (seconds).">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{BDD3DDDF-37CB-4441-A532-FCC0E839A6B7}"
+            name        = "YieldToUser"
+            type        = "BOOL"
+            serialize   = "default"
+            default     = "True"
+            descr       = "Stop if the user is in front of us?">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{E3FE627C-17C6-42b2-A10C-B44E21B61C68}"
+            name        = "WaypointID"
+            type        = "LONG"
+            serialize   = "default"
+            default     = "0">
+        </PropertyDef>
+        <PropertyDef
+          id          = "{D8165716-B462-40D6-8EA5-40EF4726BEA1}"
+          name        = "KeepLastHeading"
+          type        = "BOOL"
+          descr       = "The Ai should arrive with the same heading as the heading between last and before last waypoint"
+          default     = "True">
+        </PropertyDef>
+      <PropertyDef
+         id          = "{F448D5ED-08B1-42FE-8D82-92717F6B5025}"
+         name        = "CanReverse"
+         type        = "BOOL"
+         descr       = "Can the waypoint AI reverse if it missed its waypoint"
+         default     = "True">
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{4838BF48-6F08-4cfd-9B71-3C79206B3810}"
+            name        = "LabelMode"
+            type        = "ENUM"
+            descr       = "Label display mode"
+            default     = "UserDefined">
+            <EnumDef symbolprefix="SIMPROP_LABELMODE">
+                <EnumVal name="USERDEFINED" xml_name="UserDefined"/>
+                <EnumVal name="ON" xml_name="On"/>
+                <EnumVal name="OFF" xml_name="Off"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{D3CA64D1-DAC2-408a-9E0D-001CD88B294D}"
+            name        = "IdentificationNumber"
+            type        = "TEXT"
+            descr       = "Aircraft tail/registration number">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{52216C6F-DE96-459f-8FA6-167905B6E580}"
+            name        = "IdentificationNumberFont"
+            type        = "TEXT"
+            descr       = "Font used for identification number">
+        </PropertyDef>
+
+		<PropertyDef
+            id          = "{562F1662-3452-40c6-8D19-5023DB2FA38B}"
+            name        = "IdentificationNumberColor"
+            type        = "TEXT"
+            descr       = "Color used for identification number">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{F7A555CD-4E08-42a4-8CF1-6B5741A28AE4}"
+            name        = "ContainerID"
+			type		= "ULONG"
+            serialize   = "default"
+            default     = "-1"
+            descr       = "Used to map serialized container info in .xml to sim info in .flt">
+        </PropertyDef>
+
+      <PropertyDef
+         id          = "{30585E5E-C994-4701-A65B-84819D12C99B}"
+         name        = "UseRegionContainerType"
+         type        = "BOOL"
+         descr       = "Use container title according region"
+         default     = "False">
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{6A5F38F8-BC1A-4f30-B42E-B4DF1940AF8F}"
+            name        = "TrafficDBFile"
+			type		= "TEXT"
+            descr       = "File name of traffic database, if any, that generated this container">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{B1F50D54-742B-4d02-BE4F-4F4DFFAA34D1}"
+            name        = "TrafficDBKey"
+			type		= "ULONG"
+            default     = "0"
+            descr       = "Instance key of the traffic database entry, if any, that generated this container">
+        </PropertyDef>
+        
+        <PropertyDef
+            id          = "{6F081DD0-9BA8-4776-8866-AC49415787E5}"
+            name        = "AIType"
+			type		= "ENUM"
+            default		= "None">
+            <EnumDef symbolprefix="SIMPROP_AITYPE">
+                <EnumVal 
+                    name = "UNKNOWN" 
+                    xml_name = "None"/>
+                <EnumVal 
+                    name = "AIRPLANE" 
+                    xml_name = "Airplane"/>
+                <EnumVal 
+                    name = "HELICOPTER" 
+                    xml_name = "Helicopter"/>
+                <EnumVal 
+                    name = "WANDERBOAT" 
+                    xml_name = "WanderBoat"/>
+                <EnumVal 
+                    name = "GROUND_VEHICLE" 
+                    xml_name = "GroundVehicle"/>
+                <EnumVal 
+                    name = "FUELTRUCK" 
+                    xml_name = "FuelTruck"/>
+                <EnumVal
+                   name = "PUSHBACK"
+                   xml_name = "PushBack"/>
+              <EnumVal
+                   name = "SMALL_PUSHBACK"
+                   xml_name = "SmallPushBack"/>
+                <EnumVal 
+                    name = "BAGGAGECART" 
+                    xml_name = "BaggageCart"/>
+                <EnumVal 
+                    name = "BAGGAGELOADER" 
+                    xml_name = "BaggageLoader"/>
+              <EnumVal
+                    name = "CATERINGTRUCK"
+                    xml_name = "CateringTruck"/>
+              <EnumVal
+                    name = "BOARDINGRAMP"
+                    xml_name = "BoardingRamp"/>
+              <EnumVal
+                    name = "GROUNDPOWERUNIT"
+                    xml_name = "GroundPowerUnit"/>
+                <EnumVal 
+                    name = "AP_AMBIENT" 
+                    xml_name = "AirportAmbient"/>
+                <EnumVal
+                    name = "IDLE_WORKER"
+                    xml_name = "IdleWorker"/>
+                <EnumVal 
+                    name = "AIRPLANE_PLAYBACK" 
+                    xml_name = "AirplanePlayback"/>
+                <EnumVal
+                    name = "BOAT"
+                    xml_name = "Boat"/>
+                <EnumVal
+                    name = "ANIMAL"
+                    xml_name = "Animal"/>
+                <EnumVal
+                    name = "FLYING_ANIMAL"
+                    xml_name = "FlyingAnimal"/>
+                <EnumVal
+                   name = "HUMAN"
+                   xml_name = "Human"/>
+                <EnumVal
+                   name = "AIRCRAFT_PILOT"
+                   xml_name = "Aircraft_Pilot"/>
+                <EnumVal
+                   name = "GROUNDVEHICLE_PILOT"
+                   xml_name = "GroundVehicle_Pilot"/>
+                <EnumVal
+                    name = "MARSHALLER"
+                    xml_name = "Marshaller"/>
+              <EnumVal
+                    name = "JETWAY"
+                    xml_name = "Jetway"/>
+              <EnumVal
+                    name = "LINKED_OBJECT"
+                    xml_name = "Linked_Object"/>
+              <EnumVal
+                   name = "VEHICLE_FOLLOWER"
+                   xml_name = "VehicleFollower"/>
+              <EnumVal
+                    name = "OLS"
+                    xml_name = "OLS"/>
+			  <EnumVal
+                    name = "WING_RUNNER"
+                    xml_name = "WingRunner"/>
+			  <EnumVal
+					name = "WINCH"
+					xml_name = "Winch"/>
+			  <EnumVal
+					name = "TOW_PLANE"
+					xml_name = "TowPlane"/>         
+			  <EnumVal
+					name = "COUNT"
+					xml_name = "Count"/>
+             </EnumDef>           
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{AAF4A127-FE2E-42fe-AE93-307E1ECB9F98}"
+            name        = "Unit_Mode"
+			type		= "ENUM"
+            default		= "Waypoint">
+            <EnumDef symbolprefix="SIMPROP_UNITMODE">
+                <EnumVal 
+                    name = "SLEEP" 
+                    xml_name = "Sleep"/>
+                <EnumVal 
+                    name = "ZOMBIE" 
+                    xml_name = "Zombie"/>
+                <EnumVal 
+                    name = "WAYPOINT" 
+                    xml_name = "Waypoint"/>
+                <EnumVal 
+                    name = "TAKEOFF" 
+                    xml_name = "Takeoff"/>
+                <EnumVal 
+                    name = "LANDING" 
+                    xml_name = "Landing"/>
+                <EnumVal 
+                    name = "TAXI" 
+                    xml_name = "Taxi"/>
+                <EnumVal 
+                    name = "WORKING" 
+                    xml_name = "Working"/>
+                <EnumVal 
+                    name = "WAITING" 
+                    xml_name = "Waiting"/>
+            </EnumDef>
+        </PropertyDef>
+
+
+      <PropertyDef
+            id          = "{0CB25181-37B2-4F7C-A7C3-DA3AF9BF66FF}"
+            name        = "HumanPilotType"
+			      type		  = "ENUM"
+            default		= "Unknown">
+        <EnumDef symbolprefix="SIMPROP_HUMANPILOTTYPE">
+          <EnumVal
+              name = "UNKNOWN"
+              xml_name = "Unknown"/>
+          <EnumVal
+              name = "PILOT"
+              xml_name = "Pilot"/>
+          <EnumVal
+              name = "COPILOT"
+              xml_name = "Copilot"/>
+        </EnumDef>
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{6004E937-9167-4989-92EA-4D1E4F645571}"
+            name        = "AITakeoffMode"
+			type		= "ENUM"
+            default		= "None">
+            <EnumDef symbolprefix="SIMPROP_TAKEOFFMODE">
+                <EnumVal 
+                    name = "NONE" 
+                    xml_name = "None"/>
+                <EnumVal 
+                    name = "INIT" 
+                    xml_name = "Init"/>
+                <EnumVal 
+                    name = "START_ROLLING" 
+                    xml_name = "Start_Rolling"/>
+                <EnumVal 
+                    name = "ROLLING" 
+                    xml_name = "Rolling"/>
+                <EnumVal 
+                    name = "AIRBORNE" 
+                    xml_name = "Airborne"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{E8D3A2C1-91C6-43a2-BE7B-B35FA3980C89}"
+            name        = "RunwayHeading"
+			type		= "FLOAT"
+			descr		= "Runway Heading in degrees">
+        </PropertyDef>
+      
+
+		<!-- Landing AI properties -->
+        <PropertyDef
+            id          = "{C759AA47-37EC-441d-AB31-1A9605484F6E}"
+            name        = "AILandingMode"
+			type		= "ENUM"
+            default		= "None">
+            <EnumDef symbolprefix="SIMPROP_LANDINGMODE">
+                <EnumVal 
+                    name = "NONE" 
+                    xml_name = "None"/>
+                <EnumVal 
+                    name = "INIT" 
+                    xml_name = "Init"/>
+                <EnumVal 
+                    name = "POSITION" 
+                    xml_name = "Position"/>
+                <EnumVal 
+                    name = "BEGIN_DESCENT" 
+                    xml_name = "Begin_Descent"/>
+                <EnumVal 
+                    name = "TOUCHDOWN" 
+                    xml_name = "Touchdown"/>
+                <EnumVal 
+                    name = "STOP" 
+                    xml_name = "Stop"/>
+                <EnumVal 
+                    name = "GO_AROUND" 
+                    xml_name = "Go_Around"/>
+            </EnumDef>
+        </PropertyDef>
+        <PropertyDef
+            id          = "{C5648D71-C932-441f-B483-B9232CD8BCA2}"
+            name        = "InitialFlaps"
+			type		= "FLOAT"
+			descr		= "Minimum flaps position to use during landing">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{B2D3BE2B-88A6-40c8-B991-231327527FE7}"
+            name        = "ThresholdLLA"
+			type		= "LLA"
+			descr		= "LLA of point where we want to touch down">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{1FE335CE-390C-429b-9846-D8844934796E}"
+            name        = "RunwayLength"
+			type		= "FLOAT"
+			descr		= "Length of Runway in Nautical Miles">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{0CEE7E0E-0793-4602-9EF1-95D48484437C}"
+            name        = "RunwayAlt"
+			type		= "FLOAT"
+			descr		= "Runway Altitude in feet MSL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{F6415592-E305-47ed-8216-81945DD8E72E}"
+            name        = "ApproachSlope"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{097D9C7D-51E6-49af-84B7-C17462D8539E}"
+            name        = "InitialAlt"
+			type		= "FLOAT"
+			descr		= "Approach altitude Feet AGL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{A8953581-A2FA-4131-B562-AD57EBDE4DA8}"
+            name        = "MaxInterceptAngle"
+			type		= "FLOAT">
+        </PropertyDef>
+
+		<!--Taxi AI Properties-->
+        <PropertyDef
+            id          = "{7C811D27-EEBA-4d0e-836D-7E4D06854F86}"
+            name        = "NextWaypoint"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{A5CA09C7-9E56-4c32-BE49-20DABE253600}"
+            name        = "CurrentWaypointLLA"
+			type		= "LLA">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{2F11D7EB-BCF6-4c43-AF77-568B1F3192FE}"
+            name        = "PrevWaypoint"
+            default		= "-1"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{41C6266D-3C6D-48a8-A9D1-A9322C9F96F8}"
+            name        = "Destination"
+			type		= "LLA">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{1B56FC0E-0BFB-4f83-8BA3-60AA1DBBEC96}"
+            name        = "HoldClearPoint"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{8C9C86F5-79F2-45df-BB93-D95111D576DD}"
+            name        = "HoldShortPoint"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{1AE470D7-8F2F-43e0-AF4F-E848BECC6B80}"
+            name        = "HoldFlags"
+			type		= "ULONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{E66FC3D6-F107-44b3-A0FB-9CE35B892D22}"
+            name        = "HoldStartTime"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{47DBF2A5-764F-46c7-9087-4513CA611892}"
+            default 	= "False"
+            name        = "HasRunwayHeading"
+			type		= "BOOL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{A2A38AF0-90A6-4ada-A8B1-F062A33879AB}"
+            name        = "IsPushingBack"
+            default     = "False"
+			type		= "BOOL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{A784CF4B-391C-4066-A6A5-EDF5A6373BE2}"
+            name        = "PassOncoming"
+            default     = "False"
+			type		= "BOOL"
+			descr		= "Allow passing by oncoming traffic on the right">
+        </PropertyDef>
+      <PropertyDef
+            id          = "{09ABF6FA-0EE0-4742-9BC6-FA475B50CE3A}"
+            name        = "PauseAtHoldshort"
+            default     = "False"
+			type		= "BOOL"
+			descr		= "Pause at holdshort before crossing a runway">
+      </PropertyDef>
+
+      <PropertyDef
+            id          = "{9090D537-D7ED-428C-B6F2-30EFFD228BF6}"
+            name        = "NoConflict"
+            default     = "False"
+			type		= "BOOL"
+			descr		= "Ignore and is ignored by the traffic conflict system">
+      </PropertyDef>
+
+		<!--TaxiRouteNode Properties-->
+        <PropertyDef
+            id          = "{ECB2C2ED-7F91-4ed8-B759-57698425247E}"
+            name        = "Path_Direction"
+			type		= "ENUM"
+            default		= "FORWARD">
+            <EnumDef symbolprefix="SIMPROP_TAXIPATH_DIRECTION">
+                <EnumVal 
+                    name = "FORWARD" 
+                    xml_name = "Forward"/>
+                <EnumVal 
+                    name = "BACKWARD" 
+                    xml_name = "Backward"/>
+            </EnumDef>
+        </PropertyDef>
+        <PropertyDef
+            id          = "{CAEAA1AB-10B3-4c13-9D17-D0A9E69B16B8}"
+            name        = "TaxiPointIndex"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{B91939BA-B214-4c39-864B-FBC8ED2F7728}"
+            name        = "TaxiPathIndex"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{F93A000C-819E-4fa0-972E-1F6FE81F60BA}"
+            name        = "RunwayIndex"
+            default		= "-1"
+			type		= "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{04D2F28C-C982-4de7-9B0D-5AED7BE7FCC8}"
+            name        = "MaxBank"
+            default		= "25.0"
+			type		= "FLOAT"
+			descr		= "Maximum bank used when turning between waypoints in degrees">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{C99FE3C2-E099-4775-A928-8985FBB18C8F}"
+            name        = "WaypointTouchDistance"
+            default		= "1.0"
+			type		= "FLOAT"
+			descr		= "Distance in meters at which Aircraft AI considers waypoint to be reached.">
+        </PropertyDef>
+
+        <!--AIAircraft properties-->
+        <PropertyDef
+            id          = "{CDE99D2A-D269-4e65-95E5-C587D2964FC3}"
+            name        = "AircraftAIState"
+			type		= "ENUM"
+            default		= "SIMPLE_FLIGHT">
+            <EnumDef symbolprefix="SIMPROP_PILOTSTATE">
+                <EnumVal 
+                    name = "WAIT_INIT_CONFIRM"/>
+                <EnumVal 
+                    name = "SLEEP"/>
+                <EnumVal 
+                    name = "FILE_FLIGHT_PLAN"/>
+                <EnumVal 
+                    name = "SUPPORT_PREFLIGHT"/>
+                <EnumVal 
+                    name = "IFR_CLEARANCE"/>
+                <EnumVal 
+                    name = "PUSH_BACK_BEGIN"/>
+                <EnumVal 
+                    name = "PUSH_BACK_CONTINUE"/>
+                <EnumVal 
+                    name = "ENGINE_START"/>
+                <EnumVal 
+                    name = "PRE_TAXI_FOR_TAKEOFF"/>
+                <EnumVal 
+                    name = "TAXI_FOR_TAKEOFF"/>
+                <EnumVal 
+                    name = "TAXI_ONTO_RUNWAY"/>
+                <EnumVal 
+                    name = "TAKEOFF"/>
+                <EnumVal 
+                    name = "TOUCH_AND_GO_DEPARTURE"/>
+                <EnumVal 
+                    name = "ENROUTE_AS_FILED"/>
+                <EnumVal 
+                    name = "TRAFFIC_PATTERN"/>
+                <EnumVal 
+                    name = "LANDING"/>
+                <EnumVal 
+                    name = "LANDING_ROLLOUT"/>
+                <EnumVal 
+                    name = "GO_AROUND"/>
+                <EnumVal 
+                    name = "TAXI_TO_PARKING"/>
+                <EnumVal 
+                    name = "ENGINE_SHUTDOWN"/>
+                <EnumVal 
+                    name = "SUPPORT_POSTFLIGHT"/>
+                <EnumVal
+                    name = "TAXI_TO_REFUEL"/>
+                <EnumVal 
+                    name = "SIMPLE_FLIGHT"/>
+                <EnumVal 
+                    name = "SIMPLE_TAXI"/>
+                <EnumVal 
+                    name = "SIMPLE_LANDING"/>
+                <EnumVal 
+                    name = "SIMPLE_TAKEOFF"/>
+                <EnumVal
+                    name = "WAIT_FOR_ENGINE_START"/>
+                <EnumVal
+                    name = "TAXI_HOLDSHORT"/>
+                <EnumVal
+                    name = "FLY_UNTIL_NEXT_EVENT"/>
+                <EnumVal
+                    name = "WAIT_FOR_ENGINE_SHUTDOWN"/>
+            </EnumDef>
+        </PropertyDef>
+        <PropertyDef
+            id          = "{DC524867-4DF7-4491-81C7-F9CD4D410DA0}"
+            name        = "AI_Initialization"
+			type		= "ENUM"
+            default		= "NONE">
+            <EnumDef symbolprefix="AI_INITIALIZATION">
+                <EnumVal 
+                    name = "NONE"/>
+                <EnumVal 
+                    name = "PARKED"/>
+                <EnumVal 
+                    name = "ENROUTE"/>
+            </EnumDef>
+        </PropertyDef>
+        
+        <PropertyDef
+            id          = "{EB718D0A-4186-4570-A813-DB253811C4A9}"
+            name        = "SimDisableTimer"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{D754616C-35D4-4259-B4C4-9F1EDC7E2597}"
+            name        = "PendingMenuSelection"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{0884EA61-49D7-4796-88D1-9E986AA247D8}"
+            name        = "TimeToTransmit"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{00DC6AEE-2B51-4d61-96B2-D041775F7E43}"
+            name        = "DistanceToDestination"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{4804428F-EA1A-4a2b-AE36-6BC21ABAF006}"
+            name        = "LegLength"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{3034D798-8D0D-471f-9517-7EDC17ABB009}"
+            name        = "AssignedHeading"
+			type		= "FLOAT"
+			descr		= "in true degrees">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{E2D481AC-7E99-4aec-8DBD-706934B17437}"
+            name        = "AssignedAltitude"
+			type		= "FLOAT"
+			descr		= "meters MSL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{2D1EEF2D-84E3-4996-9754-D35492834044}"
+            name        = "AssignedAirspeed"
+			type		= "FLOAT"
+			descr		= "Knots">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{05E28465-CE30-401d-BBDF-30F95A2C2AF4}"
+            name        = "FinalApproachCourse"
+			type		= "FLOAT"
+			descr		= "Radians">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{E0652B7F-8584-48e3-83E9-A5AE87BC1D75}"
+            name        = "CirclingAltitude"
+			type		= "FLOAT"
+			descr		= "AGL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{B9ACA70A-58E4-4e8f-802F-C654C778769C}"
+            name        = "ParkingIndex"
+            default		= "-1"
+			type		= "LONG">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{56D966C6-FAFC-42b0-9F54-400AD348B34B}"
+            name        = "RunwayPatternAlt"
+			type		= "FLOAT"
+			descr		= "AGL">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{A56BCADD-C2E5-4210-9F77-9D5EDB526345}"
+            name        = "CTAFAnnouncementTimer"
+			type		= "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{C38076C2-B076-499f-9FC8-A2671AC3BC70}"
+            name        = "Flags"
+			type		= "ULONG">
+        </PropertyDef>
+
+		<!--Schedule Properties-->
+        <PropertyDef
+            id          = "{36C0E267-F4FA-4daf-AE8A-8CD55667F1EA}"
+            name        = "DoTouchAndGoes"
+            type        = "BOOL"
+            serialize   = "default"
+            descr       = "Do touch and goes at the destination airport">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{9F4C925C-CF59-47b4-9CCE-BFFBF9508BC4}"
+            name        = "WakeTime"
+            type        = "FLOAT"
+            serialize   = "default"
+            descr       = "World Time when we should wake up (not a countdown).">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{ACD7E1C7-7BF5-41ff-A490-8EAD69A6BE03}"
+            name        = "SleepTime"
+            type        = "FLOAT"
+            serialize   = "default"
+            descr       = "World Time when we should go to sleep (not a countdown).">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{D5183F84-FAE4-4e7a-B24A-FBA1C0579C48}"
+            name        = "FlightNumber"
+            type        = "LONG"
+            serialize   = "default">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{A3966780-8B61-4f65-B264-5BEA39601CA8}"
+            name        = "RepeatPeriod"
+            type        = "FLOAT"
+            descr   	= "Period, in seconds, of the schedule. 0 means doesn't repeat">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{D6A8B118-927D-4bcb-8C02-150F4FFEDD62}"
+            name        = "CurrentItem"
+            type        = "LONG"
+            descr   	= "Current item in the schedule.">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{AE8871CE-938C-45a2-94F6-4F4274BE90AC}"
+            name        = "Pattern_Entry"
+            default		= "Downwind"
+            type        = "ENUM">
+            <EnumDef symbolprefix="SIMPROP_PATTERN">
+                <EnumVal 
+                    name = "DOWNWIND" 
+                    xml_name = "Downwind"/>
+                <EnumVal 
+                    name = "BASE" 
+                    xml_name = "Base"/>
+                <EnumVal 
+                    name = "STRAIGHT_IN" 
+                    xml_name = "Straight_In"/>
+            </EnumDef>
+        </PropertyDef>
+        <!-- Airplane playback AI properties -->
+        <PropertyDef
+            id          = "{D29905F0-EACE-4ca0-B544-E4337B6B8C55}"
+            name        = "Playing"
+            default     = "false"
+            type        = "BOOL"
+            descr       = "Whether or not the recorded flight is being played back by the PlayFlightRecordingAction or not ">
+         </PropertyDef>
+        <PropertyDef
+            id          = "{BFA01571-42D8-4ffe-AB81-BCBE14532618}"
+            name        = "TimeStamp"
+            default     = "0"
+            type        = "DOUBLE"
+            descr       = "Time offset of playback when saved">
+         </PropertyDef>
+
+      <!-- Sounds -->
+      
+      <PropertyDef
+          id          = "{425AF381-6BA1-48FC-B233-4A2EED496817}"
+          name        = "DontCreateSimSound"
+          default     = "FALSE"
+          type        = "BOOL"
+          descr       = "Allow to not create sim sound">
+      </PropertyDef>
+
+      <PropertyDef
+          name  = "BodyVelocityXYZ"
+          ID    = "{D0F55686-D5FA-45AD-B584-34187C0B3FCD}"
+          type  = "FLOAT4"
+          descr = "Body velocity in feet per sec">
+      </PropertyDef>
+
+      <PropertyDef
+          name  = "BodyRotationVelocityXYZ"
+          ID    = "{56A854BD-394F-42BE-8F8E-D6B55AD8C7CE}"
+          type  = "FLOAT4"
+          descr = "Body rotation velocity in rad per sec">
+      </PropertyDef>
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{0B63614A-156B-4d4d-AA4B-90ACF8FFFB8C}"
+            name        = "Waypoint"
+            policy      = "inclusive"
+            cardinality = "multiple"
+            descr       = "Navigation information for a particular waypoint">
+            <property name = "Descr"/>
+            <property name = "InstanceId"/>
+            <property name = "SpeedKnots"/>
+            <property name = "SpeedKnotsTooHighBegin"/>
+            <property name = "SpeedKnotsTooHighEnd"/>
+            <property name = "SpeedKnotsTooSlowBegin"/>
+            <property name = "SpeedKnotsTooSlowEnd"/>
+            <property name = "WaypointID"/>
+            <property name = "WorldPosition"/>
+            <property name = "LocalDistance"/>
+            <property name = "LocalAltitude"/>
+            <property name = "LocalOffsetXYZ"/>
+            <property name = "LocalOrientation"/>
+            <property name = "Orientation"/>
+            <property name = "AttachedWorldPosition"/>
+            <property name = "AttachedSimObjectInitialPosition"/>
+            <property name = "AttachedWorldObject"/>
+            <property name = "InitRelativeToWorldObject"/>
+            <property name = "RelativePosition"/>
+            <property name = "AltitudeIsAGL"/>
+            <property name = "IsTeleportEnable"/>
+        </SetDef>
+   
+        <SetDef
+            id          = "{31BFC347-14D8-44e2-BEC3-018CD93EC909}"
+            name        = "WaypointList"
+            policy      = "inclusive"
+            descr       = "Path - list of waypoints">                        
+            <property name = "Waypoint"/> <!--Multiple instances-->
+            <property name = "CurrentWaypoint"/>
+            <property name = "WrapWaypoints"/>
+            <property name = "BackupToFirst"/>
+            <property name = "AlwaysBackUp"/>
+            <property name = "YieldToUser"/>
+            <property name = "KeepLastHeading"/>
+            <property name = "CanReverse"/>
+            <property name = "ObjectReference"/>
+        </SetDef>
+
+
+        <SetDef
+            id          = "{7C7681EF-289C-4a75-8184-167EE7F835C1}"
+            name        = "TakeoffAI"
+            policy      = "inclusive">
+            <property name = "RunwayHeading"/>
+            <property name = "AITakeoffMode"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5F05BC8B-7423-4d75-BCAB-1DCE7A76AB26}"
+            name        = "LandingAI"
+            policy      = "inclusive">
+            <property name = "AILandingMode"/>
+            <property name = "InitialFlaps"/>
+            <property name = "ThresholdLLA"/>
+            <property name = "RunwayLength"/>
+            <property name = "RunwayAlt"/>
+            <property name = "RunwayHeading"/>
+            <property name = "ApproachSlope"/>
+            <property name = "InitialAlt"/>
+            <property name = "MaxInterceptAngle"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{622B90B5-9A2D-4015-82DF-C66B7EE34F4A}"
+            name        = "TaxiRouteNode"
+            policy      = "inclusive">
+            <property name = "Descr"/>
+            <property name = "TaxiPointIndex"/>
+            <property name = "TaxiPathIndex"/>
+            <property name = "Path_Direction"/>
+            <property name = "RunwayIndex"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{A87D1C5B-343A-4bb5-B120-81B0C35D1545}"
+            name        = "TaxiRoute"
+            policy      = "inclusive">
+            <property name = "TaxiRouteNode"/> <!--Multiple instances-->
+            <property name = "ICAOIdent"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7B3B4B27-51ED-4ec6-9770-58159DEA258E}"
+            name        = "TaxiAI"
+            policy      = "inclusive">
+            <property name = "TaxiRoute"/>
+            <property name = "NextWaypoint"/>
+            <property name = "CurrentWaypoint"/>
+            <property name = "CurrentWaypointLLA"/>
+            <property name = "PrevWaypoint"/>
+            <property name = "Destination"/>
+            <property name = "HoldClearPoint"/>
+            <property name = "HoldShortPoint"/>
+            <property name = "HoldFlags"/>
+            <property name = "HoldStartTime"/>
+            <property name = "HasRunwayHeading"/>
+            <property name = "RunwayHeading"/>
+            <property name = "IsPushingBack"/>
+            <property name = "PassOncoming"/>
+            <property name = "PauseAtHoldshort"/>
+            <property name = "NoConflict"/>
+        </SetDef>
+        
+        <SetDef
+            id          = "{CE2C0E97-DD79-4e89-AE87-4FE83C853A2F}"
+            name        = "ParameterAI"
+            policy      = "inclusive">
+            <property name = "Unit_Mode"/>
+            <property name = "WaypointList"/>
+            <property name = "GroundCruiseSpeed"/>
+            <property name = "GroundTurnSpeed"/>
+            <property name = "GroundTurnTime"/>
+            <property name = "YieldToUser"/>
+            <property name = "WaypointTouchDistance"/>
+            <property name = "KeepLastHeading"/>
+            <property name = "CanReverse"/>          
+        </SetDef>
+
+        <SetDef
+              id          = "{6880FC3C-B045-49AB-A166-7D778DE86AD6}"
+              name        = "IdleWorkerAI"
+              policy      = "inclusive">
+          <property name = "Unit_Mode"/>
+          <property name = "WaypointList"/>
+          <property name = "GroundCruiseSpeed"/>
+          <property name = "GroundTurnSpeed"/>
+          <property name = "GroundTurnTime"/>
+          <property name = "YieldToUser"/>
+          <property name = "WaypointTouchDistance"/>
+          <property name = "KeepLastHeading"/>
+          <property name = "CanReverse"/>
+        </SetDef>
+
+      <SetDef
+             id          = "{03A39CA5-A193-4993-A888-F085BDA10D78}"
+             name        = "HumanPilotAI"
+             policy      = "inclusive">
+        <property name = "HumanPilotType"/>
+      </SetDef>
+
+       <!-- <SetDef
+                id          = "{A17D1220-9C1F-495A-AF1B-65694C885984}"
+                name        = "PilotAI"
+                policy      = "inclusive">
+         
+        </SetDef>
+-->
+
+      <SetDef
+            id          = "{73031835-24E9-4d7b-A169-87B7CF3F7F7A}"
+            name        = "AirplanePlaybackAI"
+            policy      = "inclusive">
+            <property name = "Playing"/>
+            <property name = "filename"/>
+            <property name = "TimeStamp"/>
+        </SetDef>
+        
+        <SetDef
+            id          = "{FFBAC0C8-CF89-4b84-A75A-EC52E0F7A514}"
+            name        = "ScheduleItem"
+            policy      = "inclusive">
+            <property name = "Descr"/>
+            <property name = "WakeTime"/>
+            <property name = "SleepTime"/>
+            <property name = "FlightPlan"/>
+            <property name = "FlightNumber"/>
+            <property name = "DoTouchAndGoes"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{431F6048-FD75-486e-88D2-9F1F8FEC9729}"
+            name        = "Schedule"
+            policy      = "inclusive">
+            <property name = "ScheduleItem"/> <!--May be multiple schedule items-->
+            <property name = "RepeatPeriod"/>
+            <property name = "CurrentItem"/>
+        </SetDef>
+
+		<!--Most of AircraftAI properties are optional, depending on the value of Unit_Mode-->
+        <SetDef
+            id          = "{33566B36-819D-400e-86C4-32FE3A940692}"
+            name        = "AircraftAI"
+            policy      = "inclusive">
+            <property name = "Unit_Mode"/>
+            <property name = "GroundCruiseSpeed"/>
+            <property name = "GroundTurnSpeed"/>
+            <property name = "GroundTurnTime"/>
+            <property name = "YieldToUser"/>
+            <property name = "WaypointList"/>
+            <property name = "Schedule"/>
+            <property name = "TakeoffAI"/>
+            <property name = "LandingAI"/>
+            <property name = "TaxiAI"/>
+            <property name = "ICAOIdent"/>
+            <property name = "AircraftAIState"/>
+            <property name = "SimDisableTimer"/>
+            <property name = "PendingMenuSelection"/>
+            <property name = "TimeToTransmit"/>
+            <property name = "DistanceToDestination"/>
+            <property name = "LegLength"/>
+            <property name = "AssignedHeading"/>
+            <property name = "AssignedAltitude"/>
+            <property name = "AssignedAirspeed"/>
+            <property name = "FinalApproachCourse"/>
+            <property name = "CirclingAltitude"/>
+            <property name = "ParkingIndex"/>
+            <property name = "RunwayPatternAlt"/>
+            <property name = "CTAFAnnouncementTimer"/>
+            <property name = "RunwayIndex"/>
+            <property name = "NextWaypoint"/>
+            <property name = "PrevWaypoint"/>
+            <property name = "Flags"/>
+            <property name = "MaxBank"/>
+            <property name = "WaypointTouchDistance"/>
+            <property name = "KeepLastHeading"/>
+            <property name = "CanReverse"/>
+            <property name = "Pattern_Entry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{592738FE-C0B1-44a0-840E-7B2575F9D5B8}"
+            classid     = "{6A5A9D3B-7EB1-42fd-B899-AE253EF48894}"
+            name        = "Container"
+            policy      = "inclusive"
+            descr       = "A CAircraftContainer object">
+            <property name = "Descr"/>
+            <property name = "InstanceId"/>
+            <property name = "ContainerTitle"/>
+            <property name = "UseRegionContainerType"/>
+            <property name = "ContainerID"/>
+            <property name = "IsOnGround"/>
+            <property name = "SimplifiedSimMode"/>
+            <property name = "WorldPosition"/>
+            <property name = "LocalDistance"/>
+            <property name = "LocalHeading"/>
+            <property name = "LocalAltitude"/>
+            <property name = "LocalOffsetXYZ"/>
+            <property name = "LocalOrientation"/>
+            <property name = "Orientation"/>
+            <property name = "EngineStarted"/>
+            <property name = "IdentificationNumber"/>
+            <property name = "AIType"/>
+            <property name = "ParameterAI"/>
+            <property name = "IdleWorkerAI"/>
+            <property name = "HumanPilotAI"/>
+            <property name = "AircraftAI"/>
+            <property name = "AirplanePlaybackAI"/>
+            <property name = "TrafficDBFile"/>
+            <property name = "TrafficDBKey"/>
+            <property name = "Activated"/>
+            <property name = "MDLGuid"/>
+            <property name = "LabelMode"/>
+            <property name = "Effect"/>  <!--Attached visual effects-->
+            <property name = "AttachedWorldPosition"/>
+            <property name = "AttachedWorldObject"/>
+            <property name = "AttachedSimObjectInitialPosition"/>
+            <property name = "InitRelativeToWorldObject"/>
+            <property name = "RelativePosition"/>
+            <property name = "DontCreateSimSound"/>
+            <property name = "BodyVelocityXYZ"/>
+            <property name = "BodyRotationVelocityXYZ"/>
+            <property name = "AddPilot"/>
+            <property name = "AddCopilot"/>
+			<property name = "IsCollidableWithUser"/>
+        </SetDef>
+      
+      <SetDef
+            id          = "{50944048-B7FC-4B18-9CFB-4197A6ED9247}"
+            name        = "AddPilot"
+            policy      = "inclusive"
+            descr       = "Add a pilot attached to the container">
+            <property name = "ContainerTitle"/>
+            <property name = "UseRegionContainerType"/>
+            <property name = "AIType"/>
+        </SetDef>
+      
+            <SetDef
+            id          = "{A6949B1D-74CE-4BEC-9DD6-8152D7200635}"
+            name        = "AddCopilot"
+            policy      = "inclusive"
+            descr       = "Add a copilot attached to the container">
+            <property name = "ContainerTitle"/>
+            <property name = "UseRegionContainerType"/>
+            <property name = "AIType"/>
+        </SetDef>
+
+      <SetDef
+          id          = "{DA6FF2D3-A9E9-4884-93BF-46393D11A1DA}"
+          name        = "Containers"
+          policy      = "inclusive"
+          descr       = "Array of CAircraftContainer object">
+        <property name = "ContainerItem"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{722E988E-3DDC-4A4F-8A94-89B79F68B0FB}"
+          name        = "ContainerItem"
+          policy      = "inclusive"
+          descr       = "A ContainerTitle in a Containers list">
+        <property name = "ContainerTitle"/>
+      </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

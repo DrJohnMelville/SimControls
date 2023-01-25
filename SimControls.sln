@@ -1,24 +1,38 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls", "SimControls\SimControls.csproj", "{48E5151B-1D5C-4ABA-9672-CDEDB225496E}"
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls", "SimControls\SimControls.csproj", "{48E5151B-1D5C-4ABA-9672-CDEDB225496E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.SimulatorConnection", "SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj", "{A6E92156-A226-4372-8DD9-E0DF749DD8C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.SimulatorConnection", "SimControls.SimulatorConnection\SimControls.SimulatorConnection.csproj", "{A6E92156-A226-4372-8DD9-E0DF749DD8C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.Model", "SimControls.Model\SimControls.Model.csproj", "{B2A2615B-E23C-48B2-8B1C-2977C789520D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.Model", "SimControls.Model\SimControls.Model.csproj", "{B2A2615B-E23C-48B2-8B1C-2977C789520D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.YokeConnector", "SimControls.YokeConnector\SimControls.YokeConnector.csproj", "{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.YokeConnector", "SimControls.YokeConnector\SimControls.YokeConnector.csproj", "{AF67C67E-E7F9-436C-B114-B65E7D8BBDCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.Test", "SimControls.Test\SimControls.Test.csproj", "{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.Test", "SimControls.Test\SimControls.Test.csproj", "{9795CF21-F1CC-415A-8F84-DC92F7BEDE7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FacadeGenerator", "FacadeGenerator\FacadeGenerator.csproj", "{45825D59-7471-4D3B-AFF2-B08A46CC311E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FacadeGenerator", "FacadeGenerator\FacadeGenerator.csproj", "{45825D59-7471-4D3B-AFF2-B08A46CC311E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.AirportDatabase", "SimControls.AirportDatabase\SimControls.AirportDatabase.csproj", "{61C54781-3857-45EF-B860-EA035009EC0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.AirportDatabase", "SimControls.AirportDatabase\SimControls.AirportDatabase.csproj", "{61C54781-3857-45EF-B860-EA035009EC0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.WASM", "SimControls.WASM\SimControls.WASM.csproj", "{3034C0BD-793D-402A-BC4D-E40F9B215091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.WASM", "SimControls.WASM\SimControls.WASM.csproj", "{3034C0BD-793D-402A-BC4D-E40F9B215091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.NetworkServer", "SimControls.NetworkServer\SimControls.NetworkServer.csproj", "{A60B8AD2-1870-413F-96FC-112F5A7BE3A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.NetworkServer", "SimControls.NetworkServer\SimControls.NetworkServer.csproj", "{A60B8AD2-1870-413F-96FC-112F5A7BE3A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.NetworkCommon", "SimControls.NetworkCommon\SimControls.NetworkCommon.csproj", "{D8EDF4E8-0854-4076-BC74-5450B32FFFAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.NetworkCommon", "SimControls.NetworkCommon\SimControls.NetworkCommon.csproj", "{D8EDF4E8-0854-4076-BC74-5450B32FFFAD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimulatorConnection", "SimulatorConnection", "{13E4FCF8-B4C8-4019-ABE1-988C2A624C33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Network", "Network", "{F6004765-C995-47D7-8C6F-9C2E29BDEB08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.SpbParser", "SimControls.SpbParser\SimControls.SpbParser.csproj", "{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BD97280-2F89-45DF-ADD7-67A9AE292013}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.Props = Directory.Build.Props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -66,5 +80,23 @@ Global
 		{D8EDF4E8-0854-4076-BC74-5450B32FFFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8EDF4E8-0854-4076-BC74-5450B32FFFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8EDF4E8-0854-4076-BC74-5450B32FFFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A6E92156-A226-4372-8DD9-E0DF749DD8C7} = {13E4FCF8-B4C8-4019-ABE1-988C2A624C33}
+		{B2A2615B-E23C-48B2-8B1C-2977C789520D} = {13E4FCF8-B4C8-4019-ABE1-988C2A624C33}
+		{45825D59-7471-4D3B-AFF2-B08A46CC311E} = {13E4FCF8-B4C8-4019-ABE1-988C2A624C33}
+		{3034C0BD-793D-402A-BC4D-E40F9B215091} = {F6004765-C995-47D7-8C6F-9C2E29BDEB08}
+		{A60B8AD2-1870-413F-96FC-112F5A7BE3A3} = {F6004765-C995-47D7-8C6F-9C2E29BDEB08}
+		{D8EDF4E8-0854-4076-BC74-5450B32FFFAD} = {F6004765-C995-47D7-8C6F-9C2E29BDEB08}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {408BB1D2-8B81-4AD9-9F95-93EC37BE0C60}
 	EndGlobalSection
 EndGlobal

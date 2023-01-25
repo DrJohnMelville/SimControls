@@ -1,0 +1,65 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+
+see propbase.xml for an explanation of property symbol definition document schema
+-->
+<SymbolDef
+name         = "AirlineICAOs"
+id           = "{E0614407-408E-44F4-8A78-47F94D119150}"
+descr        = "Airlines property ICAOs"
+chdr         = "propairlines.h"
+version      = "1,0" >
+
+  <SymbolInclude
+	filename = "Common\propworldbase.xml"
+	id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+	version  = "1,0" />
+
+  <PropertyDefs
+	symbolprefix = "SPID_">
+
+    <PropertyDef
+		id          = "{06B9F680-2471-4951-ADF5-3C2663C6E973}"
+		name        = "ICAO"
+		type		= "TEXT"
+		descr       = "Actual ICAO airline code">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{C79ECC6C-7E36-4479-82AD-FCD0F62BF91F}"
+		name        = "IATA"
+		type		= "TEXT"
+		descr       = "Optional IATA code">
+    </PropertyDef>
+
+    <PropertyDef
+		id          = "{2360A687-BBBD-4950-A8B7-A4738A3E2AA8}"
+		name        = "CALLSIGN"
+		type		= "TEXT"
+		descr       = "Callsign of the airline">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_">
+
+    <SetDef
+         name ="AirLineCodes"
+         id ="{58E9F1B7-AAFD-48E8-854B-2B699AECBE17}"
+         descr = "All Airline codes">
+      <property name ="AirlineCode"/>
+    </SetDef>
+
+    <SetDef
+         name ="AirlineCode"
+         id ="{B77FAC91-B664-4F65-B3FE-45ED38C1429B}"
+         cardinality = "multiple"
+         descr = "Single Airline Code Entry">
+      <property name ="IATA"/>
+      <property name ="ICAO"/>
+      <property name ="CALLSIGN"/>
+    </SetDef>
+  </SetDefs>
+
+</SymbolDef>

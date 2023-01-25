@@ -1,0 +1,421 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "FlightPlan"
+    id           = "{94407AEB-45AB-46c7-AE32-854F590DDCE9}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propflightplan.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+      filename = "Common\propworldbase.xml"
+      id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+      version  = "1,0" />
+
+  <cpptext pass="1">
+    //-------------------------------------------------------------------------//
+    //  propworldbase.h
+    //
+    //  FlightSim WorldBase AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+    //
+
+    //
+    //  Namespace
+    //
+  </cpptext>
+
+  <PropertyDefs
+      symbolprefix = "SPID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+        id          = "{D0EFA29E-6DCA-4f2f-A984-0BA8A5018965}"
+        name        = "FPType"
+  type		= "ENUM"
+        descr       = "IFR or VFR flight plan"
+        default		= "None">
+      <EnumDef symbolprefix="SIMPROP_FLIGHTPLAN_TYPE">
+        <EnumVal
+            name = "NONE"
+            xml_name = "None"/>
+        <EnumVal
+            name = "VFR"
+            xml_name = "VFR"/>
+        <EnumVal
+            name = "IFR"
+            xml_name = "IFR"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{EF8D0096-455C-4413-857E-4ACB13A1A605}"
+        name        = "RouteType"
+  type		= "ENUM"
+        descr       = "direct, VOR, low-alt or hi-alt airways"
+        default 	= "direct">
+      <EnumDef symbolprefix="SIMPROP_ROUTETYPE">
+        <EnumVal
+            name = "DIRECT"
+            xml_name = "Direct"/>
+        <EnumVal
+            name = "VOR"
+            xml_name = "VOR"/>
+        <EnumVal
+            name = "LOWALT"
+            xml_name = "LowAlt"/>
+        <EnumVal
+            name = "HIGHALT"
+            xml_name = "HighAlt"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{8123C29A-1DD4-48aa-8BDA-0548A01C9042}"
+        name        = "CruisingAlt"
+  type		= "FLOAT"
+        descr       = "Cruising Altitude in feet">
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{8DE43B88-43E1-4b1d-9E62-2FE5B49C55F0}"
+        name        = "DepartureID"
+  type		= "TEXT"
+        descr       = "departure airport's ICAO ID">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{D27F4B34-DEE5-4563-9F0D-B1CF338B7418}"
+        name        = "DepartureName"
+  type		= "TEXT"
+        descr       = "departure airport's name">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{120BAF14-69E2-4907-B384-E60FB14EEF36}"
+        name        = "DepartureLLA"
+  type		= "LLA"
+        descr       = "Departure LatLonAlt">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{5CA9648B-A73A-43cf-8E9C-F59CB137B1EC}"
+        name        = "DeparturePosition"
+  type		= "TEXT"
+        descr       = "Departure airport Position">
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{FD9EEB6D-FCDE-4d98-A6A4-A0FD17BB121A}"
+        name        = "DestinationID"
+  type		= "TEXT"
+        descr       = "Destination airport's ICAO ID">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{D21EDCA5-2660-4506-9F14-DF22E66E0A14}"
+        name        = "DestinationName"
+  type		= "TEXT"
+        descr       = "Destination airport's name">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{8DE55A3B-B6B0-4f12-B7D6-90010CC14079}"
+        name        = "DestinationLLA"
+  type		= "LLA"
+        descr       = "Destination LatLonAlt">
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{5AEDB7A5-4CCB-45f0-9912-A90E0E4A978B}"
+        name        = "AlternateID"
+  type		= "TEXT"
+        descr       = "Alternate airport's ICAO ID">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{32538EE4-A4FC-4bc6-91AB-A748328ACFC6}"
+        name        = "AlternateName"
+  type		= "TEXT"
+        descr       = "Alternate airport's name">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{2A8849BE-E695-4fa1-98A8-39E8991D2257}"
+        name        = "AlternateLLA"
+  type		= "LLA"
+        descr       = "Alternate LatLonAlt">
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{FFC8884C-D1E3-4338-A8CB-52ED45E2038E}"
+        name        = "ATCWaypointType"
+  type		= "ENUM"
+        descr       = "ATC_WAYPOINT_TYPE">
+      <EnumDef symbolprefix="SIMPROP_ATCWAYPOINT_TYPE">
+        <EnumVal
+            name = "NONE"
+            xml_name = "none"/>
+        <EnumVal
+            name = "AIRPORT"
+            xml_name = "Airport"/>
+        <EnumVal
+            name = "INTERSECTION"
+            xml_name = "Intersection"/>
+        <EnumVal
+            name = "VOR"
+            xml_name = "VOR"/>
+        <EnumVal
+            name = "NDB"
+            xml_name = "NDB"/>
+        <EnumVal
+            name = "USER"
+            xml_name = "User"/>
+        <EnumVal
+            name = "ATC"
+            xml_name = "ATC"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{F3A6EDEB-8EF0-4407-B424-714293C3EF8B}"
+        name        = "ATCAirway"
+  type		= "TEXT"
+        descr       = "ATC Airway ID">
+    </PropertyDef>
+
+    <PropertyDef
+        id          = "{104F0F31-AEA0-4a73-B53D-E034E87544A6}"
+        name        = "ICAORegion"
+  type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{947784F4-64DE-4063-8E36-85B5510D5532}"
+        name        = "ICAOIdent"
+  type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{C01D818C-B9E4-431e-B1A2-04112027CA00}"
+        name        = "ICAOAirport"
+  type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+        name        = "RewardRef"
+        id          = "{C3B1351E-B9A1-43aa-A7CD-F32CCF2E0F8A}"
+        cardinality = "multiple"
+        type        = "GUID"
+        desc        = "Reference to a possible reward in the scenario">
+    </PropertyDef>
+    <PropertyDef
+            id          = "{2F7DCE01-EBC2-4FFD-9204-694A043CB04A}"
+            name        = "DepartureFP"
+			type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+            id          = "{05A7814F-C09F-4E33-A897-520C579DF9E5}"
+            name        = "ArrivalFP"
+			type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+            id          = "{41EF24DE-2B60-482F-8407-8E6F9371501A}"
+            name        = "SuffixFP"
+      type		= "TEXT">
+    </PropertyDef>
+    <PropertyDef
+            id          = "{E9BEE2A5-E319-496D-AD02-2866CE85E0FB}"
+            name        = "RunwayNumberFP"
+			type		= "ENUM"
+            descr       = "RUNWAY_NUMBER_FP">
+      <EnumDef symbolprefix="SIMPROP_RUNWAY_NUMBER_FP">
+        <EnumVal name = "1" xml_name = "1"/>
+        <EnumVal name = "2" xml_name = "2"/>
+        <EnumVal name = "3" xml_name = "3"/>
+        <EnumVal name = "4" xml_name = "4"/>
+        <EnumVal name = "5" xml_name = "5"/>
+        <EnumVal name = "6" xml_name = "6"/>
+        <EnumVal name = "7" xml_name = "7"/>
+        <EnumVal name = "8" xml_name = "8"/>
+        <EnumVal name = "9" xml_name = "9"/>
+        <EnumVal name = "10" xml_name = "10"/>
+        <EnumVal name = "11" xml_name = "11"/>
+        <EnumVal name = "12" xml_name = "12"/>
+        <EnumVal name = "13" xml_name = "13"/>
+        <EnumVal name = "14" xml_name = "14"/>
+        <EnumVal name = "15" xml_name = "15"/>
+        <EnumVal name = "16" xml_name = "16"/>
+        <EnumVal name = "17" xml_name = "17"/>
+        <EnumVal name = "18" xml_name = "18"/>
+        <EnumVal name = "19" xml_name = "19"/>
+        <EnumVal name = "20" xml_name = "20"/>
+        <EnumVal name = "21" xml_name = "21"/>
+        <EnumVal name = "22" xml_name = "22"/>
+        <EnumVal name = "23" xml_name = "23"/>
+        <EnumVal name = "24" xml_name = "24"/>
+        <EnumVal name = "25" xml_name = "25"/>
+        <EnumVal name = "26" xml_name = "26"/>
+        <EnumVal name = "27" xml_name = "27"/>
+        <EnumVal name = "28" xml_name = "28"/>
+        <EnumVal name = "29" xml_name = "29"/>
+        <EnumVal name = "30" xml_name = "30"/>
+        <EnumVal name = "31" xml_name = "31"/>
+        <EnumVal name = "32" xml_name = "32"/>
+        <EnumVal name = "33" xml_name = "33"/>
+        <EnumVal name = "34" xml_name = "34"/>
+        <EnumVal name = "35" xml_name = "35"/>
+        <EnumVal name = "36" xml_name = "36"/>
+        <EnumVal name = "NORTH" xml_name = "NORTH"/>
+        <EnumVal name = "NORTHEAST" xml_name = "NORTHEAST"/>
+        <EnumVal name = "EAST" xml_name = "EAST"/>
+        <EnumVal name = "SOUTHEAST" xml_name = "SOUTHEAST"/>
+        <EnumVal name = "SOUTH" xml_name = "SOUTH"/>
+        <EnumVal name = "SOUTHWEST" xml_name = "SOUTHWEST"/>
+        <EnumVal name = "WEST" xml_name = "WEST"/>
+        <EnumVal name = "NORTHWEST" xml_name = "NORTHWEST"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+            id          = "{B2CC99E4-7D19-4E0F-84D3-1A716CC07A6A}"
+            name        = "RunwayDesignatorFP"
+			      type		    = "ENUM"
+            descr       = "RUNWAY_DESIGNATOR_FP">
+      <EnumDef symbolprefix="SIMPROP_RUNWAY_DESIGNATOR_FP">
+        <EnumVal name = "NONE" xml_name = "NONE"/>
+        <EnumVal name = "LEFT" xml_name = "LEFT"/>
+        <EnumVal name = "RIGHT" xml_name = "RIGHT"/>
+        <EnumVal name = "CENTER" xml_name = "CENTER"/>
+        <EnumVal name = "WATER" xml_name = "WATER"/>
+        <EnumVal name = "A" xml_name = "A"/>
+        <EnumVal name = "B" xml_name = "B"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+            id          = "{5AF36CA5-E86E-43F1-86FD-F9CC092FDA09}"
+            name        = "ApproachTypeFP"
+			      type		= "ENUM"
+            descr       = "APPROACH_TYPE">
+      <EnumDef symbolprefix="SIMPROP_APPROACH_TYPE_FP">
+        <EnumVal name = "GPS" xml_name = "GPS"/>
+        <EnumVal name = "VOR" xml_name = "VOR"/>
+        <EnumVal name = "NDB" xml_name = "NDB"/>
+        <EnumVal name = "ILS" xml_name = "ILS"/>
+        <EnumVal name = "LOCALIZER" xml_name = "LOCALIZER"/>
+        <EnumVal name = "SDF" xml_name = "SDF"/>
+        <EnumVal name = "LDA" xml_name = "LDA"/>
+        <EnumVal name = "VORDME" xml_name = "VORDME"/>
+        <EnumVal name = "NDBDME" xml_name = "NDBDME"/>
+        <EnumVal name = "RNAV" xml_name = "RNAV"/>
+        <EnumVal name = "LOCALIZER_BACK_COURSE" xml_name = "LOCALIZER_BACK_COURSE"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+        id          = "{6B84BC85-6E4E-42FA-92B9-15E6E4CE9122}"
+        name        = "AltMinFP"
+        type        = "LONG"
+        default     = "0">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{FE570BD2-10CA-4808-BF0B-DCFB1E603F86}"
+        name        = "SpeedMaxFP"
+        type        = "LONG"
+        default     = "-1">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{6E58C67F-F76E-46D4-9112-F5F13C67FECC}"
+        name        = "Alt1FP"
+        type        = "LONG"
+        default     = "0">
+    </PropertyDef>
+    <PropertyDef
+        id          = "{FED18A5B-EAAA-406E-92A0-42F4F7A56731}"
+        name        = "Alt2FP"
+        type        = "LONG"
+        default     = "0">
+    </PropertyDef>
+    <PropertyDef
+            id          = "{B060D946-A34A-4C78-AEC1-145F02442CE1}"
+            name        = "AltDescFP"
+			      type		    = "ENUM"
+            descr       = "ALT_DESC_FP">
+      <EnumDef symbolprefix="SIMPROP_ALT_DESC_FP">
+        <EnumVal name = "NOT_USED" xml_name = "NOT_USED"/>
+        <EnumVal name = "AT_OR_ABOVE" xml_name = "AT_OR_ABOVE"/>
+        <EnumVal name = "AT_OR_BELOW" xml_name = "AT_OR_BELOW"/> 
+        <EnumVal name = "AT" xml_name = "AT"/> 
+        <EnumVal name = "IN_BETWEEN" xml_name = "IN_BETWEEN"/>
+      </EnumDef>
+    </PropertyDef>
+  </PropertyDefs>
+
+  <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+  <SetDefs symbolprefix = "SSID_">
+
+
+    <SetDef
+        id          = "{7DE9E8DC-B46C-4ba0-BD8F-6040EE7E1EEB}"
+        name        = "ICAO"
+        policy      = "inclusive">
+      <property name = "ICAORegion"/>
+      <property name = "ICAOIdent"/>
+      <property name = "ICAOAirport"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{1A105D11-3756-49d8-8B6E-060362612B4F}"
+        name        = "ATCWaypoint"
+        policy      = "inclusive"
+        descr       = "More complex waypoint used by Air Traffic Control and in flight plans"
+        cardinality = "multiple">
+      <property name = "ICAO"/>
+      <property name = "id"/>
+      <property name = "Descr"/>
+      <property name = "ATCWaypointType"/>
+      <property name = "WorldPosition"/>
+      <property name = "ATCAirway"/>
+      <property name = "DepartureFP"/>
+      <property name = "ArrivalFP"/>
+      <property name = "SuffixFP"/>
+      <property name = "ApproachTypeFP"/>
+      <property name = "RunwayNumberFP"/>
+      <property name = "RunwayDesignatorFP"/>
+      <property name = "AltMinFP"/>
+      <property name = "SpeedMaxFP"/>
+	  <property name = "Alt1FP"/>
+	  <property name = "Alt2FP"/>
+	  <property name = "AltDescFP"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{AB92F550-AE71-49a9-A8D2-4432FC710E41}"
+        name        = "FlightPlan"
+        policy      = "inclusive"
+        descr       = "Flight Plan">
+      <property name = "AppVersion"/>
+      <property name = "Title"/>
+      <property name = "Descr"/>
+      <property name = "FPType"/>
+      <property name = "RouteType"/>
+      <property name = "CruisingAlt"/>
+      <property name = "DepartureName"/>
+      <property name = "DepartureID"/>
+      <property name = "DepartureLLA"/>
+      <property name = "DeparturePosition"/>
+      <property name = "DestinationName"/>
+      <property name = "DestinationID"/>
+      <property name = "DestinationLLA"/>
+      <property name = "AlternateName"/>
+      <property name = "AlternateID"/>
+      <property name = "AlternateLLA"/>
+      <property name = "ATCWaypoint"/>
+    </SetDef>
+
+  </SetDefs>
+
+</SymbolDef>

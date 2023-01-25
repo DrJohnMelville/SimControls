@@ -1,0 +1,315 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "POI"
+    id           = "{910D2D6F-31ED-4A93-A788-4F87809336CE}"
+    descr        = "SimProp POI property, type and set definitions."
+    chdr         = "proppoi.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+  <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  proppoi.h
+    //
+    //  FlightSim proppoi AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //	Namespace
+    //
+    namespace POI
+    {
+
+
+  </cpptext>
+
+  <PropertyDefs
+        symbolprefix = "SPID_POI_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <!--    <PropertyDef
+        name        = "RealTime"
+        id          = "{AADDA5EB-1148-462C-A953-0EA126322E88}"
+        type        = "BOOL"
+        desc        = "Is real time">
+    </PropertyDef>-->
+
+    <PropertyDef
+       name        = "Type"
+       id          = "{D038C498-435C-47EB-AABD-18B598188486}"
+       type        = "ENUM"
+       descr       = "Type of POI">
+      <EnumDef symbolprefix="ENUM_POI">
+        <EnumVal name = "AIRPORT" xml_name="Airport"/>
+        <EnumVal name = "CITY" xml_name="City"/>
+        <EnumVal name = "STAR_LANDMARK" xml_name="Star landmark"/>
+        <EnumVal name = "LANDMARK" xml_name="Landmark"/>
+        <EnumVal name = "FAUNA" xml_name="Fauna"/>
+        <EnumVal name = "CUSTOM" xml_name="Custom"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "MaxDistMiniIcon"
+        id          = "{CDC40FA3-9754-4926-B3BD-BA8B2112D41A}"
+        type        = "FLOAT"
+        desc        = "Maximum Distance to show Mini Icon (nm)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "MaxDistNormalIcon"
+        id          = "{BA9A3CD8-111A-4AA5-B087-58514B6A495E}"
+        type        = "FLOAT"
+        desc        = "Maximum Distance to show Normal Icon (nm)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "MinDistNormalIconMaxSizeLabel"
+        id          = "{3FFB6B60-4C96-4311-8B3F-5BE144E31EDC}"
+        type        = "FLOAT"
+        desc        = "Minimum Distance to show Normal Icon and Maxsize of the label (nm)">
+    </PropertyDef>
+
+    <PropertyDef
+      name        = "MaxDistLabel"
+      id          = "{8E5AD0E8-9262-4EB3-A7CA-4751BC6F8B07}"
+      type        = "FLOAT"
+      desc        = "Maximum Distance to show label (nm)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "MinHeight"
+        id          = "{81940611-0DAA-4099-93EA-D41749CC24C9}"
+        type        = "FLOAT"
+        desc        = "Minimum Height for the line (ft)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "MaxHeight"
+        id          = "{98F2217B-A40E-4FFE-AD88-A8EFCC4C6EF6}"
+        type        = "FLOAT"
+        desc        = "Minimum Height for the line (ft)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "HeightFactorForCameraDistance"
+        id          = "{1A08EAF8-09DF-4C2D-BD75-CEDE586B4527}"
+        type        = "FLOAT"
+        desc        = "Height Factor For Camera Distance for the line (ft)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "Weight"
+        id          = "{6295420C-6B7E-494E-BD80-AF5FA78A9C90}"
+        type        = "FLOAT"
+        desc        = "Weight of a POI">
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "MinScaleMiniIcon"
+           id          = "{CA03BE02-7E72-4D6D-A1D8-D86D9294CE58}"
+           type        = "FLOAT"
+           desc        = "Min Scale of Mini Icon of a POI">
+    </PropertyDef>
+
+    <PropertyDef
+               name        = "MinScaleNormalIcon"
+               id          = "{0EAE9B0F-6AA6-4D6D-8E59-DECD808DEB5C}"
+               type        = "FLOAT"
+               desc        = "Min Scale of Normal Icon of a POI">
+    </PropertyDef>
+
+    <PropertyDef
+                   name        = "MaxDistToShowLabel"
+                   id          = "{E25339FC-D2D1-4F48-8503-16DBDEBD3E7B}"
+                   type        = "FLOAT"
+                   desc        = "Max Dist To Show Label (nm)">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "DistanceOfPOI"
+       id          = "{C7D1433E-6D1E-478A-AAF6-A38B2CE872E7}"
+       type        = "FLOAT"
+       desc        = "Distance For Screen Ratio (meters)">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "ItemSize"
+       id          = "{AB8E6DC4-FFFB-475A-A82A-77D972DBE0BE}"
+       type        = "FLOAT"
+       desc        = "Size (meters)">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "CloseZoneAltitude"
+       id          = "{B960C583-F31F-41DD-937F-86059EB794CA}"
+       type        = "FLOAT"
+       desc        = "Altitude for a Close Zone (meters)">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "CloseZoneRadius"
+       id          = "{09937971-4D74-4003-AD5B-963041FA9264}"
+       type        = "FLOAT"
+       desc        = "Radius for a Close Zone">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "TargetZoneDistance"
+       id          = "{DCB1A7C8-FB25-47F7-91E9-CC64A67A338B}"
+       type        = "FLOAT"
+       desc        = "TargetZone Distance (meters)">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "TargetZoneAngle"
+       id          = "{7CD821DA-F92A-452E-8ED8-335C85579979}"
+       type        = "FLOAT"
+       desc        = "TargetZone Angle (degrees)">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <!--
+    <SetDef
+        id          = "{DAEA2F17-7048-44B4-BC4A-8B44389E9F66}"
+        name        = "ConditionWeather"
+        policy      = "inclusive"
+        descr       = "weather conditions"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "RealTime"/>
+    </SetDef>
+-->
+
+    <SetDef
+        id          = "{6BAF547D-C460-402C-AA7A-CEBA6590E353}"
+        name        = "POIMgr"
+        policy      = "inclusive"
+        descr       = "POIMgr">
+      <property name = "MaxDistToShowLabel"/>
+      <property name = "ListDistanceLabelSize"/>
+      <property name = "ListDistanceIconSize"/>
+      <property name = "ListCloseZoneAltitudeRadius"/>      
+      <property name = "ListTargetZoneDistanceAngle"/>
+      
+      <property name = "POI"/>
+
+    </SetDef>
+
+    <SetDef
+        id          = "{2E69AB46-8D9F-47A4-B43B-673C89E5980D}"
+        name        = "POI"
+        policy      = "inclusive"
+        descr       = "POI"
+        cardinality = "multiple">
+      <property name = "Type"/>
+      <property name = "MaxDistMiniIcon"/>
+      <property name = "MaxDistNormalIcon"/>
+      <property name = "MinDistNormalIconMaxSizeLabel"/>
+      <property name = "MaxDistLabel"/>
+      <property name = "MinHeight"/>
+      <property name = "MaxHeight"/>
+      <property name = "HeightFactorForCameraDistance"/>
+      <property name = "Weight"/>
+      <property name = "MinScaleNormalIcon"/>
+
+    </SetDef>
+
+    <SetDef
+           id          = "{ED459F0E-73CE-4AFE-AC97-82EFD05096DD}"
+           name        = "DistanceSizeInfo"
+           policy      = "inclusive"
+           descr       = "Distance Size info"
+           cardinality = "multiple">
+      <property name = "DistanceOfPOI"/>
+      <property name = "ItemSize"/>
+    </SetDef>
+
+
+    <SetDef
+          id          = "{A87400FE-5191-4203-8550-838C89DDA358}"
+          name        = "ListDistanceLabelSize"
+          policy      = "inclusive"
+          descr       = "List Distance LabelSize"
+          cardinality = "multiple">
+      <property name = "DistanceSizeInfo"/>
+    </SetDef>
+
+    <SetDef
+          id          = "{A6509D6C-9BDC-4F64-A995-CC6A40ED958F}"
+          name        = "ListDistanceIconSize"
+          policy      = "inclusive"
+          descr       = "List Distance Icon Size"
+          cardinality = "multiple">
+      <property name = "DistanceSizeInfo"/>
+    </SetDef>
+
+    <SetDef
+             id          = "{8D3CF8E8-EB3B-4B09-B2A9-29EBABEE612F}"
+             name        = "CloseZoneAltitudeRadius"
+             policy      = "inclusive"
+             descr       = "CloseZoneAltitudeRadius"
+             cardinality = "multiple">
+      <property name = "CloseZoneAltitude"/>
+      <property name = "CloseZoneRadius"/>
+      <property name = "Weight"/>
+    </SetDef>
+
+    <SetDef
+          id          = "{94A9C052-A9EF-4EDF-BDFF-91479332D7BE}"
+          name        = "ListCloseZoneAltitudeRadius"
+          policy      = "inclusive"
+          descr       = "List CloseZoneAltitude"
+          cardinality = "multiple">
+      <property name = "CloseZoneAltitudeRadius"/>
+    </SetDef>
+
+
+    <SetDef
+             id          = "{0BABE091-A205-499E-9C39-2FE8444E62E7}"
+             name        = "TargetZoneDistanceAngle"
+             policy      = "inclusive"
+             descr       = "TargetZoneDistanceAngle"
+             cardinality = "multiple">
+      <property name = "TargetZoneDistance"/>
+      <property name = "TargetZoneAngle"/>
+    </SetDef>
+
+    <SetDef
+          id          = "{6E7F77BC-9B6D-46F4-8457-EB2C64FABAB7}"
+          name        = "ListTargetZoneDistanceAngle"
+          policy      = "inclusive"
+          descr       = "List TargetZoneDistanceAngle"
+          cardinality = "multiple">
+      <property name = "TargetZoneDistanceAngle"/>
+    </SetDef>
+
+  </SetDefs>
+  <cpptext pass="2">
+}
+  </cpptext>
+</SymbolDef>

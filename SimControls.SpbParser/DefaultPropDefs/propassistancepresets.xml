@@ -1,0 +1,547 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "AssistancePresets"
+    id           = "{3BD03A03-3C23-4B14-834C-2E24CA0019DF}"
+    descr        = "SimProp Assistance Presets property, type and set definitions."
+    chdr         = "propassistancepresets.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+  <cpptext pass="1">
+    //-------------------------------------------------------------------------//
+    //  propassistancepresets.h
+    //
+    //  FlightSim Assistance Presets AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //  Namespace
+    //
+    namespace AssistancePresets{
+
+  </cpptext>
+
+
+  <PropertyDefs
+        symbolprefix = "SPID_ASSISTANCE_PRESETS_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+            name        = "Name"
+            id          = "{6815CD97-94A0-48D6-8C9B-F3E5CE2005E7}"
+            type        = "TEXT"
+			serialize   = "default"
+            xml_io      = "attribute"
+            descr       = "Name_Z String Corresponding to the item.">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "SectionName"
+              id          = "{16CD6757-6151-42AA-8004-A047342F0CD2}"
+              type        = "TEXT"
+        serialize   = "default"
+              xml_io      = "attribute"
+              descr       = "Name_Z String Corresponding to the section.">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "SettingName"
+              id          = "{014DD24A-1FA0-46B7-A744-44691DC034BC}"
+              type        = "TEXT"
+        serialize   = "default"
+              xml_io      = "attribute"
+              descr       = "Name_Z String Corresponding to the preset setting.">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "Visible"
+              id          = "{DEE1B3B8-893D-4D7A-9441-0A218D652EEE}"
+              type        = "BOOL"
+              descr       = "Whether or not the preset or section is displayed.">
+    </PropertyDef>
+
+    <PropertyDef
+                name        = "DisplayOrder"
+                id          = "{2AAAFB7D-4180-4F68-B5D4-3E6AB682FAC6}"
+                type        = "FLOAT"
+          default     = "0"
+                descr       = "Display priority of the preset in the menu. Default is 0. Use a negative (resp. positive) value to force the preset to come before (resp. later) in the list.">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "Default"
+              id          = "{2A598C33-FF01-43EA-A79E-6FC7F28D863D}"
+              type        = "BOOL"
+              descr       = "Whether or not the preset is the default one.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Type"
+            id          = "{C6C19495-11D1-40A6-8431-611E095C6B9C}"
+            type        = "ENUM"
+			serialize	= "default"
+			default	  	= "OnOffReminder"
+            descr       = "A type for an item.">
+      <EnumDef symbolprefix="Type">
+        <EnumVal
+            name = "ON_OFF_REMINDER"
+            xml_name = "OnOffReminder"/>
+        <EnumVal
+            name = "ON_OFF"
+            xml_name = "OnOff"/>
+        <EnumVal
+                name = "AUTO_MANUAL"
+                xml_name = "AutoManual"/>
+        <EnumVal
+            name = "NUMBER"
+            xml_name = "Number"/>
+        <EnumVal
+            name = "ON_OFF_VISUAL"
+            xml_name = "OnOffVisual"/>
+        <EnumVal
+            name = "COUNT"
+            xml_name = "Count"/>
+        <!-- Should not be used in XML Files -->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "AssistanceItemID"
+        id          = "{514D3F7C-9598-4BB0-92FB-B68ECD6216FC}"
+        type        = "ENUM"
+        serialize	  = "default"
+        default		  = "ASSISTANCE_ITEM_NONE"
+        descr       = "Enum of assistance item IDs">
+      <EnumDef symbolprefix="AssistanceItem">
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NONE"
+              xml_name	= "ASSISTANCE_ITEM_NONE"/>
+        <!-- Piloting -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_RUDDER"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_RUDDER"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_YOKE"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_YOKE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AUTOTRIM"
+              xml_name	= "ASSISTANCE_ITEM_AUTOTRIM"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_DELEGATE_CHECKLIST"
+              xml_name	= "ASSISTANCE_ITEM_DELEGATE_CHECKLIST"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_LANDING"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_LANDING"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_TAKEOFF"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_TAKEOFF"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_DELEGATE_ATC"
+              xml_name	= "ASSISTANCE_ITEM_DELEGATE_ATC"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_G_EFFECT"
+              xml_name	= "ASSISTANCE_ITEM_G_EFFECT"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ANTI_STALL"
+              xml_name	= "ASSISTANCE_ITEM_ANTI_STALL"/>
+        <!-- Aircraft systems -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AUTOMIXTURE"
+              xml_name	= "ASSISTANCE_ITEM_AUTOMIXTURE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_UNLIMITED_FUEL"
+              xml_name	= "ASSISTANCE_ITEM_UNLIMITED_FUEL"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AIRCRAFT_LIGHTS"
+              xml_name	= "ASSISTANCE_ITEM_AIRCRAFT_LIGHTS"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_GYRO_DRIFT"
+              xml_name	= "ASSISTANCE_ITEM_GYRO_DRIFT"/>
+        <!-- Failure and Damages -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NO_CRASH_MODE"
+              xml_name	= "ASSISTANCE_ITEM_NO_CRASH_MODE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NO_COLLISIONS"
+              xml_name	= "ASSISTANCE_ITEM_NO_COLLISIONS"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NO_STRESS_DAMAGE"
+              xml_name	= "ASSISTANCE_ITEM_NO_STRESS_DAMAGE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NO_ENGINE_STRESS_DAMAGE"
+              xml_name	= "ASSISTANCE_ITEM_NO_ENGINE_STRESS_DAMAGE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ICING"
+              xml_name	= "ASSISTANCE_ITEM_ICING"/>
+        <!-- Navigation aids -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_WORLD_WAYPOINTS"
+              xml_name	= "ASSISTANCE_ITEM_WORLD_WAYPOINTS"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_TAXI_RIBBON"
+              xml_name	= "ASSISTANCE_ITEM_TAXI_RIBBON"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_LANDING_RIBBON"
+              xml_name	= "ASSISTANCE_ITEM_LANDING_RIBBON"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_MODE"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_MODE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_POI"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_POI" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_CITIES"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_CITIES" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_AIRPORT"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_AIRPORT" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_FAUNA"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_FAUNA" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_NATURE"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_NATURE" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_LANDMARK"
+              xml_name	= "ASSISTANCE_ITEM_SMARTCAM_ENABLE_LANDMARK" />
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_DISPLAY_DIRECTION"
+              xml_name	= "ASSISTANCE_ITEM_DISPLAY_DIRECTION"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_DISPLAY_ALL_LABELS"
+              xml_name	= "ASSISTANCE_ITEM_DISPLAY_ALL_LABELS"/>
+        <!-- Notification -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NOTIFICATIONS_PILOTING"
+              xml_name	= "ASSISTANCE_ITEM_NOTIFICATIONS_PILOTING"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NOTIFICATIONS_AIRCRAFT_SYSTEM"
+              xml_name	= "ASSISTANCE_ITEM_NOTIFICATIONS_AIRCRAFT_SYSTEM"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NOTIFICATIONS_FLYING_TIPS"
+              xml_name	= "ASSISTANCE_ITEM_NOTIFICATIONS_FLYING_TIPS"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NOTIFICATIONS_OBJECTIVES"
+              xml_name	= "ASSISTANCE_ITEM_NOTIFICATIONS_OBJECTIVES"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NOTIFICATIONS_SOFTWARE_TIPS"
+              xml_name	= "ASSISTANCE_ITEM_NOTIFICATIONS_SOFTWARE_TIPS"/>
+        <!-- User experience -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AUTO_TUNE_FREQUENCY_AT_START"
+              xml_name	= "ASSISTANCE_ITEM_AUTO_TUNE_FREQUENCY_AT_START"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ATC_PANEL_OPEN_AT_START"
+              xml_name	= "ASSISTANCE_ITEM_ATC_PANEL_OPEN_AT_START"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ATC_VOICE_ENABLED"
+              xml_name	= "ASSISTANCE_ITEM_ATC_VOICE_ENABLED"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ATC_SHOW_MESSAGE_LOG"
+              xml_name	= "ASSISTANCE_ITEM_ATC_SHOW_MESSAGE_LOG"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_CHECKLIST_OPEN_AT_START"
+              xml_name	= "ASSISTANCE_ITEM_CHECKLIST_OPEN_AT_START"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_VFR_MAP_OPEN_AT_START"
+              xml_name	= "ASSISTANCE_ITEM_VFR_MAP_OPEN_AT_START"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_NAV_LOG_OPEN_AT_START"
+              xml_name	= "ASSISTANCE_ITEM_NAV_LOG_OPEN_AT_START"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AI_PILOTING_CURSOR_MODE"
+              xml_name	= "ASSISTANCE_ITEM_AI_PILOTING_CURSOR_MODE"/>
+        <EnumVal
+             name		= "ASSISTANCE_ITEM_HUD_CHASE"
+             xml_name	= "ASSISTANCE_ITEM_HUD_CHASE"/>
+        <EnumVal
+             name		= "ASSISTANCE_ITEM_HUD_COCKPIT"
+             xml_name	= "ASSISTANCE_ITEM_HUD_COCKPIT"/>
+        <EnumVal
+             name		= "ASSISTANCE_ITEM_FREEFLIGHT_AUTO_LOGBOOK"
+             xml_name	= "ASSISTANCE_ITEM_FREEFLIGHT_AUTO_LOGBOOK"/>
+        <!-- For gameplay only, hidden in menus -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_ELEVATOR"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_ELEVATOR"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_DELEGATE_CONTROL"
+              xml_name	= "ASSISTANCE_ITEM_DELEGATE_CONTROL"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ATC_PANEL_ENABLED"
+              xml_name	= "ASSISTANCE_ITEM_ATC_PANEL_ENABLED"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_WAYPOINT_PYLON"
+              xml_name	= "ASSISTANCE_ITEM_WAYPOINT_PYLON"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_BREADCRUMB"
+              xml_name	= "ASSISTANCE_ITEM_BREADCRUMB"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_BACK_ON_TRACK"
+              xml_name	= "ASSISTANCE_ITEM_BACK_ON_TRACK"/>
+        <!-- New -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_ASSISTED_GAMEPAD_SENSITIVITY"
+              xml_name	= "ASSISTANCE_ITEM_ASSISTED_GAMEPAD_SENSITIVITY"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_G_SUIT"
+              xml_name	= "ASSISTANCE_ITEM_G_SUIT"/>
+        <!-- New -->
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_AIR_MASS_FLOW_MODE"
+              xml_name	= "ASSISTANCE_ITEM_AIR_MASS_FLOW_MODE"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_TOW_FLYING_BOX"
+              xml_name	= "ASSISTANCE_ITEM_TOW_FLYING_BOX"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_HELI_TAILROTOR"
+              xml_name	= "ASSISTANCE_ITEM_HELI_TAILROTOR"/>
+        <EnumVal
+              name		= "ASSISTANCE_ITEM_HELI_CYCLIC"
+              xml_name	= "ASSISTANCE_ITEM_HELI_CYCLIC"/>
+        <!-- End -->
+        <EnumVal
+              name		= "COUNT"
+              xml_name	= "Count"/>
+        <!-- Should not be used in XML Files -->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "AssistanceItemGUID"
+				id          = "{F457BFA9-0ED7-4672-BD48-54E55235BFC0}"
+				type        = "TEXT"
+				serialize   = "default"
+				descr       = "The GUID of each assistance item to ensure savefiles compatibility.">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "TT_On"
+				id          = "{1ECF0A59-44E0-4AD8-8E24-12EE66DF9934}"
+				type        = "TEXT"
+				serialize   = "default"
+				descr       = "The TT when an option of type OnOff is On.">
+    </PropertyDef>
+
+    <PropertyDef
+          name        = "TT_Off"
+          id          = "{2F7D4A36-9672-467C-B956-49DA3CA711AE}"
+          type        = "TEXT"
+          serialize   = "default"
+          descr       = "The TT when an option of type OnOff is Off.">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "TT_Reminder"
+				id          = "{410E7284-1D24-40C5-B3E4-174346AA35DC}"
+				type        = "TEXT"
+				serialize   = "default"
+				descr       = "The TT when an option of type OnOffReminder is Reminder.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "MinNumber"
+            id          = "{B4D6C889-326A-4E84-83FE-62289410A266}"
+            type        = "FLOAT"
+            descr       = "Minimum Value when type is Number.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "MaxNumber"
+            id          = "{CEED78D5-9283-4211-ACC9-B59EE0656B46}"
+            type        = "FLOAT"
+            descr       = "Maximum Value when type is Number.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Enabled"
+            id          = "{9AFF6B2A-8D5D-4199-9206-3C9BD8EEB901}"
+            type        = "BOOL"
+            descr       = "Whether or not the Item is modifiable.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ValueNumber"
+            id          = "{F62D4F10-A596-4D3A-A5D3-CB40DC6ABE13}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+            descr       = "Value of Item when type is Number.">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ValueChoice"
+            id          = "{7574F2E4-33A4-40C7-97A0-E90CA257BE6E}"
+            type        = "ENUM"
+			default	 	= "OFF"
+            xml_io      = "attribute"
+            descr       = "Value of item when type is OnOff, OnOffReminder or AutoManual.">
+      <EnumDef symbolprefix="Choice">
+        <EnumVal
+            name = "OFF"
+            xml_name = "OFF"/>
+        <EnumVal
+            name = "REMINDER"
+            xml_name = "REMINDER"/>
+        <EnumVal
+            name = "ON"
+            xml_name = "ON"/>
+        <EnumVal
+                name = "AUTO"
+                xml_name = "AUTO"/>
+        <EnumVal
+                name = "MANUAL"
+                xml_name = "MANUAL"/>
+        <EnumVal
+            name = "VISUAL_ONLY"
+            xml_name = "VISUAL_ONLY"/>
+        <EnumVal
+            name = "COUNT"
+            xml_name = "COUNT"/>
+        <!-- Should not be used in XML Files -->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "OverrideUserValue"
+            id          = "{CCC044D0-5839-4C14-817F-93C6FB56311E}"
+            type        = "BOOL"
+            xml_io      = "attribute"
+            default     = "TRUE"
+            descr       = "override user value if true">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "IndexItemName"
+            id          = "{521DF1A8-CAB5-48C8-8643-126D26C5AC64}"
+            type        = "TEXT"
+            cardinality = "multiple"
+            descr       = "Name_Z String Corresponding to the item.">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "DefaultPreset"
+        id          = "{F560506B-047A-4D86-98FF-D7D394B95374}"
+        type        = "TEXT"
+        xml_io      = "attribute"
+        descr       = "Name_Z of the preset that is loaded by default.">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_ASSISTANCE_PRESETS_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+            id          = "{F421A9B8-7BE5-431F-B70F-6B4D9295685A}"
+            name        = "AssistanceSection"
+            descr       = "Data about an Assistance Section">
+      <property name = "Title"/>
+      <property name = "SectionName"/>
+      <property name = "Visible"/>
+      <property name = "Item"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{3858F928-B7C2-4FB2-BAA5-58D8C370B2ED}"
+            name        = "Item"
+            cardinality = "multiple"
+            descr       = "Data about an Assistance Item">
+      <property name = "Title"/>
+      <property name = "Descr"/>
+      <property name = "AssistanceItemID"/>
+      <property name = "AssistanceItemGUID"/>
+      <property name = "Type"/>
+      <property name = "TT_On"/>
+      <property name = "TT_Off"/>
+      <property name = "TT_Reminder"/>
+      <property name = "MinNumber"/>
+      <property name = "MaxNumber"/>
+      <property name = "Enabled"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{E04A154E-FAAF-40E5-993F-DC7A162EC805}"
+            name        = "PresetGlobal"
+            descr       = "Default presets for each section in a global Preset">
+      <property name = "Name"/>
+      <property name = "Title"/>
+      <property name = "Visible"/>
+      <property name = "DisplayOrder"/>
+      <property name = "Default"/>
+      <property name = "PresetSection"/>
+    </SetDef>
+
+    <SetDef
+              id          = "{F2EB87D3-DC1A-4FD7-9E91-AF76B26A2285}"
+              name        = "PresetSection"
+              cardinality = "multiple"
+              descr       = "Default values for each item in a section">
+      <property name = "SectionName"/>
+      <property name = "SettingName"/>
+      <property name = "Title"/>
+      <property name = "Visible"/>
+      <property name = "DisplayOrder"/>
+      <property name = "ItemPreset"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{0B9E7F02-3A72-4348-ACB1-7297BA3FE32F}"
+            name        = "ItemPreset"
+            cardinality = "multiple"
+            descr       = "Single choice for a preset">
+      <property name = "AssistanceItemID"/>
+      <property name = "ValueChoice"/>
+      <property name = "ValueNumber"/>
+      <property name = "OverrideUserValue"/>
+    </SetDef>
+
+    <SetDef
+             id          = "{12BCE021-3B12-46A2-8402-0F012F8FB18C}"
+             name        = "PresetsIndex"
+             descr       = "List (and order) of presets">
+      <property name = "IndexItemName"/>
+      <property name = "DefaultPreset"/>
+    </SetDef>
+
+    <SetDef
+              id          = "{3623B6EA-2962-4DE7-B100-302F269B4154}"
+              name        = "SectionPresetsIndex"
+              descr       = "List (and order) of Section Presets">
+      <property name = "IndexSectionPreset"/>
+    </SetDef>
+
+    <SetDef
+              id          = "{7E0EA1AB-E6CD-4247-9169-B5F5D2C5D1F3}"
+              name        = "IndexSectionPreset"
+        cardinality = "multiple"
+              descr       = "Default values for each item in a section">
+      <property name = "SectionName"/>
+      <property name = "SettingName"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{9D747ECF-2B6E-4C8F-928E-4C650F530BE7}"
+            name        = "SectionsIndex"
+            descr       = "List (and order) of sections">
+      <property name = "IndexItemName"/>
+    </SetDef>
+
+  </SetDefs>
+  <cpptext pass="2">
+    }
+  </cpptext>
+</SymbolDef>

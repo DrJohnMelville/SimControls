@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<!-- FlightSim SIM property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name="SimXui" 
+    id="{7D290F6E-DDB2-4a91-8962-55E242368500}" 
+    descr="FlightSim SimXui property, type and set definitions." 
+    chdr="propxui.h" 
+    version="1,0">
+
+    <SymbolInclude 
+        filename="Common\propbaseui.xml" 
+        id="{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}" 
+        version="1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propxui.h
+//
+//  FlightSim SimXui AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs symbolprefix="SPID_SIMXUI_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef 
+            id          = "{AD38870F-CAF3-48aa-AE9F-923F8BFCE65D}" 
+            name        = "Locale" 
+            type        = "TEXT" />
+
+     </PropertyDefs>
+
+
+    <SetDefs symbolprefix="SSID_SIMXUI_">
+
+        <cpptext pass="2">
+//
+//  Property Sets
+//
+        </cpptext>
+
+        <SetDef
+                id     = "{44D634EA-9202-4135-9090-EE0EFE3A40F3}"
+                name   = "FontMap"
+                policy = "inclusive">
+
+                <property name = "FontFace"/>
+                <property name = "FontFile"/>
+                // FontLocale = Pattern to match language LCID hex value; can have * and ? for wildcards.  
+                // Multiple are allowed, and if any matches, the mapping will be added.
+                <property name = "FontLocale"/>
+                <property name = "DefaultFont"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

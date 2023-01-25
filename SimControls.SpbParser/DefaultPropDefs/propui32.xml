@@ -1,0 +1,328 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- SimUI32 property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimUI32"
+    id           = "{670105CC-3B4A-4ef5-B28F-CBD3343ADCB7}"
+    descr        = "SimProp UI Win32 property, type and set definitions."
+    chdr         = "propui32.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propui.xml"
+        id       = "{B06F0C66-5D4D-4e93-9839-4081D8D93C0C}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-----------------------------------------------------------------------------//       
+//  propui32.h    
+//
+//  FlightSim UI Win32 AceXML property and property set symbol definitions
+//-----------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+        
+        <PropertyDef
+            name        = "Opened"
+            id          = "{EAF6C86A-8106-431c-8A9B-6238C1B00311}"
+            serialize   = "both,default"
+            type        = "BOOL">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "Enabled"
+            id          = "{C643F2DB-59F4-4805-A2BE-18AF7EEBBB54}"
+            serialize   = "both,default"
+            type        = "BOOL">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "ShowCaption"
+            id          = "{D9ADBC81-68FB-4fa9-8859-A090B0DE12A3}"
+            serialize   = "both,default"
+            default     = "True"
+            type        = "BOOL">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "ShowCloseButton"
+            id          = "{1938F6A3-068B-4cf6-90C5-D5798E4B70E4}"
+            serialize   = "both,default"
+            default     = "False"
+            type        = "BOOL">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "ShowWhisperButton"
+            id          = "{CFFD10C9-9845-425a-9DBA-7815677E7A4D}"
+            serialize   = "both,default"
+            default     = "False"
+            type        = "BOOL">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "PlayerListType"
+            id          = "{7FFBCF5E-E902-4861-9C07-73659CE1054D}"
+            serialize   = "both,default"
+            type        = "ENUM"
+            devnote     = "this list must match the PlayerListType enum in Mulitplayer\multi_fwd.h">
+            <EnumDef symbolprefix="PLT_">
+                <EnumVal
+                    name        = "INGAME"
+                    xml_name    = "InGame"/>
+                <EnumVal
+                    name        = "INROOM"
+                    xml_name    = "InRoom"/>
+                <EnumVal
+                    name        = "BUDDY"
+                    xml_name    = "Buddy"/>
+                <EnumVal
+                    name        = "RECENT"
+                    xml_name    = "Recent"/>
+                <EnumVal
+                    name        = "BANNED"
+                    xml_name    = "Banned"/>
+            </EnumDef>
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "VerticalStepSize"
+            id          = "{8CB2B429-7DE6-4d8c-AAC6-21CBAA76A273}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "HorizontalStepSize"
+            id          = "{C016847F-2405-4cdf-8D9D-6EE629657175}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "LeftOffset"
+            id          = "{55EE93BF-FEE8-47ab-B601-B0177813B88D}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "RightOffset"
+            id          = "{D7C6BB12-8172-4bd1-A39B-D38B87739882}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "TopOffset"
+            id          = "{074CF7C0-4C04-43d5-8FBC-3B1C8C542826}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "BottomOffset"
+            id          = "{21069DE6-206B-4005-8787-243074B391C1}"
+            serialize   = "both,default"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "StateType"
+            id          = "{30CA2B93-946F-43ad-8BF9-F64B8D977C59}"
+            serialize   = "both,default"
+            type        = "ENUM">
+            <EnumDef symbolprefix="STATETYPE_">
+                <EnumVal
+                    name        = "NORMAL"
+                    xml_name    = "Normal"/>
+                <EnumVal
+                    name        = "PRESSED"
+                    xml_name    = "Pressed"/>
+                <EnumVal
+                    name        = "FOCUSED"
+                    xml_name    = "Focused"/>
+                <EnumVal
+                    name        = "DISABLED"
+                    xml_name    = "Disabled"/>
+                <EnumVal
+                    name        = "DEFAULT"
+                    xml_name    = "Default"/>
+                <EnumVal
+                    name        = "HOVER"
+                    xml_name    = "Hover"/>
+                <EnumVal
+                    name        = "BLINK"
+                    xml_name    = "Blink"/>
+                <EnumVal
+                    name        = "CONTROL1"
+                    xml_name    = "Control1"/>
+                <EnumVal
+                    name        = "CONTROL2"
+                    xml_name    = "Control2"/>
+                <EnumVal
+                    name        = "CONTROL3"
+                    xml_name    = "Control3"/>
+                <EnumVal
+                    name        = "CONTROL4"
+                    xml_name    = "Control4"/>
+                <EnumVal
+                    name        = "CONTROL5"
+                    xml_name    = "Control5"/>
+                <EnumVal
+                    name        = "CONTROL6"
+                    xml_name    = "Control6"/>
+                <EnumVal
+                    name        = "CONTROL7"
+                    xml_name    = "Control7"/>
+                <EnumVal
+                    name        = "CONTROL8"
+                    xml_name    = "Control8"/>
+                <EnumVal
+                    name        = "USER1"
+                    xml_name    = "User1"/>
+                <EnumVal
+                    name        = "USER2"
+                    xml_name    = "User2"/>
+                <EnumVal
+                    name        = "USER3"
+                    xml_name    = "User3"/>
+                <EnumVal
+                    name        = "USER4"
+                    xml_name    = "User4"/>
+                <EnumVal
+                    name        = "USER5"
+                    xml_name    = "User5"/>
+                <EnumVal
+                    name        = "USER6"
+                    xml_name    = "User6"/>
+                <EnumVal
+                    name        = "USER7"
+                    xml_name    = "User7"/>
+                <EnumVal
+                    name        = "USER8"
+                    xml_name    = "User8"/>
+            </EnumDef>
+        </PropertyDef>
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+        
+        <SetDef
+            id      = "{C8D04077-4092-4396-8C47-73F36ACCBB7C}"
+            name    = "Section"
+            policy  = "inclusive">
+            
+            <property name = "id"/>
+            <property name = "Opened"/>
+            <property name = "Enabled"/>
+            <property name = "PlayerListType"/>
+            <property name = "Caption"/>
+            <property name = "Control"/>
+        
+        </SetDef>
+
+        <SetDef
+            id      = "{55D74604-2965-494b-B63B-711A1C9B7593}"
+            name    = "Sections"
+            policy  = "inclusive">
+            
+            <property name = "id"/>
+            <property name = "Section"/>
+        
+        </SetDef>
+        
+        <SetDef
+            id      = "{A9065E88-8AF3-4564-955C-7A1CE7B6448E}"
+            name    = "State"
+            policy  = "inclusive">
+            
+            <property name = "id"/>
+            <property name = "StateType"/>
+            <property name = "ShowCaption"/>
+            <property name = "BkgndTextRect"/>
+            <property name = "BkgndImage"/>
+            <property name = "BkgndTransparent"/>
+            <property name = "BkgndCreateRgn"/>
+            <property name = "NormalColor"/>
+            <property name = "SelColor"/>
+            <property name = "NormalTextColor"/>
+            <property name = "SelTextColor"/>
+            <property name = "FontFace"/>
+            <property name = "FontHeight"/>
+            <property name = "FontWeight"/>
+            <property name = "TextAlignVert"/>
+            
+        </SetDef>
+        
+        <SetDef
+            id      = "{22DB301D-8415-437c-A5BD-7808C5D181E6}"
+            name    = "States"
+            policy  = "inclusive">
+        
+            <property name = "id"/>
+            <property name = "State"/>
+            <property name = "BkgndTextRect"/>
+            <property name = "BkgndTransparent"/>
+            <property name = "NormalColor"/>
+            <property name = "SelColor"/>
+            <property name = "NormalTextColor"/>
+            <property name = "SelTextColor"/>
+            <property name = "FontFace"/>
+            <property name = "FontHeight"/>
+            <property name = "FontWeight"/>
+            <property name = "TextAlignVert"/>
+            
+        </SetDef>
+        
+        <SetDef
+            id      = "{FF564645-3FD0-424a-BD50-ACDE80DCFF85}"
+            name    = "Session"
+            policy  = "inclusive">
+            
+            <property name = "id"/>
+            <property name = "Caption"/>
+            <property name = "Control"/>
+            <property name = "States"/>
+            <property name = "ShowCloseButton"/>
+            <property name = "ShowWhisperButton"/>
+            
+        </SetDef>
+        
+        <SetDef
+            id      = "{BADE1C15-2F84-44d6-9F3D-B872A29E746E}"
+            name    = "Sessions"
+            policy  = "inclusive">
+        
+            <property name = "id"/>
+            <property name = "Session"/>
+            
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

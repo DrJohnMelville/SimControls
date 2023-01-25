@@ -1,0 +1,520 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "CheckListBase"
+    id           = "{59E76521-CD00-4C15-9047-D332FCA6771B}"
+    descr        = "SimProp Checklist base property, type and set definitions."
+    chdr         = "propchecklistbase.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propchecklistbase.h
+//
+//  FlightSim checkpoint library AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+</cpptext>
+
+	<PropertyDefs
+        symbolprefix = "SPID_CHECKLIST_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+</cpptext>
+
+		<PropertyDef
+            name        = "SubjectTT"
+            id          = "{5AC3DF05-2721-4F10-BC52-D2B982B5E84D}"
+            type        = "TEXT"
+            descr       = "Localized checkpoint subject, or Step title.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "ExpectationTT"
+            id          = "{796BBAE6-5500-45D9-B576-BBFEAA73A2C5}"
+            type        = "TEXT"
+            descr       = "Localized heckpoint expectation description.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "ExpectationNotLocalized"
+            id          = "{E21F9989-FFED-4E9B-834D-6982BE4E5A05}"
+            type        = "TEXT"
+            descr       = "NOT localized checkpoint expectation description.">
+		</PropertyDef>
+
+    <PropertyDef
+			name        = "FlowEvent"
+			id          = "{22243EED-A6EF-42DA-A789-4EBEB684C90A}"
+			type        = "TEXT"
+			descr       = "Flow event name.">
+    </PropertyDef>
+    
+		<PropertyDef
+			name        = "EventID"
+			id          = "{DE49DBA2-39FB-47E6-B82B-97E9FB87DC5B}"
+			type        = "TEXT"
+			descr       = "Key event name.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "EventParam"
+            id          = "{B2F381CE-DA7C-4477-B653-F8753691B5E9}"
+            type        = "ULONG"
+			default     = "0"
+            descr       = "Key event parameter.">
+		</PropertyDef>
+
+    <PropertyDef
+     name        = "StoreVar"
+     id          = "{DB41EE14-249A-414D-94F5-7533A0247EB3}"
+     type        = "TEXT"
+     descr       = "Store variable under this name.">
+    </PropertyDef>
+
+    <PropertyDef
+    name        = "InitVar"
+    id          = "{2952FB92-6563-4141-829D-D1A4F7E2E9E4}"
+    type        = "TEXT"
+    descr       = "Store variable under this name if this has never been initialized, do nothing otherwise.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "ReadVar"
+     id          = "{119086C8-067A-48FF-8B08-B79C75568BA4}"
+     type        = "TEXT"
+     descr       = "Read variable with this name.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "UseTemplateValue"
+     id          = "{D3E0E25B-9D34-425D-8F6F-4D4E7D0CE386}"
+     type        = "TEXT"
+     descr       = "Use the TemplateValue this name.">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "UseTemplateAction"
+        id          = "{32E19965-B5AB-4002-AA98-DFCF61DBECC2}"
+        type        = "TEXT"
+        descr       = "Use the TemplateAction this name.">
+    </PropertyDef>
+    
+
+    <!--
+		<PropertyDef
+            name        = "InOrder"
+            id          = "{ABA138DF-9C25-442D-BD90-3036B4A9B4FF}"
+            type        = "BOOL"
+			default     = "False"
+            descr       = "Validate checkpoint tests in the declaration order.">
+		</PropertyDef>
+		-->
+
+		<PropertyDef
+            name        = "Once"
+            id          = "{DF1E450E-C71C-4D1F-99D7-D080D5635E12}"
+            type        = "BOOL"
+			default     = "False"
+            descr       = "Keep test validated as long as it has been validated once.">
+		</PropertyDef>
+
+    <PropertyDef
+            name        = "Copilot"
+            id          = "{DCEC7BD4-8E0A-4761-A5D9-C55ABDAF5CF0}"
+            type        = "BOOL"
+			default     = "False"
+            descr       = "Is this action done only in Copilot mode ?">
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "DurationTimer"
+           id          = "{7ED4B62A-7D1E-42C3-99E8-756C5ADF90E6}"
+           type        = "BOOL"
+     default     = "False"
+           descr       = "Display the current Duration timer as feedback">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Condition"
+            id          = "{A16E6BCF-8C66-4EA7-A27A-A873E9E18BFE}"
+            type        = "ENUM"
+            default     = "Any"
+			descr       = "Execute action only if condition is valid.">
+      <EnumDef symbolprefix = "CONDITION_">
+        <EnumVal name = "Any"/>
+        <EnumVal name = "TestValueTrue"/>
+        <EnumVal name = "TestValueFalse"/>
+        <EnumVal name = "Init"/>
+        <EnumVal name = "End"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "SpecialAction"
+            id          = "{00423C52-F835-4C8A-A370-9DE337F87BB4}"
+            type        = "ENUM"
+            default     = "None"
+			descr       = "Other actions that do not fit the usual properties">
+      <EnumDef symbolprefix = "ACTION_">
+        <EnumVal name = "None"/>
+        <EnumVal name = "ForceValidate"/>
+        <EnumVal name = "WaitForUserToDoIt"/>
+        <EnumVal name = "WaitUntilTestValueValidated"/>
+        <EnumVal name = "WaitForDuration"/>
+      </EnumDef>
+    </PropertyDef>
+
+
+    <PropertyDef
+            name        = "SeqType"
+            id          = "{FD9F9B22-C90C-45B8-949B-E8D9DDCECC9C}"
+            type        = "ENUM"
+            default     = "Unordered"
+			descr       = "Type of sequence">
+      <EnumDef symbolprefix = "SEQUENCE_">
+        <EnumVal name = "Unordered"/>
+        <EnumVal name = "Ordered"/>
+        <EnumVal name = "Parallel"/>
+      </EnumDef>
+    </PropertyDef>
+
+
+    <PropertyDef
+			name		= "Cumulative"
+			id			= "{CE5E2511-2ED3-43CB-BF3B-99F1A9EF42BA}"
+			type		= "BOOL"
+			default		= "False"
+			descr		= "Set if the duration must be cumulative (can be interrupted) or not">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "Value"
+            id          = "{A5469C3F-8DC7-42F8-92FF-D0A4D5435B8A}"
+            type        = "DOUBLE"
+            descr       = "Value of a fixed value type.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "SimVarName"
+            id          = "{2B1D4FF2-1B89-4259-84B8-0C64ED683E87}"
+            type        = "TEXT"
+            descr       = "SimVar name.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "Units"
+            id          = "{8C8BC5FC-75CE-4CE2-BD3D-0DF6D7BEBBF0}"
+            type        = "TEXT"
+            descr       = "SimVar units.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "Code"
+            id          = "{5317F719-8742-4C13-996B-BB4CB2DC99C0}"
+            type        = "TEXT"
+            descr       = "Code to evaluate.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "Tolerance"
+            id          = "{0393BEC5-8544-4227-BAC0-9EE221AD4911}"
+            type        = "DOUBLE"
+			default     = "0"
+            descr       = "Tolerance amount during value check.">
+		</PropertyDef>
+
+		<PropertyDef
+            name        = "OpType"
+            id          = "{AC0A08E9-1418-4B8C-80A0-AAD1990AE143}"
+            type        = "ENUM"
+            default     = "EQUAL"
+			descr       = "Operation type between values.">
+			<EnumDef symbolprefix = "CHECKLIST_OPERATOR_">
+				<EnumVal name = "EQUAL"/>
+				<EnumVal name = "LESS"/>
+				<EnumVal name = "GREATER"/>
+        <EnumVal name = "LESS_OR_EQUAL"/>
+        <EnumVal name = "GREATER_OR_EQUAL"/>
+        <EnumVal name = "BETWEEN"/>
+        <EnumVal name = "NOT"/>
+        <EnumVal name = "AND"/>
+        <EnumVal name = "OR"/>
+        <EnumVal name = "PLUS"/>
+        <EnumVal name = "MINUS"/>
+        <EnumVal name = "MULTIPLY"/>
+        <EnumVal name = "DIVIDE"/>
+        <EnumVal name = "MINIMUM"/>
+        <EnumVal name = "MAXIMUM"/>
+        <EnumVal name = "IFTHENELSE"/>
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "ATCState"
+            id          = "{84804055-356C-41BD-8281-761AC85D325B}"
+            type        = "TEXT"
+			default     = ""
+            descr       = "ATC State name">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "ATCMessageId"
+            id          = "{38196813-9C42-464F-84A1-53D03FBA904C}"
+            type        = "TEXT"
+			default     = ""
+            descr       = "ATC message ID">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "ATCParam"
+            id          = "{8FE898E3-552C-460F-8697-73C870B2BB2E}"
+            type        = "ENUM"
+			default     = "Invalid"
+            descr       = "ATC value">
+			<EnumDef symbolprefix = "">
+				<EnumVal name = "Invalid"/>
+				<EnumVal name = "State"/>
+				<EnumVal name = "LastMessageId"/>
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "Id"
+			id			= "{AD54FBFE-0CDC-4CF1-A66D-73FAA63C12AE}"
+			type        = "TEXT"
+			default     = ""
+            descr       = "Id of a checkpoint">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "ReferenceId"
+			id			= "{D249CC52-85E5-4A67-A71C-53B4AC76BB85}"
+			type        = "TEXT"
+			default     = ""
+            descr       = "Reference to a registered checkpoint ID">
+		</PropertyDef>
+
+    <PropertyDef
+			name		= "Name"
+			id			= "{1BF2B385-653C-4434-9216-1B5363E47FDA}"
+			type        = "TEXT"
+			default     = ""
+            descr       = "Name of a Camera">
+    </PropertyDef>
+
+
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_CHECKLIST_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+		</cpptext>
+
+		<SetDef
+            id          = "{CF5A1AEA-CFA4-4793-A0A6-25E2630570C8}"
+            name        = "Checkpoint"
+            descr       = "Define a checkpoint conditionned on simvar state.">
+			<property name = "Id"/>
+			<property name = "CheckpointDesc"/>
+			<property name = "Test"/>
+      <property name = "Sequence"/>
+      <property name = "Action"/> <!-- can be several -->
+      <property name = "SetTemplateValue"/> <!-- can be several -->
+      <property name = "SetTemplateAction"/> <!-- can be several -->
+      <property name = "ForceCamera"/>
+      <property name = "Feedback"/>
+      <property name = "Clue"/>
+		</SetDef>
+
+		<SetDef
+            id          = "{9365862E-8D2B-48F2-AB88-C72491E45A3A}"
+            name        = "CheckpointDesc"
+            descr       = "Checkpoint description.">
+			<property name = "SubjectTT"/>
+			<property name = "ExpectationTT"/>
+			<property name = "ExpectationNotLocalized"/>
+			<!--<property name = "InOrder"/>-->
+		</SetDef>
+
+    <SetDef
+            id          = "{98C9CBD9-32B1-4DBB-964B-364E571ECFD5}"
+            name        = "Feedback"
+            descr       = "Feedback text to be displayed during checkpoint evaluation">
+      <property name = "Name"/>
+      <property name = "Copilot"/>
+      <!-- Simvar value type -->
+      <property name = "SimVarName"/>
+      <property name = "Units"/>
+      <property name = "DurationTimer"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{BA66CC7E-D778-46F2-9707-8A793534DBA1}"
+            name        = "Clue"
+            descr       = "Clue text to be displayed when checkpoint is selected">
+      <property name = "Name"/>
+    </SetDef>
+
+		<SetDef
+			id          = "{9EA3AD29-B42F-4B43-B8E1-07884BE8F6E9}"
+			name        = "Action"
+			descr       = "Action done during a Test.">
+      <property name = "UseTemplateAction"/>
+      <property name = "Copilot"/>
+      <property name = "Condition"/>
+      <property name = "Once"/>
+      <property name = "FlowEvent"/>
+			<property name = "EventID"/>
+			<property name = "EventParam"/>
+			<property name = "Code"/>
+      <property name = "SpecialAction"/>
+      <property name = "StoreVar"/>
+      <property name = "InitVar"/>
+      <property name = "Value"/>
+      <property name = "Val"/>
+      <property name = "Operator"/>
+		</SetDef>
+
+    <SetDef
+			id          = "{214F884A-6C69-409B-96BF-410BB0D93E5E}"
+			name        = "SetTemplateAction"
+			descr       = "Defines a template for an action. NOT executed by itself">
+      <property name = "Id"/>
+      <property name = "Copilot"/>
+      <property name = "Condition"/>
+      <property name = "Once"/>
+      <property name = "FlowEvent"/>
+      <property name = "EventID"/>
+      <property name = "EventParam"/>
+      <property name = "Code"/>
+      <property name = "SpecialAction"/>
+      <property name = "StoreVar"/>
+      <property name = "Value"/>
+      <property name = "Val"/>
+      <property name = "Operator"/>
+    </SetDef>
+
+    <SetDef
+			id          = "{67BA576C-EDFF-4DE8-BB9B-542A18965C12}"
+			name        = "SetTemplateValue"
+			descr       = "Defines a TemplateValue to be used in this checkpoint.">
+      <property name = "Id"/>
+      <property name = "Value"/>
+      <property name = "Val"/>
+      <property name = "Operator"/>
+    </SetDef>
+
+    <SetDef
+			id 			= "{C6B7BF71-7324-4C59-AB9F-1E66A4B91C23}"
+			name		= "Duration"
+			descr		= "Set a minimum duration during wich the test must be true before validation">
+			<property name = "Value"/>
+			<property name = "Cumulative"/>
+		</SetDef>
+
+    <SetDef
+       id          = "{4DBA7E17-1944-4412-A381-18888568558E}"
+       name        = "Sequence"
+       descr       = "A Sequence of Tests and/or Sequences">
+      <property name = "SeqType"/>
+      <property name = "Once"/>
+      <property name = "Duration"/>
+      <property name = "Test"/>
+      <!-- can be several -->
+      <property name = "Sequence"/>
+      <!-- can be several -->
+    </SetDef>
+
+    <SetDef
+            id          = "{7369ED8E-E956-4EFF-A42D-CA9E138F6316}"
+            name        = "Test"
+            descr       = "Test definition">
+			<property name = "Instrument"/>
+			<property name = "Once"/>
+			<property name = "Duration"/>
+			<!--<property name = "InvalidationCondition"/>-->
+			<property name = "TestValue"/> 
+		</SetDef>
+
+		<SetDef
+            id          = "{F37B9E00-2066-4134-A22C-C5C63E98D3D1}"
+            name        = "TestValue"
+            descr       = "Value description.">
+      <!-- NEW system -->
+      <property name = "Val"/>
+      <property name = "Operator"/>
+		</SetDef>
+
+    <SetDef
+        id          = "{07ACF119-0A20-494F-A80F-BB1898D775EE}"
+        name        = "Val"
+        descr       = "Value description.">
+      <!-- Simvar value type -->
+      <property name = "SimVarName"/>
+      <property name = "Units"/>
+      <!-- Code value type -->
+      <property name = "Code"/>
+      <!-- Fixed value type -->
+      <property name = "Value"/>
+      <!-- Read Variable or Use Template -->
+      <property name = "ReadVar"/>
+      <property name = "UseTemplateValue"/>
+      <!-- ATC -->
+      <property name = "ATCState"/>
+      <property name = "ATCMessageId"/>
+      <property name = "ATCParam"/>
+      <!-- Common properties -->
+      <property name = "Tolerance"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{8528D238-865D-40C1-AB4F-149B6263C156}"
+        name        = "Operator"
+        descr       = "Operator with 2 values">
+      <property name = "OpType"/>
+      <property name = "Val"/>
+    </SetDef>
+
+    <SetDef
+            name        = "Instrument"
+            id          = "{ADBA0838-8659-476D-9B99-E3A1B7347CE7}"
+			descr       = "Instrument identifier related to a test.">
+      <property name="Id"/>
+      <property name="Condition"/>
+    </SetDef>
+
+    <SetDef
+      name        = "ForceCamera"
+      id          = "{C753AF9E-CAE5-4515-93F2-6B910FDADE06}"
+			descr       = "Force a Camera instead of using those defined by instruments">
+      <property name="Name"/>
+      <property name="Condition"/>
+    </SetDef>
+
+    <SetDef
+     name        = "OnlyIf"
+     id          = "{25EA95B2-A15A-4B78-918D-2047E9DF8ED9}"
+     descr       = "Condition to use this instrument or ForceCamera">
+      <property name = "Val"/>
+      <property name = "Operator"/>
+    </SetDef>
+
+
+  </SetDefs>
+
+</SymbolDef>

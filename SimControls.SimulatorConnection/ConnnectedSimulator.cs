@@ -23,8 +23,9 @@ namespace SimControls.SimulatorConnection
 
         public void LoadFlightPlan(string plan)
         {
-            File.WriteAllText(@"D:\Users\John\Desktop\Scratch\Temp.PLN", plan);
-            connection.FlightPlanLoad(@"D:\Users\John\Desktop\Scratch\temp.PLN");
+            var fn = @"C:\Users\jmelv\Documents\Scratch\temp.pln";
+            File.WriteAllText(fn, plan);
+            connection.FlightPlanLoad(fn);
         }
 
         #endregion

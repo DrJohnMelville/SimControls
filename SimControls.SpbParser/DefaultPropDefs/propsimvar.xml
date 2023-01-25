@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?> 
+
+<!-- FlightSim SIM property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef name="Simvar" id="{FD41421D-8642-44e0-99FF-CA28C8DD7738}" descr="FlightSim SIMVAR property, type and set definitions." chdr="propsim.h" version="1,0">
+
+    <SymbolInclude filename="Common\propworldbase.xml" id="{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}" version="1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propsimvar.h    
+//
+//  FlightSim SIMVAR AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs symbolprefix="SPID_SIMVAR_">
+
+<cpptext pass="2">
+//
+//  Property Identifiers
+//
+// The GUID range 393bc000-dcf8-11d9-b3cb-0007e939d3e5 through
+// 393bcfff-dcf8-11d9-b3cb-0007e939d3e5 is reserved for simvars. (This is
+// legal - go search MSDN for "GUID Creation and Optimizations" for more
+// information.) Using a consecutive range of GUIDs makes fast lookups
+// possible - once we've determined that a GUID lies in the right range
+// the mapping is just one 32 bit value to another.
+//
+</cpptext>
+
+        <PropertyDef id="{393bc001-dcf8-11d9-b3cb-0007e939d3e5}" name="AltitudeAMSL"                type="DOUBLE" units="feet" />
+        <PropertyDef id="{393bc002-dcf8-11d9-b3cb-0007e939d3e5}" name="AltitudeAGL"                 type="DOUBLE" units="feet" />
+        <PropertyDef id="{393bc003-dcf8-11d9-b3cb-0007e939d3e5}" name="GroundSpeed"                 type="DOUBLE" units="knots" />
+        <PropertyDef id="{393bc004-dcf8-11d9-b3cb-0007e939d3e5}" name="GForce"                      type="DOUBLE" units="gforce" />
+        <PropertyDef id="{393bc005-dcf8-11d9-b3cb-0007e939d3e5}" name="BrakeIndicator"              type="BOOL" />
+        <PropertyDef id="{393bc006-dcf8-11d9-b3cb-0007e939d3e5}" name="BrakeParkingIndicator"       type="BOOL" />
+        <PropertyDef id="{393bc007-dcf8-11d9-b3cb-0007e939d3e5}" name="StallWarning"                type="BOOL" />
+        <PropertyDef id="{393bc008-dcf8-11d9-b3cb-0007e939d3e5}" name="OverspeedWarning"            type="BOOL" />
+        <PropertyDef id="{393bc009-dcf8-11d9-b3cb-0007e939d3e5}" name="IsSlewActive"                type="BOOL" />
+        <PropertyDef id="{393bc00a-dcf8-11d9-b3cb-0007e939d3e5}" name="Latitude"                    type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc00b-dcf8-11d9-b3cb-0007e939d3e5}" name="Longitude"                   type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc00c-dcf8-11d9-b3cb-0007e939d3e5}" name="IndicatedAltitude"           type="DOUBLE" units="feet" />
+        <PropertyDef id="{393bc00d-dcf8-11d9-b3cb-0007e939d3e5}" name="PressureAltitude"            type="DOUBLE" units="feet" />
+        <PropertyDef id="{393bc00e-dcf8-11d9-b3cb-0007e939d3e5}" name="Pitch"                       type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc00f-dcf8-11d9-b3cb-0007e939d3e5}" name="Bank"                        type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc010-dcf8-11d9-b3cb-0007e939d3e5}" name="TrueHeading"                 type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc011-dcf8-11d9-b3cb-0007e939d3e5}" name="MagneticHeading"             type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc012-dcf8-11d9-b3cb-0007e939d3e5}" name="WhiskeyCompassHeading"       type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc013-dcf8-11d9-b3cb-0007e939d3e5}" name="DirectionalGyroHeading"      type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc014-dcf8-11d9-b3cb-0007e939d3e5}" name="TrueAirspeed"                type="DOUBLE" units="knots" />
+        <PropertyDef id="{393bc015-dcf8-11d9-b3cb-0007e939d3e5}" name="IndicatedAirspeed"           type="DOUBLE" units="knots" />
+        <PropertyDef id="{393bc016-dcf8-11d9-b3cb-0007e939d3e5}" name="AngleOfAttack"               type="DOUBLE" units="degrees" />
+        <PropertyDef id="{393bc017-dcf8-11d9-b3cb-0007e939d3e5}" name="YokeXPosition"               type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc018-dcf8-11d9-b3cb-0007e939d3e5}" name="YokeYPosition"               type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc019-dcf8-11d9-b3cb-0007e939d3e5}" name="RudderPedalPosition"         type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc01a-dcf8-11d9-b3cb-0007e939d3e5}" name="StructuralIcePercent"        type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc01b-dcf8-11d9-b3cb-0007e939d3e5}" name="PitotIcePercent"             type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc01c-dcf8-11d9-b3cb-0007e939d3e5}" name="EngineCombustion"            type="BOOL"   index_min="1" index_max="4" />
+        <PropertyDef id="{393bc01d-dcf8-11d9-b3cb-0007e939d3e5}" name="LandingGearHandlePosition"   type="BOOL" />
+        <PropertyDef id="{393bc01e-dcf8-11d9-b3cb-0007e939d3e5}" name="LandingGearPercentExtended"  type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc01f-dcf8-11d9-b3cb-0007e939d3e5}" name="FlapsHandlePercent"          type="DOUBLE" units="percent" />
+        <PropertyDef id="{393bc020-dcf8-11d9-b3cb-0007e939d3e5}" name="FlapsHandleIndex"            type="ULONG"  units="number" />
+        <PropertyDef id="{393bc021-dcf8-11d9-b3cb-0007e939d3e5}" name="DroppableObjectType"         type="TEXT" />
+        <PropertyDef id="{393bc022-dcf8-11d9-b3cb-0007e939d3e5}" name="Title"                       type="TEXT" />
+        <PropertyDef id="{393bc023-dcf8-11d9-b3cb-0007e939d3e5}" name="ThrottleLeverPosition"       type="DOUBLE" units="percent" index_min="1" index_max="4"/>
+        <PropertyDef id="{393bc024-dcf8-11d9-b3cb-0007e939d3e5}" name="TowConnection"               type="BOOL" />
+        <PropertyDef id="{393bc025-dcf8-11d9-b3cb-0007e939d3e5}" name="SlingObjectAttached"         type="BOOL"  index_min="1"/>
+        <PropertyDef id="{393bc026-dcf8-11d9-b3cb-0007e939d3e5}" name="SlingObjectAttachedTitle"    type="TEXT"  index_min="1" />
+        <PropertyDef id="{393bc027-dcf8-11d9-b3cb-0007e939d3e5}" name="SlingCableBroken"            type="BOOL"  index_min="1" />
+        <PropertyDef id="{393bc028-dcf8-11d9-b3cb-0007e939d3e5}" name="SlingCableExtendedLength"    type="DOUBLE" units="feet"  index_min="1"/>
+        <PropertyDef id="{393bc029-dcf8-11d9-b3cb-0007e939d3e5}" name="SlingActivePayloadStation"   type="ULONG" units="number"  index_min="1"/>
+        <PropertyDef id="{393bc02a-dcf8-11d9-b3cb-0007e939d3e5}" name="IsAttachedToSling"           type="BOOL"/>
+        <PropertyDef id="{393bc02b-dcf8-11d9-b3cb-0007e939d3e5}" name="PayloadStationNumSimObjects" type="ULONG"  units="number" index_min="1"/>        
+        <PropertyDef id="{393bc02c-dcf8-11d9-b3cb-0007e939d3e5}" name="PropRPM"                     type="DOUBLE" units="RPM" index_min="1"/>        
+        <PropertyDef id="{393bc02d-dcf8-11d9-b3cb-0007e939d3e5}" name="EngRPM" 	                    type="DOUBLE" units="RPM" index_min="1"/>
+        <PropertyDef id="{393bc02e-dcf8-11d9-b3cb-0007e939d3e5}" name="EngDamagePercent"            type="DOUBLE" units="percent" index_min="1"/>
+        <PropertyDef id="{393bc02f-dcf8-11d9-b3cb-0007e939d3e5}" name="EngManifoldPressure"         type="DOUBLE" units="InHG" index_min="1"/>
+        <PropertyDef id="{393bc030-dcf8-11d9-b3cb-0007e939d3e5}" name="EngAntidetonationTankValve"  type="BOOL" index_min="1"/>
+        <PropertyDef id="{393bc031-dcf8-11d9-b3cb-0007e939d3e5}" name="EngAntidetonationQuantity"   type="DOUBLE" units="gallons" index_min="1"/>
+        <PropertyDef id="{393bc032-dcf8-11d9-b3cb-0007e939d3e5}" name="EngNitrousTankValve"         type="BOOL" index_min="1"/>
+        <PropertyDef id="{393bc033-dcf8-11d9-b3cb-0007e939d3e5}" name="EngNitrousQuantity"          type="DOUBLE" units="gallons" index_min="1"/>
+        <PropertyDef id="{393bc034-dcf8-11d9-b3cb-0007e939d3e5}" name="HoldbackBarInstalled"        type="BOOL"/>
+        <PropertyDef id="{393bc035-dcf8-11d9-b3cb-0007e939d3e5}" name="PropellerLeverPosition"      type="DOUBLE" units="percent" index_min="1"/>
+        <PropertyDef id="{393bc036-dcf8-11d9-b3cb-0007e939d3e5}" name="MixtureLeverPosition"        type="DOUBLE" units="percent" index_min="1"/>
+        <PropertyDef id="{393bc037-dcf8-11d9-b3cb-0007e939d3e5}" name="RollRate"                    type="DOUBLE" units="radianspersecond"/>
+        <PropertyDef id="{393bc038-dcf8-11d9-b3cb-0007e939d3e5}" name="TailhookPosition"            type="DOUBLE" units="percent"/>
+        <PropertyDef id="{393bc039-dcf8-11d9-b3cb-0007e939d3e5}" name="FuelQuantityPercentage"      type="DOUBLE" units="percent"/>
+        <PropertyDef id="{393bc03a-dcf8-11d9-b3cb-0007e939d3e5}" name="RotorPctRpm"                 type="DOUBLE" units="percent" index_min="1"/>
+        <PropertyDef id="{393bc03b-dcf8-11d9-b3cb-0007e939d3e5}" name="CylindersFailed"             type="ULONG"  units="number"  index_min="1"/>
+        <PropertyDef id="{393bc03c-dcf8-11d9-b3cb-0007e939d3e5}" name="CableCaughtByTailhook"       type="ULONG"  units="number"/>
+        <PropertyDef id="{393bd06c-dcf8-11d9-b3cb-0007e939d3e5}" name="Sim_On_Ground"               type="BOOL"/>      
+        <PropertyDef id="{393bd06d-dcf8-11d9-b3cb-0007e939d3e5}" name="ATC_RUNWAY_RELATIVE_POSITION_X"       type="ULONG"  units="number"/>
+        
+    </PropertyDefs>
+
+</SymbolDef>

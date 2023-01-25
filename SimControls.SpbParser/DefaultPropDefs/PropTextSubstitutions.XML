@@ -1,0 +1,127 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- ADF Substitution property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+
+<SymbolDef
+    name         = "Afd"
+    id           = "{530CA1DF-CD1F-44e2-AA3C-6720F5F98038}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propAfdSubstitution.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+
+//-------------------------------------------------------------------------//
+//  PropADFSubstitution.h
+//
+//  FlightSim Autogen AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "OriginalString"
+            id          = "{0AB5B257-2583-42CA-8F94-5BF1234C8647}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ReplacementString"
+            id          = "{B40C83FE-391D-41D1-8E69-757F480C48DF}"
+            type        = "TEXT"
+            devnot      = "Replacement ADF string to replace" >
+        </PropertyDef>
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{41973382-97DB-4C47-9B56-A93591671BEA}"
+            name        = "AFD"
+            policy      = "unrestricted"
+            descr       = "Top level bag of the ADF substitution strings">
+        </SetDef>
+
+        <SetDef
+            id          = "{CEC097AD-21FC-42BF-96F9-7336534675D8}"
+            name        = "CountryOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{61A32700-1F3D-4FE4-BD5A-12E4589A740B}"
+            name        = "StateOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{28405641-E54C-4E27-A884-C1EA588A04CB}"
+            name        = "CityOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{FDB9EC19-D041-4B8E-A66F-474640AF038C}"
+            name        = "AirportOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5840CFF3-9CEB-42a8-8846-466F37E320E9}"
+            name        = "SceneryTitleOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{8B21392B-1B07-4026-8FA2-1AB25DDEDFA6}"
+            name        = "RewardTitleOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F5EE9FEC-C16D-4210-B2DC-C035B27BA349}"
+            name        = "RewardDescriptionOverride">
+            <property name = "OriginalString"/>
+            <property name = "ReplacementString"/>
+        </SetDef>
+
+
+
+    </SetDefs>
+
+</SymbolDef>

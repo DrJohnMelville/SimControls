@@ -1,0 +1,415 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Autogen property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "Autogen"
+    id           = "{C6772D61-7F28-40f1-94C4-8EA43BC687F6}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propautogen.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propgroups.xml"
+        id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+        version  = "1,0" />
+
+  <SymbolInclude
+      filename = "Common\propworldbase.xml"
+      id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+      version  = "1,0" />
+
+  <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propautogen.h
+//
+//  FlightSim Autogen AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "ModelGuid"
+            id          = "{200595D1-CEB1-4463-AAD1-21E36108219C}"
+            type        = "GUID"
+            descr       = "Guid of MDL to use" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ReferenceGuid"
+            id          = "{79E832D8-91D9-4e04-AEDE-E5489E50428C}"
+            type        = "GUID"
+            descr       = "Guid 'name' used to refer to this 'object'" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MinScale"
+            id          = "{6C6E8EA5-8BE5-4d1e-847D-77709EED32A5}"
+            type        = "FLOAT"
+            descr       = "Represents minimum scale for this object" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MaxScale"
+            id          = "{644EA6B9-453F-4150-9AAF-40FE2383B6EA}"
+            type        = "FLOAT"
+            descr       = "Represents maximum scale for this object" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ReferenceHeight"
+            id          = "{D0E1F4C4-2449-4142-B6E4-EC4EE7A39C9B}"
+            type        = "FLOAT" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "IntersectionThreshold"
+            id          = "{551977BF-530C-4fc2-8BAD-8589A919001B}"
+            type        = "FLOAT"
+            descr       = "Multiplier for object radius at which intersections result in culling"
+            default     = "1.0">
+        </PropertyDef>
+
+        <!-- Properties for coverage -->
+        <PropertyDef
+            name        = "CoverageId"
+            id          = "{B7C7B9AC-1892-4103-B359-39B8FD4CD40A}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <!-- Properties for Roofs -->
+        <PropertyDef
+            name        = "MaterialOverride"
+            id          = "{69A26863-0776-408c-ABC5-6943FAAA423B}"
+            type        = "GUID" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FixedUVBias"
+            id          = "{F1B9D3DF-A60E-415b-9B26-D36483FCF5BA}"
+            type        = "FLOAT2" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Dimensions"
+            id          = "{F5EEB070-34FA-4d1e-8AF1-2EBB03148988}"
+            type        = "FLOAT2" >
+        </PropertyDef>
+
+        <!-- Properties for polyline vector placements -->
+        <PropertyDef
+            name        = "ObjectPlacementOrder"
+            id          = "{9F66EE44-5EC3-4a9b-BFA9-FF9BE56AA120}"
+            type        = "ENUM"
+            default     = "RANDOM">
+            <EnumDef symbolprefix="OBJECT_PLACEMENT_ORDER_">
+                <EnumVal name = "RANDOM"/>
+                <EnumVal name = "AS_SPECIFIED"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ObjectPlacementSpacing"
+            id          = "{E336887F-DC78-48a6-85DF-1C0747491981}"
+            type        = "ENUM"
+            default     = "EVENLY_SPACED_AS_SPECIFIED">
+            <EnumDef symbolprefix="OBJECT_PLACEMENT_SPACING_">
+                <EnumVal name = "EVENLY_SPACED_AS_SPECIFIED"/>
+                <EnumVal name = "FIXED_COUNT_EVENLY"/>
+                <EnumVal name = "FIXED_COUNT_EVENLY_PER_SEGMENT"/>
+<!--                <EnumVal name = "FIXED_COUNT_RANDOM_PER_SEGMENT"/>-->
+<!--                <EnumVal name = "FIXED_COUNT_RANDOM"/>-->
+<!--                <EnumVal name = "MAXIMUM_DENSITY"/> -->
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ObjectPlacementOrientation"
+            id          = "{EFA9C33D-5D34-433e-8A29-672D5DF0DE0E}"
+            type        = "ENUM"
+            default     = "RANDOM">
+            <EnumDef symbolprefix="OBJECT_PLACEMENT_ORIENTATION_">
+                <EnumVal name = "RANDOM"/>
+                <EnumVal name = "FIXED_WORLD_ROTATION"/>
+                <EnumVal name = "FIXED_RELATIVE_ROTATION"/>
+                <EnumVal name = "DETERMINISTIC_RANDOM_RELATIVE_ROTATION"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "PlacementJitter"
+            id          = "{7F825FF3-101B-4ed8-B664-27C94731B1A5}"
+            type        = "FLOAT"
+            default     = "0.0"
+            devnot      = "Object placement jitter in meters">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "RotationAngle"
+            id          = "{67CC76F4-94E7-48cc-B5FA-F72255F1D39E}"
+            type        = "FLOAT"
+            default     = "0.0">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FixedObjectSpacing"
+            id          = "{AE193A04-D8FA-41b3-918B-CF21D23C51C1}"
+            type        = "FLOAT"
+            default     = "1.0">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ObjectCountPerSegment"
+            id          = "{01D0EF6C-1291-4e1b-9B40-77CD04BE4644}"
+            type        = "LONG"
+            default     = "1">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TotalObjectCount"
+            id          = "{8D6169E5-EAD6-43c5-AAA4-352C965AFD59}"
+            type        = "LONG"
+            default     = "1">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ObjectGuid"
+            id          = "{17FDF6B0-F459-4866-9C05-CCEC8674E7DA}"
+            cardinality = "multiple"
+            type        = "GUID">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "VectorDefinitionReference"
+            id          = "{085F0313-6A26-4236-B604-FE951EABB71E}"
+            type        = "GUID">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ObjectListReference"
+            id          = "{EB57EE5B-BD5B-4941-8E97-6A11AA4772B1}"
+            type        = "GUID">
+        </PropertyDef>
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{EF4C087E-2327-4665-88D7-553697F0E324}"
+            name        = "SeasonEntry" >
+            <property name = "Season"/>
+            <property name = "ModelGuid"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{C509A645-8318-4363-8C61-E24E93410E17}"
+            name        = "ModelEntry" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "IntersectionThreshold"/>
+            <property name = "ReferenceHeight"/>
+            <property name = "MinScale"/>
+            <property name = "MaxScale"/>
+            <property name = "SeasonEntry"/>
+        </SetDef>
+
+
+       <!-- Sets for coverage -->
+        <SetDef
+            id          = "{DFD762A3-E33B-45fc-A027-BDD8BB41F3DD}"
+            name        = "CoverageEntry">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "CoverageId"/>
+            <property name = "TargetGuid"/>
+        </SetDef>
+
+        <!-- Sets for Roofs -->
+        <SetDef
+            id          = "{611D1F26-5A0D-42d8-A11B-12F1F1B64CD5}"
+            name        = "RoofEntry">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "Dimensions"/>
+            <property name = "ModelGuid"/>
+            <property name = "MaterialOverride"/>
+            <property name = "FixedUVBias"/>
+        </SetDef>
+
+        <!-- Sets for polyline vector placements -->
+        <SetDef
+            id          = "{B802D8FF-E0CE-4ef0-87F2-B6002ACC2C1D}"
+            name        = "ObjectList"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "ObjectGuid"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{0AE2CF65-AF25-4687-870C-81E2CF6966A7}"
+            name        = "VectorDefinition"
+            policy      = "inclusive"
+            descr       = "Vector placement definition" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "ObjectPlacementOrder"/>
+            <property name = "ObjectPlacementSpacing"/>
+            <property name = "ObjectPlacementOrientation"/>
+            <property name = "PlacementJitter"/>
+            <property name = "RotationAngle"/>
+            <property name = "FixedObjectSpacing"/>
+            <property name = "ObjectCountPerSegment"/>
+            <property name = "TotalObjectCount"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{14D2A5FB-9A2B-4fa9-B542-91F67DCD2FD8}"
+            name        = "VectorPlacement"
+            policy      = "inclusive"
+            descr       = "Vector placement" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "VectorDefinitionReference"/>
+            <property name = "ObjectListReference"/>
+        </SetDef>
+
+        <!-- Misc definitions -->
+        <SetDef
+            id          = "{B25F6ACF-5F80-4d41-954D-7E845E10FAE9}"
+            name        = "ExternalDependency"
+            descr       = "File that contains definitions of items referenced from the current file" >
+            <property name = "FileName"/>
+        </SetDef>
+
+        //
+        // Outer sets
+        //
+        <SetDef
+            id          = "{9B52CA86-DC70-4a35-9DB4-032ED629B66F}"
+            name        = "DefaultTerrainCoverage"
+            policy      = "inclusive"
+            descr       = "Top level bag of terrain coverage entries" >
+            <property name="CoverageEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{C6A7C460-6662-4e3d-BDEB-9D3E1710882D}"
+            name        = "SeasonalModels"
+            policy      = "inclusive"
+            descr       = "Top level bag of seasonal models" >
+            <property name="ModelEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F6A16B4F-C3C7-437f-B80D-4DB974A96DCC}"
+            name        = "AutogenGroupings"
+            policy      = "inclusive"
+            descr       = "Top level bag of seasonal model groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{8D9EAFE3-9F68-40e3-9C5F-1723C293F198}"
+            name        = "BuildingRoofs"
+            policy      = "inclusive"
+            descr       = "Top level bag of building roofs" >
+            <property name="RoofEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B4AF847B-AF94-4679-A645-0B92094A0CF5}"
+            name        = "BuildingRoofGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of building roof groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{30EBB82A-0BD0-4f34-AE93-4D3A2ABAEB05}"
+            name        = "VectorDefinitions"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector definitions" >
+            <property name="VectorDefinition"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{6EFF0FBF-BEDD-4091-A3C9-FA01AF1D32E4}"
+            name        = "VectorDefinitionGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector definition groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{A58F06E2-661C-406b-8134-B8194121958A}"
+            name        = "VectorPlacementObjectLists"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector placement lists" >
+            <property name="ObjectList"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{8A254F13-1301-455c-AFDB-DDEFB238652F}"
+            name        = "VectorPlacementObjectListGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector placement list groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{147BFA9F-AF68-4e50-9706-5B74898B5787}"
+            name        = "VectorPlacements"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector placements" >
+            <property name="VectorPlacement"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F02AC3CE-70EF-44d3-9E39-F4C029EC0727}"
+            name        = "VectorPlacementGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of vector placement groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <!-- Misc sets -->
+
+        <SetDef
+            id          = "{6C6D5696-D5D6-4e43-BD18-61A8E4842981}"
+            name        = "ExternalDependencies"
+            policy      = "inclusive"
+            descr       = "Top level bag of files that contain definitions of items referenced from the current file" >
+            <property name = "ExternalDependency"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

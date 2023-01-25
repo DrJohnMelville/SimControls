@@ -1,0 +1,514 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+
+<!-- FlightSim SIM property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name="LivingWorld" 
+    id="{74E774BF-6E78-46c5-B36A-8F610DDF9DCA}" 
+    descr="FlightSim living world property, type and set definitions." 
+    chdr="proplivingworld.h" version="1,0">
+    
+    <SymbolInclude 
+        filename="Common\propcontain.xml" 
+        id="{37232F83-DC75-46b3-BC26-F142957A50FF}" 
+        version="1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  proplivingworld.h    
+//
+//  FlightSim Living World AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs symbolprefix="SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef 
+            name        = "RegionID" 
+            id          = "{EBC0682B-2A6D-4146-8738-44E1A08AD2F8}"          
+            type        = "TEXT"
+            descr		= "Letter A-Z identifies scenery region">
+        </PropertyDef>
+
+        <PropertyDef 
+            name        = "ModelID" 
+            id          = "{31D5B178-7170-40ca-BC16-D4F40FC03348}"          
+            type        = "GUID"
+            descr		= "3D Object GUID">
+        </PropertyDef>
+
+        <PropertyDef 
+            name        = "EntryWeight" 
+            id          = "{E53EA68D-F79F-42b2-934B-167D8C84E5DD}"          
+            type        = "ULONG"
+            descr		= "1-10 Relative weight for this entry. 1 is rare, 10 is common.">
+        </PropertyDef>
+
+        <PropertyDef 
+            name        = "TrafficSpeed" 
+            id          = "{66FFBFD5-B152-4954-B9D2-78C2BA44DAE4}"
+            type        = "FLOAT"
+            descr		= "Speed of freeway traffic in kilometers per hour"
+            default     = "100.0">
+        </PropertyDef>
+
+        <PropertyDef 
+            name        = "RightSideDrive" 
+            id          = "{DFB87440-657A-4cce-BB6D-496939A9CA19}"
+            type        = "BOOL"
+            descr		= "Traffic drives on the right side of the road if true, left if false"
+            default     = "TRUE">
+        </PropertyDef>
+
+        <PropertyDef 
+            name        = "AccelKnots" 
+            id          = "{C749A5CF-ECC3-484b-892C-64D5BBFB770D}"
+            type        = "FLOAT"
+            descr		= "Acceleration in knots per second">
+        </PropertyDef>
+      
+      <PropertyDef
+        name        = "ParkingType"
+        id          = "{212BF344-8F9A-4900-B106-3FBBD83E597E}"
+        type        = "ENUM"
+        serialize   = "default"
+        default     = "NONE">
+        <EnumDef symbolprefix="PARKINGTYPE_">
+          <EnumVal name = "NONE"/>
+          <EnumVal name = "RAMP_GA"/>
+          <EnumVal name = "RAMP_GA_SMALL"/>
+          <EnumVal name = "RAMP_GA_MEDIUM"/>
+          <EnumVal name = "RAMP_GA_LARGE"/>
+          <EnumVal name = "RAMP_CARGO"/>
+          <EnumVal name = "RAMP_MIL_CARGO"/>
+          <EnumVal name = "RAMP_MIL_COMBAT"/>
+          <EnumVal name = "GATE_SMALL"/>
+          <EnumVal name = "GATE_MEDIUM"/>
+          <EnumVal name = "GATE_HEAVY"/>
+          <EnumVal name = "DOCK_GA"/>
+          <EnumVal name = "FUEL"/>
+          <EnumVal name = "VEHICLE"/>
+          <EnumVal name = "RAMP_GA_EXTRA"/>
+          <EnumVal name = "GATE_EXTRA"/>
+          <EnumVal name = "COUNT"/>
+        </EnumDef>
+      </PropertyDef>
+
+      <PropertyDef
+          name        = "Rate"
+          id          = "{4C0F193D-A8A5-423B-842A-B98FA4654823}"
+          type        = "FLOAT"
+          descr		= "Value between 0 and 1"
+          default     = "0">
+      </PropertyDef>
+
+      <PropertyDef
+        name        = "GoodToBadMatchRate"
+        id          = "{2CF115CA-EFCB-4B9B-8C9C-89D188977953}"
+        type        = "FLOAT"
+        descr		= "Value between 0 and 1"
+        default     = "0">
+      </PropertyDef>
+
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix="SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{989A5568-AE45-4e98-A3DC-29D7D0BF33F4}"
+            name        = "LivingWorldSettings"
+            policy      = "inclusive"
+            descr       = "Per-region technical settings for living world features">
+            <property name = "LivingWorldRegion"/>
+            <property name = "GeneralSettings"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{1FAC7354-C621-4d48-B8F8-1480B3DAF305}"
+            name        = "LivingWorldRegion"
+            policy      = "inclusive"
+            descr       = "technical settings for living world features for a particular region">
+            <property name = "RegionID"/>
+            <property name = "RightSideDrive"/>
+            <property name = "FreewayTraffic"/>
+            <property name = "Airport"/>
+            <property name = "Boats"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{3D5CC07B-07FA-4000-BA6C-8241AEF9425F}"
+            name        = "FreewayTraffic"
+            policy      = "inclusive"
+            descr       = "FreewayTraffic settings and model list">
+            <property name = "TrafficSpeed"/>
+            <property name = "ModelEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B2C93D3D-5A91-4334-ABA2-5A96C8CF6170}"
+            name        = "Airport"
+            policy      = "inclusive"
+            descr       = "Living Airport model and container lists">
+            <property name = "PushbackTugs"/>
+            <property name = "SmallPushbacks"/>
+            <property name = "AmbientTraffic"/>
+            <property name = "ImmobileAmbient"/>
+            <property name = "IdleWorkers"/>
+            <property name = "FuelTrucks"/>
+            <property name = "BaggageCarts"/>
+            <property name = "BaggageLoaders"/>
+            <property name = "BaggageDollies"/>
+            <property name = "CateringTrucks"/>
+            <property name = "BoardingRamps"/>
+            <property name = "GroundPowerUnits"/>
+            <property name = "ParkedSmallAircrafts"/>
+            <property name = "ParkedLargeAircrafts"/>
+            <property name = "GroundVehiclePilots"/>
+            <property name = "Marshaller"/>
+            <property name = "WingRunner"/>
+          
+        </SetDef>
+
+        <SetDef
+            id          = "{935EFED5-F1AB-4e90-B1E9-0292D70AFF2E}"
+            name        = "PushbackTugs"
+            policy      = "inclusive"
+            descr       = "Pushback Tug model list">
+            <property name = "ModelEntry"/>
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+      <SetDef
+            id          = "{EAADA20D-99F7-44C9-8DB5-699093A94C77}"
+            name        = "SmallPushbacks"
+            policy      = "inclusive"
+            descr       = "Small Pushback Vehicles (or humans) model list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+        <SetDef
+            id          = "{6AA54436-33DB-4237-8825-642CF51A27A5}"
+            name        = "AmbientTraffic"
+            policy      = "inclusive"
+            descr       = "Ambient Airport traffic container list">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+      <SetDef
+            id          = "{4D6D6D91-CCC6-4D8F-8AD6-AEEC4434F174}"
+            name        = "ImmobileAmbient"
+            policy      = "inclusive"
+            descr       = "Immobile Ambient Airport container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{E92ABA1C-09AC-48D0-8856-BB155219627E}"
+           name        = "IdleWorkers"
+           policy      = "inclusive"
+           descr       = "Idle Workers on Airport container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{97BECDF4-3108-4A92-83E3-5EB130553056}"
+           name        = "GroundVehiclePilots"
+           policy      = "inclusive"
+           descr       = "Ground vehicle pilots  on Airport container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+      
+      
+      <SetDef
+           id          = "{06AC8EC7-FDCD-46D8-93AD-DB63F19B35D8}"
+           name        = "Marshaller"
+           policy      = "inclusive"
+           descr       = "Marshaller on Airport container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+      
+      
+      <SetDef
+           id          = "{4E78ABB2-087E-40B6-9409-A1D1F67A961A}"
+           name        = "WingRunner"
+           policy      = "inclusive"
+           descr       = "Wing runner on Airport container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+     
+
+        <SetDef
+            id          = "{3E5E307A-E35E-47de-8A0B-BE3B6D36C456}"
+            name        = "FuelTrucks"
+            policy      = "inclusive"
+            descr       = "Fuel truck container list">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{E7FBEE48-4754-4bb7-8704-744C492AE325}"
+            name        = "BaggageCarts"
+            policy      = "inclusive"
+            descr       = "Baggage Cart (Tug) container list">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{347FC9EE-29DC-4fad-95C1-EFBEE0A12D59}"
+            name        = "BaggageLoaders"
+            policy      = "inclusive"
+            descr       = "Baggage Loader container list">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+      <SetDef
+            id          = "{42DF66CE-F993-49AE-BB82-2B6CABC56C5D}"
+            name        = "BaggageDollies"
+            policy      = "inclusive"
+            descr       = "Baggage Dolly container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{876A7DA1-7B7E-4F2E-A0A5-17FC79B65227}"
+            name        = "CateringTrucks"
+            policy      = "inclusive"
+            descr       = "Catering Truck container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{09967474-B86F-4AF2-82AE-EF82E160C2D5}"
+            name        = "BoardingRamps"
+            policy      = "inclusive"
+            descr       = "Boarding Ramp container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{B77E67FB-2BEE-48B4-9F3D-769CDEA211AC}"
+            name        = "GroundPowerUnits"
+            policy      = "inclusive"
+            descr       = "Ground Power Unit container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{92E54BAD-1396-4891-A892-6E8AAA5A8010}"
+           name        = "ParkedSmallAircrafts"
+           policy      = "inclusive"
+           descr       = "Parked small aircrafts container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{0652F287-0F19-4301-A099-83651FBBEA20}"
+           name        = "ParkedLargeAircrafts"
+           policy      = "inclusive"
+           descr       = "Parked large aircrafts container list">
+        <property name = "ContainerEntry"/>
+      </SetDef>
+
+        <SetDef
+            id          = "{6115EA00-CC7C-4aaf-8A81-D0E10462B100}"
+            name        = "Boats"
+            policy      = "inclusive"
+            descr       = "Boat container lists">
+            <property name = "OceanBoats"/>
+            <property name = "InlandBoats"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{BB6B6748-E337-4086-8C1D-13748DE079DE}"
+            name        = "OceanBoats"
+            policy      = "inclusive"
+            descr       = "List of containers to use in the ocean">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{98C6E595-F97D-4595-B419-55AACFF41CC7}"
+            name        = "InlandBoats"
+            policy      = "inclusive"
+            descr       = "List of containers to use in lakes and rivers">
+            <property name = "ContainerEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{14687DC6-44A8-405f-9D07-D7A379CA7C30}"
+            name        = "ContainerEntry"
+            policy      = "inclusive"
+            descr       = "Entry in a regionalized list of containers">
+            <property name = "ContainerTitle"/>
+            <property name = "EntryWeight"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{839149DD-7D5B-4bd0-BD6D-2ED70676BC80}"
+            name        = "ModelEntry"
+            policy      = "inclusive"
+            descr       = "Entry in a regionalized list of models">
+            <property name = "ModelID"/>
+            <property name = "EntryWeight"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{776F96A2-7D27-4432-9F81-B42EB5D189CA}"
+            name        = "MSOWaypointController"
+            policy      = "inclusive"
+            descr       = "Waypoint following controller for MobileSceneryObjects">
+            <property name = "AccelKnots"/>
+            <property name = "GroundCruiseSpeed"/>
+            <property name = "GroundTurnSpeed"/>
+            <property name = "GroundTurnTime"/>
+            <property name = "WaypointList"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{A45EC1C5-5CDD-455f-BCDA-3E312CD31CB3}"
+            classid     = "{9454AEDE-13DB-485f-87E2-2DCEDA16888F}"
+            name        = "MobileSceneryObject"
+            policy      = "inclusive"
+            descr       = "Simple dynamic scenery that can follow waypoint paths">
+            <property name = "Descr"/>
+            <property name = "InstanceId"/>
+            <property name = "Activated"/>
+            <property name = "ModelID"/>            <!--Legacy support for FSX RTM version-->
+            <property name = "ObjectReference"/>    <!--New preferred way encapsualted library object-->
+            <property name = "WorldPosition"/>
+            <property name = "LocalDistance"/>
+            <property name = "LocalHeading"/>
+            <property name = "LocalAltitude"/>
+            <property name = "LocalOffsetXYZ"/>
+            <property name = "LocalOrientation"/>
+            <property name = "Orientation"/>
+            <property name = "IsOnGround"/>
+            <property name = "SpeedKnots"/>
+            <property name = "MSOWaypointController"/>
+        </SetDef>
+
+
+      <SetDef
+            id          = "{4301CF9D-C8FB-4759-B7B6-222972664553}"
+            name        = "GeneralSettings"
+            policy      = "inclusive"
+            descr       = "general settings for living world features">
+        <property name = "ImmobileAmbientVehicleParkingRepartition"/>
+        <property name = "IdleWorkerParkingRepartition"/>
+        <property name = "AmbientVehiclesQuantityByParking"/>
+        <property name = "ParkedSmallAircraftsQuantityByParking"/>
+        <property name = "ParkedLargeAircraftsQuantityByParking"/>
+        <property name = "ParkedAircraftsQuantityByParking"/>
+        <property name = "RatioOfAmbientVehiclesThatAreImmobile"/>
+        <property name = "FrequencyOfServicesOnEmptyParkings"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{909D6595-EF8D-444F-AB8A-E1B8E5E69022}"
+            name        = "ImmobileAmbientVehicleParkingRepartition"
+            policy      = "inclusive"
+            descr       = "Spawning rate of immobile vehicles on parking types">
+        <property name = "ParkingEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{4F2C85A8-301E-4600-9216-66B5151AF69E}"
+            name        = "IdleWorkerParkingRepartition"
+            policy      = "inclusive"
+            descr       = "Spawning rate of idle workers on parking types">
+        <property name = "ParkingEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{FFF84E83-AEB2-4947-A515-58D9CE1FFD45}"
+            name        = "AmbientVehiclesQuantityByParking"
+            policy      = "inclusive"
+            descr       = "Spawning rate of ambient traffic vehicles by counting parking types">
+        <property name = "ParkingEntry"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{89DF64DD-A6BC-4FB9-9063-09DF679A5E04}"
+            name        = "ParkedSmallAircraftsQuantityByParking"
+            policy      = "inclusive"
+            descr       = "Spawning rate of parked small aircrafts by counting parking types">
+        <property name = "ParkingEntry"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{14CC455D-396A-431F-995C-CF30B9CD5C3A}"
+           name        = "ParkedLargeAircraftsQuantityByParking"
+           policy      = "inclusive"
+           descr       = "Spawning rate of parked large aircrafts by counting parking types">
+        <property name = "ParkingEntry"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{83138ECA-E5BF-4206-A4C3-5D6F2F231568}"
+          name        = "ParkedAircraftsQuantityByParking"
+          policy      = "inclusive"
+          descr       = "Spawning rate of all parked aircrafts by counting parking types">
+        <property name = "ParkingEntryWeighted"/>
+      </SetDef>
+      
+      <SetDef
+           id          = "{E0565472-ACF1-408C-B258-55932A65068F}"
+           name        = "RatioOfAmbientVehiclesThatAreImmobile"
+           policy      = "inclusive"
+           descr       = "Ratio of ambien vehicles that are immobile">
+        <property name = "Rate"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{E09B955A-0E3E-4C5C-AD84-A8741A596B5D}"
+          name        = "FrequencyOfServicesOnEmptyParkings"
+          policy      = "inclusive"
+          descr       = "Frequency of ground services spawned on empty parkings">
+        <property name = "Rate"/>
+      </SetDef>
+
+      <SetDef
+            id          = "{200C5E52-6B94-4139-95D3-CDB9FB5DE51C}"
+            name        = "ParkingEntry"
+            policy      = "inclusive"
+            cardinality = "multiple"
+            descr       = "Parking type and rate">
+        <property name = "ParkingType"/>
+        <property name = "Rate"/>
+      </SetDef>
+
+      <SetDef
+                 id          = "{B9D8E237-76DF-4A01-B279-B9398E708B63}"
+                 name        = "ParkingEntryWeighted"
+                 policy      = "inclusive"
+                 cardinality = "multiple"
+                 descr       = "Parking type and rate">
+        <property name = "ParkingType"/>
+        <property name = "Rate"/>
+        <property name = "GoodToBadMatchRate"/>
+      </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

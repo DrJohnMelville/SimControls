@@ -1,0 +1,104 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+		name         = "UIComponents"
+		id           = "{97B792B0-FBE4-41D6-896D-713B0AFD193F}"
+		descr        = "SimProp UI Components and assets definition."
+		chdr         = "propUIComponent.h"
+		version      = "1,0" >
+
+  <SymbolInclude
+			filename = "Common\propbase.xml"
+			id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+			version  = "1,0" />
+ 
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  propUIComponent.h
+    //
+    //  FlightSim UI Components AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //	Namespace
+    //
+    namespace UIComponents {
+
+
+  </cpptext>
+
+  <PropertyDefs
+			symbolprefix = "SPID_UICOMPONENT_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+
+    <PropertyDef
+				name        ="FriendlyId"
+				id          ="{A56AE73D-9A51-45CC-B6BA-C1E505C855AA}"
+				type        = "TEXT"								
+				descr       = "Component name to use in the xml files">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="URL"
+				id          ="{05649B4B-7C14-4F55-8331-08A84A1D65A8}"
+				type        = "TEXT"
+				descr       = "Component URL to import">
+    </PropertyDef>
+
+    <PropertyDef
+       name        ="HTMLTag"
+       id          ="{3E01977E-F0AE-4919-B266-DC75DC16C07C}"
+       type        = "TEXT"
+       descr       = "Component HTML Tag">
+    </PropertyDef>
+
+    <PropertyDef
+      name        ="DataStr"
+      id          ="{B36D6F34-9DC4-4E20-9D15-2E3A04968CBE}"
+      type        = "TEXT"
+      descr       = "Component Data">
+    </PropertyDef>
+    
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_UI_COMPONENT_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+				id          = "{94511B8C-910B-47B8-AA00-E58982A5CB70}"
+				name        = "UIComponentDefinition"
+				policy      = "inclusive"
+				descr       = "TODO">
+      <property name = "FriendlyId"/>
+      <property name = "URL"/>
+      <property name = "HTMLTag"/>
+      <property name = "Descr"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{0B6E4C45-3866-469F-839A-786A0FBC24A3}"
+				name        = "UIComponent"
+				policy      = "inclusive"
+				descr       = "TODO">
+      <property name = "Id"/>
+      <property name = "DataStr"/>
+      
+    </SetDef>
+
+
+  </SetDefs>
+  <cpptext pass="2">
+    }
+  </cpptext>
+</SymbolDef>

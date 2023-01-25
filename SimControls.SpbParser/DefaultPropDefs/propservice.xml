@@ -1,0 +1,306 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "Service"
+    id           = "{D699D20C-2B87-47AA-9C4B-7D696E9DF58B}"
+    descr        = "SimProp Service property, type and set definitions."
+    chdr         = "propservice.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+  <SymbolInclude
+          filename = "Common\propmission.xml"
+          id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+          version  = "1,0" />
+
+  <SymbolInclude
+            filename = "Common\proplivingworld.xml"
+            id       = "{74E774BF-6E78-46c5-B36A-8F610DDF9DCA}"
+            version  = "1,0" />
+
+  <SymbolInclude
+            filename = "Common\propgroups.xml"
+            id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+            version  = "1,0" />
+
+  <SymbolInclude
+             filename = "Common\propcontain.xml"
+             id       = "{37232F83-DC75-46b3-BC26-F142957A50FF}"
+             version  = "1,0" />
+
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  propservice.h
+    //
+    //  FlightSim service AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+
+  </cpptext>
+
+  <PropertyDefs
+        symbolprefix = "SPID_SERVICE_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+
+    <PropertyDef
+      name        = "Name"
+      id          = "{3CDB75B1-2DAD-43AC-8269-2828F62C7DA6}"
+      type        = "TEXT"
+      descr       = "Name">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "KeyToStart"
+            id          = "{5330B715-F6C5-44E4-B3FE-FC459716BA4A}"
+            type        = "TEXT"
+            descr       = "Input Key to start the service">
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "Frequency"
+           id          = "{801E93CE-43F7-4377-814C-900069C3B6C7}"
+           type        = "FLOAT"
+           descr       = "Frequency of spawning, in [0,1]"
+           default     = "1">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{6E45A106-63C1-4AA6-BC48-A78B843F2510}"
+            name        = "SpotId"
+			      default		  = "-1"
+			      type		    = "LONG"
+			      descr		    = "SpotId in parking space for idle worker">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{3CCAE3E3-C7D4-4A78-BCB8-0F5156486590}"
+           name        = "SpawnDistanceParkingRadiusFactor"
+           default		  = "1"
+           type		    = "FLOAT"
+           descr		    = "Factor of the parking radius to determine at which distance from the parking center the object will spawn">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{C50E0551-7C41-4F7E-A4CE-2DD18CCDF496}"
+           name        = "SpawnDistanceAdditionalOffset"
+           default		  = "0"
+           type		    = "FLOAT"
+           descr		    = "Additional offset (in meters) to determine at which distance from the parking center the object will spawn">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{38D67484-303B-4011-B9D7-714E04D84F19}"
+           name        = "SpawnAngleFromParking"
+           default		  = "0"
+           type		    = "FLOAT"
+           descr		    = "Direction from parking heading at which the object will spawn (in degrees)">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{F610AB5F-002A-45A7-BABF-FE36BDBEA988}"
+           name        = "HeadingFromParkingHeading"
+           default		  = "0"
+           type		    = "FLOAT"
+           descr		    = "Heading of the object, relative to the parking heading instead of North">
+    </PropertyDef>
+
+     <PropertyDef
+              id          = "{7D86B63C-0E2F-4FF3-B277-E31E238C7813}"
+              name        = "MinParkingSpaces"
+              default		  = "2"
+              type		    = "LONG"
+              descr		    = "Min Parking spaces in airport to spawn services idle workers">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{14B23360-C633-4142-9D6E-95FC7ED21BB4}"
+           name        = "Probability"
+           default		  = "0"
+           type		    = "FLOAT"
+           descr		    = "Probability that sleeping plane will wake up">
+    </PropertyDef>
+
+    <PropertyDef
+           id          = "{601293C2-26B5-4F96-AF62-4034D26F7521}"
+           name        = "Timer"
+           default		  = "0"
+           type		    = "FLOAT"
+           descr		    = "Timer to wake up sleeping plane to call services or refuel">
+    </PropertyDef>
+    
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_SERVICE_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+            id="{CF4ABC40-0EA1-4A6F-AD59-E29D2D5C37BC}"
+            name="ParkingSpaceServices"
+            policy="inclusive"
+            descr="ParkingSpaceServices Set Def">
+        <property name = "ParkingSpace"/>
+    </SetDef>
+
+    <SetDef
+            id="{CE32B4F6-C8F0-4FF1-BB52-A19EA6DF2F1A}"
+            name="ParkingSpace"
+            policy="inclusive"
+            descr="ParkingSpace Set Def">
+      <property name = "Name"/>
+      <property name = "ParkingTypes"/>
+      <property name = "IdleWorkers"/>
+      <property name = "Services"/>
+      <property name = "MinParkingSpaces"/>
+      <property name = "SleepingActivities"/>
+    </SetDef>
+    
+    <SetDef
+            id="{28D90182-3453-443F-8638-BD1372D689BA}"
+            name="ParkingTypes"
+            policy="inclusive"            
+            descr="Types of ParkingSpace available">
+      <property name = "ParkingEntry"/>
+    </SetDef>
+
+    <SetDef
+            id="{4B3F0C70-5AF0-4354-BBFB-5479F230AC6D}"
+            name="IdleWorkers"
+            policy="inclusive"
+            descr="Idle workers Set">
+      <property name = "Spot"/>      
+    </SetDef>
+    
+    <SetDef
+            id="{177A3F45-396D-4FA8-BBB6-8E7BEBCFC28D}"
+            name="Spot"
+            policy="inclusive"
+            cardinality = "multiple"
+            descr="Spot for Idle worker properties">
+      <property name = "Frequency"/>
+      <property name = "IdleWorker"/>
+      <property name = "SpotId"/>
+      <property name = "SpawnDistanceParkingRadiusFactor"/>
+      <property name = "SpawnDistanceAdditionalOffset"/>
+      <property name = "SpawnAngleFromParking"/>
+      <property name = "HeadingFromParkingHeading"/>
+    </SetDef>
+
+    <SetDef
+               id="{BCBF5550-E260-4762-B75E-CD28632D1DFC}"
+               name="SleepingActivities"
+               policy="inclusive"
+               descr="Activities for sleeping planes">
+      <property name = "SleepingAirlinerServices"/>
+      <property name = "SleepingSmallPlaneRefueling"/>
+    </SetDef>
+
+    <SetDef
+          id="{2D28D5F4-5B81-45C0-93C8-4F71B454D321}"
+          name="SleepingSmallPlaneRefueling"
+          policy="inclusive"
+          descr="How often and likely sleeping small planes go to refuel">
+      <property name = "Probability"/>
+      <property name = "Timer"/>
+    </SetDef>
+
+    <SetDef
+           id="{1938CE93-4665-4561-B97F-48FCD13B1EE9}"
+           name="SleepingAirlinerServices"
+           policy="inclusive"
+           descr="How often and likely sleeping airliners call services">
+      <property name = "Probability"/>
+      <property name = "Timer"/>
+    </SetDef>
+    
+    <SetDef
+            id="{CA3F873B-563E-4ADF-B1C2-AA3A7964F1F0}"
+            name="IdleWorker"
+            policy="inclusive"
+            cardinality = "multiple"
+            descr="Idle worker properties">
+      <property name = "Filename"/>
+      <property name = "EntryWeight"/>
+    </SetDef>
+
+    <SetDef
+            id="{B2493987-FEB9-46B7-88E7-78905E62B3FF}"
+            name="Services"
+            policy="inclusive"
+            descr="Services Set">
+      <property name = "Service"/>
+    </SetDef>
+
+    <SetDef
+            id="{0380058C-F955-4764-904D-AC6D424578ED}"
+            name="Service"
+            policy="inclusive"
+            cardinality = "multiple"
+            descr="Service properties">
+      <property name = "Name"/>
+      <property name = "Filename"/>
+      <property name = "ParkingType"/>
+      <property name = "Frequency"/>
+      <property name = "AIType"/>
+      <property name = "SpawnDistanceParkingRadiusFactor"/>
+      <property name = "SpawnDistanceAdditionalOffset"/>
+      <property name = "SpawnAngleFromParking"/>
+      <property name = "HeadingFromParkingHeading"/>
+    </SetDef>
+
+    <SetDef
+            id="{2712356E-A115-4E22-974D-A3F699ED431A}"
+            name="AirportServices"
+            policy="inclusive"
+            descr="AirportServices Set Def">
+      <property name = "Services"/>
+    </SetDef>
+
+
+    <SetDef
+            id ="{14952365-9C90-4E17-9E02-C6CFD2D74A96}"
+            classid     = "{05276563-01DB-4F0F-A62C-B49F352BBA71}"            
+            name="GroundService"
+            policy="inclusive"
+            descr="GroundService Set Def">
+      <property name = "Name"/>
+      <property name = "KeyToStart"/>
+      <property name = "States"/>
+    </SetDef>
+
+    <SetDef
+            id="{35B6C51E-1557-4466-AB24-3F4F9A376CF0}"
+            name="States"
+            policy="inclusive"
+            descr="GroundService all States Set Def">
+      <property name = "State"/>
+    </SetDef>
+
+    <SetDef
+            id="{7D037D0A-8B79-44D6-9362-7F396E34613A}"
+            name="State"
+            policy="inclusive"
+            descr="GroundService State Set Def">
+      <property name = "name"/>
+      <property name = "UniqueRefId"/>
+      <property name = "ObjectReferenceList"/>
+    </SetDef>
+    
+  </SetDefs>
+  <cpptext pass="2">
+
+  </cpptext>
+</SymbolDef>

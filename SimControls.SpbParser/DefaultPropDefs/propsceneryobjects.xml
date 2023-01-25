@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?> 
+
+<!-- FlightSim SIM property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name="SceneryObjects" 
+    id="{9EE96FC0-10FB-4702-9CCA-F945242661E6}" 
+    descr="FlightSim scenery object property, type and set definitions." 
+    chdr="propsceneryobjects.h" version="1,0">
+    
+    <SymbolInclude 
+        filename="Common\propanim.xml" 
+        id="{25D2097F-A1E9-4ba8-A8DD-2CCA3FC5F27B}" 
+        version="1,0" />
+
+  <SymbolInclude
+    filename = "Common\propworldbase.xml"
+    id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+    version  = "1,0" />
+  
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propsceneryobjects.h    
+//
+//  FlightSim SceneryObject AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs symbolprefix="SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "ImageComplexity"
+            ID          = "{4072B79A-33E4-473c-9E5D-CDDE3E646D66}"
+            type        = "ENUM"
+            descr       = "Image complexity library object will be rendered in">
+            <EnumDef symbolprefix="SIMPROP_IMAGE_COMPLEXITY_">
+                <EnumVal name="VERY_SPARSE" xml_name="Very Sparse"/>
+                <EnumVal name="SPARSE" xml_name="Sparse"/>
+                <EnumVal name="NORMAL" xml_name="Normal"/>
+                <EnumVal name="DENSE" xml_name="Dense"/>
+                <EnumVal name="VERY_DENSE" xml_name="Very Dense"/>
+                <EnumVal name="EXTREMELY_DENSE" xml_name="Extremely Dense"/>
+            </EnumDef>
+        </PropertyDef>  
+
+        <PropertyDef
+            name        = "EffectName"
+            id          = "{A4C7EB8D-625C-4b8b-8C96-7BFBA7E6856E}"
+            type        = "TEXT"
+            desc        = "Name of a visual effect">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AttachPointName"
+            id          = "{47D89CDD-16DD-46b8-9857-325D78C2EC09}"
+            type        = "TEXT"
+            descr       = "Name of a model attachment point">
+        </PropertyDef>
+
+
+      <PropertyDef
+            name        = "AirportLightIntensity"
+            id          = "{7BC2D4A5-9EF8-4A5D-994E-57871827B842}"
+            type        = "FLOAT"
+            default     = "0.0"
+            descr       = "Intensity of airportlight">
+      </PropertyDef>
+      <PropertyDef
+            name        = "AirportLightRadius"
+            id          = "{015085C2-568F-4C8D-B868-4DCABB423C05}"
+            type        = "FLOAT"
+            default     = "0.0"
+            descr       = "Radius of airportlight (bloom effect)">
+      </PropertyDef>
+      <PropertyDef
+            name        = "AirportLightPeriod"
+            id          = "{19833672-632E-4047-816D-3E7784ED292F}"
+            type        = "FLOAT"
+            default     = "0.0"
+            descr       = "Period of airportlight (0 = non-blinking)">
+      </PropertyDef>
+      <PropertyDef
+            name        = "AirportLightPhase"
+            id          = "{E4C26FA2-62F1-42E6-863D-A76775E394BE}"
+            type        = "FLOAT"
+            default     = "0.0"
+            descr       = "Phase of airportlight (if Period is non-0)">
+      </PropertyDef>
+      <PropertyDef
+            name        = "AirportLightColor"
+            id          = "{91A11FCF-6328-4DF0-A8E4-EC2662B4F4B8}"
+            type        = "FLOAT4"
+            descr       = "Color (RGB on a 0.0-1.0 scale) of airportlight">
+      </PropertyDef>
+      <PropertyDef
+            name        = "AirportLightType"
+            id          = "{9A36AE71-7A3D-4270-9ACE-6EAC230B0E4A}"
+            type        = "ENUM"
+            default     = "OMNIDIRECTIONAL"
+            descr       = "Type (omnidirectional or unidirectional) of airportlight">
+        <EnumDef symbolprefix="AIRPORTLIGHT_TYPE_">
+          <EnumVal name="OMNIDIRECTIONAL" xml_name="Omnidirectional"/>
+          <EnumVal name="UNIDIRECTIONAL" xml_name="Unidirectional"/>
+        </EnumDef>
+      </PropertyDef>
+	  <PropertyDef
+			name        = "VisualEffectGUID"
+			id          = "{C49D72DB-63C8-4CE8-8020-8DFB139CC32B}"
+			type        = "GUID"
+			descr       = "GUID of the Visual Effect">
+	  </PropertyDef>
+    <PropertyDef
+			name        = "VisualEffectName"
+			id          = "{D0A3475F-B6CA-45CF-8497-986AD4DC4A22}"
+			type        = "TEXT"
+			descr       = "Name of the Visual Effect">
+	  </PropertyDef>
+
+		<PropertyDef
+			name        = "IsCollidableWithUser"
+			id          = "{C09D6E19-EB4C-45ED-876F-B5DE1405207C}"
+			type        = "BOOL"
+			default     = "False"
+			descr       = "If the user can collide with the object">
+		</PropertyDef>
+
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix="SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+        <SetDef 
+            id="{7DEE5988-368E-424d-A5E6-AC21D65A0FD5}"
+            name="Effect" 
+            policy="inclusive"
+            descr="List of effects attached to this object">
+            <property name = "EffectName"/>
+            <property name = "AttachPointName"/>
+        </SetDef>
+
+      <SetDef 
+            id="{75678BB8-2C3B-4124-A396-B1722E093B92}"
+            classid = "{94BE183D-F9BE-45C0-9BCA-1AD92EDC2340}" 
+            name="LibraryObject" 
+            policy="inclusive"
+            descr="Library Scenery Object">
+            <property name = "InstanceId"/>
+            <property name = "Descr"/>
+            <property name = "WorldPosition"/>
+            <property name = "LocalDistance"/>
+            <property name = "LocalHeading"/>
+            <property name = "LocalAltitude"/>
+            <property name = "LocalOffsetXYZ"/>
+            <property name = "LocalOrientation"/>
+            <property name = "Orientation" />
+            <property name = "MDLGuid" />
+            <property name = "AltitudeIsAGL" />
+            <property name = "IsOnGround" />
+            <property name = "Scale"/>
+            <property name = "ImageComplexity"/>
+            <property name = "Effect"/> <!-- may be multiple instances -->
+            <property name = "ModelAnimation"/>
+            <property name = "Activated"/>
+       		  <property name = "FileName"/>
+            <property name = "AttachedWorldPosition"/>
+            <property name = "AttachedWorldObject"/>
+            <property name = "InitRelativeToWorldObject"/>
+            <property name = "RelativePosition"/>
+		    <property name = "IsCollidableWithUser"/>
+        </SetDef>
+
+		<SetDef
+			  id="{F4DCFB14-BC87-4CF6-82DA-E064DD3D5455}"
+			  classid = "{24D8AF50-1207-4A44-816F-BD903990E6DF}"
+			  name="VisualEffectObject"
+			  policy="inclusive"
+			  descr="Visual Effect Scenery Object">
+			<property name = "InstanceId"/>
+			<property name = "Descr"/>
+			<property name = "WorldPosition"/>
+			<property name = "LocalDistance"/>
+			<property name = "LocalHeading"/>
+			<property name = "LocalAltitude"/>
+			<property name = "LocalOffsetXYZ"/>
+			<property name = "LocalOrientation"/>
+			<property name = "Orientation" />
+			<property name = "VisualEffectGuid" />
+      <property name = "VisualEffectName" />
+			<property name = "AltitudeIsAGL" />
+			<property name = "IsOnGround" />
+			<property name = "Scale"/>
+			<property name = "ImageComplexity"/>
+			<property name = "Effect"/>
+			<!-- may be multiple instances -->
+			<property name = "ModelAnimation"/>
+			<property name = "Activated"/>
+			<property name = "FileName"/>
+			<property name = "AttachedWorldPosition"/>
+			<property name = "AttachedWorldObject"/>
+			<property name = "InitRelativeToWorldObject"/>
+      <property name = "RelativePosition"/>
+		</SetDef>
+
+      <SetDef
+            id="{B726CDA0-70A0-4F7E-9ECF-A8FE1F135FBA}"
+            name="AirportLightParams"
+            policy="inclusive"
+            descr="List of parameters for an AirportLight">
+        <property name = "AirportLightIntensity"/>
+        <property name = "AirportLightRadius"/>
+        <property name = "AirportLightPeriod"/>
+        <property name = "AirportLightPhase"/>
+        <property name = "AirportLightColor"/>
+        <property name = "AirportLightType"/>
+      </SetDef>
+
+      <SetDef
+            id="{52BE6B43-9C0F-4B77-94CB-7322EC0032AE}"
+            classid="{CE6E4001-98A6-431F-9A0B-53F99455993E}"
+            name="AttachAirportLightToNodes"
+            policy="inclusive"
+            descr="Create AirportLights and attach them to Nodes of objects">
+        <property name = "InstanceId"/>
+        <property name = "Descr"/>
+        <property name = "AirportLightParams"/>
+        <property name = "ObjectReferenceList"/>
+        <property name = "NodeName"/>
+        <property name = "NodePrefixName"/>
+      </SetDef>
+      
+    </SetDefs>
+
+</SymbolDef>

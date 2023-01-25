@@ -1,0 +1,314 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "RenoRaceSettings"
+    id           = "{CA104623-872B-42C3-A282-20E75979C686}"
+    descr        = "Reno Race Settings property, type and set definitions."
+    chdr         = "proprenoracesettings.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  proprenoracesettings.h
+//
+//  FlightSim Reno Race Settings AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+namespace RenoRaceSettings{
+
+</cpptext>
+
+	<PropertyDefs
+		symbolprefix = "SPID_RENO_RACE_SETTINGS_">
+
+<cpptext pass="2">
+//
+//  Property Identifiers
+//
+</cpptext>
+	
+		<PropertyDef
+				name		= "RaceSettingsID"
+				id			= "{2DE00A9B-C63B-408B-BC5E-376D4F9EE4E7}"
+				type		= "ENUM"
+				serialize	= "default"
+				default		= "NONE"
+				descr		= "Enum of Race settings item IDs">
+			<EnumDef symbolprefix="RaceSettingsID">
+				<EnumVal
+					name		= "NONE"
+					xml_name	= "NONE"/>
+				<!-- Gameplay -->
+				<EnumVal
+					name		= "STANDARDIZED_PERFORMANCES"
+					xml_name	= "STANDARDIZED_PERFORMANCES"/>
+				<EnumVal
+					name		= "BACK_ON_TRACK"
+					xml_name	= "BACK_ON_TRACK"/>
+				<EnumVal
+					name		= "COLLISIONS"
+					xml_name	= "COLLISIONS"/>
+				<!-- Race Settings -->
+				<EnumVal
+					name		= "QUALIFICATIONS_LAPS"
+					xml_name	= "QUALIFICATIONS_LAPS"/>
+				<EnumVal
+					name		= "RACE_LAPS"
+					xml_name	= "RACE_LAPS"/>
+				<EnumVal
+					name		= "MAXIMUM_PENALTIES"
+					xml_name	= "MAXIMUM_PENALTIES"/>
+				<!-- Weather Settings -->
+				<EnumVal
+					name		= "TIME_OF_DAY"
+					xml_name	= "TIME_OF_DAY"/>
+				<EnumVal
+					name		= "WEATHER_PRESET"
+					xml_name	= "WEATHER_PRESET"/>
+				<EnumVal
+					name		= "WIND_FORCE"
+					xml_name	= "WIND_FORCE"/>
+				<EnumVal
+					name		= "WIND_DIRECTION"
+					xml_name	= "WIND_DIRECTION"/>
+				<EnumVal
+					name		= "PRESSURE"
+					xml_name	= "PRESSURE"/>
+				<!-- UI -->
+				<EnumVal
+					name		= "PYLONS"
+					xml_name	= "PYLONS"/>
+				<EnumVal
+					name		= "BREADCRUMB"
+					xml_name	= "BREADCRUMB"/>
+				<EnumVal
+					name		= "NAMEPLATES"
+					xml_name	= "NAMEPLATES"/>
+				<EnumVal
+					name		= "HUD"
+					xml_name	= "HUD"/>
+				<EnumVal
+					name		= "NOTIFICATIONS"
+					xml_name	= "NOTIFICATIONS"/>
+				<!-- End -->
+				<EnumVal
+					name		= "COUNT"
+					xml_name	= "COUNT"/>		<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+	
+		<PropertyDef
+				name		= "RaceSettingsType"
+				id			= "{14B7BD8F-3DD6-4CE6-8B00-DDFFBD37F4EC}"
+				type		= "ENUM"
+				serialize	= "default"
+				default		= "COUNT"
+				descr		= "Enum of Race settings type">
+			<EnumDef symbolprefix="RaceSettingsType">
+				<EnumVal
+					name		= "ONOFF"
+					xml_name	= "OnOff"/>
+				<EnumVal
+					name		= "INT"
+					xml_name	= "Int"/>
+				<EnumVal
+					name		= "FLOAT"
+					xml_name	= "Float"/>
+				<EnumVal
+					name		= "LIST"
+					xml_name	= "List"/>
+				<EnumVal
+					name		= "COUNT"
+					xml_name	= "COUNT"/>    <!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+				name	= "ValueMin"
+				id		= "{6C115BD4-8248-4B19-81C9-9BA1609CF38F}"
+				type	= "FLOAT"
+				descr	= "">
+		</PropertyDef>
+		<PropertyDef
+				name	= "ValueMax"
+				id		= "{2EBAF9F1-2D3A-4BFB-AB25-F9FECB52CB6B}"
+				type	= "FLOAT"
+				descr	= "">
+		</PropertyDef>
+		<PropertyDef
+				name	= "ValueStep"
+				id		= "{8E68CC07-3FD1-4026-8B33-5E9FCD9829A3}"
+				type	= "FLOAT"
+				descr	= "">
+		</PropertyDef>
+		<PropertyDef
+				name	= "ValueListItem"
+				id		= "{86A6E5E8-1756-4DD8-8671-7ED65E909934}"
+				type	= "TEXT"
+				cardinality = "multiple"
+				descr	= "One item for the list of possible values">
+		</PropertyDef>
+
+		<PropertyDef
+				name		= "LockedCase"
+				id			= "{9D6342E5-9501-45CA-8638-BB646A891B91}"
+				type		= "ENUM"
+				cardinality = "multiple"
+				descr		= "">
+			<EnumDef symbolprefix="RaceSettingsLockedCase">
+				<EnumVal
+					name		= "SOLO"
+					xml_name	= "SOLO"/>
+				<EnumVal
+					name		= "QUICKMATCH_HOST"
+					xml_name	= "QUICKMATCH_HOST"/>
+				<EnumVal
+					name		= "QUICKMATCH_GUEST"
+					xml_name	= "QUICKMATCH_GUEST"/>
+				<EnumVal
+					name		= "PRIVATEMATCH_HOST"
+					xml_name	= "PRIVATEMATCH_HOST"/>
+				<EnumVal
+					name		= "PRIVATEMATCH_GUEST"
+					xml_name	= "PRIVATEMATCH_GUEST"/>
+				<EnumVal
+					name		= "COUNT"
+					xml_name	= "COUNT"/>	<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+				name		= "RaceGameMode"
+				id			= "{8F0009A9-F339-4C00-B9D7-BEB24B25DFA4}"
+				type		= "ENUM"
+				serialize	= "default"
+				default		= "COUNT"
+				descr		= "Race modes">
+			<EnumDef symbolprefix="RaceGameMode">
+				<EnumVal
+					name		= "QUICKMATCH"
+					xml_name	= "QUICKMATCH"/>
+				<EnumVal
+					name		= "TIME_TRIAL"
+					xml_name	= "TIME_TRIAL"/>
+				<EnumVal
+					name		= "FRIENDS"
+					xml_name	= "FRIENDS"/>
+				<EnumVal
+					name		= "COUNT"
+					xml_name	= "COUNT"/>    <!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+				name		= "PresetValueOnOff"
+				id			= "{5CFCE87C-E8A8-46D6-A598-A4AB175F2502}"
+				type		= "ENUM"
+				serialize	= "default"
+				default		= "OFF"
+				descr		= "Race modes">
+			<EnumDef symbolprefix="PresetValueOnOff">
+				<EnumVal
+					name		= "OFF"
+					xml_name	= "OFF"/>
+				<EnumVal
+					name		= "ON"
+					xml_name	= "ON"/>
+				<EnumVal
+					name		= "COUNT"
+					xml_name	= "COUNT"/>    <!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+				name	= "PresetValueInt"
+				id		= "{3EB61114-5174-45D4-AB0E-1E1EC19C614F}"
+				type	= "LONG"
+				descr	= "">
+		</PropertyDef>
+
+		<PropertyDef
+				name	= "PresetValueFloat"
+				id		= "{C04283CA-2EAE-4DD4-9568-702E2BE0C6E9}"
+				type	= "FLOAT"
+				descr	= "">
+		</PropertyDef>
+		
+		<PropertyDef
+				name	= "PresetValueText"
+				id		= "{8E1ADA63-A571-4F1B-84A8-07E9072837AE}"
+				type	= "TEXT"
+				descr	= "">
+		</PropertyDef>
+		
+		<PropertyDef
+				name	= "PresetValueRandom"
+				id		= "{3D579F11-DF7A-4FA7-BFD6-AAB1D7F92E02}"
+				type	= "BOOL"
+				descr	= "">
+		</PropertyDef>
+		
+	</PropertyDefs>
+	
+	<SetDefs symbolprefix = "SSID_RENO_RACE_SETTINGS_">
+
+<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+</cpptext>
+		<!-- Race Settings -->
+		<SetDef
+				id		= "{5D297E0C-9F87-42D1-B7F4-E00990D2C3E6}"
+				name	= "Section"
+				descr	= "Section of settings">
+			<property name = "Title"/>
+			<property name = "LockedCase"/>
+			<property name = "SectionItem"/>
+		</SetDef>
+		
+		<SetDef
+				id		= "{95E3EFB1-B14A-40F6-A622-FE5C6CEA7461}"
+				name	= "SectionItem"
+				descr	= "One of the race settings">
+			<property name = "Title"/>
+			<property name = "RaceSettingsID"/>
+			<property name = "RaceSettingsType"/>
+			<property name = "ValueMin"/>
+			<property name = "ValueMax"/>
+			<property name = "ValueStep"/>
+			<property name = "ValueListItem"/>
+		</SetDef>
+		
+		<!-- Race Presets -->
+		<SetDef
+				id		= "{CFD2F88D-C85A-4598-AE3B-F7CFCDDD459D}"
+				name	= "Preset"
+				descr	= "Preset for a game mode">
+			<property name = "RaceGameMode"/>
+			<property name = "PresetValue"/>
+		</SetDef>
+		
+		<SetDef
+				id		= "{CCA2C139-67A1-46CA-8F70-CBD1F8C0D951}"
+				name	= "PresetValue"
+				descr	= "Value of a preset">
+			<property name = "RaceSettingsID"/>
+			<property name = "PresetValueOnOff"/>
+			<property name = "PresetValueFloat"/>
+			<property name = "PresetValueText"/>
+			<property name = "PresetValueRandom"/>
+		</SetDef>
+		
+	</SetDefs>
+<cpptext pass="2">
+}
+</cpptext>
+</SymbolDef>

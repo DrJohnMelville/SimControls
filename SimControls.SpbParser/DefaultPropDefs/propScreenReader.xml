@@ -1,0 +1,193 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+		name         = "ScreenReader"
+		id           = "{1BD9335E-C478-466B-A796-E77556552D09}"
+		descr        = "SimProp Screen reader property, type and set definitions."
+		chdr         = "propScreenReader.h"
+		version      = "1,0" >
+
+	<SymbolInclude
+			  filename = "Common\propbase.xml"
+			  id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+			  version  = "1,0" />
+
+	<cpptext pass="1">
+
+		//-------------------------------------------------------------------------//
+		//  propScreenReader.h
+		//
+		//  FlightSim screen reader AceXML property and property set symbol definitions
+		//-------------------------------------------------------------------------//
+
+		//
+		//	Namespace
+		//
+		namespace ScreenReaderProp {
+
+	</cpptext>
+
+	<PropertyDefs symbolprefix = "SPID_SCREENREADER_">
+
+		<cpptext pass="2">
+			//
+			//  Property Identifiers
+			//
+		</cpptext>
+
+		<PropertyDef
+			id          = "{601EA4E5-3699-4950-ACAB-0A883E257A6D}"
+			name        = "ElementType"
+			type		    = "TEXT"
+			descr       = "The name of the ui element"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{A88333E4-D1E9-4BB7-862D-DA695CFB335D}"
+			name        = "EventType"
+			type		= "TEXT"
+			descr       = "The type of event">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{125F85A2-9B8B-4A3B-8887-CC08CE64C7EA}"
+			name        = "FallBackEventType"
+			type		= "TEXT"
+			descr       = "When resolving the event type for trigger this will be used if the base rule event is not available">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{1EC5AEF2-C080-41C9-BE61-B315745DEC47}"
+			name        = "RestartPrefix"
+			type		= "TEXT"
+			descr       = "A sentence that will be read when restarting reading after an interruption, if RestartIfInterrupted is true">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{48C50AC6-983F-4863-BA82-C33BD092FF9C}"
+			name        = "Content"
+			type		 = "TEXT"
+			descr       = "The actual sentence to be read"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{17C1CC98-7B47-419C-A7CA-66CE1A196DCA}"
+			name        = "Condition"
+			type		 = "TEXT"
+			descr       = "An optionnal condition to trigger the action (sentence or trigger), should be a getter to a bool"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{F4C73D72-7A9E-4F4A-9492-C7256A73F09B}"
+			name        = "Target"
+			type		 = "TEXT"
+			descr       = "The target for triggering the reading of another element"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{8563ABF0-2FE5-4F2C-B6E4-43973D822D9F}"
+			name        = "SeparateEvent"
+			type		= "BOOL"
+			descr       = "Use on triggers, if set to true and if the trigger is the last action of the event then the triggered event will be a new separated event instead of being clumped up with its caller"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{EDCE93BD-C29A-4B01-A93E-0F4338AB7948}"
+			name        = "Delay"
+			type		= "FLOAT"
+			descr       = "The sentence will start by a correponding delay"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{1B9F3F1E-70CF-4640-9BC2-B2886411E614}"
+			name        = "RestartIfInterrupted"
+			type		= "BOOL"
+			descr       = "Whether a ruleEvent should be put aside and restarted when a higher priority event interrupts it"
+			xml_io      = "attribute">
+		</PropertyDef>
+		
+		<PropertyDef
+			id          = "{942295ED-83B2-4FB6-8431-D82CC05D4755}"
+			name        = "ForceRestartReading"
+			type		= "BOOL"
+			descr       = "If set to true, if the event interrupts another, the other will restart after this is read, use it for warnings for instance"
+			xml_io      = "attribute">
+		</PropertyDef>
+		
+		<PropertyDef
+			id          = "{E820DE1F-A751-4AE6-A254-72D719EDD69A}"
+			name        = "ForceFlush"
+			type		= "BOOL"
+			descr       = "If set to true, when the event is read it will clear any other event waiting, even those flagged with RestartIfInterrupted"
+			xml_io      = "attribute">
+		</PropertyDef>
+
+		<PropertyDef
+			id          = "{34FAB760-B9EB-44E7-89E7-3488D049E0E6}"
+			name        = "Priority"
+			type		= "LONG"
+			descr       = "The priority of the rule, higher priority rules (highest is 0, then 1...) will cut equal or lower priority ones"
+			xml_io      = "attribute">
+		</PropertyDef>
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+			//
+			//  Property Set Identifiers
+			//
+		</cpptext>
+
+		<SetDef
+			id          = "{0CEEFD66-1239-4B07-9759-E06D38E56694}"
+			name        = "RuleEvent"
+			descr       = "Rule event">
+			<property name = "EventType"/>
+			<property name = "Priority"/>
+			<property name = "RestartIfInterrupted"/>
+			<property name = "RestartPrefix"/>
+			<property name = "ForceRestartReading"/>
+			<property name = "ForceFlush"/>
+		</SetDef>
+
+		<SetDef
+			id = "{6B9AD9B5-EEC6-4506-9EE1-426F85042B34}"
+			name = "Sentence"
+			descr = "A sentence to be read by the screenReader ">
+			<property name=  "Delay" />
+			<property name=  "Content" />
+			<property name=  "Condition" />
+		</SetDef>
+		
+		<SetDef
+			id = "{CEC9402E-45D8-4BD5-8242-A1541F3C2CB2}"
+			name = "TriggerRead"
+			descr = "Use this to trigger the reading of an event on another element">
+			<property name=  "Target" />
+			<property name = "EventType"/>
+			<property name = "FallBackEventType"/>
+			<property name=  "Delay" />
+			<property name=  "Condition" />
+			<property name=  "SeparateEvent" />
+		</SetDef>
+
+		<SetDef
+			id          = "{51B04774-EF0B-42FC-92B6-1A22B5640797}"
+			name        = "Rule"
+			descr       = "Rule">
+			<property name = "ElementType" />
+		</SetDef>
+
+	</SetDefs>
+
+	<cpptext pass="2">
+		} // namespace ScreenReaderProp
+	</cpptext>
+	
+</SymbolDef>

@@ -1,0 +1,275 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Core property symbol definition document
+
+    Element: SymbolDef - Mandatory root element
+
+        name:       Mandatory symbol definition namespace Name
+        id:         Mandatory globally unique namespace identifier
+        descr:      Optional namespace description
+        chdr:       Optional C/C++ header filename.  If none is provided, the namespace name is used with a ".h" extension
+        version:    Optional version number formatatted as "vermajor,verminor".
+
+-->
+
+<SymbolDef
+    name    = "SimBaseUI"
+    id      = "{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}"
+    descr   = "SimProp base property, type and set definitions."
+    chdr    = "propbaseui.h"
+    version = "1,0">
+
+    <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propbaseui.h
+//
+//  Base AceXML data type, property and property set definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+
+    <!--
+        Element: PropertyDefs - Optional block of property definitions
+
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "Respath"
+            id          = "{4CB18F13-0616-48e3-B93E-B637396BB684}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Caption"
+            id          = "{24A665DA-49D8-4c4b-A495-87FB1EF6C3AD}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "HtmlTemplate"
+            id          = "{8492E50D-CB0C-4de5-95F5-E0C23A16AD0B}"
+            locdescr    = "Non-localizable HTML template"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Locdescr"
+            id          = "{B152A0E0-2854-4ac2-951B-EB152E559D00}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Position"
+            id          = "{8BDF94D6-F87A-4e1d-99A1-AE836B5A3402}"
+            serialize   = "both,default"
+            type        = "LONG2">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Size"
+            id          = "{5E2FE45E-8D73-4c16-85A0-32927C6F05E8}"
+            type        = "LONG2">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Visible"
+            id          = "{8331CA26-118C-4c95-9919-E400C90ECBEA}"
+            type        = "BOOL"
+            default     = "True">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Transparent"
+            id          = "{5B4D23C8-B911-4899-9BFD-1DD02DCC8FFA}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BkgndFillColor"
+            id          = "{B1314DF7-25FF-486a-AE85-870748311E8C}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontIndex"
+            id          = "{B4B13A78-435C-4b39-9D59-45D1E6557575}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontFace"
+            id          = "{6D99478E-DE36-4f5b-8CD1-CCEDB9275D61}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontColor"
+            id          = "{059A4D3F-BAF4-47ad-AA42-AF8A6531EA9D}"
+            type        = "TEXT"
+            devnote     = "todo: legacy impl is a delimited list of colors, one for each state.  States should be higher-order node instead.  ARGGHHH (scotthan)">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontHeight"
+            id          = "{D21F3F01-5964-4350-9A06-691D4A2EA147}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontWeight"
+            id          = "{82FD165B-D86D-4799-99BA-0B87FD747052}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontShadow"
+            id          = "{22CCF649-5AE5-4feb-B393-3C0004B71095}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontAntialias"
+            id          = "{3383C055-0EEC-4923-BB0A-FE0F132FA1D8}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontSpacing"
+            id          = "{9891A5E9-40A0-457d-B92B-53189D3AFB0D}"
+            type        = "LONG">
+        </PropertyDef>
+
+       <PropertyDef 
+            id          = "{26EC698F-6B27-4ce6-9572-C11DCAB4E8F4}" 
+            name        = "FontFile" 
+            cardinality = "multiple"
+            type        = "TEXT" />
+
+        <PropertyDef 
+            id          = "{C86681EE-342D-48f4-94FE-FFE22268556F}" 
+            name        = "FontLocale"
+            cardinality = "multiple"
+            type        = "TEXT" />
+
+	    <PropertyDef 
+            id          = "{C44CDB9D-78FC-4461-B5F5-808201549976}" 
+            name        = "DefaultFont"
+	        default     = "False"
+            type        = "BOOL" />
+
+        <PropertyDef
+            name        = "HilightColor"
+            id          = "{2C918282-ABFE-4081-A6D9-644E4D60C30D}"
+            type        = "TEXT"
+            devnote     = "TODO: should be enum">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Bold"
+            id          = "{95B4F93D-5F73-4b5f-A7D3-DBA657A8D197}"
+            type        = "BOOL"
+            devnote     = "Boldface text... or not">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Italic"
+            id          = "{93B482FD-A55E-41b8-A522-CB735D6AD087}"
+            type        = "BOOL"
+            devnote     = "Italicize text ... or not">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Underline"
+            id          = "{902269C7-EBFF-45a9-9AC7-F43AAF9FF22D}"
+            type        = "BOOL"
+            devnote     = "Underline text... or not">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Strikethrough"
+            id          = "{70DC146A-A9C2-402b-84A1-E4EC26707202}"
+            type        = "BOOL"
+            devnote     = "Strikethrough text... or not">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Multiline"
+            id          = "{6086C6DA-7FB4-4ec9-8799-F14C4D92CD1E}"
+            type        = "BOOL">
+        </PropertyDef>
+
+    </PropertyDefs>
+
+    <!--
+        Element: SetDefs - Optional block of property set definitions
+
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{E211E5C9-6608-4a7a-A941-11E5A440E1D3}"
+            name        = "String"
+            policy      = "inclusive">
+
+            <property name = "id"/>
+            <property name = "Text"/>
+            <property name = "Filename"/>
+            <property name = "version"/>
+            <property name = "Locdescr"/>
+
+        </SetDef>
+
+        <SetDef
+            id          = "{080E37DD-0681-4898-AFAD-B8AAFB729E35}"
+            name        = "Strings"
+            policy      = "inclusive"
+            descr       = "An array of String items">
+
+            <property name = "id"/>
+            <property name = "String"/>
+            <property name = "Locdescr"/>
+
+        </SetDef>
+
+        <SetDef
+            id          = "{A213D1F4-EEF2-4d20-8E98-9F7F0ACE20E2}"
+            name        = "FontSubstitution"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "FontFace"/>
+            <property name = "FontWeight"/>
+        </SetDef>
+
+
+    </SetDefs>
+
+</SymbolDef>

@@ -1,0 +1,96 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+
+see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+name         = "Aircraft"
+id           = "{DB52E678-B339-4455-A77B-E37D47EB9951}"
+descr        = "Aircraft property"
+chdr         = "propaircraft.h"
+version      = "1,0" >
+
+	<SymbolInclude
+	filename = "Common\propworldbase.xml"
+	id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+	version  = "1,0" />
+
+	<cpptext pass="1">
+	//-------------------------------------------------------------------------//
+	//  propaircraft.h
+	//
+	//  FlightSim aircraft AceXML property and property set symbol definitions
+	//-------------------------------------------------------------------------//
+	//
+
+	//
+	//  Namespace
+	//
+	</cpptext>
+
+	<PropertyDefs
+	symbolprefix = "SPID_">
+
+	<cpptext pass="2">
+	//
+	//  Property Identifiers
+	//
+	</cpptext>
+
+		<PropertyDef
+		id          = "{8ED9C981-65B3-4C3D-B31F-D022D9893281}"
+		name        = "CategoryName"
+		type		= "TEXT"
+		descr       = "Aircraft category name">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{46413FB9-5D02-4E1A-A508-2CCF138599C7}"
+		name        = "UIPropertyName"
+		type		= "TEXT"
+		descr       = "Aircraft property name">
+		</PropertyDef>
+
+		<PropertyDef
+		id          = "{25E42278-0017-48B9-8418-F005464BF5B4}"
+		name        = "PropertyTT"
+		type		= "TEXT"
+		descr       = "Aircraft category TT id">
+		</PropertyDef>
+
+	</PropertyDefs>
+
+	<!-- 
+	Element: SetDefs - Optional block of property set definitions
+
+	symbolprefix:   optional prefix for C/C++ property identifier.
+	-->
+
+	<SetDefs symbolprefix = "SSID_">
+
+	<cpptext pass="2">
+	//
+	//  Property Set Identifiers
+	//
+	</cpptext>
+
+		<SetDef
+		id          = "{105F10D4-3799-426B-A95A-83FD931AF2D8}"
+		name        = "AircraftCategory"
+		descr       = "Aircraft category">
+		<property name 	= "CategoryName"/>
+		<property name	= "PropertyTT"/>
+		</SetDef>
+
+		<SetDef
+		id          = "{98BD0EA7-A8A6-4CF7-80A6-0B6675D4F5C5}"
+		name        = "UIProperty"
+		descr       = "Property to display">
+		<property name 	= "UIPropertyName"/>
+		</SetDef>
+
+	</SetDefs>
+
+</SymbolDef>

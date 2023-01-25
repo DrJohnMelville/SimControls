@@ -1,0 +1,460 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+		name         = "WeatherPreset"
+		id           = "{39E670CB-4CA8-46D7-8291-3C20660D1CE5}"
+		descr        = "SimProp weather preset property, type and set definitions."
+		chdr         = "propweatherpreset.h"
+		version      = "1,4" >
+  <!-- Never increment the major version as the compiler will not read binary files where the version is >1.X -->
+
+  <SymbolInclude
+				filename = "Common\propbase.xml"
+				id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+				version  = "1,0" />
+
+  <cpptext pass="1">
+    //-------------------------------------------------------------------------//
+    //  propweatherpreset.h
+    //
+    //  FlightSim weather preset AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //  Namespace
+    //
+  </cpptext>
+
+  <PropertyDefs
+				symbolprefix = "SPID_WEATHERPRESET_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+					name        = "Name"
+					id          = "{9375D728-5646-4F18-95FD-67F9A1338B7F}"
+					type        = "TEXT"
+					descr       = "Name of the preset.">
+    </PropertyDef>
+
+	<PropertyDef
+					name        = "Category"
+					id          = "{90F2940C-BCBE-4CDD-AE65-CF448042A8F1}"
+					type        = "TEXT"
+					descr       = "Category of the preset.">
+	</PropertyDef>
+
+    <PropertyDef
+					name        = "Order"
+					id          = "{B8B66C87-C0FC-4B49-B654-7D8372EFE7D6}"
+					type        = "LONG"
+					descr       = "Order of the preset.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Image"
+					id          = "{94E9AA20-A250-439A-A0B9-BE8B12C63A14}"
+					type        = "TEXT"
+					descr       = "Path to an image used in the UI to represent the preset.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "LayeredImage"
+					id          = "{111E9604-5A3A-41A3-8D85-A4C559372F9B}"
+					type        = "TEXT"
+					descr       = "Path to an image used in the UI to represent the preset.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Icon"
+					id          = "{8A1DCADC-63A8-4BBE-886F-56F3C3A57F4B}"
+					type        = "TEXT"
+					descr       = "Path to an icon used in the UI to represent the preset.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "IsAltitudeAMGL"
+					id          = "{54F287B1-23E6-4B2E-BCEB-8E3FFB78D34B}"
+					type        = "BOOL"
+					serialize	= "default"
+					default     = "TRUE"
+					descr       = "If TRUE, Altitude is based on Mean Ground Level, else, it is based on Mean Sea Level.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Value"
+					id          = "{51C7A8B0-4BC6-437C-941D-BC837A4F3EDD}"
+					type        = "FLOAT"
+					default     = "0.0"
+					serialize	= "default"
+					xml_io      = "attribute"
+					descr       = "Value of the property.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Unit"
+					id          = "{B163A295-3243-43CC-B765-610FB0D61804}"
+					type        = "ENUM"
+					serialize	= "default"
+					xml_io      = "attribute"
+					descr       = "Unit of the property.">
+      <EnumDef symbolprefix="eWeatherPresetUnits">
+        <EnumVal						name = "MM_H"						xml_name = "mm/h"/>
+        <EnumVal						name = "FACTOR"						xml_name = "(0 - 1)"/>
+        <EnumVal						name = "METERS"						xml_name = "m"/>
+        <EnumVal						name = "FEET"						xml_name = "ft"/>
+        <EnumVal						name = "DEGREES"					xml_name = "degrees"/>
+        <EnumVal						name = "RADIANS"					xml_name = "radians"/>
+        <EnumVal						name = "M_S"						xml_name = "m/s"/>
+        <EnumVal						name = "KNOTS"						xml_name = "knts"/>
+        <EnumVal						name = "SECONDS"					xml_name = "sec"/>
+        <EnumVal						name = "DENSITY_FACTOR"		        xml_name = "density factor"/>
+        <EnumVal						name = "PASCAL"						xml_name = "pa"/>
+        <EnumVal						name = "KELVIN"						xml_name = "k"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+			name        = "PrecipType"
+			id          = "{74D11EEB-BAB4-430C-9862-38451529BEA5}"
+			type        = "ENUM"
+			serialize	= "default"
+			xml_io      = "attribute"
+			descr       = "Type of precipitation.">
+      <EnumDef symbolprefix="ePrecipType">
+        <EnumVal						name = "RAIN"						xml_name = "RAIN"/>
+        <EnumVal						name = "SNOW"						xml_name = "SNOW"/>
+        <EnumVal						name = "HAIL"						xml_name = "HAIL"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Latitude"
+					id          = "{7BC7E2F6-1200-4165-8FD1-60F7B2891028}"
+					type        = "DOUBLE"
+					default     = "0.0"
+					descr       = "Latitude of the event.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "Longitude"
+					id          = "{9CAAC4D1-E5A8-4043-A93B-89AE3C991FDC}"
+					type        = "DOUBLE"
+					default     = "0.0"
+					descr       = "Longitude of the event.">
+    </PropertyDef>
+
+    <PropertyDef
+					name        = "LiveID"
+					id          = "{100D3CDD-9813-43C6-A35D-7FF6C6598BE7}"
+					type        = "ENUM"
+					default     = "WEATHER_UNKNOWN"
+					descr       = "ID from Live">
+      <EnumDef symbolprefix="eLocalWeatherDescription">
+        <EnumVal name="WEATHER_UNKNOWN"                     xml_name="WEATHER_UNKNOWN"/>
+        <EnumVal name="WEATHER_CLEAR_SKY"                   xml_name="WEATHER_CLEAR_SKY"/>
+        <EnumVal name="WEATHER_FEW_CLOUDS"                  xml_name="WEATHER_FEW_CLOUDS"/>
+        <EnumVal name="WEATHER_BROKEN_CLOUDS"               xml_name="WEATHER_BROKEN_CLOUDS"/>
+        <EnumVal name="WEATHER_SCATTERED"                   xml_name="WEATHER_SCATTERED"/>
+        <EnumVal name="WEATHER_OVERCAST"                    xml_name="WEATHER_OVERCAST"/>
+        <EnumVal name="WEATHER_HIGH_CLOUDS"                 xml_name="WEATHER_HIGH_CLOUDS"/>
+        <EnumVal name="WEATHER_RAIN"                        xml_name="WEATHER_RAIN"/>
+        <EnumVal name="WEATHER_STORM"                       xml_name="WEATHER_STORM"/>
+      </EnumDef>
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_WEATHERPRESET_">
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+				name        = "Preset"
+				id          = "{6D61233B-B4E6-49A0-A67B-2BC9B63F7644}"
+				descr       = "A weather preset">
+      <property name = "CloudLayer"/>
+	  <property name = "CloudLayerInitialPosX"/>
+	  <property name = "CloudLayerInitialPosY"/>
+      <property name = "WindLayer"/>
+      <property name = "MSLPressure"/>
+      <property name = "MSLTemperature"/>
+      <property name = "AerosolDensity"/>
+      <property name = "Pollution"/>
+      <property name = "Precipitations"/>
+      <property name = "PrecipType"/>
+      <property name = "SnowCover"/>
+      <property name = "ThunderstormIntensity"/>
+      <property name = "ThunderstormCell" />
+      <property name = "Hurricane" />
+      <property name = "IsAltitudeAMGL" />
+      <property name = "LoadingTip"/>
+    </SetDef>
+
+    <SetDef
+				name        = "CloudLayer"
+				id          = "{0B7DCAE8-2826-4EDE-9078-F46B021CBA94}"
+				cardinality = "multiple"
+				descr       = "A layer of clouds.">
+      <property name = "CloudLayerAltitudeBot"/>
+      <property name = "CloudLayerAltitudeTop"/>
+      <property name = "CloudLayerDensity"/>
+      <property name = "CloudLayerCoverage"/>
+      <property name = "CloudLayerScattering"/>
+    </SetDef>
+
+    <SetDef
+				name        = "CloudLayerAltitudeTop"
+				id          = "{8043438F-BFDF-47F1-AC15-CF32957EF21F}"
+				descr       = "Altitude (in Meters) of the top of a cloud layer.">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "CloudLayerAltitudeBot"
+				id          = "{0D42047F-C2C6-4167-B72F-3FD2185B7671}"
+				descr       = "Altitude (in Meters) of the bottom of a cloud layer.">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "CloudLayerDensity"
+				id          = "{D33F19C6-71FD-4ED1-9E82-CAC4D917725D}"
+				descr       = "Multiplier of the density of clouds (0.0 - 1.00).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+	  
+    <SetDef
+				name        = "CloudLayerCoverage"
+				id          = "{5AAE7123-6B04-439C-983F-6C523B8E2557}"
+				descr       = "The proportion of clouds : clear sky (0.0), Overcast (1.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "CloudLayerScattering"
+				id          = "{44C3ACEF-2BA3-4FDD-BDF7-580F567C8F8E}"
+				descr       = "Scattering of a cloud layer (0.0 - 1.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+	<SetDef
+		        name        = "CloudLayerInitialPosX"
+		        id          = "{5F7AF7C4-7A70-44FF-8086-84BAC09CAFDF}"
+		        descr       = "Shift in x position of the cloudmap (in Meters).">
+	  <property name = "Value"/>
+	  <property name = "Unit"/>
+	</SetDef>
+
+	<SetDef
+		        name        = "CloudLayerInitialPosY"
+		        id          = "{7BA8EE45-B30D-451F-8478-B418CA919890}"
+		        descr       = "Shift in y position of the cloudmap (in Meters).">
+	  <property name = "Value"/>
+	  <property name = "Unit"/>
+	</SetDef>
+
+	  <SetDef
+				name        = "Radius"
+				id          = "{2815E9A2-5C86-4380-9C42-A3421A2AA1D9}"
+				descr       = "Radius of the Event.">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "WindLayer"
+				id          = "{3F23A3FB-0DFF-44F9-ACC6-42EC3A6DEAC9}"
+				cardinality = "multiple"
+				descr       = "A layer of wind.">
+      <property name = "WindLayerAltitude"/>
+      <property name = "WindLayerAngle"/>
+      <property name = "WindLayerSpeed"/>
+      <property name = "GustWave"/>
+    </SetDef>
+
+    <SetDef
+				name        = "WindLayerAltitude"
+				id          = "{31081981-CACC-4D63-B67E-8F5E7173F97E}"
+				descr       = "Altitude (in Meters) of a wind layer.">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "WindLayerAngle"
+				id          = "{23E4FEB5-8D2A-4A3C-901C-01C4F7C2B7CE}"
+				descr       = "Angle of the origin of the wind in a layer (0 - 360, 0 being N,).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "WindLayerSpeed"
+				id          = "{7D960B96-83D6-4A1F-831E-861482438C7E}"
+				descr       = "Speed of a wind layer (in Knots).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "GustWave"
+				id          = "{9924BF45-A2BF-4D34-BEA1-B7CDAA9A4255}"
+				descr       = "Properties of a gust waves which affects perturbations.">
+      <property name = "GustWaveDuration"/>
+      <property name = "GustWaveInterval"/>
+      <property name = "GustWaveSpeed"/>
+      <property name = "GustAngle"/>
+    </SetDef>
+
+    <SetDef
+				name        = "GustWaveDuration"
+				id          = "{FA9A30EB-DAFC-4372-BAA8-CDAB86BBE7CE}"
+				descr       = "Duration of the peak of the gustwave (in sec)">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "GustWaveInterval"
+				id          = "{46AAC262-71CE-4742-A701-E594008DDABD}"
+				descr       = "Duration of the interval between two gustwaves (in sec)">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "GustWaveSpeed"
+				id          = "{063FCD3F-03C3-4E4B-9DC0-95D08F63B24A}"
+				descr       = "Max speed of the wind at the peak of the gustwave">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "GustAngle"
+				id          = "{B5D75D74-1BEF-4D5A-B8A3-FD5827FF976F}"
+				descr       = "Angle of the origin of the wind during gusts in a layer (0 - 360, 0 being N).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "MSLPressure"
+				id          = "{B78B6042-81C7-47C3-B2A0-1A11E3F3C9D7}"
+				descr       = "MSL pressure in Pa (50000.0 - 130000.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "MSLTemperature"
+				id          = "{6C415E6D-1038-488A-B091-273F4FF4CD2F}"
+				descr       = "MSL teperature in K.">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "AerosolDensity"
+				id          = "{0C556814-D8DA-42AB-8C7C-887FE3B9DCFA}"
+				descr       = "Density of Aerosol Particles">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+	  <SetDef
+				  name        = "Pollution"
+				  id          = "{1E822C75-70F9-4308-B075-327987802437}"
+				  descr       = "Density of pollution particles">
+		  <property name = "Value"/>
+		  <property name = "Unit"/>
+	  </SetDef>
+
+    <SetDef
+				name        = "Precipitations"
+				id          = "{9503E11E-050C-401B-B5BA-3860DECBEE99}"
+				descr       = "Amount of precipitations in mm/h (0.0 - 100.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "PrecipitationType"
+				id          = "{6E54CB21-44E8-4568-9891-42FB93A98130}"
+				descr       = "Type of precipitations">
+      <property name = "PrecipType"/>
+    </SetDef>
+
+    <SetDef
+				name        = "SnowCover"
+				id          = "{82A241BD-C6E9-4D20-9874-7F96E4798640}"
+				descr       = "Amount of snow laying on the ground in m (0.0 - 4.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "ThunderstormIntensity"
+				id          = "{A4CCFC0D-4F56-4923-AD0F-FDF2B3F20321}"
+				descr       = "Intesity of the thunderstorm (0.0 - 1.0).">
+      <property name = "Value"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+				name        = "ThunderstormCell"
+				id          = "{2AE757F8-3B39-4476-A7EC-D5DFAD4124FD}"
+				descr       = "Adds an event with a thunderstorm at specified LatLong if present.">
+      <property name = "Cell"/>
+      <property name = "SuperCell"/>
+    </SetDef>
+
+    <SetDef
+				name        = "Cell"
+				id          = "{094730DF-48AB-4683-9F2C-222D76B05A90}"
+				descr       = "Position of the Cell.">
+      <property name = "Latitude"/>
+      <property name = "Longitude"/>
+      <property name = "Radius"/>
+    </SetDef>
+
+    <SetDef
+				name        = "SuperCell"
+				id          = "{B2A4609D-BCB7-4909-B751-08CB3A9ACD45}"
+				descr       = "Position of the SuperCell.">
+      <property name = "Latitude"/>
+      <property name = "Longitude"/>
+      <property name = "Radius"/>
+    </SetDef>
+
+    <SetDef
+				name        = "Hurricane"
+				id          = "{BEDFC379-8A19-4B58-BE93-38943E6E1961}"
+				descr       = "Adds an event with an hurricane at specified LatLong if present.">
+      <property name = "Latitude"/>
+      <property name = "Longitude"/>
+      <property name = "Radius"/>
+    </SetDef>
+
+    <SetDef
+				name        = "LoadingTip"
+				id          = "{6CC1666F-FBD7-4DC2-BEBF-369AB2D9230D}"
+				cardinality = "multiple"
+				descr       = "A loading Tip">
+      <property name = "TITLE"/>
+    </SetDef>
+
+  </SetDefs>
+</SymbolDef>

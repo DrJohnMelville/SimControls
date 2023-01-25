@@ -1,0 +1,710 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+	name		 = "InGamePanels"
+	id			 = "{DF9F50B2-EDEC-44E7-AF71-CBF1AD587B07}"
+	descr		 = "SimProp ingame panels property, type and set definitions."
+	chdr		 = "propingamepanels.h"
+	version		 = "1,0" >
+
+	<SymbolInclude
+		filename = "Common\propbase.xml"
+		id		 = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+		version	 = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propoptionsgeneral.xml"
+		id		 = "{FB40C5F8-1BAE-4B24-8CD5-B96B18F5DBE6}"
+		version	 = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propassistancepresets.xml"
+		id		 = "{3BD03A03-3C23-4B14-834C-2E24CA0019DF}"
+		version	 = "1,0" />
+
+<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//	propingamepanels.h
+//
+//	FlightSim Options AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//	Namespace
+//
+namespace InGamePanels {
+
+</cpptext>
+
+	<PropertyDefs
+		symbolprefix = "SPID_INGAME_PANELS_">
+
+<cpptext pass="2">
+//
+//	Property Identifiers
+//
+</cpptext>
+
+		<!-- "Type" is defined in propbase -->
+		
+		<PropertyDef
+			name		= "url"
+			id			= "{68B57D5F-F513-4BD1-B321-615D0ACF8D47}"
+			descr		= "URL of an HTML component"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "TagName"
+			id			= "{D1A87E90-7510-4CC6-AE39-9184A3060AA9}"
+			descr		= "Tag of an HTML component"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "Order"
+			id			= "{4B89D4A5-66CF-464D-AA27-DA99867A61E5}"
+			descr		= "Used for ordering icons in toolbar"
+			xml_io		= "attribute"
+			type		=  "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "Format"
+			id			= "{68731C33-E3DE-4106-BFEB-BDE3BA554951}"
+			descr		= "Format of the data when exchanging with panel elements"
+			xml_io		= "attribute"
+			type		= "ENUM"
+			default		= "Count">
+			<EnumDef symbolprefix="Format">
+				<EnumVal
+					name		= "TEXT"
+					xml_name	= "Text" />
+				<EnumVal
+					name		= "NUMBER"
+					xml_name	= "Number" />
+				<EnumVal 
+					name		= "COUNT"
+					xml_name	= "Count" />	<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "Name"
+			id			= "{5AFA22A2-BE9A-4BDE-886D-A1A072879FDA}"
+			descr		= "Name of an ingame panel, or name of a variable"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<!-- "id" is defined in propbase -->
+		
+		<PropertyDef
+			name		= "resizeDirections"
+			id			= "{57CE7F54-BBE6-446F-BFF8-65CE02B53009}"
+			descr		= "Axis allowed when resizing"
+			xml_io		= "attribute"
+			type		= "ENUM"
+			default		= "Count">
+			<EnumDef symbolprefix="ResizeDirections">
+				<EnumVal
+					name		= "NONE"
+					xml_name	= "None" />
+				<EnumVal
+					name		= "X"
+					xml_name	= "x" />
+				<EnumVal
+					name		= "Y"
+					xml_name	= "y" />
+				<EnumVal
+					name		= "BOTH"
+					xml_name	= "Both" />
+				<EnumVal 
+					name		= "COUNT"
+					xml_name	= "Count" />	<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "minWidth"
+			id			= "{BA3AB7BC-8FE2-4D6B-9729-31831D4252DF}"
+			descr		= "Minimum width of panel when resizing"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "minHeight"
+			id			= "{F0CE4D3E-8236-48B2-A5B7-559BEC77810A}"
+			descr		= "Minimum height of panel when resizing"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+
+
+    <PropertyDef
+			name		= "HAnchor"
+			id			= "{720CB950-938B-4E7B-A148-27C003FCD908}"
+			descr		= "Horizontal anchor"
+			xml_io	= "attribute"
+			type		= "ENUM"
+      default		= "LEFT">
+      <EnumDef symbolprefix="HAnchor">
+        <EnumVal
+					name		= "LEFT"
+					xml_name	= "LEFT" />
+        <EnumVal
+					name		= "CENTER"
+					xml_name	= "CENTER" />
+        <EnumVal
+					name		= "RIGHT"
+					xml_name	= "RIGHT" />
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+     name		= "defaultPosX"
+     id			= "{1D2762D9-C7D9-469B-95FD-9548545352E2}"
+     descr		= "Horizontal default position"
+     xml_io	= "attribute"
+     type		= "FLOAT">
+    </PropertyDef>
+    
+		
+		<PropertyDef
+			name		= "defaultWidth"
+			id			= "{3242B0D8-A65B-46B1-9FCF-9F4BDF367DA6}"
+			descr		= "Default width of panel"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultHeight"
+			id			= "{2FA37E31-3D66-44EE-A95E-FCACC9AA93E5}"
+			descr		= "Default height of panel"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultTop"
+			id			= "{E6E4E1E5-1B55-4883-B1FF-14895C73C2EE}"
+			descr		= "Default top of panel"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultLeft"
+			id			= "{18959680-A328-4C53-A12C-0C4DDD3DD650}"
+			descr		= "Default left of panel"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultRight"
+			id			= "{44837F1F-018E-4BE0-B416-7AA70D2CFB4B}"
+			descr		= "Default right of panel"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultUndockedHeight"
+			id			= "{706D28F9-A56F-4D91-9F7E-B8ACD54DC267}"
+			descr		= "Default height of panel when undocked. Only applies to panels without minHeight and resize direction 'x' "
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "icon"
+			id			= "{FBC73BD9-91C7-45E8-9444-3BC75DA6651D}"
+			descr		= "filename of icon"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "buttonVisible"
+			id			= "{9D9E20FE-EE40-4481-B975-076F58E8E14C}"
+			descr		= ""
+			xml_io		= "attribute"
+      default			= "True"
+			type		= "BOOL">
+      
+		</PropertyDef>
+
+    <PropertyDef
+			name		= "collideInGameMarkers"
+			id			= "{FDBAC754-503B-438F-A5C7-5C8F94A201E5}"
+			descr		= ""
+			xml_io		= "attribute"
+      default			= "True"
+			type		= "BOOL">
+    </PropertyDef>
+
+
+    <PropertyDef
+				name		= "headerVisible"
+				id			= "{31C93AF2-1F48-4199-8DD6-0EE7FD46C4EE}"
+				descr		= ""
+				xml_io		= "attribute"
+        default			= "True"
+				type		= "BOOL">
+		</PropertyDef>
+
+		<PropertyDef
+				name		= "managedByToolbar"
+				id			= "{05AD0846-D0BB-45C0-87B7-9140A0F8BD8F}"
+				descr		= ""
+				xml_io		= "attribute"
+        default			= "True"
+				type		= "BOOL">
+		</PropertyDef>
+
+		<PropertyDef
+				name		= "noBackground"
+				id			= "{ae72651c-6583-4a85-80f8-ce3318f44c06}"
+				descr		= ""
+				xml_io		= "attribute"
+        default			= "False"
+				type		= "BOOL">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "hasDefaultVRPosition"
+			id			= "{2A512E49-D3D9-476B-951F-6E62EE3D7A87}"
+			descr		= "To force VR initial positionning of panels"
+			xml_io		= "attribute"
+      default			= "False"
+			type		= "BOOL">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "isPanelCloseable"
+			id			= "{FB029749-9F36-4FCC-8995-1C25318B8970}"
+			descr		= "Will hide the panel close button if TRUE"
+			xml_io		= "attribute"
+      default			= "True"
+			type		= "BOOL">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "defaultVRSpaceX"
+			id			= "{EBAADDA0-7C32-4BBF-B1D4-D36C4500BE41}"
+			descr		= "Default VR local space X position"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceY"
+			id			= "{B2D8836B-7A96-4E97-906C-857DE35ACA6E}"
+			descr		= "Default VR local space Y position"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceZ"
+			id			= "{350DA4C3-557B-469F-B6AD-C5093C29D442}"
+			descr		= "Default VR local space Z position"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceQuatX"
+			id			= "{5EE08E76-B661-4E84-876B-9E879C5119F2}"
+			descr		= "Default VR local space X quaternion"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceQuatY"
+			id			= "{04D23C02-5FC4-4964-8792-9DCD8E1F3473}"
+			descr		= "Default VR local space Y quaternion"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceQuatZ"
+			id			= "{1626FA3B-0AE6-48C7-8DC0-B03B23D00589}"
+			descr		= "Default VR local space Z quaternion"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "defaultVRSpaceQuatW"
+			id			= "{5BFA0226-C2BC-4886-8009-92C694889304}"
+			descr		= "Default VR local space W quaternion"
+			xml_io		= "attribute"
+			type		= "FLOAT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "collapsible"
+			id			= "{460CFC9C-A919-4863-A790-203B33C12EEF}"
+			descr		= "can the panel be collapsed"
+			xml_io		= "attribute"
+      default			= "True"
+			type		= "BOOL">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "HideOnEvent"
+			id			= "{0A96C22B-FAD6-4F85-B03D-9BDB785768D3}"
+			descr		= "Event to hide"
+			cardinality = "multiple"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "ShowOnEvent"
+			id			= "{A4BC6484-AF3C-474D-9D22-09AF708A2B6B}"
+			descr		= "Event to show"
+			cardinality = "multiple"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "MissionType"
+			id			= "{F9EA82EF-E9BB-4266-B4BF-EC7ED3C8C471}"
+			descr		= "Mission type"
+			xml_io		= "attribute"
+			cardinality = "multiple"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "MissionSubType"
+			id			= "{F6F418FF-8CE0-46D0-96D4-CF224E1031D3}"
+			descr		= "Mission sub-type"
+			xml_io		= "attribute"
+			cardinality = "multiple"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "PauseOnOpen"
+			id			= "{9C12DC53-1ED6-4E80-BAA8-ABF4B9F0884F}"
+			descr		= "Should the game be paused when the panel is open"
+			cardinality = "multiple"
+      default			= "False"
+			type		= "BOOL">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "Context"
+			id			= "{13AA63A4-C51F-4564-8248-531E2F8C9A95}"
+			descr		= "Context of the Action to open or close the panel"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "Action"
+			id			= "{9930FD74-39DD-4E3A-8B2F-B49FA283F08A}"
+			descr		= "Action to open or close the panel"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<!-- "Title" is defined in propbase -->
+		
+		<PropertyDef
+			name		= "VisibleCondition"
+			id			= "{C88EE388-37B9-4605-A4CD-247881EC0588}"
+			descr		= "Condition (in RPN) for showing the element"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "DisabledCondition"
+			id			= "{63B86A10-6C3A-4AE7-BF51-9642FABD0B54}"
+			descr		= "Condition (in RPN) for disabling the element"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+
+    <PropertyDef
+			name		= "Platform"
+      id			= "{B13649F1-1201-4D56-AE6A-455072E37C69}"
+			descr		= "Element is specific to a platform"
+			xml_io	= "attribute"
+			type		= "ENUM"
+      default		= "All">
+			<EnumDef symbolprefix="Platform">
+        <EnumVal
+					name		= "ALL"
+					xml_name	= "All" />
+        <EnumVal
+					name		= "PC"
+					xml_name	= "PC" />
+        <EnumVal
+					name		= "SCARLETT"
+					xml_name	= "Scarlett" />
+      </EnumDef>
+    </PropertyDef>
+    
+		<PropertyDef
+			name		= "DataType"
+			id			= "{3C0EE358-E07F-4FBB-9563-C1DC12AE0E4C}"
+			descr		= "Type of variable to connect with the element"
+			xml_io		= "attribute"
+			type		= "ENUM"
+			default		= "Count">
+			<EnumDef symbolprefix="DataType">
+				<EnumVal
+					name		= "SIMVAR"
+					xml_name	= "SimVar" />
+				<EnumVal
+					name		= "OPTIONID"
+					xml_name	= "OptionID" />
+				<EnumVal
+					name		= "ASSISTANCEID"
+					xml_name	= "AssistanceID" />
+				<EnumVal
+					name		= "ULONG"
+					xml_name	= "ULong" />
+				<EnumVal 
+					name		= "COUNT"
+					xml_name	= "Count" />	<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+			name		= "Unit"
+			id			= "{F16A3B6B-0D97-4F6C-B1AB-47770AB2447C}"
+			descr		= "Unit of a SimVar"
+			xml_io		= "attribute"
+			type		= "TEXT">
+		</PropertyDef>
+		
+		<PropertyDef
+			name		= "ParameterIndex"
+			id			= "{F3E883DE-54FC-44CB-81E1-CC658B38518B}"
+			descr		= "Index of the SimVar parameter linked to the element"
+			xml_io		= "attribute"
+			type		= "ULONG">
+		</PropertyDef>
+
+    <PropertyDef
+			id          = "{137B65BD-450D-472B-A56A-502A24F35C8D}"
+			name        = "AvailableInDevMode"
+			type				= "BOOL"
+			descr       = "AvailableInDevMode"
+			default			= "False">
+    </PropertyDef>
+
+
+  </PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_INGAME_PANELS_">
+
+<cpptext pass="2">
+//
+//	Property Set Identifiers....
+//
+</cpptext>
+
+		<SetDef
+			id			= "{43D3DEDB-A2A3-43D2-B2E1-7A58012975CE}"
+			name		= "PanelElementTypeList"
+			descr		= "List of panel element types">
+			<property name = "PanelElementType" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{8C922A18-D595-4F22-8EB6-EF28F3FD2E24}"
+			name		= "PanelElementType"
+			descr		= "Defines the HTML component to use for a type of panel element">
+			<property name = "Type" />
+			<property name = "url" />
+			<property name = "TagName" />
+			<property name = "DataFormat" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{FBE87D69-8DAF-423B-9AB2-C04D9A37F373}"
+			name		= "DataFormat"
+			descr		= "Format used to exchange data with Panel Elements">
+			<property name = "SimBase.id" />
+			<property name = "Format" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{50F3CE29-ABAD-4FA5-83A2-E6F24DF78991}"
+			name		= "InGamePanelDefinition"
+			descr		= "An ingame panel">
+			<property name = "SimBase.id" />
+			<property name = "name" />
+			<property name = "url" />
+			<property name = "order" />
+			<property name = "TagName" />
+			<property name = "resizeDirections" />
+			<property name = "minWidth" />
+			<property name = "minHeight" />
+			<property name = "defaultHeight" />
+			<property name = "defaultWidth" />
+      <property name = "HAnchor" />
+      <property name = "defaultPosX" />
+      <property name = "defaultLeft" />
+			<property name = "defaultRight" />
+			<property name = "defaultUndockedHeight" />
+			<property name = "defaultTop" />
+			<property name = "hasDefaultVRPosition" />
+			<property name = "defaultVRSpaceX" />
+			<property name = "defaultVRSpaceY" />
+			<property name = "defaultVRSpaceZ" />
+			<property name = "defaultVRSpaceQuatX" />
+			<property name = "defaultVRSpaceQuatY" />
+			<property name = "defaultVRSpaceQuatZ" />
+			<property name = "defaultVRSpaceQuatW" />
+			<property name = "icon" />
+			<property name = "buttonVisible" />
+      <property name = "headerVisible" />
+      <property name = "collideInGameMarkers" />
+      <property name = "managedByToolbar" />
+			<property name = "collapsible" />
+			<property name = "HideOnEvent" />
+			<property name = "ShowOnEvent" />
+			<property name = "PauseOnOpen" />
+			<property name = "ToggleInput" />
+			<property name = "AvailableOnlyIn" />
+			<property name = "PanelElement" />
+      <property name = "AvailableInDevMode" />
+    </SetDef>
+		
+		<SetDef
+			id			= "{3CB11016-ACE1-4E53-AC6A-638761AEE87F}"
+			name		= "ToggleInput"
+			descr		= "Input to open or close the panel" >
+			<property name = "Context" />
+			<property name = "Action" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{CA1B7711-CAF6-4C7F-BDC0-27974B99E64C}"
+			name		= "AvailableOnlyIn"
+			descr		= "If the panel is available only in specific mission types or sub-types" >
+			<property name = "MissionType" />
+			<property name = "MissionSubType" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{D04F909F-242C-424C-954C-44BA209C08BF}"
+			name		= "PanelElement"
+			descr		= "Element or group of elements"
+			cardinality = "multiple" >
+			<property name = "SimBase.id" />
+			<property name = "Type" />
+			<property name = "InitVar" />
+			<property name = "Data" />
+			<property name = "DataArray" />
+			<property name = "VisibleCondition" />
+			<property name = "DisabledCondition" />
+			<property name = "Platform" />
+			<property name = "PanelElement" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{BC1D727D-8CA4-43AB-9B62-2E63036DD37E}"
+			name		= "InitVar"
+			descr		= "One variable to send to initialize an element"
+			cardinality = "multiple" >
+			<property name = "name" />
+			<property name = "Array" />
+			<property name = "InitVarValue" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{85C0FB85-DBAD-4CED-A40A-F87350636E84}"
+			name		= "InitVarValue"
+			descr		= "Values container for initvars"
+			cardinality = "multiple" >
+			<property name = "SimBase.Bool" />
+			<property name = "SimBase.Double" />
+			<property name = "SimBase.Text" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{10DDF741-9D52-418F-AF29-337F46F51467}"
+			name		= "Array"
+			descr		= "Array of values"
+			cardinality = "multiple" >
+			<property name = "Array" />
+			<property name = "InitVarValue" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{C77D1DB7-4B06-437B-9196-8E8DC92258E3}"
+			name		= "Data"
+			descr		= "Game data to connect with the element"
+			cardinality = "multiple" >
+			<property name = "SimBase.id" />
+			<property name = "DataType" />
+			<!-- For SimVars -->
+			<property name = "Name" />
+			<property name = "Unit" />
+			<property name = "ParameterIndex" />
+			<!-- For Option items -->
+			<property name = "OptionsGeneral.OptionItemID" />
+			<!-- For Assistance items -->
+			<property name = "AssistancePresets.AssistanceItemID" />
+		</SetDef>
+		
+		<!-- TODO expand DataArray? So far, they only loop on the ParameterIndex of a SimVar -->
+		<SetDef
+			id			= "{B75B7184-8A5F-4D25-9518-452A9D61CAD0}"
+			name		= "DataArray"
+			descr		= "Array from a simvar"
+			cardinality = "multiple" >
+			<property name = "SimBase.id" />
+			<property name = "DataType" />
+			<property name = "Name" />
+			<property name = "Unit" />
+			<property name = "FromValue" />
+			<property name = "ToValue" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{05F88BDC-52A5-4BFF-BB3E-26E88C6C19D3}"
+			name		= "FromValue"
+			descr		= "Starting value of the index in a loop (assumed to be the lowest)" >
+			<property name = "DataType" />
+			<!-- If simvar -->
+			<property name = "Name" />
+			<property name = "Unit" />
+			<property name = "ParameterIndex" />
+			<!-- If fixed valued -->
+			<property name = "SimBase.ULong" />
+		</SetDef>
+		
+		<SetDef
+			id			= "{FA2809F8-8165-4174-85C7-8F846836C412}"
+			name		= "ToValue"
+			descr		= "Ending value of the index in a loop (assumed to be the highest)" >
+			<property name = "DataType" />
+			<!-- If simvar -->
+			<property name = "Name" />
+			<property name = "Unit" />
+			<property name = "ParameterIndex" />
+			<!-- If fixed valued -->
+			<property name = "SimBase.ULong" />
+		</SetDef>
+		
+	</SetDefs>
+<cpptext pass="2">
+}
+</cpptext>
+</SymbolDef>

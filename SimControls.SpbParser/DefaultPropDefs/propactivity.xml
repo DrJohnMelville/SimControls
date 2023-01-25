@@ -1,0 +1,231 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- WorldBase property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "Activity"
+    id           = "{04B5D554-4AA3-42F9-8ED4-4B6C504EEAAE}"
+    descr        = "Activity XXX property, type and set definitions."
+    chdr         = "propactivity.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+      filename = "Common\propworldbase.xml"
+      id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+      version  = "1,0" />
+
+  <cpptext pass="1">
+    //-------------------------------------------------------------------------//
+    //  propworldbase.h
+    //
+    //  FlightSim WorldBase AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+    //
+
+    //
+    //  Namespace
+    //
+  </cpptext>
+
+  <PropertyDefs
+      symbolprefix = "SPID_">
+
+    <cpptext pass="1">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+            id          = "{79E7D11D-D498-4C4D-B3B5-0E4DC4F2C33D}"
+            name        = "NameActivity"
+            type		    = "TEXT"
+            descr       = "NameActivity">
+    </PropertyDef>
+    
+    <PropertyDef
+            id          = "{E78CB1ED-F0DE-444B-A874-BABCC72B38C4}"
+            name        = "SetByDefault"
+            type		    = "BOOL"
+            descr       = "SetByDefault">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{C8EE9FE5-BE0E-4373-932B-65C662561199}"
+            name        = "NeedRestart"
+            type		    = "BOOL"
+            descr       = "NeedRestart">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{2EEA3985-023E-4467-BBF8-91DF9A35821B}"
+            name        = "NeedToCreateFlightPlan"
+            type		    = "BOOL"
+            descr       = "NeedToCreateFlightPlan">
+    </PropertyDef>
+	
+	<PropertyDef
+            id          = "{57258B62-AABA-4615-BD0A-CD2EA3DE9D11}"
+            name        = "NeedATCHUD"
+            type		    = "BOOL"
+            descr       = "NeedATCHUD">
+    </PropertyDef>
+
+    <PropertyDef    
+            id          = "{4923D1F5-B046-4CC2-B2D0-1567D47384B6}"
+            name        = "ViewedInMenu"
+            type		    = "BOOL"
+            descr       = "ViewedInMenu">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{158BD948-DBAE-43C0-B418-2A48E95AE5C6}"
+            name        = "SimFilename"
+            type		    = "TEXT"
+            descr       = "SimFilename">
+    </PropertyDef>
+
+
+    <PropertyDef
+          id          = "{FED032BF-3905-44A9-ACE8-DF89C206AA40}"
+          name        = "ATCHUDDisabled"
+          type		    = "BOOL"
+          descr       = "ATCHUDDisabled">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{3B5A790E-53AE-4C54-B15B-1F7A6EC65A4E}"
+            name        = "ObjectFilePath"
+            type		    = "TEXT"
+            descr       = "ObjectFilePath">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{5F176395-1715-4EF7-954E-8D8C1F51D210}"
+            name        = "TriggerObject"
+            type		    = "GUID"
+            descr       = "TriggerObject">
+    </PropertyDef>
+    
+    <PropertyDef
+            id          = "{AF7EC6A8-2D74-4288-B48A-A93947C63874}"
+            name        = "Required"
+            type		    = "BOOL"
+            descr       = "Required">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{33AE15EF-1F62-4218-AF32-4E82942E9015}"
+            name        = "LocationType"
+			      type		    = "TEXT"
+            descr       = "LocationType">      
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "AirportICAO"
+            id          = "{8FB1F1FE-10D7-4FF1-9C4B-BE0859993B4A}"
+            type        = "TEXT"
+            descr       = "Airport ICAO.">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{0F79D9D3-3A8E-49BA-8A9C-E7BBA8A41A7B}"
+            name        = "LLA"
+			      type		    = "LLA"
+            descr       = "Departure LatLonAlt">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{5E5CA15D-C83C-42E0-BEBD-F6B5A63E231E}"
+            name        = "NeedToBeAirport"
+            type		    = "BOOL"
+            descr       = "NeedToBeAirport">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{94087C99-6A0A-4293-9A80-1EFA81C4CB7D}"
+            name        = "ForceStartInAir"
+            type		    = "BOOL"
+            descr       = "ForceStartInAir">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{37700094-F60F-496D-AE9A-8A1AD00AC02C}"
+            name        = "FirstFlightState"
+            type		    = "Text"
+            descr       = "FirstFlightState">
+    </PropertyDef>
+
+    <PropertyDef
+            id          = "{C65E11F1-E2AF-41E3-B083-99F44A22C9B0}"
+            name        = "FirstFlightStateVFR"
+            type		    = "Text"
+            descr       = "FirstFlightStateVFR">
+    </PropertyDef>
+	
+	<PropertyDef
+            id          = "{DB27049A-1E95-42F2-8FAE-775FBB063D84}"
+            name        = "FirstFlightStateFallback"
+            type		    = "Text"
+            descr       = "FirstFlightStateFallback">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+  <SetDefs symbolprefix = "SSID_">
+
+    <cpptext pass="1">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+     <SetDef
+                 id          = "{7E41AF29-19BA-4DCC-B7B3-77F467B8F607}"
+                 name        = "Activity"
+                 descr       = "Activity">
+      <property name = "NameActivity"/>      
+      <property name = "SetByDefault"/>
+      <property name = "NeedRestart"/>
+      <property name = "NeedToCreateFlightPlan"/>
+	    <property name = "NeedATCHUD"/>
+      <property name = "ViewedInMenu"/>
+      <property name = "SimFilename"/>
+      <property name = "ATCHUDDisabled"/>
+      <property name = "TriggerObject"/>
+      <property name = "ForceStartInAir"/>
+      <property name = "FirstFlightState"/>
+      <property name = "FirstFlightStateVFR"/>
+	  <property name = "FirstFlightStateFallback"/>
+     </SetDef>
+    
+    <SetDef
+               id          = "{2E26DC81-F4F4-4494-A694-587CF8242002}"
+               name        = "Departure"
+               descr       = "Departure of the activity.">
+      <property name = "Required"/>
+      <property name = "NeedToBeAirport"/>     
+    </SetDef>
+
+    <SetDef
+                id          = "{78960605-8E73-442D-B190-62573F0F8E71}"                
+                name        = "Arrival"
+                descr       = "Arrival of the activity.">
+      <property name = "Required"/>
+      <property name = "NeedToBeAirport"/>      
+    </SetDef>
+    
+
+
+  </SetDefs>
+
+</SymbolDef>

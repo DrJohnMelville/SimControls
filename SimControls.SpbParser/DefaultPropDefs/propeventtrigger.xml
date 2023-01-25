@@ -1,0 +1,763 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+	name         = "EventTriggers"
+	id           = "{0F1DFC3E-2C40-4D74-AE5F-3338A07331F4}"
+	descr        = "SimProp Event Trigger property, type and set definitions."
+	chdr         = "propeventtrigger.h"
+	version      = "1,0" >
+
+	<SymbolInclude
+		filename = "Common\propbase.xml"
+		id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+		version  = "1,0" />
+	<SymbolInclude
+		filename = "Common\propmission.xml"
+		id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+		version  = "1,0" />
+	<SymbolInclude
+		filename = "Common\propgauge.xml"
+		id       = "{2B1F7CE9-C6CF-4131-8783-46689D7ABDB2}"
+		version  = "1,0" />
+  
+	<cpptext pass="1">
+	//-------------------------------------------------------------------------//
+	//  propeventtrigger.h
+	//
+	//  FlightSim event trigger AceXML property and property set symbol definitions
+	//-------------------------------------------------------------------------//
+
+	//
+	//  Namespace
+	//
+	namespace EventTriggers{
+	</cpptext>
+
+	<PropertyDefs symbolprefix = "SPID_FLOW_EVENTTRIGGER_">
+
+		<cpptext pass="2">
+		//
+		//  Property Identifiers
+		//
+		</cpptext>
+
+		<PropertyDef
+			name        = "Name"
+			id          = "{86DE1293-933C-40DF-8E5F-1AC8B05ACCD6}"
+			type        = "TEXT"
+			descr       = "Name of the trigger (Currently also corresponds to the conditions hard-coded in cpp).">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "Cooldown"
+			id          = "{92E6BA0D-F055-455A-9AD3-6D2FAC2E25B2}"
+			type        = "FLOAT"
+			descr       = "Minimum time between 2 call of this TriggerEvent.">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "StartElapsedTimeInContext"
+			id          = "{3CC8A6E7-B7D8-4A91-8A25-DAA450AD6D0B}"
+			type        = "FLOAT"
+			descr       = "Minimum time to start event trigger in the context">
+		</PropertyDef>
+	
+		<PropertyDef
+			name        = "Condition"
+			id          = "{F2A9B8F0-9E36-4178-AAF1-3FB0862395D5}"
+			type        = "TEXT"
+			descr       = "Condition for the Trigger to execute">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Context"
+			id          = "{47C50071-AC5E-4007-A585-BC0E42D18AEB}"
+			type        = "ENUM"
+			cardinality = "multiple"
+			descr       = "Context of the trigger - affects whether or not a trigger will show in the menu or in game."
+			default     = "All">
+			<EnumDef symbolprefix="eTriggerContext">
+				<EnumVal 
+					name = "CONTEXT_INVALID" 
+					xml_name = "Invalid"/>
+				<EnumVal 
+					name = "CONTEXT_ALL" 
+					xml_name = "All"/>
+				<EnumVal 
+					name = "CONTEXT_INTRO" 
+					xml_name = "Intro"/>
+				<EnumVal 
+					name = "CONTEXT_PREFLIGHT_GATE" 
+					xml_name = "Preflight Gate"/>
+				<EnumVal 
+					name = "CONTEXT_PREFLIGHT_PUSHBACK" 
+					xml_name = "Preflight Pushback"/>
+				<EnumVal 
+					name = "CONTEXT_PREFLIGHT_TAXI" 
+					xml_name = "Preflight Taxi"/>
+				<EnumVal
+					name = "CONTEXT_PREFLIGHT_HOLDSHORT"
+					xml_name = "Preflight Hold Short"/>
+				<EnumVal 
+					name = "CONTEXT_FLIGHT_RUNWAY" 
+					xml_name = "Flight Runway"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_INITIALCLIMB"
+					xml_name = "Flight InitialClimb"/>
+				<EnumVal 
+					name = "CONTEXT_FLIGHT_CLIMB" 
+					xml_name = "Flight Climb"/>
+				<EnumVal 
+					name = "CONTEXT_FLIGHT_CRUISE" 
+					xml_name = "Flight Cruise"/>
+				<EnumVal 
+					name = "CONTEXT_FLIGHT_DESCENT" 
+					xml_name = "Flight Descent"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_APPROACH" 
+					xml_name = "Landing Approach"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_FINAL" 
+					xml_name = "Landing Final"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_TOUCHDOWN" 
+					xml_name = "Landing Touchdown"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_GROUNDROLL" 
+					xml_name = "Landing Groundroll"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_TAXI" 
+					xml_name = "Landing Taxi"/>
+				<EnumVal 
+					name = "CONTEXT_LANDING_GATE" 
+					xml_name = "Landing Gate"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_REST"
+					xml_name = "Landing Rest"/>
+				<EnumVal 
+					name = "CONTEXT_WAITING" 
+					xml_name = "Waiting"/>
+				<EnumVal 
+					name = "CONTEXT_TELEPORTTOSTATE" 
+					xml_name = "Teleport To State"/>
+				<EnumVal 
+					name = "CONTEXT_FREEFLIGHT" 
+					xml_name = "Freeflight"/>
+				<EnumVal 
+					name = "CONTEXT_LANDINGCHALLENGE" 
+					xml_name = "Landing Challenge"/>
+				<EnumVal
+					name = "CONTEXT_BUSHTRIP"
+					xml_name = "Bush trip"/>
+				<EnumVal
+					name = "CONTEXT_OUTRO"
+					xml_name = "Outro"/>
+				<EnumVal
+					name = "CONTEXT_REPLAY"
+					xml_name = "Replay"/>
+				<EnumVal
+					name = "CONTEXT_JOINPLANE"
+					xml_name = "Joinplane"/>
+				<EnumVal
+					name = "CONTEXT_BRIEFING"
+					xml_name = "Briefing"/>
+				<EnumVal
+					name = "CONTEXT_INTRO_PLANE"
+					xml_name = "Intro Plane"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_INTRO"
+					xml_name = "Race Lobby Reno Intro"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_GAMEMODE"
+					xml_name = "Race Lobby Reno Gamemode"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_CATEGORY"
+					xml_name = "Race Lobby Reno Category"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_PLANE"
+					xml_name = "Race Lobby Reno Plane"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_SEARCHMATCH"
+					xml_name = "Race Lobby Reno Searchmatch"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_WAITREADY"
+					xml_name = "Race Lobby Reno Waitready"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_PLAYERS_LOADING"
+					xml_name = "Race Wait Players Loading"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_WAIT_OPENING_RTC"
+					xml_name = "Qualifications Wait Opening Rtc"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_RENO"
+					xml_name = "Qualifications Reno"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_WAIT_PLAYERS_FINISHED"
+					xml_name = "Qualifications Wait Players Finished"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_FINISH"
+					xml_name = "Qualifications Finish"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_OPENING_RTC"
+					xml_name = "Race Wait Opening Rtc"/>
+				<EnumVal
+					name = "CONTEXT_RACE_RENO"
+					xml_name = "Race Reno"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_PLAYERS_FINISHED"
+					xml_name = "Race Wait Players Finished"/>
+				<EnumVal
+					name = "CONTEXT_RACE_FINISH"
+					xml_name = "Race Finish"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_REDBULL"
+					xml_name = "Race Lobby Redbull"/>
+				<EnumVal
+					name = "CONTEXT_RACE_REDBULL"
+					xml_name = "Race Redbull"/>
+				<EnumVal
+					name = "CONTEXT_SPECTATOR"
+					xml_name = "Spectator"/>
+				<EnumVal 
+					name = "COUNT" 
+					xml_name = "COUNT"/><!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "ExcludedContext"
+			id          = "{70C617AF-88A0-4FCB-9BC7-5DCA458EC949}"
+			type        = "ENUM"
+			cardinality = "multiple"
+			descr       = "Except Context of the trigger - affects whether or not a trigger will show in the menu or in game."
+			>
+			<EnumDef symbolprefix="eTriggerContext">
+				<EnumVal
+					name = "CONTEXT_INVALID"
+					xml_name = "Invalid"/>        
+				<EnumVal
+					name = "CONTEXT_INTRO"
+					xml_name = "Intro"/>
+				<EnumVal
+					name = "CONTEXT_PREFLIGHT_GATE"
+					xml_name = "Preflight Gate"/>
+				<EnumVal
+					name = "CONTEXT_PREFLIGHT_PUSHBACK"
+					xml_name = "Preflight Pushback"/>
+				<EnumVal
+					name = "CONTEXT_PREFLIGHT_TAXI"
+					xml_name = "Preflight Taxi"/>
+				<EnumVal
+					name = "CONTEXT_PREFLIGHT_HOLDSHORT"
+					xml_name = "Preflight Hold Short"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_RUNWAY"
+					xml_name = "Flight Runway"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_INITIALCLIMB"
+					xml_name = "Flight InitialClimb"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_CLIMB"
+					xml_name = "Flight Climb"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_CRUISE"
+					xml_name = "Flight Cruise"/>
+				<EnumVal
+					name = "CONTEXT_FLIGHT_DESCENT"
+					xml_name = "Flight Descent"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_APPROACH"
+					xml_name = "Landing Approach"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_FINAL"
+					xml_name = "Landing Final"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_TOUCHDOWN"
+					xml_name = "Landing Touchdown"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_GROUNDROLL"
+					xml_name = "Landing Groundroll"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_TAXI"
+					xml_name = "Landing Taxi"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_GATE"
+					xml_name = "Landing Gate"/>
+				<EnumVal
+					name = "CONTEXT_LANDING_REST"
+					xml_name = "Landing Rest"/>
+				<EnumVal
+					name = "CONTEXT_WAITING"
+					xml_name = "Waiting"/>
+				<EnumVal
+					name = "CONTEXT_TELEPORTTOSTATE"
+					xml_name = "Teleport To State"/>
+				<EnumVal
+					name = "CONTEXT_FREEFLIGHT"
+					xml_name = "Freeflight"/>
+				<EnumVal
+					name = "CONTEXT_LANDINGCHALLENGE"
+					xml_name = "Landing Challenge"/>
+				<EnumVal
+					name = "CONTEXT_BUSHTRIP"
+					xml_name = "Bush trip"/>
+				<EnumVal
+					name = "CONTEXT_OUTRO"
+					xml_name = "Outro"/>
+				<EnumVal
+					name = "CONTEXT_REPLAY"
+					xml_name = "Replay"/>
+				<EnumVal
+					name = "CONTEXT_JOINPLANE"
+					xml_name = "Joinplane"/>
+				<EnumVal
+					name = "CONTEXT_BRIEFING"
+					xml_name = "Briefing"/>
+				<EnumVal
+					name = "CONTEXT_INTRO_PLANE"
+					xml_name = "Intro Plane"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_INTRO"
+					xml_name = "Race Lobby Reno Intro"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_GAMEMODE"
+					xml_name = "Race Lobby Reno Gamemode"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_CATEGORY"
+					xml_name = "Race Lobby Reno Category"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_PLANE"
+					xml_name = "Race Lobby Reno Plane"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_SEARCHMATCH"
+					xml_name = "Race Lobby Reno Searchmatch"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_RENO_WAITREADY"
+					xml_name = "Race Lobby Reno Waitready"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_PLAYERS_LOADING"
+					xml_name = "Race Wait Players Loading"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_WAIT_OPENING_RTC"
+					xml_name = "Qualifications Wait Opening Rtc"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_RENO"
+					xml_name = "Qualifications Reno"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_WAIT_PLAYERS_FINISHED"
+					xml_name = "Qualifications Wait Players Finished"/>
+				<EnumVal
+					name = "CONTEXT_QUALIFICATIONS_FINISH"
+					xml_name = "Qualifications Finish"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_OPENING_RTC"
+					xml_name = "Race Wait Opening Rtc"/>
+				<EnumVal
+					name = "CONTEXT_RACE_RENO"
+					xml_name = "Race Reno"/>
+				<EnumVal
+					name = "CONTEXT_RACE_WAIT_PLAYERS_FINISHED"
+					xml_name = "Race Wait Players Finished"/>
+				<EnumVal
+					name = "CONTEXT_RACE_FINISH"
+					xml_name = "Race Finish"/>
+				<EnumVal
+					name = "CONTEXT_RACE_LOBBY_REDBULL"
+					xml_name = "Race Lobby Redbull"/>
+				<EnumVal
+					name = "CONTEXT_RACE_REDBULL"
+					xml_name = "Race Redbull"/>
+				<EnumVal
+					name = "CONTEXT_SPECTATOR"
+					xml_name = "Spectator"/>
+				<EnumVal
+					name = "COUNT"
+					xml_name = "COUNT"/>
+				<!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Source"
+			id          = "{A6E46AD8-17FD-4D57-8174-AE351F0E576E}"
+			type        = "TEXT"
+			descr       = "Source of the Event."
+			default     = "Copilot">           
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "StartsEnabled"
+			id          = "{D0078041-645C-4323-95AB-88968947D30F}"
+			type        = "BOOL"
+			default		= "True"
+			descr       = "If FALSE, the Trigger is disabled at starts and needs to be enabled before it can be triggered.">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Type"
+			id          = "{619BE11E-37A1-4288-9159-5B3C6D5ACF54}"
+			type        = "ENUM"
+			descr       = "Type of the Notification."
+			default     = "Descriptions">
+			<EnumDef symbolprefix="eEventTriggerType">
+				<EnumVal 
+					name = "TYPE_NONE" 
+					xml_name = "None"/><!-- Should not be used in XML Files -->
+				<EnumVal
+					name = "TYPE_PILOTING"
+					xml_name = "Piloting"/>
+				<EnumVal
+					name = "TYPE_AIRCRAFT_SYSTEMS"
+					xml_name = "Aircraft_Systems"/>
+				<EnumVal
+					name = "TYPE_FLYING_TIPS"
+					xml_name = "Flying_Tips"/>
+				<EnumVal
+					name = "TYPE_OBJECTIVES"
+					xml_name = "Objectives"/> <!-- DEPRECATED -->
+				<EnumVal
+					name = "TYPE_SCORING"
+					xml_name = "Scoring"/>              
+				<EnumVal
+					name = "TYPE_SOFTWARE_TIPS"
+					xml_name = "Software_Tips"/>
+				<EnumVal 
+					name = "TYPE_STEPS" 
+					xml_name = "Steps"/> <!-- DEPRECATED -->
+				<EnumVal
+					name = "TYPE_FSX_LEGACY"
+					xml_name = "FSX_Legacy"/> <!-- Used for hardcoded notifications -->
+				<EnumVal 
+					name = "TYPE_DESCRIPTIONS" 
+					xml_name = "Descriptions"/> <!-- DEPRECATED -->
+				<EnumVal
+					name = "TYPE_RACE"
+					xml_name = "Race"/>
+				<EnumVal 
+					name = "COUNT" 
+					xml_name = "COUNT"/><!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "ForcedOnPreset_ID"
+			id          = "{A4F2C816-478C-40A4-9054-099C6979BA68}"
+			type        = "TEXT"
+			serialize	= "default"	
+			cardinality = "multiple"
+			descr       = "Name_Z Corresponding to the preset in which this EventTrigger will be forced on even if the type should disable it.">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "TT"
+			id          = "{67ACAFC5-1730-417A-94C2-1DF4C1296CEC}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Name of the TT.">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Priority"
+			id          = "{C0655F87-4B5E-4BC5-98FD-A45FBF39EAE9}"
+			type        = "ENUM"
+			descr       = "Priority of the Notification."
+			default     = "Normal">
+			<EnumDef symbolprefix="eNotifPriority">
+			<EnumVal 
+				name = "PRIORITY_URGENT" 
+				xml_name = "Urgent"/>
+				<EnumVal
+					name = "PRIORITY_URGENT_SPEED"
+					xml_name = "UrgentSpeed"/>
+				<EnumVal
+					name = "PRIORITY_URGENT_ALTITUDE"
+					xml_name = "UrgentAltitude"/>
+				<EnumVal
+					name = "PRIORITY_URGENT_HEADING"
+					xml_name = "UrgentHeading"/>
+				<EnumVal 
+					name = "PRIORITY_NORMAL" 
+					xml_name = "Normal"/>
+				<EnumVal
+					name = "PRIORITY_NORMAL_SPEED"
+					xml_name = "NormalSpeed"/>
+				<EnumVal
+					name = "PRIORITY_NORMAL_ALTITUDE"
+					xml_name = "NormalAltitude"/>
+				<EnumVal
+					name = "PRIORITY_NORMAL_HEADING"
+					xml_name = "NormalHeading"/>
+				<EnumVal 
+					name = "PRIORITY_Low" 
+					xml_name = "Low"/>
+				<EnumVal
+					name = "PRIORITY_Low_SPEED"
+					xml_name = "LowSpeed"/>
+				<EnumVal
+					name = "PRIORITY_Low_ALTITUDE"
+					xml_name = "LowAltitude"/>
+				<EnumVal
+					name = "PRIORITY_Low_HEADING"
+					xml_name = "LowHeading"/>
+				<EnumVal 
+					name = "COUNT" 
+					xml_name = "COUNT"/><!-- Should not be used in XML Files -->
+			</EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Delay"
+			id          = "{0B15CFBB-3917-4C0D-9E6F-D570D6E597A0}"
+			type        = "FLOAT"
+			default     = "0"
+			descr       = "Delay of the Notification.">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "AIControls"
+			id          = "{A28FF1E8-E0C3-4BAA-9058-45A3B14E2382}"
+			type        = "ENUM"
+			default     = "False"
+			descr       = "True: AI takes controls.  False: Human has controls. Default: Assistance value">
+			<EnumDef symbolprefix="AICONTROL_">
+				<EnumVal
+					name = "TRUE"
+					xml_name = "True"/>
+				<EnumVal
+					name = "FALSE"
+					xml_name = "False"/>
+				<EnumVal
+					name = "DEFAULT"
+					xml_name = "Default"/>
+			</EnumDef>
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "TextVariable"
+			id          = "{D2E02E2C-0D21-4B0D-A9C6-B07DAA88417D}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Text Variable replaced by the parameter for the Notification.">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Key"
+			id          = "{FB4FE90F-E93E-45F3-BCC0-573FF062105D}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Parameter for the Notification (Needs to be a KEY_...).">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Value"
+			id          = "{5BAF79C1-3FC8-4B6D-A525-C8B378023B4B}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Parameter for the Notification (Simple value).">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "Simvar"
+			id          = "{E64B0778-358F-4FFD-A5EE-821FABBA475F}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Parameter for the Notification (Needs to be a SIMVAR).">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "SimvarScale"
+			id          = "{03C4EEF5-C0F0-452D-B0D1-75FE33D31CF7}"
+			type        = "FLOAT"
+			xml_io      = "attribute"		
+			descr       = "Value that the simvar parameter is multiplied by.">
+		</PropertyDef>
+		
+		<PropertyDef
+			name        = "SimvarUnit"
+			id          = "{A50F4976-46DA-4077-93A7-DA5796F48936}"
+			type        = "TEXT"
+			xml_io      = "attribute"		
+			descr       = "Unit of the Simvar Parameter.">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "MaxCount"
+			id          = "{C28E48EC-186D-43F5-B4C6-86F637B1271B}"
+			type        = "LONG"
+			default     = "0"
+			descr       = "if greater than 0: max number notifications for this trigger">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "StackNotif"
+			id          = "{C38FB779-7883-4AF6-B419-C1D0DF432EE9}"
+			type        = "BOOL"
+			default     = "FALSE"
+			descr       = "if true: stack notif and not push notif">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "NotifGauge"
+			id          = "{1C6A5B32-B826-4EBF-B7FA-34DA00558A05}"
+			type        = "BOOL"
+			default     = "FALSE"
+			descr       = "if true and stackNotif, the notif has a gauge">
+		</PropertyDef>
+
+    <PropertyDef
+			name        = "SoundName"
+			id          = "{7F79D513-79E7-4B60-BA29-C8E594221449}"
+			type        = "TEXT"
+			xml_io      = "attribute"
+			descr       = "Name of sound to play at start.">
+    </PropertyDef>
+
+		<PropertyDef
+			name        = "TitleTT"
+			id          = "{3E228C02-C42E-446F-BAA1-46DC13A5BD86}"
+			type        = "TEXT"
+			xml_io      = "attribute"
+			descr       = "Name of the title TT.">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "Title"
+			id          = "{317F0742-9CB9-464E-A9CF-CC482D9AC5F1}"
+			type        = "TEXT">
+		</PropertyDef>
+
+		<PropertyDef
+			name        = "IconURL"
+			id          = "{8DCD7DDA-E0EA-4766-8BFC-633EB272519A}"
+			type        = "TEXT">
+		</PropertyDef>
+	
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_FLOW_EVENTTRIGGER_">
+
+		<cpptext pass="2">
+		//
+		//  Property Set Identifiers
+		//
+		</cpptext>
+
+		<SetDef
+			id          = "{729FAD91-D813-4BF8-8540-F4BE4BF99C5A}"
+			name        = "EventTrigger"
+			descr       = "An Event's Trigger">
+			<property name = "Name"/>
+			<property name = "Notification"/>
+			<property name = "VoiceOver"/>
+			<property name = "Cooldown"/>
+			<property name = "MaxCount"/>
+			<property name = "StartElapsedTimeInContext"/>      
+			<property name = "Source"/>
+			<property name = "Context"/>
+			<property name = "ExcludedContext"/>      
+			<property name = "Condition"/>
+			<property name = "Type"/>
+			<property name = "ForcedOnPreset_ID"/>
+			<property name = "StartsEnabled"/>
+			<property name = "AIControls"/>
+			<property name = "DisableIfIAHasControl"/>
+			<property name = "EventTriggersToActivate_OnNotif"/>
+			<property name = "EventTriggersToDeActivate_OnNotif"/>
+			<property name = "EventTriggersToActivate_OnStopNotif"/>
+			<property name = "EventTriggersToDeActivate_OnStopNotif"/>
+			<property name = "ConditionStartFlowEvents"/>
+			<property name = "ConditionEndFlowEvents"/>
+		</SetDef>
+		
+		<SetDef
+			id          = "{8BAAB965-A266-46D3-8CC4-5174C35FD0E9}"
+			name        = "Notification"
+			descr       = "The properties of the notification of the trigger.">
+			<property name = "TT"/>
+			<property name = "Text"/>
+			<property name = "TitleTT"/>
+			<property name = "Title"/>
+			<property name = "IconURL"/>
+			<property name = "Priority"/>
+			<property name = "Delay"/>
+			<property name = "Param"/>
+			<property name = "StackNotif"/>
+			<property name = "NotifGauge"/>
+      <property name = "SoundName"/>      
+		</SetDef>
+
+		<SetDef
+			id          = "{6E765B5C-23A3-4FE5-8411-A6B8501F80B7}"
+			name        = "ConditionStartFlowEvents"
+			descr       = "FlowEvents that are triggered the first time the condition is met (and notification should appear)">
+			<property name = "FlowEvent"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{7EB46345-F811-4569-A1C5-C41940F0F4C8}"
+			name        = "ConditionEndFlowEvents"
+			descr       = "FlowEvents that are triggered once the condition is not met, but was valid just before.">
+			<property name = "FlowEvent"/>
+		</SetDef>
+		
+		<SetDef
+			id          = "{4E7C7113-6779-4094-8BED-FF8395F23D03}"
+			name        = "Param"
+			descr       = "The properties of the Param of the notification.">
+			<property name = "TextVariable"/>
+			<property name = "Key"/>
+			<property name = "Simvar"/>
+			<property name = "SimvarScale"/>
+			<property name = "SimvarUnit"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{69966BBD-5C74-4FE3-AA9B-2BA234817E5C}"
+			name        = "VoiceOver"
+			descr       = "The properties of the VoiceOver of the trigger.">
+			<property name = "TT"/>
+			<property name = "Text"/>
+			<property name = "SoundFileName"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{EA323065-B974-4C9A-802A-5927C1255456}"
+			name        = "ObjectReference"
+			descr       = "Event trigger reference">
+			<property name = "Id"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{B2775E2F-F87D-45F3-AFB7-312B90C3588F}"
+			name        = "EventTriggersToActivate_OnNotif"
+			descr       = "">      
+			<property name = "ObjectReference"/>
+		</SetDef>
+	
+		<SetDef
+			id          = "{C763E66F-0888-49BF-9E08-6B426A3CDA8B}"
+			name        = "EventTriggersToDeActivate_OnNotif"
+			descr       = "">     
+			<property name = "ObjectReference"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{54A768BA-80C0-41EE-B556-FDEFCA9A57DA}"
+			name        = "EventTriggersToActivate_OnStopNotif"
+			descr       = "">
+			<property name = "ObjectReference"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{18ACA4F4-E967-4DD9-9BD0-54623334A624}"
+			name        = "EventTriggersToDeActivate_OnStopNotif"
+			descr       = "">
+			<property name = "ObjectReference"/>
+		</SetDef>
+
+	</SetDefs>
+	
+	<cpptext pass="2">
+	}
+	</cpptext>
+	
+</SymbolDef>

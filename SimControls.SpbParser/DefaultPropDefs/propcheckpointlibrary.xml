@@ -1,0 +1,30 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "CheckpointLibrary"
+    id           = "{F668C07D-07D4-425B-8CDE-60ED98C0D9C1}"
+    descr        = "SimProp checkpointlibrary property, type and set definitions."
+    chdr         = "propcheckpointlibrary.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+	<SymbolInclude
+        filename = "Common\propchecklistbase.xml"
+        id       = "{59E76521-CD00-4C15-9047-D332FCA6771B}"
+        version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propcheckpointlibrary.h
+//
+//  FlightSim checkpoint library AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+</cpptext>
+
+</SymbolDef>

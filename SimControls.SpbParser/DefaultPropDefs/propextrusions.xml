@@ -1,0 +1,270 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Material property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "Extrusions"
+    id           = "{1E54C4C1-A099-40e0-86EF-B5739313DBB1}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propextrusions.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propmaterial.xml"
+        id       = "{816850C2-78D8-456e-AC50-49153839591E}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propmaterial.h
+//
+//  FlightSim Material AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <!-- Properties for extrusions -->
+        <PropertyDef
+            name        = "Point"
+            serialize   = "both,default"
+            id          = "{F0884910-3009-4fd1-8B80-126F875E82E1}"
+            cardinality = "multiple"
+            type        = "FLOAT2">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "PointIndices"
+            id          = "{614C1DD3-7353-4b9c-84B4-2A971FE70F34}"
+            type        = "LONG2">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextureWidth"
+            id          = "{794E714C-D4D6-438e-8006-9A7B1D85FD5B}"
+            type        = "FLOAT"
+            descr       = "Texture width in meters">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextureVExtents"
+            id          = "{9FFDFBBE-37C7-4c8a-8BB3-BFF5575C67E3}"
+            type        = "FLOAT2"
+            descr       = "Extents of the texture V coordinate along a segment (point0.v,point1.v)">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MaterialIndex"
+            id          = "{A4F38219-B769-4a57-BF94-A02E51BC7ECA}"
+            type        = "ULONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "XExtents"
+            id          = "{6783DCF5-07B0-455e-AE8D-6A5D9D022E2D}"
+            type        = "FLOAT2" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "SurfaceType"
+            id          = "{907E14A2-6D36-4566-8D64-34B029CA3FD9}"
+            type        = "ENUM"
+            default     = "CONCRETE"
+            devnote     = "Season enumeration">
+            <EnumDef symbolprefix="SIMPROP_SURFACE_TYPE_">
+                <EnumVal name = "CONCRETE"/>
+                <EnumVal name = "GRASS"/>
+                <EnumVal name = "WATER"/>
+                <EnumVal name = "GRASS_BUMPY"/>
+                <EnumVal name = "ASPHALT"/>
+                <EnumVal name = "SHORT_GRASS"/>
+                <EnumVal name = "LONG_GRASS"/>
+                <EnumVal name = "HARD_TURF"/>
+                <EnumVal name = "SNOW"/>
+                <EnumVal name = "ICE"/>
+                <EnumVal name = "URBAN"/>
+                <EnumVal name = "FOREST"/>
+                <EnumVal name = "DIRT"/>
+                <EnumVal name = "CORAL"/>
+                <EnumVal name = "GRAVEL"/>
+                <EnumVal name = "OIL_TREATED"/>
+                <EnumVal name = "STEEL_MATS"/>
+                <EnumVal name = "BITUMINUS"/>
+                <EnumVal name = "BRICK"/>
+                <EnumVal name = "MACADAM"/>
+                <EnumVal name = "PLANKS"/>
+                <EnumVal name = "SAND"/>
+                <EnumVal name = "SHALE"/>
+                <EnumVal name = "TARMAC"/>
+                <EnumVal name = "WRIGHT_FLYER_TRACK"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <!-- Properties for fences -->
+        <PropertyDef
+            name        = "MaterialSetReference"
+            id          = "{12ECB129-7841-4efa-A5FF-DB766D493B2F}"
+            type        = "GUID">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ExtrusionReference"
+            id          = "{6E4BB5DB-4FDA-4b12-A2E5-E35BF8F6EE8D}"
+            type        = "GUID">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "VectorPlacementReference"
+            id          = "{6E50FA4B-65C4-4d88-AAA5-21403BEA922A}"
+            cardinality = "multiple"
+            type        = "GUID">
+        </PropertyDef>
+
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <!-- Sets for extrusions -->
+        <SetDef
+            id          = "{BACEF684-73D5-4955-AD81-37B1CE056731}"
+            name        = "PointList">
+            <property name="Point"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{52135659-3B7D-420c-8E24-E027DEEA715C}"
+            name        = "ExtrusionSegment">
+            <property name="PointIndices"/>
+            <property name="MaterialIndex"/>
+            <property name="TextureWidth"/>
+            <property name="TextureVExtents"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{85D30C39-B4F4-4de5-98E7-B52FC8360F83}"
+            name        = "ExtrusionPlatformSegment">
+            <property name="PointIndices"/>
+            <property name="SurfaceType"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B845DA0B-79C1-44fd-B73A-9D72F9BC915D}"
+            name        = "ExtrusionSegmentList">
+            <property name="ExtrusionSegment"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{ABAEDBBF-3EED-4b0c-BCD4-941D5B081A26}"
+            name        = "Extrusion">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "PointList"/>
+            <property name = "ExtrusionSegmentList"/>
+            <property name = "XExtents"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{D31CB6C9-EE25-424d-AD7E-FC0240C42031}"
+            name        = "ExtrusionPlatformSegmentList">
+            <property name="ExtrusionPlatformSegment"/>
+        </SetDef>
+
+
+        <!-- Sets for fences -->
+
+        <SetDef
+            id          = "{1B4C53B6-5F63-480a-8DFF-50A234A3B608}"
+            name        = "FenceProfile">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "MaterialSetReference"/>
+            <property name = "ExtrusionReference"/>
+            <property name = "VectorPlacementReference"/>
+        </SetDef>
+
+        <!-- Sets for polyline buildings -->
+        <SetDef
+            id         = "{B916E083-210A-4e9f-824B-957EA7A13BAA}"
+            name       = "PolylineBuildingProfile">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "MaterialSetReference"/>
+            <property name = "ExtrusionReference"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5A12D831-758C-4614-B02C-44575A3DC7C9}"
+            name        = "Extrusions"
+            policy      = "inclusive"
+            descr       = "Top level bag of extrusions" >
+            <property name="Extrusion"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{545B87AB-1879-4af4-B6DE-9B5E925120C6}"
+            name        = "ExtrusionGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of extrusion groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{2520322C-D82B-40a4-B584-1C75F5FD7DE6}"
+            name        = "Fences"
+            policy      = "inclusive"
+            descr       = "Top level bag of fences" >
+            <property name="FenceProfile"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{2F93445E-F890-4a65-9F57-707B29D2D92F}"
+            name        = "FenceGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of fence groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{10611C70-ADED-47b3-AA0D-4724636AF745}"
+            name        = "PolylineBuildings"
+            policy      = "inclusive"
+            descr       = "Top level bag of polyline buildings" >
+            <property name="PolylineBuildingProfile"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{34304DE4-FAB8-4ddf-A4CC-1BC63665FF8D}"
+            name        = "PolylineBuildingGroups"
+            policy      = "inclusive"
+            descr       = "Top level bag of polyline building groups" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

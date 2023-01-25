@@ -1,0 +1,889 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+		name         = "Achievement"
+		id           = "{714E4351-336A-4814-8C5E-30A34079A529}"
+		descr        = "SimProp Achievement property, type and set definitions."
+		chdr         = "propachievement.h"
+		version      = "1,0" >
+
+  <SymbolInclude
+			filename = "Common\propbase.xml"
+			id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+			version  = "1,0" />
+  <SymbolInclude
+			filename = "Common\propmission.xml"
+			id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+			version  = "1,0" />
+
+
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  propachievement.h
+    //
+    //  FlightSim achievement AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //	Namespace
+    //
+    namespace Achievement {
+
+
+  </cpptext>
+
+  <PropertyDefs
+			symbolprefix = "SPID_ACHIEVEMENT_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+				name        = "XBoxLiveID"
+				id          = "{83C51341-AE84-4BEA-9734-E5314A926F2F}"
+				type        = "TEXT"
+				default     = "Incomplete"
+				desc        = "Xbox live id">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "SteamID"
+				id          = "{1A202A94-697E-4194-ABB9-BDE61560D917}"
+				type        = "TEXT"
+				default     = "Incomplete"
+				desc        = "Steam id">
+    </PropertyDef>
+    
+    <PropertyDef
+				name        = "AchievementGUID"
+				id          = "{84728663-F05E-40EA-9890-CD52D10901C8}"
+				type        = "GUID"
+				desc        = "Guid of the achievement">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "AchievementName"
+				id          = "{A8B1E9E3-1BFC-40BD-9F97-F1C26FE991F9}"
+				type        = "TEXT"
+				desc        = "Name of the achievement">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "AchievementDescription"
+				id          = "{DBFDC652-AE6F-484D-A494-6496EE8EDE83}"
+				type        = "TEXT"
+				desc        = "Description of the achievement">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "AchievementImagePath"
+				id          = "{16D88ADF-77BF-4FA4-B287-AA3A6F664320}"
+				type        = "TEXT"
+				desc        = "Image path">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "AchievementValue"
+				id          = "{D0E05F64-9031-4D2D-8C9E-3CBDD651E76C}"
+				type        = "ULONG"
+				desc        = "Value">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "CompletionMin"
+				id          = "{120ED15C-23A8-40F7-AA69-9F6481DAB9CF}"
+				type        = "DOUBLE"
+				xml_io      = "attribute"
+				descr       = "Minimum distance in meters">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "CompletionMax"
+				id          = "{682089BA-F27E-49E7-8329-9F1F9F42BA0F}"
+				type        = "DOUBLE"
+				xml_io      = "attribute"
+				descr       = "Maximum distance in merters">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="ActivityState"
+				id          ="{97F0E179-A9CA-41BB-A004-196A81E44DE1}"
+				type        = "ENUM"
+				default     = "Incomplete"
+				descr       = "State of flight">
+      <EnumDef symbolprefix="ENUM_ACTIVITY_STATE">
+        <EnumVal name="INCOMPLETE"    xml_name="Incomplete"/>
+        <EnumVal name="FAILED"        xml_name="Failed"/>
+        <EnumVal name="CRASHED"       xml_name="Crashed"/>
+        <EnumVal name="PROHIBITED"    xml_name="Prohibited"/>
+        <EnumVal name="OUT_OF_BOUNDS" xml_name="OutOfBounds"/>
+        <EnumVal name="SUCCEEDED"     xml_name="Succeeded"/>
+        <EnumVal name="ABORTED"       xml_name="Aborted"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="ActivityType"
+				id          ="{44723A9D-114A-48E6-B184-41DE918059EA}"
+				type        = "ENUM"
+				default     = "FreeFlight"
+				descr       = "activity type">
+      <EnumDef symbolprefix="ENUM_ACTIVITY_TYPE">
+        <EnumVal name="FREE_FLIGHT"       xml_name="FreeFlight"/>
+        <EnumVal name="BUSH_TRIP"         xml_name="BushTrip"/>
+        <EnumVal name="LANDING_CHALLENGE" xml_name="LandingChallenge"/>
+        <EnumVal name="SIGHTING_FLIGHT"   xml_name="SightingFlight"/>
+        <EnumVal name="TUTORIAL"          xml_name="Tutorial"/>
+        <EnumVal name="RACERENO"          xml_name="RaceReno"/>
+        <EnumVal name="LOWALTITUDE"       xml_name="LowAltitude"/>
+        <EnumVal name="DISCOVERY"         xml_name="Discovery"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "ActivityPackageName"
+				id          = "{82E2A58E-14FB-48F7-AEAC-3A7A7898E184}"
+				type        = "TEXT"
+				descr       = "package name of the activity">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="PlaneState"
+				id          ="{310388D9-2453-4CB1-B537-736AD2C1FA8D}"
+				type        = "ENUM"
+				default     = "Any"
+				descr       = "State of plane">
+      <EnumDef symbolprefix="ENUM_PLANE_STATE">
+        <EnumVal name="IN_AIR"      xml_name="InAir"/>
+        <EnumVal name="ON_GROUND"   xml_name="OnGround"/>
+        <EnumVal name="ANY"         xml_name="Any"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="TimeOfDay"
+				id          ="{E21886B1-80CB-4723-AA03-9CB5F20993E9}"
+				type        = "ENUM"
+				default     = "Day"
+				descr       = "Time of day">
+      <EnumDef symbolprefix="ENUM_TOD">
+        <EnumVal name="DAWN"      xml_name="Dawn"/>
+        <EnumVal name="DAY"       xml_name="Day"/>
+        <EnumVal name="DUSK"      xml_name="Dusk"/>
+        <EnumVal name="NIGHT"     xml_name="Night"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="FlightState"
+				id          ="{1F333178-C540-4760-945A-666A0C33B32C}"
+				type        = "TEXT"
+				default     = "ANY"
+				descr       = "Flight state name (ANY for any state)">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "WeatherPreset"
+				id          = "{21BF204F-5954-48F6-BD14-05D811C024C9}"
+				type        = "TEXT"
+				default     = "Any"
+				descr       = "Weather presset [ANY/LIVE/PRESSETNAME]">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "WeatherPresetId"
+       id          = "{59FE4AEA-B51C-4D34-AA35-9AA883007C2F}"
+       type        = "LONG"
+       descr       = "Weather presset id">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "FloatGreaterThan"
+				id          = "{13440275-B8B1-474B-99EF-107030A6A53D}"
+				type        = "FLOAT"
+				xml_io      = "attribute"
+				descr       = "Minimum value">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "FloatLowerThan"
+				id          = "{20FB1C6D-CEA3-49B6-A9DD-B6C54101439F}"
+				type        = "FLOAT"
+				xml_io      = "attribute"
+				descr       = "Maximum value">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "IntGreaterThan"
+				id          = "{6706FB2D-AD05-416C-B5A0-F1C045DFB9FE}"
+				type        = "LONG"
+				xml_io      = "attribute"
+				descr       = "Minimum value">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "IntLowerThan"
+				id          = "{71065CCE-18B3-4302-83A1-903C5E17D31C}"
+				type        = "LONG"
+				xml_io      = "attribute"
+				descr       = "Maximum value">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "IdentDeparture"
+				id          = "{D716643A-C5A0-44F8-A446-6762A99DD741}"
+				type        = "TEXT"
+				xml_io      = "attribute"
+				desc        = "Ident of departure">
+    </PropertyDef>
+
+    <PropertyDef
+				name        = "IdentArrival"
+				id          = "{3F5B0B26-389E-4A2C-B409-7F1AE271DC18}"
+				type        = "TEXT"
+				xml_io      = "attribute"
+				desc        = "Ident of arrival">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "DepartureFromFlightPlan"
+        id          = "{FC0F7930-628B-4833-978C-9994D7F697AC}"
+        type        = "BOOL"
+        xml_io      = "attribute"
+        desc        = "departure is the same as the flightplan">
+    </PropertyDef>
+    
+    <PropertyDef
+        name        = "ArrivalFromFlightPlan"
+        id          = "{F7E672C3-C93E-49E5-9D0E-27B67FE6CF92}"
+        type        = "BOOL"
+        xml_io      = "attribute"
+        desc        = "arrival is the same as the flightplan">
+    </PropertyDef>
+
+    <PropertyDef
+        name        ="DefaultValue"
+        id          ="{45DA719D-8EE7-4F04-A73C-493C09F063A2}"
+        type        = "Double"
+				xml_io      = "attribute"
+        default     = "0."
+        descr       = "Default state of the object">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="EventName"
+				id          ="{2A4A0E08-C90A-443D-95CD-9735DED0B9D3}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "Event name">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="DetectionMode"
+				id          ="{7A1F219F-3438-4328-B464-01C146A200CF}"
+				type        = "ENUM"
+				default     = "OnTimeStamp"
+				descr       = "Detection mode">
+      <EnumDef symbolprefix="ENUM_MODE">
+        <EnumVal name="ON_TIMESTAMP"     xml_name="OnTimeStamp"/>
+        <EnumVal name="WHILE_TRUE"       xml_name="WhileTrue"/>
+      </EnumDef>
+    </PropertyDef>
+   
+    <PropertyDef
+				name        ="sParam"
+				id          ="{45018D8A-5AA6-480D-80E1-5D32B155A06A}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "String event param">
+    </PropertyDef>
+
+    <PropertyDef
+       name        ="PlaneCategoryName"
+       id          ="{D8331450-8897-4A6D-B3F6-98E63A3652F7}"
+       type        = "TEXT"
+       default     = ""
+       descr       = "Plane type">
+    </PropertyDef>
+
+    <PropertyDef
+       name        ="AircraftPackageName"
+       id          ="{C3278F4D-1248-4EC8-A520-7982EC36D9D1}"
+       type        = "TEXT"
+       default     = ""
+       descr       = "Plane Name">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="TrackerName"
+				id          ="{FF71E873-10DE-4776-9349-B67DFB7D2A42}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "Name of tracker">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="GlobalPresetName"
+				id          ="{4E7FEA5F-E094-422A-A2ED-13053A4EB017}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "Name of Global preset">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="SectionName"
+				id          ="{2AF99F53-CC7F-4824-BC90-EF6E171200DB}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "Name of section">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="SettingName"
+				id          ="{4E615729-B092-4336-8F13-A16C136DDADF}"
+				type        = "TEXT"
+				default     = ""
+				descr       = "Name of setting">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="OnRunway"
+				id          ="{D997EF81-8402-4163-B000-34360B4A8014}"
+				type        = "BOOL"
+				default     = "FALSE"
+				descr       = "On a runway">
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "SurfaceType"
+       id          = "{C1AED72E-165D-4E0D-A3D0-44EF4752428D}"
+       type        = "TEXT"
+				default     = "Any"
+       desc        = "Surface type">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="CompleteFlightType"
+				id          ="{3D954E73-A204-4511-8095-357FE8166304}"
+				type        = "ENUM"
+				default     = "TakeOfToLand"
+				descr       = "Type of complete flight">
+      <EnumDef symbolprefix="ENUM_TYPE">
+        <EnumVal name="PARKING_TO_PARKING"      xml_name="ParkingToParking"/>
+        <EnumVal name="TAKEOFF_TO_LAND"       xml_name="TakeOfToLand"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+       name        = "MessageID"
+       id          = "{E2C25A6F-5535-4A25-8E6B-D22FF93C8458}"
+       type        = "TEXT"
+			 default     = "NONE"
+       desc        = "atc message id">
+    </PropertyDef>
+
+    <PropertyDef
+       name        ="ControlledByAI"
+       id          ="{E91AE333-A508-44ED-BBA8-DBDE68A998CD}"
+       type        = "BOOL"
+       default     = "FALSE"
+       descr       = "Communication controller by AI">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="Name"
+				id          ="{8AB7D0FD-3B8B-427F-926D-C8D0EDF715FE}"
+				type        = "TEXT"
+				default     = "ANY"
+				descr       = "Name of param">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="Formula"
+				id          ="{3D161BEF-7CD2-40FD-885D-A852DA853064}"
+				type        = "TEXT"
+				xml_io      = "attribute"
+				default     = ""
+				descr       = "formula">
+    </PropertyDef>
+
+    <PropertyDef
+				name        ="ResetOnNewEntry"
+				id          ="{2EC2F061-0F8E-4EE1-B4C0-D8000A2EB99B}"
+				type        = "BOOL"
+				xml_io      = "attribute"
+				default     = "FALSE"
+				descr       = "reset to default value on new entry">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_ACHIEVEMENT_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+				id          = "{4755979A-E2C6-4C60-931A-A84258BDE257}"
+				name        = "TimeStamp"
+				policy      = "inclusive"
+				descr       = "Condition on timestamp">
+      <property name = "IntGreaterThan"/>
+      <property name = "IntLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{712DBCCC-45BD-45D0-8832-BE809749EACF}"
+				name        = "WindSpeed"
+				policy      = "inclusive"
+				descr       = "Wind speed in knots">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{F800C26F-E364-4475-8408-5F169D4F5C66}"
+				name        = "AltitudeAMSL"
+				policy      = "inclusive"
+				descr       = "Altitude above mean see level in feet">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{03BA3CBB-4EF3-4675-8667-062F5AE9CACA}"
+				name        = "AltitudeAGL"
+				policy      = "inclusive"
+				descr       = "Altitude above ground in feet">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{59653F5A-BEA9-41E3-81A7-4FEE0A4F849C}"
+				name        = "FlightInfo"
+				policy      = "inclusive"
+				descr       = "Flight departure and arrival">
+      <property name = "IdentDeparture"/>
+      <property name = "IdentArrival"/>
+      <property name = "DepartureFromFlightPlan"/>
+      <property name = "ArrivalFromFlightPlan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{2E036D2C-3BBA-4410-8057-C487B88A5874}"
+				name        = "fParam"
+				policy      = "inclusive"
+				descr       = "Float event param">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{8EC7F210-2DDF-4BA5-8CE2-BABA13654861}"
+				name        = "lParam"
+				policy      = "inclusive"
+				descr       = "Integer event param">
+      <property name = "IntGreaterThan"/>
+      <property name = "IntLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{9C18FE4A-CF8D-4FEA-BA6D-FDE258AC1681}"
+				name        = "SectionPreset"
+				policy      = "inclusive"
+				cardinality = "multiple"
+				descr       = "Section and setting name">
+      <property name = "SectionName"/>
+      <property name = "SettingName"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{EBD3D712-DE18-4342-BEB8-1D0C5C6A738D}"
+				name        = "FlightDistance"
+				policy      = "inclusive"
+				descr       = "FlightDistance">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{39CA16F6-5E42-409D-80D7-688EC97E262F}"
+				name        = "FlightDuration"
+				policy      = "inclusive"
+				descr       = "FlightDuration">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{149C06D6-B2A7-4DD7-A641-63434F9564D2}"
+				name        = "SlewDistance"
+				policy      = "inclusive"
+				descr       = "SlewDistance">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          ="{0352EA1A-5D6E-4E7E-9630-034229F8B0C4}"
+				name        = "EpochTime"
+				policy      = "inclusive"
+				descr       = "Date">
+      <property name = "IntGreaterThan"/>
+      <property name = "IntLowerThan"/>
+    </SetDef>
+    
+    <SetDef
+				id          = "{442589F3-B552-4AB1-8547-6FA3527121D3}"
+				name        = "TeleportCount"
+				policy      = "inclusive"
+				descr       = "TeleportCount">
+      <property name = "IntGreaterThan"/>
+      <property name = "IntLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{C51F8845-9A0D-45B2-9E29-3A74E7980663}"
+				name        = "EngineOnTimePercentFinal"
+				policy      = "inclusive"
+				descr       = "EngineOnTimePercentFinal">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{81B04164-7ADE-4626-B94D-F174CFA6BA63}"
+				name        = "ILSOnTimePercentFinal"
+				policy      = "inclusive"
+				descr       = "ILSOnTimePercentFinal">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{48D112C0-35C0-4902-BAC3-1F94043528C7}"
+				name        = "RunwayWidth"
+				policy      = "inclusive"
+				descr       = "RunwayWidth">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{97375B63-C654-45E3-A98D-4C9B1B969B55}"
+				name        = "RunwayLength"
+				policy      = "inclusive"
+				descr       = "RunwayLength">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{0B5F3249-CA9B-4470-B653-965DF1FDC62B}"
+				name        = "RunwayGradient"
+				policy      = "inclusive"
+				descr       = "RunwayGradient">
+      <property name = "FloatGreaterThan"/>
+      <property name = "FloatLowerThan"/>
+    </SetDef>
+
+    //
+    // Params Conditions
+    //
+    <SetDef
+            id          = "{18FD9604-664E-4CDA-B6DE-07AC48912F5D}"
+            name        = "ParamActivityState"
+            policy      = "inclusive"
+            descr       = "Condition on mission state">
+      <property name = "Name"/>
+      <property name = "ActivityState"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5DB61A66-C7E9-4DA7-875C-83321FF9CDFE}"
+        name        = "ParamActivityType"
+        policy      = "inclusive"
+        descr       = "Condition on mission type">
+      <property name = "Name"/>
+      <property name = "ActivityType"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{E62BD052-CBA1-400E-B60E-82157C71748F}"
+        name        = "ParamActivityPackageName"
+        policy      = "inclusive"
+        descr       = "Condition on mission name">
+      <property name = "Name"/>
+      <property name = "ActivityPackageName"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5C03F955-D703-4081-8CBB-B223C8C02FAE}"
+        name        = "ParamActivityFlownDate"
+        policy      = "inclusive"
+        descr       = "Condition on flown date">
+      <property name = "Name"/>
+      <property name = "EpochTime"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{48317FC3-0B11-4CA8-981E-AC053746A49C}"
+        name        = "ParamActivityFlightInfo"
+        policy      = "inclusive"
+        descr       = "Condition on flown date">
+      <property name = "Name"/>
+      <property name = "FlightInfo"/>
+    </SetDef>
+
+    <SetDef
+       id          = "{57FBD06D-3CCB-4479-A576-FA3808B25E07}"
+       name        = "ParamWeatherPreset"
+       policy      = "inclusive"
+       descr       = "Condition on weather">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "WeatherPreset"/>
+      <property name = "WeatherPresetId"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{7A9C4D3A-34FC-4660-9A9A-42CCFEB2FF2C}"
+				name        = "ParamLocation"
+				policy      = "inclusive"
+				descr       = "Plane location condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "PlaneState"/>
+      <property name = "AltitudeAMSL"/>
+      <property name = "AltitudeAGL"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{AB874F9B-EB19-4074-BA53-2C8F3CDF0486}"
+				name        = "ParamFlightState"
+				policy      = "inclusive"
+				descr       = "Flight state">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "FlightState"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{80CA7C30-4C86-441F-84D2-F29EDA37DF92}"
+				name        = "ParamTimeOfDay"
+				policy      = "inclusive"
+				descr       = "Time of the day">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "TimeOfDay"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{9DD43226-525F-4A75-B61F-A8A57DB6996E}"
+				name        = "ParamSimpleEvent"
+				policy      = "inclusive"
+				descr       = "Simple event">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "DetectionMode"/>
+      <property name = "EventName"/>
+      <property name = "sParam"/>
+      <property name = "fParam"/>
+      <property name = "lParam"/>
+    </SetDef>
+
+    <SetDef
+       id          = "{2172725F-5C6C-4741-AD70-9ADF6021114E}"
+       name        = "ParamATCMessage"
+       policy      = "inclusive"
+       descr       = "atc message condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "MessageID"/>
+      <property name = "ControlledByAI"/>
+    </SetDef>
+
+    <SetDef
+       id          = "{F171814D-8B23-449F-B578-BC3149865506}"
+       name        = "ParamAircraft"
+       policy      = "inclusive"
+       descr       = "aircraft condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "PlaneCategoryName"/>
+      <property name = "AircraftPackageName"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{3DDEE51E-875E-4854-8C16-99A73CFC8CD2}"
+				name        = "ParamAssistancePreset"
+				policy      = "inclusive"
+				descr       = "preset assistance condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "GlobalPresetName"/>
+      <property name = "SectionPreset"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{04793EA2-6A47-4529-BED7-5C75812B4C77}"
+				name        = "ParamCompleteFlight"
+				policy      = "inclusive"
+				descr       = "complete flight condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "CompleteFlightType"/>
+      <property name = "FlightInfo"/>
+      <property name = "FlightDistance"/>
+      <property name = "FlightDuration"/>
+      <property name = "SlewDistance"/>
+      <property name = "TeleportCount"/>
+    </SetDef>
+
+    <SetDef
+				id          = "{4ABA87B3-4E02-4029-A85B-7D7D972E008A}"
+				name        = "ParamLandingComplete"
+				policy      = "inclusive"
+				descr       = "landing complete condition">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "TimeStamp"/>
+      <property name = "OnRunway"/>
+      <property name = "RunwayWidth"/>
+      <property name = "RunwayLength"/>
+      <property name = "RunwayGradient"/>
+      <property name = "SurfaceType"/>
+      <property name = "WindSpeed"/>
+      <property name = "EngineOnTimePercentFinal"/>
+      <property name = "ILSOnTimePercentFinal"/>
+      <property name = "SlewDistance"/>
+      <property name = "TeleportCount"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{23EDBD5F-0026-4DC8-B092-C92805C8A277}"
+            name        = "LocalValue"
+            policy      = "inclusive"
+            descr       = "local parameter value">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "Formula"/>
+      <property name = "ResetOnNewEntry"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{6AB996B6-B085-4CF2-B243-07D27E688113}"
+        name        = "LocalDistance"
+        policy      = "inclusive"
+        descr       = "accumulate distance if formula is true">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "Formula"/>
+      <property name = "ResetOnNewEntry"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{66CDB402-45E5-4E1A-8BE1-88E999642511}"
+        name        = "LocalDuration"
+        policy      = "inclusive"
+        descr       = "accumulate time if formula is true">
+      <property name = "Name"/>
+      <property name = "DefaultValue"/>
+      <property name = "Formula"/>
+      <property name = "ResetOnNewEntry"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{D076610F-97A4-4F89-AE98-D28F5E9A006D}"
+            name        = "LocalParameters"
+            policy      = "inclusive"
+            descr       = "local parameters">
+      <property name = "LocalValue"/>
+      <property name = "LocalDistance"/>
+      <property name = "LocalDuration"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{030D7505-A088-4640-B275-B12396C46F67}"
+        name        = "ConditionParameters"
+        policy      = "inclusive"
+        descr       = "conditional parameters">
+      <property name = "ParamActivityState"/>
+      <property name = "ParamActivityType"/>
+      <property name = "ParamActivityPackageName"/>
+      <property name = "ParamActivityFlightInfo"/>
+      <property name = "ParamWeatherPreset"/>
+      <property name = "ParamLocation"/>
+      <property name = "ParamFlightState"/>
+      <property name = "ParamTimeOfDay"/>
+      <property name = "ParamSimpleEvent"/>
+      <property name = "ParamATCMessage"/>
+      <property name = "ParamAircraft"/>
+      <property name = "ParamAssistancePreset"/>
+      <property name = "ParamCompleteFlight"/>
+      <property name = "ParamLandingComplete"/>
+    </SetDef>
+
+    //
+    //  Achievement
+    //
+
+    <SetDef
+              id          = "{08464E27-EA27-45BD-A024-650379489F44}"
+              name        = "AchievementLogbook"
+              policy      = "inclusive"
+              descr       = "Achievement">
+      <property name = "Descr"/>
+      <property name = "XBoxLiveID"/>
+      <property name = "SteamID"/>
+      <property name = "AchievementGUID"/>
+      <property name = "AchievementValue"/>
+      <property name = "AchievementName"/>
+      <property name = "AchievementDescription"/>
+      <property name = "AchievementImagePath"/>
+      <property name = "CompletionMin"/>
+      <property name = "CompletionMax"/>
+      <property name = "ConditionParameters"/>
+      <property name = "LocalParameters"/>
+      <property name = "Formula"/>
+    </SetDef>
+
+    <SetDef
+              id          = "{1D5821E2-F1A9-476B-A03E-29BC7B932C58}"
+              name        = "AchievementTrackerValue"
+              policy      = "inclusive"
+              descr       = "Achievement linked to a tracker">
+      <property name = "Descr"/>
+      <property name = "XBoxLiveID"/>
+      <property name = "SteamID"/>
+      <property name = "AchievementGUID"/>
+      <property name = "AchievementValue"/>
+      <property name = "AchievementName"/>
+      <property name = "AchievementDescription"/>
+      <property name = "AchievementImagePath"/>
+      <property name = "CompletionMin"/>
+      <property name = "CompletionMax"/>
+      <property name = "TrackerName"/>
+    </SetDef>
+
+  </SetDefs>
+  <cpptext pass="2">
+    }
+  </cpptext>
+</SymbolDef>

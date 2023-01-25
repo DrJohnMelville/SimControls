@@ -1,0 +1,138 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- XXX property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimConnect"
+    id           = "{E0787E18-683D-44a3-8A61-E3518C4D8037}"
+    descr        = "SimConnect property, type and set definitions."
+    chdr         = "propsimconnect.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+    
+<cpptext pass="1">
+//-----------------------------------------------------------------------------//       
+//  propsimconnect.h    
+//
+//  FlightSim SimConnect AceXML property and property set symbol definitions
+//-----------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+</cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+<cpptext pass="2">
+//  
+//  Property Identifiers
+//
+</cpptext>
+		 
+        <!-- Begin: Comm property sets -->
+
+        <PropertyDef
+            name        = "Protocol"
+            id          = "{277A4B72-1AFD-4495-9A46-F9422A072887}"
+            type        = "TEXT"
+            descr       = "server protocol {IPv4|IPv6}">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Address"
+            id          = "{BEE8483E-BFBD-4ef6-8AC4-84260F9E1F2E}"
+            type        = "TEXT"
+            descr       = "server address (node name)">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Scope"
+            id          = "{99D5570F-53B7-4e9b-AFA4-126AC80994F9}"
+            type        = "TEXT"
+            descr       = "server scope {local|link-local|global|unrestricted}">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MaxClients"
+            id          = "{694EE6D3-F587-4b0d-A1A7-4B04CC3C94F4}"
+            type        = "ULONG"
+            descr       = "maximum clients">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Port"
+            id          = "{B47ACFC2-4C69-4185-97B6-091669464632}"
+            type        = "TEXT"
+            descr       = "server port">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MaxRecvSize"
+            id          = "{9A988B19-23F5-4347-8FE0-2D7D149B4AF8}"
+            type        = "ULONG"
+            descr       = "maximum recv packet bytes">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DisableNagle"
+            id          = "{BE998207-9FB9-4809-9637-96537629C754}"
+            type        = "BOOL"
+            descr       = "disable Nagle algorithm">
+        </PropertyDef>
+
+
+        <!-- End: Comm property sets -->
+
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+        
+<cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+</cpptext>
+
+        <SetDef
+            id          = "{433A02FE-D648-4def-86C0-C1F723DB1B1C}"
+            name        = "Comm"
+            cardinality = "multiple"
+            policy      = "inclusive">
+			<property name = "Descr"/>
+            <property name = "Disabled"/>
+            <property name = "Protocol"/>
+            <property name = "Scope"/>
+            <property name = "Address"/>
+            <property name = "MaxClients"/>
+            <property name = "Port"/>
+            <property name = "MaxRecvSize"/>
+            <property name = "DisableNagle"/>
+        </SetDef>
+      
+      <SetDef
+           id          = "{CE3541CE-D11E-4E21-A60A-70DBD811E3FE}"
+           name        = "SimConnect"
+           policy      = "inclusive"
+           descr       = "SimConnect Server Configuration">
+        <property name = "Descr"/>
+		<property name = "Filename"/>
+        <property name = "Disabled"/>
+        <property name = "Comm"/>
+      </SetDef>
+	  
+
+
+    </SetDefs>
+
+</SymbolDef>

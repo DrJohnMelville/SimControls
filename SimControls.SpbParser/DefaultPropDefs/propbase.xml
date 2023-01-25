@@ -1,0 +1,668 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Core property symbol definition document
+
+    Element: SymbolDef - Mandatory root element
+
+        name:       Mandatory symbol definition namespace Name
+        id:         Mandatory globally unique namespace identifier
+        descr:      Optional namespace description
+        chdr:       Optional C/C++ header filename.  If none is provided, the namespace name is used with a ".h" extension
+        version:    Optional version number formatatted as "vermajor,verminor".
+
+-->
+
+<SymbolDef
+    name    = "SimBase"
+    id      = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+    descr   = "SimProp base property, type and set definitions."
+    chdr    = "propbase.h"
+    version = "1,0">
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  SimBaseProp.h
+//
+//  Base AceXML data type, property and property set definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <!--
+        Element: TypeDefs - Optional block of type definitions
+
+            symbolprefix:   optional prefix for C/C++ type identifier.
+    -->
+
+    <TypeDefs symbolprefix = "STID_">
+
+        <!-- Core data type definitions
+
+            Element: TypeDef - type definition block
+
+                name:       Canonical AceXML typedef name.  C++ header output: Prepended with symbolprefix.
+                            property definitions (<PropertyDef>): AceXML type designation.  Mandatory.
+                id:         Canonical typedef id (guid only).  Mandatory.
+                descr:      Optional type description.
+
+                Element: binding - Optional C/C++ binding semantics.
+                    Possible values are:
+                    1. (content): non-union, non-struct C/C++ binding.
+                    2. <union>: C/C++ union binding
+                    3. <struct>: C/C++ struct binding
+                            Element: member - union or struct member
+                                type:       C/C++ datatype
+                                (content);  union or struct member name.
+
+                    example:
+
+                    <TypeDef
+                        name    = "FOODATA"
+                        id      = "{73EA7A56-58FB-4c2f-A0B2-37B5D1AF46B1}"
+                        descr   = "Byte quadruplet">
+                        <binding type="struct">
+                            <member type = "DWORD"  name ="dwBar"/>
+                            <member type = "LPTSTR" name = "pszBletch"/>
+                        </binding>
+                    </TypeDef>
+        -->
+
+        <cpptext pass="1">
+//
+//  Base type definitions
+//
+        </cpptext>
+
+        <cpptext pass="2">
+//
+//  Base type identifiers
+//
+        </cpptext>
+
+        <TypeDef
+            name    = "UNDEFINED"
+            id      = "{00000000-0000-0000-0000-000000000000}"
+            descr   = "NIL datatype">
+        </TypeDef>
+		
+        <TypeDef
+            name    = "ENUM"
+            id      = "{B3C4C6AF-F128-4269-8B2F-F14A90E05E2C}"
+            descr   = "Integer enumeratation">
+            <binding type="INT"/>
+        </TypeDef>
+
+        <TypeDef
+            name = "BOOL"
+            id = "{A9F63DE2-2EA2-4567-B02C-A67CE729BEAE}"
+            descr   = "platform-native boolean value">
+            <binding type="BOOL"/>
+        </TypeDef>
+
+        <TypeDef
+            name = "LONG"
+            id = "{B5421CBE-AA08-495d-A1FE-34B9E402CA2E}"
+            descr   = "platform-native signed long integer">
+            <binding type="LONG"/>
+        </TypeDef>
+
+        <TypeDef
+            name = "ULONG"
+            id = "{A21971F8-18E8-415f-A261-329B0E6DF990}"
+            descr   = "platform-native unsigned long integer">
+            <binding type="ULONG"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "FLOAT"
+            id      = "{93F1969A-88B3-411b-9152-AE7424CB5346}"
+            descr   = "platform-native single-precision floating point">
+            <binding type="FLOAT"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "DISABLABLEFLOAT"
+            id      = "{06D79B18-EC59-4DBC-90D1-974C931B7F2F}"
+            descr   = "disablable platform-native single-precision floating point">
+            <binding type="DISABLABLEFLOAT"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "FLOAT2"
+            id      = "{79C45B2D-6ACA-4c61-B0A8-E19E5BB8D476}"
+            descr   = "platform-native single-precision floating point">
+            <binding type="FLOAT2"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "FLOAT3"
+            id      = "{5614E287-7FDA-46A3-A982-5D059CD73B92}"
+            descr   = "platform-native single-precision floating point">
+            <binding type="FLOAT3"/>
+        </TypeDef>
+
+      <TypeDef
+          name    = "DISABLABLEFLOAT3"
+          id      = "{767216F5-3B2E-4BA7-973F-8A1ACAD329F6}"
+          descr   = "disablable platform-native single-precision floating point">
+        <binding type="DISABLABLEFLOAT3"/>
+      </TypeDef>
+
+        <TypeDef
+            name    = "FLOAT4"
+            ID      = "{BFF8A978-73C4-4280-8656-A9334FBF149A}"
+            descr   = "platform-native single-precision floating point">
+            <binding type="FLOAT4"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "DOUBLE"
+            id      = "{CF208BCA-1A9E-4e22-B391-2DA4FEB73C3E}"
+            descr   = "platform-native double-precision floating point">
+            <binding type="DOUBLE"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "BYTE4"
+            id      = "{73EA7A56-58FB-4c2f-A0B2-37B5D1AF46B1}"
+            descr   = "Byte quadruplet">
+            <binding type="BYTE4"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "LONG2"
+            id      = "{2915DDB9-D239-4cb7-B218-C24D9716B8F6}"
+            descr   = "platform-native signed long doublet">
+            <binding type="LONG2"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "LONG4"
+            id      = "{FEA4FDE7-BA86-4e24-BAF8-155B7B15F6A6}"
+            descr   = "platform-native signed long quad">
+            <binding type="LONG4"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "GUID"
+            id      = "{7F0BB01F-5D57-4946-8080-0B40CD6D4969}"
+            descr   = "128-bit globally unique identifier">
+            <binding type="GUID"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "TEXT"
+            id      = "{9065A252-4E0F-4f03-8D9D-CD0930EB046D}"
+            descr   = "platform-native variable length, zero-terminated string">
+            <binding type="LPCWSTR"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "MLTEXT"
+            id      = "{D11DB83D-57A6-43b2-AEAF-3384B36E8126}"
+            descr   = "platform-native variable length, zero-terminated string, can be multiple lines">
+            <binding type="LPCWSTR"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "SET"
+            id      = "{A86500DC-5EEF-47b4-8CF0-5E93ADE4D7C1}"
+            descr   = "Property collection encapsulated by an ISimPropertySet interface pointer">
+            <binding type="ISimPropertySet*"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "LLA"
+            id      = "{C2445536-3173-413B-A354-AD34E226AB71}"
+            descr   = "LATLONALT type from fs6types.h">
+            <binding type="LATLONALT"/>
+        </TypeDef>
+
+        <TypeDef
+            name    = "PBH"
+            ID      = "{5CD596E3-6E8F-4A31-8116-3FE8D9DDFD2E}"
+            descr   = "PBH32 type from fs6types.h">
+            <binding type="PBH32"/>
+        </TypeDef>
+
+        <TypeDef 
+            name    = "FILETIME" 
+            ID      = "{8BF22FBB-A495-405f-A4E4-556EA3E85B61}"
+            descr   = "Time stamp">
+            <binding type="FILETIME"/>
+        </TypeDef>
+
+      <TypeDef
+            name    = "INPUTVARIANT"
+            ID      = "{2B1502F1-423B-4422-B647-37F7BF2AC08B}"
+            descr   = "Input pin with changing type">
+        <binding type="INPUTFLOAT"/>
+      </TypeDef>   
+      
+      <TypeDef
+          name      = "INPUTBOOL"
+          id        = "{E171AA60-8F1C-40BF-8960-EA2FDA4820C9}"
+          descr     = "Input boolean pin">
+        <binding type="INPUTBOOL"/>
+      </TypeDef>
+
+      <TypeDef
+          name      = "INPUTLONG"
+          id        = "{57A685A1-A4ED-4611-9813-49EBDE229D9F}"
+          descr     = "Input signed long integer pin">
+        <binding type="INPUTLONG"/>
+      </TypeDef>
+
+      <TypeDef
+          name      = "INPUTULONG"
+          id        = "{4C016DD8-B30D-4DFD-95E5-25C0FE173856}"
+          descr     = "Input unsigned long integer pin">
+        <binding type="INPUTULONG"/>
+      </TypeDef>
+      
+      <TypeDef
+            name    = "INPUTFLOAT"
+            ID      = "{1CC38589-D121-42F9-93EA-3E3973F5D424}"
+            descr   = "Input float pin">
+        <binding type="INPUTFLOAT"/>
+      </TypeDef>
+
+      <TypeDef
+            name    = "INPUTFLOAT2"
+            ID      = "{15D5A865-E90D-4079-9D33-686C7B48425F}"
+            descr   = "Input float2 pin">
+        <binding type="INPUTFLOAT2"/>
+      </TypeDef>
+
+      <TypeDef
+            name    = "INPUTFLOAT3"
+            ID      = "{003FB1FC-820A-4388-8109-1E1FA14A21ED}"
+            descr   = "Input float3 pin">
+        <binding type="INPUTFLOAT3"/>
+      </TypeDef>
+
+      <TypeDef
+            name    = "INPUTCOLOR"
+            ID      = "{09605B76-FFA5-4E3C-A57B-ECF0E5220E00}"
+            descr   = "Input color pin">
+        <binding type="INPUTCOLOR"/>
+      </TypeDef>
+
+      <TypeDef
+            name    = "OUTPUTVALUE"
+            ID      = "{5EA45D19-E0BC-4125-A135-1D7137D67EF4}"
+            descr   = "Output pin">
+        <binding type="GUID"/>
+      </TypeDef>
+
+        <TypeDef 
+            name    = "BEZIERCURVE" 
+            ID      = "{EB3253B6-EEAB-4E16-8BE4-E4480C1EE5C6}"
+            descr   = "Bezier curve">
+            <binding type="BEZIERCURVE"/>
+        </TypeDef>
+
+    
+    </TypeDefs>
+
+    <!--
+        Element: PropertyDefs - Optional block of property definitions
+
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property identifiers
+//
+        </cpptext>
+
+        <!-- Core property definitions
+
+            Metadata descriptions:
+
+            name:       Serves as 1. Xml tag name and 2. C/C++ symbolic name (and therefore must be unique within it's usage scope).
+                        The C/C++ symbolic name is made uppercase and prepended with the value specified by PropertyDefs::symbolprefix
+            old_names:  "OldName1;OldName2;OldName3;Etc" Older names the property used to have in a XML file.
+                        When the property is reserialized the old name will be dropped in favor of the current one.
+            id:         Globally unique property identifier as GUID string, mandatory
+            descr:      Optional property description.
+            locdescr:   Optional localization description.
+            xml_io:     XML syntax specifier.  Valid values = "attribute" | "element".  Default = "element"
+            type:       AceXML type.  TypeDef::name
+            serialize:  ["in" | "out" | "none" | "both"][,default].
+                        the 'default' option forces write of a property possessing the default value (normally
+                        a property having the default value does not get written).
+            cardinality: ["single" | "multiple"] Cardinality of property instances within any parent set.
+                        "single" = only one instance is permitted, "multiple" = any number of instances are permitted.
+                        (default = "single").
+            obsolete:   ["true" | "false"] If this is true the property will no longer be serialized.
+            default:    Optional default value for property.  If unspecified, this is zero/NULL value for the indicated type
+            min:        Optional minimum allowable value for property (interpretation is subject to property type handler)
+            max:        Optional maxnimum allowable value for the property (interpretation is subject to property type handler)
+
+            EnumDef:    Describes list of valid enum values a property of type = "ENUM"
+                symbolprefix:   the C/C++ prefix to be prepended to the names of all member values
+                EnumVal (element): defines an enumerationation value
+                    name: name of enumeration value, prepended with symbolprefix to form the C/C++ enum symbol name
+                    xml_name: Optional 'friendly' name by which the enumeration value will be encoded in AceXML documents.   If unspecified, the value of the 'name' attribute will be used in AceXML documents.
+
+        -->
+
+        <PropertyDef
+             name        = "GUID"
+             id          = "{724400E6-4C60-466F-85BE-877142970E04}"
+             type        = "GUID"
+             desc        = "File resource guid">
+        </PropertyDef>
+
+        <PropertyDef
+              name        = "ResourceName"
+              id          = "{97FDB671-2C94-49BE-B458-D13C7E646133}"
+              type        = "TEXT"
+              desc        = "File resource name"
+              cardinality = "multiple">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StateName"
+            id          = "{66B0F270-ECC1-4509-8143-AB381B9BDD77}"
+            type        = "TEXT"
+            desc        = "Name of the State">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StateId"
+            id          = "{D80DA1AA-EE55-4FE3-8810-0B9F15B9A1C1}"
+            type        = "LONG"
+            desc        = "ID of the state">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AnimationLenght"
+            id          = "{9F136CB2-08D3-4476-BC1F-E5C13E41DEA5}"
+            type        = "FLOAT"
+            desc        = "Lenght of the animation">
+        </PropertyDef>
+      
+      
+        <PropertyDef
+            name        = "UNDEFINED"
+            id          = "{00000000-0000-0000-0000-000000000000}"
+            descr       = "NIL/Undefined property identifier">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "id"
+            id          = "{D3A57FC5-DEFF-4ec9-B84F-DC9B29018AB4}"
+            xml_io      = "attribute"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Type"
+            id          = "{BDAC895E-5ED0-480d-8D09-C4085785C2FF}"
+            descr       = "generic 'type' field, usage depends on containing set or at consumer discretion"
+            xml_io      = "attribute"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Descr"
+            id          = "{3780CE89-A67C-4e13-AAF6-5E93746B171F}"
+            descr       = "generic description field, usage depends on containing set or at consumer discretion"
+            type        = "TEXT"
+            serialize   = "out">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Title"
+            id          = "{F2F8A773-727E-456f-B8A2-A847E5FA820F}"
+            type        = "TEXT"
+            descr       = "Title text">
+        </PropertyDef>
+	
+		<PropertyDef
+			name        = "VRDependency"
+			id          = "{B84F05B1-2598-4C7F-8220-46A534035A62}"
+            xml_io      = "attribute"
+			type        = "TEXT"
+			descr       = "For platform dependency">
+		</PropertyDef>
+
+        <PropertyDef
+            name        = "Text"
+            serialize   = "both,default"
+            id          = "{925AE575-8C66-4b8b-A78B-68C6D94746D7}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Long"
+            serialize   = "both,default"
+            id          = "{DA4466B7-8C34-45d5-BEA3-0DC37BB9E2F1}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ULong"
+            serialize   = "both,default"
+            id          = "{C06D9977-EADF-4c33-A482-C4AA63281CC8}"
+            type        = "ULONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Double"
+            serialize   = "both,default"
+            id          = "{4FF5654D-079C-4138-B26B-12CDAAEDB3DB}"
+            type        = "DOUBLE">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Bool"
+            serialize   = "both,default"
+            id          = "{A5DF5B83-9AA9-409b-877A-820CD77F7693}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "symbolref"
+            id          = "{752B8B64-8F72-4bb8-A1B7-9CFD5C7DDC8E}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Sympath"
+            id          = "{213028A8-6585-49a4-9933-0F80625AFB2A}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Docpath"
+            id          = "{61DF3BB1-FED1-4083-847E-8325F32FE38D}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Filename"
+            id          = "{E714FEBA-BDCA-4d18-865F-EE991266D625}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+              name        = "Directory"
+              id          = "{004708BB-6542-4573-A0D4-DA80C39198B5}"
+              type        = "TEXT">
+        </PropertyDef>
+      
+        <PropertyDef
+            name        = "version"
+            id          = "{E0829420-4FA2-4cb5-82B2-F18B6D0F9256}"
+            xml_io      = "attribute"
+            type        = "LONG2">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "CLSID"
+            id          = "{698C3C08-C792-4d00-A7A5-31540A6C5F5A}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "RGBA"
+            id          = "{63F8D87E-73C8-49cc-A475-A048B4648CEE}"
+            type        = "BYTE4"
+            default     = "0,0,0,255">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Encoding"
+            id          = "{46CFA997-9570-421c-A3BD-A24A2C904818}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Disabled"
+            id          = "{0882927D-81A3-42c7-AF2F-D69D73FE745E}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StringList"
+            id          = "{530434ED-F015-4c09-A4BB-06F72C382380}"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+
+    </PropertyDefs>
+
+    <!--
+        Element: SetDefs - Optional block of property set definitions
+
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set identifiers
+//
+        </cpptext>
+
+        <!-- Element SetDef: Core property set definitions
+
+            Metadata descriptions:
+
+            name:       Serves as 1. Xml tag name and 2. C/C++ symbolic name (and therefore must be unique within it's usage scope).
+                        The C/C++ symbolic name is made uppercase and prepended with the value specified by PropertyDefs::symbolprefix
+            old_names:  "OldName1;OldName2;OldName3;Etc" Older names the property set used to have in a XML file.
+                        When the property set is reserialized the old name will be dropped in favor of the current one.
+            id:         Globally unique property identifier as GUID string, mandatory
+            descr:      Optional property description.
+            locdescr:   Optional localization description.
+            xml_io:     XML syntax specifier.  Valid values = "attribute" | "element".  Default = "element"
+            type:       AceXML type.  TypeDef::name
+            serialize:  valid values = "in" | "out" | "none" | "both".  Default = "both"
+            policy:     Optional policy regarding child properties.  Valid values are:
+                        "unrestricted" - the set can contain any property
+                        "inclusive"    - the set can contain only properties specified (see "property" element).
+                        "exclusive"    - the set can contain any properties except those specified (see "property" element).
+
+            Element: Property - defines a member of an optional property list for the set.
+                      name:     Must match the name of a property definition.
+                      obsolete: ["true" | "false"] If this is true the property will no longer be serialized
+        -->
+
+        <SetDef
+            id          = "{64EE0DCE-4E96-48ef-BB63-4327EB8DB340}"
+            name        = "Project"
+            policy      = "unrestricted">
+            <property name ="DOCUMENT"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{EE6FD77B-14BB-497c-AE59-0CCDD90EAA68}"
+            name        = "Document"
+            policy      = "unrestricted">
+        </SetDef>
+
+        <SetDef
+            id          = "{10FF99F0-9534-4a1a-B2DF-996FF9BA09D7}"
+            name        = "Set"
+            policy      = "unrestricted">
+        </SetDef>
+
+        <SetDef
+            id          = "{AF82E975-0D26-40bb-AE4D-6F5DD6D48B2D}"
+            name        = "CreateInstance"
+            policy      = "unrestricted">
+        </SetDef>
+
+      <SetDef
+        id          = "{D35DB073-981A-4ECF-9038-C7D6D723EF93}"
+        name        = "Folder"
+        policy      = "inclusive"
+        descr       = "Folder">
+            <property name = "ResourceName"/>
+            <property name = "Folder"/>
+            <property name = "File"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{6A45491A-FF57-4415-B575-2E07C0870E47}"
+          name        = "File"
+          policy      = "inclusive"
+          descr       = "File name and guid map">
+        <property name = "ResourceName"/>
+        <property name = "GUID"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{AA335CDE-1228-43AD-A8D2-3963C89ABD63}"
+        name        = "Node"
+        policy      = "inclusive"
+        descr       = "Node">
+        <property name = "ResourceName"/>
+        <property name = "Node"/>
+        <property name = "File"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{096A8DD9-FF80-4021-9E39-3CCBBDF77D1D}"
+        name        = "Menu"
+        policy      = "inclusive"
+        descr       = "Description of a menu">
+        <property name = "MenuState"/>
+        <property name = "MenuSubState"/>
+        <property name = "AnimationLenght"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{8B027568-B524-4F96-AB04-10DAE0C4F888}"
+        name        = "MenuState"
+        policy      = "inclusive"
+        descr       = "Description of a State">
+        <property name = "StateName"/>
+        <property name = "StateId"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{3E31463D-AF5D-406F-B3D9-4D25F74ED98A}"
+        name        = "MenuSubState"
+        policy      = "inclusive"
+        descr       = "Description of a State">
+        <property name = "StateName"/>
+        <property name = "StateId"/>
+      </SetDef>
+      
+    </SetDefs>
+
+</SymbolDef>

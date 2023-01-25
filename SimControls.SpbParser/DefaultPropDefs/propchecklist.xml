@@ -1,0 +1,126 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "Checklist"
+    id           = "{644737CF-1684-434F-A75F-A1C2367FE9D9}"
+    descr        = "SimProp checklist property, type and set definitions."
+    chdr         = "propchecklist.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+	<SymbolInclude
+        filename = "Common\propmission.xml"
+        id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+        version  = "1,0" />
+	<SymbolInclude
+        filename = "Common\propchecklistbase.xml"
+        id       = "{59E76521-CD00-4C15-9047-D332FCA6771B}"
+        version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propchecklist.h
+//
+//  FlightSim checklist AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+</cpptext>
+<PropertyDefs
+        symbolprefix = "SPID_CHECKLIST_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+</cpptext>
+
+		<PropertyDef
+            name        = "FileName"
+            id          = "{2F38B133-481F-4368-AF42-48CD6487FE4F}"
+            type        = "TEXT"
+			default     = ""
+            descr       = "Name of corresponding file file">
+		</PropertyDef>
+
+	</PropertyDefs>
+	<SetDefs symbolprefix = "SSID_CHECKLIST_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+		</cpptext>
+
+    <SetDef
+            id          = "{505B59F0-8902-4EC7-8E23-2E7356F9FD62}"
+            name        = "Checklist"
+            descr       = "Definition of an aircraft Checklist file">
+      <property name = "FileName"/>
+      <!-- Name of the desired file -->
+    </SetDef>
+    
+    <SetDef
+            id          = "{2C8D9209-CFE2-4C14-A368-56299AB71091}"
+            name        = "CheckpointLibrary"
+            descr       = "Definition of a checkpoint library">
+      <property name = "FileName"/>
+      <!-- Name of the desired file -->
+    </SetDef>
+    
+		<SetDef
+            id          = "{C19C1BC0-F69D-4CD6-9F91-7C34E138C680}"
+            name        = "IncludeCheckpointLibrary"
+            descr       = "Include a checkpoint library">
+			<property name = "FileName"/> <!-- Name of the desired file -->
+		</SetDef>
+
+		<SetDef
+            id          = "{DCE1C3F3-C27C-4C87-BDBA-FED3018A63F9}"
+            name        = "Step"
+            descr       = "Define a checklist step, a stack of pages.">
+			<property name = "ChecklistStepId"/> <!-- enum defined in propmission.xml -->
+			<property name = "Page"/> <!-- can be several -->
+		</SetDef>
+
+		<SetDef
+            id          = "{EF1D3B61-88D4-4551-9E8B-325D00FDA35E}"
+            name        = "Page"
+            descr       = "Define a checklist page, a stack of checkpoints.">
+			<property name = "SubjectTT"/>
+			<property name = "Checkpoint"/> <!-- can be several -->
+		</SetDef>
+
+    <SetDef
+          id          = "{966E92A2-7EBF-4E8A-B912-44F51EB1D2D6}"
+          name        = "Block"
+          descr       = "A block of checkpoints">
+      <property name = "SubjectTT"/>
+      <property name = "BlockDesc"/>
+      <property name = "BlockCondition"/>
+      <property name = "Checkpoint"/>
+      <!-- can be several -->
+    </SetDef>
+
+    <SetDef
+            id          = "{4423F879-6B61-418C-A14E-E6DAE98F2BAC}"
+            name        = "BlockDesc"
+            descr       = "Block description.">
+      <property name = "SubjectTT"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{1C58655D-5B63-4F91-9A7D-BE22E5A4F08F}"
+            name        = "BlockCondition"
+            descr       = "Value description of the block condition.">
+      <property name = "Val"/>
+      <property name = "Operator"/>
+    </SetDef>
+
+	</SetDefs>
+
+</SymbolDef>

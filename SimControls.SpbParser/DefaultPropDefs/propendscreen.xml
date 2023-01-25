@@ -1,0 +1,225 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "SimEndScreen"
+    id           = "{70BC30B8-8AAA-4610-A470-245C555ACF47}"
+    descr        = "End screen SimProp property, type and set definitions."
+    chdr         = "propendscreen.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+  
+  <SymbolInclude
+				filename = "Common\propmission.xml"
+				id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+				version  = "1,0" />
+  
+  <SymbolInclude
+      filename = "Common\propworldbase.xml"
+      id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+      version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propendscreen.h
+//
+//  FlightSim template AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+</cpptext>
+  
+	<PropertyDefs
+        symbolprefix = "SPID_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+</cpptext>
+
+    <PropertyDef
+            name        = "ActivitiesMenuTitle"
+            id          = "{D662C8FD-1D8D-41AA-8850-D4A6493D9AE3}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Actvity menu title"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "NextActivityButtonTitle"
+            id          = "{A162E28E-6278-4246-8F86-7B333778E536}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Next activity button title"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ScreenLogo"
+            id          = "{C5C6253C-E7B0-43B3-8437-2048132BC960}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Screen logo"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "PageID"
+            id          = "{54210E17-2924-44C3-BD17-4014A790B5E6}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Page Id">
+    </PropertyDef>
+    
+    <PropertyDef
+            name        = "ElementURL"
+            id          = "{E5E096D5-5A7A-47A2-8508-6CD0B58C63BA}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "URL of the element"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ElementTag"
+            id          = "{D079B2D7-BB09-4553-9E4B-F84C8D16967D}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Tag of the element"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ElementData"
+            id          = "{5D07E3D0-AAC0-410B-B76C-F112FFE36658}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "data for the element"
+			      default     = "">
+    </PropertyDef>
+
+    <PropertyDef
+			      name        = "ElementType"
+			      id          = "{92672269-6F31-4A75-9932-7B778A395441}"
+			      type        = "ENUM">
+            <EnumDef symbolprefix="ELEMENT_TYPE">
+              <EnumVal name = "EOM_LOGBOOK" xml_name = "EOMLogBook"/>
+              <EnumVal name = "EOM_OBJECTIVES" xml_name = "EOMObjectives"/>
+              <EnumVal name = "EOM_SCORE" xml_name = "EOMScore"/>
+              <EnumVal name = "EOM_SCORE_OVERVIEW" xml_name = "EOMScoreOverview"/>
+              <EnumVal name = "EOM_LEADERBOARD" xml_name = "EOMLeaderBoard"/>
+              <EnumVal name = "EOM_NEXTACTIVITY" xml_name = "EOMNextActivity"/>
+              <EnumVal name = "EOM_LOWALTSCORINGDETAILS" xml_name = "EOMLowAltScoringDetails"/>
+              <EnumVal name = "EOM_CUSTOM" xml_name = "EOMCustom"/>
+            </EnumDef>
+    </PropertyDef>
+    
+    <PropertyDef
+            name        = "PopUpEvent"
+            id          = "{50A1B90B-8328-441A-8182-A40C94AC6982}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "name of popup event">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "FlowEvent"
+            id          = "{9329DC14-9C9D-4550-9FF8-7B27F3FCD36C}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "name of flow event">
+    </PropertyDef>
+    
+    <PropertyDef
+            name        = "PopUpText"
+            id          = "{13114125-7803-4272-ACC0-8EF32E4BB619}"
+            xml_io      = "attribute"
+            type        = "TEXT"
+            descr       = "Text in popup">
+    </PropertyDef>
+    
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+</cpptext>
+
+    <SetDef
+            id          = "{CD5F5FD1-70D6-41EF-8573-EF885ECAA2F3}"
+            name        = "PageElement"
+            descr       = "Page element">
+      <property name = "Title"/>
+      <property name = "ElementType"/>
+      <property name = "ElementURL"/>
+      <property name = "ElementTag"/>
+      <property name = "ElementData"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{39DB0048-3EA0-411F-8E7C-8F8751008456}"
+            name        = "PageElementList"
+            descr       = "List of page elements">
+      <property name = "PageElement"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{A465E529-B1F7-430F-8C56-482EC10775D5}"
+            name        = "ScreenPage"
+            descr       = "Page list">
+      <property name = "PageID"/>
+      <property name = "Title"/>
+      <property name = "PageElementList"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{9E0F599F-EDE5-41BD-AB7C-77D3476958DF}"
+            name        = "ScreenPageList"
+            descr       = "Page list">
+      <property name = "ScreenPage"/>
+    </SetDef>
+
+    <SetDef
+            id          = "{1E0070B6-8527-4489-81B3-4399AAA6B12A}"
+            name        = "ScreenButton"
+            descr       = "button">
+      <property name = "Title"/>
+      <property name = "PopUpEvent"/>
+      <property name = "PopUpText"/>
+      <property name = "FlowEvent"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{2FE3F2D5-B6A4-4A3C-9D06-D25C1C8E8D4C}"
+            name        = "ScreenButtonList"
+            descr       = "list f buttons">
+      <property name = "ScreenButton"/>
+    </SetDef>
+    
+    <SetDef
+            id          = "{A37986DC-029D-4B4B-A05B-5D3972600CBC}"
+            classid     = "{51BA3BC5-DB3F-40ED-A8ED-18575650341B}"
+            name        = "EndScreen"
+            descr       = "Endscreen instance">
+      <property name = "InstanceId"/>
+      <property name = "Title"/>
+      <property name = "Descr"/>
+      <property name = "ActivitiesMenuTitle"/>
+      <property name = "NextActivityButtonTitle"/>
+      <property name = "ScreenLogo"/>
+      <property name = "ScreenButtonList"/>
+      <property name = "ScreenPageList"/>
+    </SetDef>
+
+  </SetDefs>
+  
+</SymbolDef>

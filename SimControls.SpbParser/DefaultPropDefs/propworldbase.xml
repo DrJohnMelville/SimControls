@@ -1,0 +1,612 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- WorldBase property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "WorldBase"
+    id           = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propworldbase.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propworldbase.h    
+//
+//  FlightSim WorldBase AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+    
+        <PropertyDef
+            name        = "Latitude"
+            id          = "{C412FD47-ED8A-4653-8E47-1A3B685211FF}"
+            type        = "TEXT"
+            descr       = "example: N47* 25' 53.43">
+        </PropertyDef>
+        <PropertyDef
+            name        = "Longitude"
+            id          = "{80463D3F-3C0C-421a-B0D1-46E63ECFEC20}"
+            type        = "TEXT"
+            descr       = "example: W122* 18' 28.79">
+        </PropertyDef>
+        <PropertyDef
+            name        = "Altitude"
+            id          = "{B8AEE566-C782-4848-9F5C-9236A6C3A6A8}"
+            type        = "TEXT"
+            descr       = "Units are feet.  Does not discriminate between MSL or AGL">
+        </PropertyDef>
+        <PropertyDef
+            name        = "Pitch"
+            id          = "{887F1F2F-119F-43f9-8DA7-7E2B2054C3A8}"
+            type        = "FLOAT"
+            descr       = "Units are degrees">
+        </PropertyDef>
+        <PropertyDef
+            name        = "Bank"
+            id          = "{16D005DF-60C0-4d65-99CA-D76670B1C97D}"
+            type        = "FLOAT"
+            descr       = "Units are degrees">
+        </PropertyDef>
+        <PropertyDef
+            name        = "Heading"
+            id          = "{0401B432-6E5A-4433-875D-C0C28D84B937}"
+            type        = "FLOAT"
+            descr       = "Units are degrees">
+        </PropertyDef>
+        <PropertyDef
+            name        = "InstanceId"
+            id          = "{B382CA79-501C-471a-8827-FE80D194AEB8}"
+            xml_io      = "attribute"
+            type        = "GUID"
+            descr       = "Instance guid used to connect objects to one another">
+        </PropertyDef>
+      <PropertyDef
+            name        = "TemplateInstanceId"
+            id          = "{21D188A7-32DA-4AA5-8686-E06C6A6BD2F4}"
+            xml_io      = "attribute"
+            type        = "GUID"
+            descr       = "Instance guid of the template used to connect objects to one another">
+      </PropertyDef>
+      <PropertyDef
+          name        = "NodeName"
+          id          = "{1B734058-E941-457A-B2A4-67B36846868C}"
+          type        = "TEXT"
+          descr       = "Name of a node inside an scene hierarchy."
+          serialize   = "default"
+          default     = "_FIND_DEFAULT_ROOT_NODE_"
+          >
+      </PropertyDef>
+      <PropertyDef
+         name        = "NodePrefixName"
+         id          ="{BA72DC3C-D874-4EDA-9521-D7823DF95FFC}"
+         type        = "TEXT"
+         descr       = "Prefix of Node name">
+      </PropertyDef>
+
+      <PropertyDef
+            name		= "Level"
+            id 			= "{1E7E022C-2A59-47cf-94A8-0F6FE334951B}"
+            type		= "ULONG"
+            descr		= "Level of the Qmid">
+        </PropertyDef>
+        <PropertyDef
+            name		= "U"
+            id 			= "{63BF5BA0-334A-43bf-8DD6-EC735F478A0F}"
+            type		= "ULONG"
+            descr		= "U Coordinate of the Qmid">
+        </PropertyDef>
+        <PropertyDef
+            name		= "V"
+            id 			= "{2F3C89AA-CF0E-4c21-9819-E8BA4740E7DD}"
+            type		= "ULONG"
+            descr		= "V Coordinate of the Qmid">
+        </PropertyDef>
+        <PropertyDef
+            name        = "WorldPosition"
+            ID          = "{777C9565-1495-4210-BD96-5115519340EA}"
+            type        = "LLA"
+            descr       = "Position of object in 3 Space">
+        </PropertyDef>
+        <PropertyDef
+              name        = "LocalPosition"
+              ID          = "{A28F551F-1421-4D9F-9628-785BA440F770}"
+              type        = "LLA"
+              descr       = "Position of object in 3 Space in local scenario space">
+        </PropertyDef>    
+		<PropertyDef
+              name  = "LocalDistance"
+              ID    = "{919344FD-61B4-4B7E-954A-46B8712381A7}"
+              type  = "Float"
+              descr = "Local distance in meter in local scenario space">
+        </PropertyDef>
+        <PropertyDef
+              name  = "LocalHeading"
+              ID    = "{540B8ECD-2E5E-4B65-8316-3BDB1B30EB21}"
+              type  = "Float"
+              descr = "Local heading in degree in local scenario space">
+        </PropertyDef>
+        <PropertyDef
+              name  = "LocalAltitude"
+              ID    = "{0974F8C7-2971-4614-BF24-5F82F5E8E431}"
+              type  = "Float"
+              descr = "Local altitude in meter in local scenario space">
+        </PropertyDef>
+		<PropertyDef
+              name  = "LocalOffsetXYZ"
+              ID    = "{D2717CF5-A828-4DB6-B691-7F0AB95937DF}"
+              type  = "FLOAT4"
+              descr = "Local offset in meter in local scenario space">
+        </PropertyDef>
+        <PropertyDef
+              name  = "LocalOrientation"
+              ID    = "{51AAA9CC-6B2E-421F-972B-8B9FE298F781}"
+              type  = "PBH"
+              descr = "Local orientation in local scenario space">
+        </PropertyDef>		
+        <PropertyDef
+            name        = "Orientation"
+            ID          = "{FBEDC683-8576-4138-B70B-383231F6132A}"
+            type        = "PBH"
+            serialize   = "default"
+            descr       = "Orientation of object in 3 Space">
+        </PropertyDef>
+        <PropertyDef
+           id          = "{5610C1DA-2307-4DED-B1DB-EBE15C1EF2FD}"
+           name        = "OrientationType"
+           type        = "ENUM"
+           serialize   = "default"
+           default     = "DEFAULT">
+          <EnumDef symbolprefix="ORIENTATION_TYPE_">
+            <EnumVal name = "DEFAULT"/>
+            <EnumVal name = "COMPOSITION"/>
+            <EnumVal name = "ABSOLUTE"/>
+          </EnumDef>
+        </PropertyDef>
+        <PropertyDef
+            name        = "AppVersionMajor"
+            ID          = "{C13249E9-860E-4019-9CF6-79E32BF15DEE}"
+            type        = "LONG"
+            descr       = "Application Major Version number">
+        </PropertyDef>
+        <PropertyDef
+            name        = "AppVersionMinor"
+            ID          = "{1E96DAF4-E04B-4b91-9BE6-C3CD4446D5B8}"
+            type        = "LONG"
+            descr       = "Application Minor Version number">
+        </PropertyDef>
+        <PropertyDef
+            name        = "AppVersionBuild"
+            ID          = "{72368239-3B93-49db-91F9-76E9BAC77600}"
+            type        = "LONG"
+            descr       = "Application Build number">
+        </PropertyDef>
+
+//  
+//  Scenery Object Property Identifiers
+// 
+//  TODO: These should be moved into their own namespace
+//
+        <PropertyDef
+            name        = "Scale"
+            ID          = "{0119970B-FC6F-4979-B416-8E664D97FC54}"
+            type        = "FLOAT"   
+            serialize   = "default"          
+            default     = "1.0"
+            descr       = "Scale of the object">
+        </PropertyDef>    
+        <PropertyDef
+            name        = "AltitudeIsAGL"
+            id          = "{FABDB20C-9936-4ece-874C-51921F3BBC08}"
+            serialize   = "default" 
+            type        = "BOOL"
+            default     = "True"
+            descr       = "True: Altitude is above ground level.  False: Altitude is mean sea level.">
+        </PropertyDef>
+        <PropertyDef
+            name        = "IsTeleportEnable"
+            id          = "{F870146C-1773-4D0F-AC68-A1AE03C57E82}"
+            serialize   = "default" 
+            type        = "BOOL"
+            default     = "False"
+            descr       = "True: Can teleport on the waypoint">
+        </PropertyDef>
+        <PropertyDef
+            id          = "{1FAB9F54-4ECB-40d2-A927-2BDBA73AF5C8}"
+            name        = "IsOnGround"
+            type        = "BOOL"
+            serialize   = "default"
+            default     = "False">
+        </PropertyDef>
+
+      <PropertyDef
+            id          = "{6C1E9579-711D-491E-B352-BE58320F5A67}"
+            name        = "SimplifiedSimMode"
+            type        = "ENUM"
+            serialize   = "default"
+            default     = "AI">
+        <EnumDef symbolprefix="SIMPLIFIEDSIM_">
+          <EnumVal name = "NONE"/>
+          <EnumVal name = "AI"/>
+          <EnumVal name = "DATA"/>
+          <EnumVal name = "SLEEP"/>
+        </EnumDef>
+      </PropertyDef>
+
+        <PropertyDef
+            id          = "{8AA14BE8-4886-4602-89D7-1707C0A7CD9F}"
+            name        = "ContainerTitle"
+            type        = "TEXT"
+            descr       = "Container name passed to aircraft_create">
+        </PropertyDef>
+
+      <PropertyDef
+            id          = "{D5C19754-02A2-4D93-9DCB-B0121F11F1C7}"
+            name        = "AirTrafficType"
+            type        = "ENUM"
+            default     = "NONE"
+            devnote     = "AirTraffic type Enumeration">
+        <EnumDef symbolprefix="AIRTRAFFICTYPE_">
+          <EnumVal name = "NONE"/>
+          <EnumVal name = "SMALL"/>
+          <EnumVal name = "MEDIUM"/>
+          <EnumVal name = "LARGE"/>
+        </EnumDef>
+      </PropertyDef>
+
+        <PropertyDef
+            name        = "Activated"
+            id          = "{1A9CA1EC-F5AE-4b16-BB6B-D2B268AC5DE5}"
+            default     = "True"
+            type        = "BOOL"
+            descr       = "False: Completely Disabled (no triggering, rendering, or simulating)">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "WaterClass"
+            id          = "{30DECB21-6AEC-4707-BBA1-C27A01EDB38F}"
+            type        = "ENUM"
+            default     = "NONE"
+            devnote     = "Water Classification Enumeration">
+            <EnumDef symbolprefix="WATERCLASS_">
+                <EnumVal name = "NONE"/>
+                <EnumVal name = "SHALLOW_INLAND_WATER_BLUE"/>
+                <EnumVal name = "DEEP_INLAND_WATER_BLUE"/>
+                <EnumVal name = "OCEAN_INLETS_BLUE"/>
+                <EnumVal name = "NON_PERENNIAL_INLAND_SEA_BLUE"/>
+                <EnumVal name = "NON_PERENNIAL_INLAND_WATER_BLUE"/>
+                <EnumVal name = "OUTFLOW_WATER_BLUE"/>
+                <EnumVal name = "SHALLOW_INLAND_WATER_BROWN"/>
+                <EnumVal name = "DEEP_INLAND_WATER_BROWN"/>
+                <EnumVal name = "OCEAN_INLETS_BROWN"/>
+                <EnumVal name = "NON_PERENNIAL_INLAND_SEA_BROWN"/>
+                <EnumVal name = "NON_PERENNIAL_INLAND_WATER_BROWN"/>
+                <EnumVal name = "OUTFLOW_WATER_BROWN"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS1_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION2"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS3_MED_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS3_MED_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS3_MED_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS3_MED_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS3_MED_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS4_LOW_PLANKTON_CONCENTRATION"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS1_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS2_MED_HIGH_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS3_MED_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_1_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_2_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_3_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "SHALLOW_OCEAN_WATER_4_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "MEDIUM_DEPTH_OCEAN_WATER_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+                <EnumVal name = "DEEP_OCEAN_WATER_CLASS4_LOW_PLANKTON_CONCENTRATION_TROPICAL"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Season"
+            id          = "{30127FCC-5913-4e83-AEF9-585F72F47439}"
+            type        = "ENUM"
+            default     = "SUMMER"
+            devnote     = "Season enumeration">
+            <EnumDef symbolprefix="SEASON_">
+                <EnumVal name = "MILD_WINTER"/>
+                <EnumVal name = "HARD_WINTER"/>
+                <EnumVal name = "SPRING"/>
+                <EnumVal name = "SUMMER"/>
+                <EnumVal name = "FALL"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "OffsetXYZ"
+          id          = "{B975CD65-7CEF-4cc2-9AB1-24B7CFEFA02C}"
+          type        = "FLOAT4"
+          descr       = "Offset in 3D space"
+          default     = "0,0,0,0">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BasicSeason"
+            id          = "{83240092-D2B5-4cd1-9B78-F1901BBC4BA4}"
+            type        = "ENUM"
+            default     = "DEFAULT">
+            <EnumDef symbolprefix="BASIC_SEASON_">
+                <EnumVal name = "WINTER"/>
+                <EnumVal name = "SPRING"/>
+                <EnumVal name = "SUMMER"/>
+                <EnumVal name = "FALL"/>
+                <EnumVal name = "DEFAULT"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+           name        = "OverwriteAction"
+           id          = "{B4670F9F-9C49-4208-A29D-3EB54929F411}"
+           type        = "ENUM"
+           default     = "FAIL_DUPLICATES"
+           devnote     = "behavior enumeration">
+          <EnumDef symbolprefix="OVERWRITEACTION_">
+              <EnumVal name = "IGNORE_DUPLICATES"/>
+              <EnumVal name = "REPLACE_DUPLICATES"/>
+              <EnumVal name = "FAIL_DUPLICATES"/>
+              <EnumVal name = "IGNORE_DUPLICATE_SEND_FALSE"/>
+          </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AltitudeAGL"
+            id          = "{DF574B66-09F0-4431-87DE-11A66AA3C14C}"
+            type        = "FLOAT"
+			default     = "-10000000.f"
+            descr       = "Units are meters.  Valid if greater than earth radius">
+        </PropertyDef>
+
+        // This prop is used by container and this is the
+        <PropertyDef 
+            name        = "MDLGuid" 
+            id          = "{8588E41E-89CA-47f9-8210-F8561D93D17C}"          
+            type        = "GUID">
+        </PropertyDef>
+      
+   </PropertyDefs>
+
+    
+    <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{2816D5DF-D194-4a72-90CF-509B30BFF1D1}"
+            name        = "ObjectReference"
+            policy      = "inclusive"
+            descr       = "Reference to another object.  Id subproperty can be anything.  Instance id must be a Guid.">
+            <property name = "id"/>
+            <property name = "InstanceId"/>
+            <property name = "TemplateInstanceId"/>
+			<property name = "VRDependency"/>
+        </SetDef>
+
+      <SetDef
+          id          = "{3F3D5AF2-AF38-4265-9D02-2AB5809E3E89}"
+          name        = "ObjectNodeReference"
+          policy      = "inclusive"
+          descr       = "Reference to another object node.  Id subproperty can be anything.  Instance id must be a Guid.">
+        <property name = "id"/>
+        <property name = "InstanceId"/>
+        <property name = "TemplateInstanceId"/>
+        <property name = "NodeName"/>
+        <property name = "VRDependency"/>
+      </SetDef>
+
+        <SetDef
+            id          = "{59925A30-AF68-4e17-9848-ACA1050E0394}"
+            name        = "AppVersion"
+            policy      = "inclusive"
+            descr       = "Application Version (major.minor.build">
+            <property name = "AppVersionMajor"/>
+            <property name = "AppVersionMinor"/>
+            <property name = "AppVersionBuild"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{77841D9C-2F74-402f-8D96-9E51834E2EEA}"
+            name        = "ObjectReferenceList"
+            policy      = "inclusive"
+            descr       = "List of object references">
+            <property name = "id"/>
+            <property name = "ObjectReference"/>
+        </SetDef>
+        <SetDef
+            id          = "{C7B86D42-8B6A-4bb1-BFD0-7F85830AEF00}"
+            name        = "Objects"
+            policy      = "unrestricted"
+            descr       = "List of object placements">
+        </SetDef>
+        <SetDef
+            id          = "{6536D9F5-FB4A-4a48-80F1-28852CAB85BC}"
+            name        = "Flight"
+            policy      = "unrestricted"
+            descr       = "Top level bag of the flight file. TODO: Make this more restrictive">
+          <property name = "OverwriteAction"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{701B09CA-8B33-414d-8E7B-00E7F004171D}"
+            name        = "Qmid"
+            policy      = "inclusive"
+            descr       = "QuadMeshId">
+            <property name = "id"/>
+            <property name = "Level"/>
+            <property name = "U"/>
+            <property name = "V"/>
+        </SetDef>	
+        
+        <SetDef
+            id          = "{F2DDC481-883F-4AE9-8BF4-CA4E38B204EC}"
+            name        = "PreloadedLibraryObject"
+            policy      = "unrestricted"
+            descr       = "Library object loaded by default">
+      </SetDef>
+
+      <SetDef
+          id          = "{94407CEC-DBEF-4CA4-81D2-8BF8A7EC3BE3}"
+          name        = "PreloadedContainers"
+          policy      = "unrestricted"
+          descr       = "Containers loaded by default">
+      </SetDef>
+
+      <SetDef
+         id          = "{C7E8EBB7-FC03-4234-8902-2BC62A90B158}"
+         name        = "AirTraffic"
+         policy      = "inclusive"
+         descr       = "List of AirTraffic models to use">
+        <property name = "AirTrafficEntry"/>
+      </SetDef>
+
+      <SetDef
+         id          = "{57FB8982-26A0-4105-BBA7-29919C221939}"
+         name        = "AirTrafficEntry"
+         policy      = "inclusive"
+         descr       = "One AirTraffic model to use">
+        <property name = "AirTrafficType"/>
+        <property name = "ContainerTitle"/>
+      </SetDef>
+
+      <SetDef
+           id          = "{67BE8E82-708C-49bb-B674-BF3E2F2649D1}"
+           policy      = "inclusive"
+           name        = "AttachedWorldPosition">
+        <property name = "WorldPosition"/>
+        <property name = "AltitudeIsAGL"/>
+        <property name = "LocalOffsetXYZ"/>
+        <property name = "LocalOrientation"/>
+        <property name = "Orientation"/>
+        <property name = "IsOnGround"/>
+      </SetDef>
+      <SetDef
+          id          = "{0D56087D-AAE6-45DB-8DBC-BDA63F45E1BF}"
+          policy      = "inclusive"
+          name        = "InitWorldPosition">
+        <property name = "WorldPosition"/>
+        <property name = "AltitudeIsAGL"/>
+        <property name = "LocalOffsetXYZ"/>
+        <property name = "LocalOrientation"/>
+        <property name = "Orientation"/>
+        <property name = "IsOnGround"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{209FC959-2CEA-4c8e-A4E9-5D0C64D4AF8A}"
+        policy      = "inclusive"
+        name        = "AttachedWorldObject">
+        <property name = "ObjectReference"/>
+        <property name = "OffsetXYZ"/>
+        <property name = "Orientation"/>
+        <property name = "OrientationType"/>
+        <property name = "NodeName"/>
+        <property name = "IsOnGround" />
+		<property name = "AltitudeAGL"/>
+      </SetDef>
+
+      <SetDef
+        id          = "{F5479547-1407-4324-BEE0-7F8A01D337A6}"
+        policy      = "inclusive"
+        name        = "AttachedSimObjectInitialPosition">
+        <property name = "ObjectReference"/>
+        <property name = "OffsetXYZ"/>
+        <property name = "Orientation"/>
+        <property name = "NodeName"/>
+        <property name = "IsOnGround" />
+      </SetDef>
+
+      <SetDef
+       id          = "{FD114BBA-7D01-4DA2-A2E6-1B74DF852625}"
+       policy      = "inclusive"
+       name        = "InitRelativeToWorldObject">
+        <property name = "ObjectReference"/>
+        <property name = "OffsetXYZ"/>
+        <property name = "Orientation"/>
+        <property name = "NodeName"/>
+        <property name = "IsOnGround" />
+      </SetDef>
+
+      <SetDef
+       id          = "{AB188769-7146-4762-AB35-C75046E925F2}"
+       policy      = "inclusive"
+       name        = "RelativePosition">
+        <property name = "OffsetXYZ"/>
+        <property name = "AltitudeAGL"/>
+        <property name = "Orientation"/>
+      </SetDef>
+
+      <SetDef
+      id          = "{15ED2C94-81F4-4020-A945-3451745235F9}"
+      policy      = "inclusive"
+      name        = "TemplateResources">
+        <property name = "ResourceName"/>
+      </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

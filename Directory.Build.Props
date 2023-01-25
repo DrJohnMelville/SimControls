@@ -1,0 +1,6 @@
+<Project>
+
+	<ItemGroup>
+	    <InternalsVisibleTo Include="SimControls.Test"/>
+	</ItemGroup>
+</Project>

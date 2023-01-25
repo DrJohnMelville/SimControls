@@ -1,0 +1,484 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Water Constant symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "WaterConsts"
+    id           = "{CA2AD650-28C9-45f5-88DD-50F8E0D2956B}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propwater.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propgroups.xml"
+        id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+        version  = "1,0" />
+
+    <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propwater.h
+//
+//  FlightSim Water Constants AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "Elevation"
+            id          = "{4489E07C-B899-4806-A63C-C75F8B430674}"
+            type        = "ENUM"
+            default     = "LOW"
+            devnote     = "Elevation Ranges">
+            <EnumDef symbolprefix="ELEVATION_">
+                <EnumVal name = "LOW"/>
+                <EnumVal name = "MID"/>
+                <EnumVal name = "HIGH"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fTimeX1"
+          id          = "{34967616-BDBB-46ad-9E76-1386E229F2C1}"
+          default     = "0.4"
+          type        = "FLOAT">
+      </PropertyDef>
+        <PropertyDef
+          name        = "fTimeX2"
+          id          = "{1DB58ACB-398B-451f-B68D-6B1568F664DE}"
+          default     = "0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+          name        = "fTimeX3"
+          id          = "{F4513CC2-7A81-4c0b-8C5D-75689164B548}"
+          default     = "0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+          name        = "fTimeXDetail"
+          id          = "{49388F98-EBBA-4fd2-984F-348F2F81C7BB}"
+          default     = "0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fTimeY1"
+          id          = "{0207090B-4A26-450c-9807-058EBD93B17E}"
+          default     = "-0.4"
+          type        = "FLOAT">
+      </PropertyDef>
+        <PropertyDef
+          name        = "fTimeY2"
+          id          = "{06DE7692-36B6-45cd-A619-8E2D575848DB}"
+          default     = "-0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+          name        = "fTimeY3"
+          id          = "{2F906A71-370C-40fd-974C-77D06CAD2C25}"
+          default     = "-0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+          name        = "fTimeYDetail"
+          id          = "{B6FDB75C-A5DF-41a6-84DD-F145D458BCD9}"
+          default     = "0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+
+      <PropertyDef
+            name        = "fWaterBumpWind1"
+            id          = "{210836DD-B2C4-402a-8FAB-06E94651C0D0}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpWind2"
+            id          = "{D0D1000D-CDEA-455b-AB89-3E0410B5C3F0}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpWind3"
+            id          = "{04FBC294-358C-4630-96B1-E01B7953E918}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpWindDetail"
+            id          = "{BBAE0796-4541-46cd-871D-5BABA2963AD0}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "fWaterBumpBlend1"
+            id          = "{6C1957C2-1A77-4699-AE21-740BD5E1BDB7}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpBlend2"
+            id          = "{20FC57CE-0340-4ec0-BB96-18E683D57430}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpBlend3"
+            id          = "{E02F1021-0AE2-44c0-B6C9-A25F37B1F210}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpBlendDetail"
+            id          = "{9AF283F2-E3D8-4df5-A708-E3C854C58808}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fTimeScale2"
+          id          = "{E00F3106-9BC9-4465-9B00-95F09D59066C}"
+          default     = "-0.4"
+          type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fWhiteCapPower"
+          id          = "{8C50C26C-B917-4345-9256-4C1D422D956A}"
+          default     = "1.0"
+          type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fWaterBumpRotation"
+          id          = "{1094BA08-78B9-412a-BA38-BB70EC92CE96}"
+          default     = "156.6"
+          type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+          name        = "fWaterBumpRotation1"
+          id          = "{34864D6E-59EC-4516-B287-2BA58875BF54}"
+          default     = "156.6"
+          type        = "FLOAT">
+      </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpRotation2"
+            id          = "{2CAB4011-F4EF-4a0b-A1CE-78FE0C54C682}"
+            default     = "156.6"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpRotation3"
+            id          = "{3060674B-A275-40e2-BD53-92C6D636EDE8}"
+            default     = "156.6"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaterBumpRotationDetail"
+            id          = "{F7844695-4545-4979-9E73-16750F9BB966}"
+            default     = "156.6"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "fWaveBumpUVScale"
+            id          = "{2B4FE6B9-4418-4749-A3B7-201B42AF86BD}"
+            default     = "20.41"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaveBumpUVScale1"
+            id          = "{2BE8CCF5-EB53-4275-89EE-BBE0A8F92370}"
+            default     = "20.41"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaveBumpUVScale2"
+            id          = "{7FBC31D0-5BBB-403b-9BD8-F87EBDFF2D42}"
+            default     = "20.41"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaveBumpUVScale3"
+            id          = "{AFF1B10A-E8D9-45d5-84E2-5DC168A8F721}"
+            default     = "20.41"
+            type        = "FLOAT">
+        </PropertyDef>
+        <PropertyDef
+            name        = "fWaveBumpUVScaleDetail"
+            id          = "{F8FB23D5-F277-4749-9D9E-F53FC58F7A30}"
+            default     = "20.41"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+          name        = "fSpecularPower"
+          id          = "{560E11D1-BB00-4fa6-8E1B-C05BF30946A7}"
+          default     = "20.21"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fSpecularBoost"
+          id          = "{F1FE0332-2E67-4f41-8C57-B78AD7B7EAAA}"
+          default     = "1.46"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fSpecularBlend"
+          id          = "{399E3367-0ADB-40e5-A7C3-FE014CF6484B}"
+          default     = "0.61"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveFresnelFactorMin"
+          id          = "{493A17D7-88C5-4688-BDFD-4D163BCE6CF7}"
+          default     = "0.5"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveFresnelFactorMax"
+          id          = "{7944FE23-0A23-4945-A319-3D9D9B4A1BB0}"
+          default     = "0.54"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveBumpLightScale"
+          id          = "{BD8DD1B4-FA26-4971-AB33-F82266C2D3EC}"
+          default     = "0.1"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveBumpDistScale"
+          id          = "{6BDF639B-62CC-4189-ABB4-C4BE9C5EA70F}"
+          default     = "100.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveBumpTimeScale"
+          id          = "{5553FA91-C826-4957-A4AD-6420146F8E1E}"
+          default     = "0.005"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWaveBumpScale"
+          id          = "{5EEC98C3-4561-4b88-B01A-55D260A16B51}"
+          default     = "0.21"
+          type        = "FLOAT">
+      </PropertyDef>
+
+      <PropertyDef
+          name        = "fWindAngleRangeMin"
+          id          = "{094D888A-3808-4a1a-ADA7-6C5AAB150821}"
+          default     = "45.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fWindAngleRangeMax"
+          id          = "{26A52DE1-797A-4686-B636-8E8E18A6102A}"
+          default     = "90.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fTTLMin"
+          id          = "{27284A44-5A15-4303-8143-619882D731D2}"
+          default     = "8.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fTTLMax"
+          id          = "{7B9CE430-3740-4756-8A38-B6EB3233891D}"
+          default     = "20.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "dwNumWaves"
+          id          = "{B48D4639-911A-427b-8FF6-5EC53C1284B0}"
+          default     = "5.0"
+          type        = "ULONG">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fPeriodAdjustMin"
+          id          = "{CFCA253A-5ABE-4e6c-80D3-926DE610DF52}"
+          default     = "0.15"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fPeriodAdjustMax"
+          id          = "{09E35248-8C81-4a2e-A75E-1D4BCBB021E6}"
+          default     = "1.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fAmplitudeScaleMin"
+          id          = "{3BA42217-8687-4ff9-AA3C-C8EF17F97B4A}"
+          default     = "4.0"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fAmplitudeScaleMax"
+          id          = "{52A0E66C-6319-48f4-818B-61302E5925BC}"
+          default     = "2.75"
+          type        = "FLOAT">
+      </PropertyDef>
+      <PropertyDef
+          name        = "fFreqRange"
+          id          = "{FFA805AF-5C73-45ab-B662-9627ACE23281}"
+          default     = "0.12"
+          type        = "FLOAT">
+      </PropertyDef>
+
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+          id          = "{049559B0-19D0-4f09-8F77-7413F9B1F424}"
+          name        = "Wave" >
+        <property name = "fWaveBumpTimeScale"/>
+        <property name = "fWindAngleRangeMin"/>
+        <property name = "fWindAngleRangeMax"/>
+        <property name = "fTTLMin"/>
+        <property name = "fTTLMax"/>
+        <property name = "dwNumWaves"/>
+        <property name = "fPeriodAdjustMin"/>
+        <property name = "fPeriodAdjustMax"/>
+        <property name = "fAmplitudeScaleMin"/>
+        <property name = "fAmplitudeScaleMax"/>
+        <property name = "fFreqRange"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{E8953F01-14E7-4804-A19F-86DC7197ADA8}"
+          name        = "Shader20" >
+        <property name = "fWaveBumpTimeScale"/>
+        <property name = "fWaveBumpScale"/>
+        <property name = "fWaveBumpUVScale"/>
+        <property name = "fWaveBumpDistScale"/>
+        <property name = "fWaveBumpLightScale"/>
+        <property name = "fWaveFresnelFactorMin"/>
+        <property name = "fWaveFresnelFactorMax"/>
+        <property name = "fSpecularPower"/>
+        <property name = "fSpecularBoost"/>
+        <property name = "fSpecularBlend"/>
+        <property name = "fWaterBumpRotation"/>
+        <property name = "fTimeX1"/>
+        <property name = "fTimeY1"/>
+        <property name = "fTimeX2"/>
+        <property name = "fTimeY2"/>
+        <property name = "fTimeScale2"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{1A3FEE47-C6CA-49f7-AAFC-34517A8CA47A}"
+          name        = "Shader30" >
+        <property name = "fWaveBumpTimeScale"/>
+        <property name = "fWaveBumpScale"/>
+        <property name = "fWaveBumpUVScale"/>
+        <property name = "fWaveBumpDistScale"/>
+        <property name = "fWaveBumpLightScale"/>
+        <property name = "fWaveFresnelFactorMin"/>
+        <property name = "fWaveFresnelFactorMax"/>
+        <property name = "fSpecularPower"/>
+        <property name = "fSpecularBoost"/>
+        <property name = "fSpecularBlend"/>
+        <property name = "fWaterBumpRotation"/>
+        <property name = "fTimeX1"/>
+        <property name = "fTimeY1"/>
+        <property name = "fTimeX2"/>
+        <property name = "fTimeY2"/>
+        <property name = "fTimeScale2"/>
+      </SetDef>
+
+      <SetDef
+          id          = "{5F62FCB1-06A4-4c1a-B8C2-72A1E12115E8}"
+          name        = "Shader40" >
+          <property name = "fWaveFresnelFactorMin"/>
+          <property name = "fWaveFresnelFactorMax"/>
+          <property name = "fSpecularPower"/>
+          <property name = "fSpecularBoost"/>
+          <property name = "fSpecularBlend"/>
+          <property name = "fWaveBumpUVScale1"/>
+          <property name = "fWaveBumpUVScale2"/>
+          <property name = "fWaveBumpUVScale3"/>
+          <property name = "fWaveBumpUVScaleDetail"/>
+          <property name = "fWaterBumpRotation1"/>
+          <property name = "fWaterBumpRotation2"/>
+          <property name = "fWaterBumpRotation3"/>
+          <property name = "fWaterBumpRotationDetail"/>
+          <property name = "fWaterBumpBlend1"/>
+          <property name = "fWaterBumpBlend2"/>
+          <property name = "fWaterBumpBlend3"/>
+          <property name = "fWaterBumpBlendDetail"/>
+          <property name = "fTimeX1"/>
+          <property name = "fTimeX2"/>
+          <property name = "fTimeX3"/>
+          <property name = "fTimeXDetail"/>
+          <property name = "fTimeY1"/>
+          <property name = "fTimeY2"/>
+          <property name = "fTimeY3"/>
+          <property name = "fTimeYDetail"/>
+      </SetDef>
+
+        <SetDef
+            id          = "{72FBFCF7-51F7-4460-AACE-EEB6926F6C4E}"
+            name        = "Shader40WaterClassSet"
+            descr       = "Set of Shader40 constants based on water class" >
+            <property name = "WaterClass"/>
+            <property name = "Shader40"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{8804723E-2682-4167-9257-AA8526CE4DA3}"
+            name        = "ConstantSet" >
+        <property name = "BasicSeason"/>
+        <property name = "Elevation"/>
+        <property name = "Shader20"/>
+        <property name = "Shader30"/>
+        <property name = "Shader40WaterClassSet"/>
+        <property name = "Wave"/>
+      </SetDef>
+
+
+        //
+        // Global scoped sets
+        //
+        <SetDef
+            id          = "{09F4DCC1-F6DD-46c1-BB58-F5A899DAAC27}"
+            name        = "ConstantSets"
+            policy      = "inclusive"
+            descr       = "Top level bag of constant sets" >
+            <property name="ConstantSet"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

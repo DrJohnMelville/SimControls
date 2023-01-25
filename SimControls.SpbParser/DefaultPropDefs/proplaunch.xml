@@ -1,0 +1,135 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- XXX property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "Launch"
+    id           = "{4CE92C8F-6339-4de0-8037-60F630BA79B2}"
+    descr        = "Launch property, type and set definitions."
+    chdr         = "proplaunch.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+    
+<cpptext pass="1">
+//-----------------------------------------------------------------------------//       
+//  proplaunch.h    
+//
+//  FlightSim Launch AceXML property and property set symbol definitions
+//-----------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+</cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+<cpptext pass="2">
+//  
+//  Property Identifiers
+//
+</cpptext>
+
+      <!-- Begin: Global property sets -->
+
+      <PropertyDef
+        name        = "ManualLoad"
+        id          = "{9169FECC-0E1A-495b-9002-BA99C3982A95}"
+        type        = "BOOL"
+        descr       = "force manual load of addons">
+      </PropertyDef>
+
+      <!-- End: Global property sets -->
+
+        <!-- Begin: Addon property sets -->
+
+        <PropertyDef
+            name        = "Name"
+            id          = "{8FD32F84-ADF1-4e82-B19B-4BBDAB301823}"
+            type        = "TEXT"
+            descr       = "Addon Description">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Path"
+            id          = "{9E362607-A7B1-4049-A4F9-14BB371468AE}"
+            type        = "TEXT"
+            descr       = "Addon FilePathName">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "CommandLine"
+            id          = "{9A9ED21D-71BA-44a5-B8CC-EFEF27A193C7}"
+            type        = "TEXT"
+            descr       = "Addon Command Line Arguments">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NewConsole"
+            id          = "{822033C3-04C9-4569-8635-3EE34B113A32}"
+            type        = "BOOL"
+            descr       = "Addon New Console">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DLLType"
+            id          = "{EABD5EDB-08DC-4fd3-9F0E-68209192CFA4}"
+            type        = "TEXT"
+            descr       = "Addon Function Type">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DLLStartName"
+            id          = "{82A0B36D-1C75-4da0-A279-0867058D3B22}"
+            type        = "TEXT"
+            descr       = "Addon Start Function Name">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DLLStopName"
+            id          = "{D31B6A4A-B063-48bd-A672-6231571AA082}"
+            type        = "TEXT"
+            descr       = "Addon Stop Function Name">
+        </PropertyDef>
+
+        <!-- End: Addon property sets -->
+
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+        
+<cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+</cpptext>
+
+        <SetDef
+            id          = "{564B5CF6-2FA6-4988-A7FE-4720BA09C93F}"
+            name        = "Addon"
+            policy      = "inclusive">
+
+            <property name = "Name"/>
+            <property name = "Disabled"/>
+            <property name = "ManualLoad"/>
+            <property name = "Path"/>
+            <property name = "CommandLine"/>
+            <property name = "DLLType"/>
+            <property name = "DLLStartName"/>
+            <property name = "DLLStopName"/>
+            <property name = "NewConsole"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

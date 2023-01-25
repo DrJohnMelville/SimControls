@@ -1,0 +1,95 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "SimTemplate"
+    id           = "{5AA58609-F172-4449-9099-2A8AF80C27DB}"
+    descr        = "SimProp template property, type and set definitions."
+    chdr         = "proptemplate.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+  
+  <SymbolInclude
+				filename = "Common\propmission.xml"
+				id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+				version  = "1,0" />
+  
+  <SymbolInclude
+        filename = "Common\propsceneryobjects.xml"
+        id="{9EE96FC0-10FB-4702-9CCA-F945242661E6}"
+        version  = "1,0" />
+  
+  <SymbolInclude
+      filename = "Common\propworldbase.xml"
+      id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+      version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  proptemplate.h
+//
+//  FlightSim template AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+	</cpptext>
+  
+	<PropertyDefs
+        symbolprefix = "SPID_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+		</cpptext>
+
+    <PropertyDef
+            name        = "TemplateId"
+            id          = "{640B6588-36A1-4A6D-93CE-00187275CB84}"
+            xml_io      = "attribute"
+            type        = "GUID"
+            descr       = "Template GUID">
+    </PropertyDef>
+    
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+		</cpptext>
+
+		<SetDef
+            id          = "{57F2581F-8529-43F0-AE2B-05DCF909E6DC}"
+            name        = "Template"
+            descr       = "template description">
+			<property name = "TemplateId"/>
+			<property name = "Descr"/>
+			<property name = "PointOfInterestActivationAction"/>
+			<property name = "LibraryObject"/>
+			<property name = "PointOfInterest"/>
+			<property name = "PylonRacePoint"/>
+		</SetDef>
+
+    <SetDef
+            id          = "{5FF0C386-D3F8-4FBE-AB02-8C4E30AA8160}"
+            classid     = "{32E8E1FE-AC98-46FF-98E8-8D2B9C14002A}"
+            name        = "UseTemplate"
+            descr       = "template to be used">
+      <property name = "TemplateId"/>
+      <property name = "InstanceId"/>
+      <property name = "Descr"/>
+      <property name = "PointOfInterestActivationAction"/>
+      <property name = "LibraryObject"/>
+      <property name = "PointOfInterest"/>
+      <property name = "PylonRacePoint"/>
+    </SetDef>
+
+  </SetDefs>
+</SymbolDef>

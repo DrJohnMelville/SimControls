@@ -1,0 +1,114 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Material property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "Groups"
+    id           = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propgroups.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propmaterial.h
+//
+//  FlightSim Material AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <PropertyDef
+            name        = "FriendlyName"
+            id          = "{C030EC1C-D420-4c7d-BAD2-E01B6555F754}"
+            type        = "TEXT" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "RegionId"
+            id          = "{053850FD-3853-4d71-9FAD-35C4E74BA135}"
+            type        = "LONG" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TargetGuid"
+            id          = "{834D1BE3-8A0C-4744-97D5-7192BBA9AF37}"
+            type        = "GUID"
+            descr       = "Guid of 'target' object to be used at this point" >
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "RelativeWeight"
+            id          = "{7305BE03-F84D-4029-BDF2-B6B106567F07}"
+            type        = "FLOAT"
+            descr       = "Relative weighting of this entry"
+            default     = "1.0">
+        </PropertyDef>
+
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{E56CF47A-728E-4a6f-891B-CE73F062A494}"
+            name        = "RegionDescription" >
+            <property name = "id"/>
+            <property name = "RegionId"/>
+            <property name = "ReferenceEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{2FA24C48-5399-43fc-9051-AC919EA44E0C}"
+            name        = "Regionalization" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "RegionDescription"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{58E6E258-B105-492d-A004-D047642693DF}"
+            name        = "ReferenceEntry" >
+            <property name = "TargetGuid"/>
+            <property name = "RelativeWeight"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{C1812BE1-9D19-42e2-B165-565235E82AE0}"
+            name        = "Grouping" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "ReferenceEntry"/>
+        </SetDef>
+
+
+    </SetDefs>
+
+</SymbolDef>

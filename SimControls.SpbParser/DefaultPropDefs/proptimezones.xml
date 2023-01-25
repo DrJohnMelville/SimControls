@@ -1,0 +1,254 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "TimeZones"
+    id           = "{2765D0CA-42EC-41B2-B94D-FF3C98DF302A}"
+    descr        = "SimProp Time Zones property, type and set definitions."
+    chdr         = "proptimezones.h"
+    version      = "1,0" >
+
+	<SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+	<cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  proptimezones.h
+//
+//  FlightSim time zones AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+
+//
+//  Namespace
+//
+	</cpptext>
+  
+	<PropertyDefs
+        symbolprefix = "SPID_TIMEZONES_">
+
+		<cpptext pass="2">
+//
+//  Property Identifiers
+//
+		</cpptext>
+		
+		<PropertyDef
+            name        = "latitudeMinimum"
+            id          = "{9DF4F4C2-63AF-46E7-92EE-2681A314DBFB}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The latitude of the top left point of the zone.">
+		</PropertyDef>
+		<PropertyDef
+            name        = "longitudeMinimum"
+            id          = "{676F4524-9088-4DB8-9AA6-2351719B02D3}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The longitude of the top left point of the zone.">
+		</PropertyDef>
+		<PropertyDef
+            name        = "latitudeMaximum"
+            id          = "{8C725540-D9DD-4962-8A2F-D43CB4088E87}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The latitude of the bottom right point of the zone.">
+		</PropertyDef>
+		<PropertyDef
+            name        = "longitudeMaximum"
+            id          = "{55229F06-1B82-4626-AE3C-95CE0BADC4BD}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The longitude of the bottom right point of the zone.">
+		</PropertyDef>
+		<PropertyDef
+            name        = "timedeviation"
+            id          = "{03E35A7F-73AD-42F6-BF06-02C8E66B87CA}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Time Difference of the zone.">
+		</PropertyDef>
+		<PropertyDef
+            name        = "priority"
+            id          = "{EBBCDA74-CFF3-4B43-9F03-7C585DBBEE77}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Priority of the zone. This controls which zone is read if 2 overlap.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "sIANATimeZoneID"
+            id          = "{0F51C1DF-7288-4828-A8E0-B615E433A7BD}"
+            type        = "TEXT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "Time Zone Name (Indicative - not used for anything)."
+            default     = "">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstStartRule"
+            id          = "{95D19F72-ADC9-4D9F-B7DD-32ED53314C5E}"
+            type        = "ENUM"
+            xml_io      = "attribute"
+			serialize	= "default"
+			default		= "DST_RULE_NONE"
+            descr       = "How the DSTStart Parameters should be interpreted to decide when to start the DST.">
+            <EnumDef symbolprefix="eDSTStartRule">
+                <EnumVal 
+                    name = "DST_RULE_NONE" 
+                    xml_name = "DST_RULE_NONE"/>
+                <EnumVal 
+                    name = "DST_RULE_FIXED_DAY" 
+                    xml_name = "DST_RULE_FIXED_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_LAST_OF_DAY" 
+                    xml_name = "DST_RULE_LAST_OF_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_ON_OR_AFTER_DAY" 
+                    xml_name = "DST_RULE_ON_OR_AFTER_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_ON_OR_BEFORE_DAY" 
+                    xml_name = "DST_RULE_ON_OR_BEFORE_DAY"/>
+            </EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstStartMonth"
+            id          = "{4D542F66-366B-4E40-88BC-F82F29EDFAA0}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Month at which the Daylight Saving Time Starts.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstStartDayOfTheWeek"
+            id          = "{349C52A9-D71F-4241-9F7D-7E986F499141}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Day of the week at which the Daylight Saving Time Starts.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstStartDayOfTheMonth"
+            id          = "{3E187F7F-07E6-4AEE-914A-C311E3C7FA97}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Day of the month at which the Daylight Saving Time Starts.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstEndRule"
+            id          = "{F7368B74-967A-4922-8582-C6648E97B320}"
+            type        = "ENUM"
+            xml_io      = "attribute"
+			serialize	= "default"
+			default		= "DST_RULE_NONE"
+            descr       = "How the DSTStart Parameters should be interpreted to decide when to end the DST.">
+            <EnumDef symbolprefix="eDSTEndRule">
+                <EnumVal 
+                    name = "DST_RULE_NONE" 
+                    xml_name = "DST_RULE_NONE"/>
+                <EnumVal 
+                    name = "DST_RULE_FIXED_DAY" 
+                    xml_name = "DST_RULE_FIXED_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_LAST_OF_DAY" 
+                    xml_name = "DST_RULE_LAST_OF_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_ON_OR_AFTER_DAY" 
+                    xml_name = "DST_RULE_ON_OR_AFTER_DAY"/>
+                <EnumVal 
+                    name = "DST_RULE_ON_OR_BEFORE_DAY" 
+                    xml_name = "DST_RULE_ON_OR_BEFORE_DAY"/>
+            </EnumDef>
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstEndMonth"
+            id          = "{CA5635C1-9F73-49B0-89B3-C210B5D2F61B}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Month at which the Daylight Saving Time Ends.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstEndDayOfTheWeek"
+            id          = "{07016D66-255E-48E6-93EA-7E84886D7023}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Day of the week at which the Daylight Saving Time Ends.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstEndDayOfTheMonth"
+            id          = "{9ABF02A5-13C9-44AE-99EA-A55E784D9182}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Day of the month at which the Daylight Saving Time Ends.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstTimeDiffDuringDST"
+            id          = "{D8CB63C9-92A3-4585-95AD-EBB14A98413E}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Time difference added during the DST.">
+		</PropertyDef>
+		
+		<PropertyDef
+            name        = "dstTimeDiffOutsideDST"
+            id          = "{AA18CB0E-7858-499F-A71B-748232FCEB02}"
+            type        = "FLOAT"
+            xml_io      = "attribute"
+			serialize	= "default"
+            descr       = "The Time difference added outside the DST.">
+		</PropertyDef>
+		
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+		</cpptext>
+
+		<SetDef
+            id          = "{E0853ABA-F471-47CB-BA7F-D8F44C4CAD67}"
+            name        = "TimeZone"
+            descr       = "Timezone information about a zone on the map">
+			<property name = "latitudeMaximum"/>
+			<property name = "latitudeMinimum"/>
+			<property name = "longitudeMinimum"/>
+			<property name = "longitudeMaximum"/>
+			<property name = "timedeviation"/>
+			<property name = "priority"/>
+			<property name = "sIANATimeZoneID"/>
+			<property name = "dstStartMonth"/>
+			<property name = "dstStartRule"/>
+			<property name = "dstStartDayOfTheWeek"/>
+			<property name = "dstStartDayOfTheMonth"/>
+			<property name = "dstEndMonth"/>
+			<property name = "dstEndRule"/>
+			<property name = "dstEndDayOfTheWeek"/>
+			<property name = "dstEndDayOfTheMonth"/>
+			<property name = "dstTimeDiffDuringDST"/>
+			<property name = "dstTimeDiffOutsideDST"/>
+		</SetDef>
+
+  </SetDefs>
+</SymbolDef>

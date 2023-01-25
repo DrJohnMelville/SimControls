@@ -1,0 +1,1296 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- SimGauge property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimGauge"
+    id           = "{2B1F7CE9-C6CF-4131-8783-46689D7ABDB2}"
+    descr        = "SimProp gauge property, type and set definitions."
+    chdr         = "propgauge.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbaseui.xml"
+        id       = "{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propgauge.h    
+//
+//  FlightSim SimGauge AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_GAUGE_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+    
+        <PropertyDef
+            name        = "FloatPosition"
+            id          = "{0525D60F-240D-4e5b-ADB0-2AD7EF11F595}"
+            type        = "FLOAT2"
+            devnot      = "A floating-point value for position"
+            serialize   = "both,default">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Axis"            
+            id          = "{A7F37D3B-FD1D-43fc-8B3F-834A4C9397E6}"
+            type        = "FLOAT2"
+            descr       = "Location of axis when rotation applied">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Scale"            
+            id          = "{E3F2F47C-E2C1-4032-8758-3F44DE569BBD}"
+            type        = "FLOAT2"
+            default     = "1,1"
+            devnot      = "X,Y scaling">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "SizeScale"            
+            id          = "{05764458-650E-4c84-8614-788BA2866873}"
+            type        = "FLOAT"
+            default     = "1.0"
+            descr       = "X,Y scaling">
+        </PropertyDef>
+                
+        <PropertyDef
+            name        = "Script"
+            id          = "{31A89C05-4F0D-4e64-905B-1BBAC290A367}"
+            type        = "MLTEXT"
+            descr       = "The actual script to be used">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Maximum"
+            id          = "{28617746-BDDD-472a-B7DF-4EE1E6347A80}"
+            type        = "FLOAT"
+            descr       = "The maximum value at which to cap the result of an expression"
+            default     = "-9999999">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Minimum"
+            id          = "{9B47548B-2C3F-439f-83FE-C227CEE5C58D}"
+            type        = "FLOAT"
+            descr       = "The minimum value at which to cap the result of an expression"
+            default     = "-9999999">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ExpressionResult"
+            id          = "{9E8DCE1E-C770-4b90-96A9-153841398D70}"
+            type        = "FLOAT"
+            descr       = "The result of an expression to compare against. Used in Case property-sets"
+            serialize   = "default,both">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "EndAngle"
+            id          = "{F6799E82-4BA4-4e0d-989D-7AEC59D5E241}"
+            descr       = "End angle for arc or pie (in degrees)"
+            type        = "LONG">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "LineWidth"
+            id          = "{E7E83AE1-67BD-4c9e-879C-D0CC403F16B7}"
+            descr       = "Width of line in pixels.  Applies to shapes."
+            type        = "LONG">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Transparency"
+            id          = "{FC88B612-4E0B-42c1-80AB-5159BD44366A}"
+            descr       = "Value between 0 and 1 to use for alpha-blending"
+            type        = "FLOAT">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Radius"
+            id          = "{9CC46FEB-1FE5-4ef5-9A0E-F0D933156125}"
+            descr       = "Radius to apply to shape (circle, pie, arc)"
+            type        = "LONG">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "RadiusY"
+            id          = "{41F6E319-ED42-4eb8-BB28-F8FEE177B6B4}"
+            type        = "LONG">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StartAngle"
+            id          = "{6BD5AF2A-E2AE-4fe9-81B6-375582933CDB}"
+            descr       = "Start angle for arc or pie (in degrees)"
+            type        = "LONG">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StartAngleScript"
+            id          = "{0BE53C64-39D4-4b14-8717-BEF30F179676}"
+            descr       = "Expression for start angle for arc or pie (in degrees)"
+            type        = "MLTEXT">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "EndAngleScript"
+            id          = "{56545344-3C85-44bf-A94B-C8EF29B0ED5C}"
+            descr       = "Expression for end angle for arc or pie (in degrees)"
+            type        = "MLTEXT">            
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "Width"
+            id          = "{8EB93927-A276-48c9-A8CA-EFF43BC8EC66}"
+            descr		= "Width in pixels"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "Height"
+            id          = "{B39F359D-286F-4270-99F4-47BD818B0F64}"
+            descr		= "Height in pixels"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Alpha"
+            id          = "{3B7D8F69-A1DA-4d0e-B08A-B7975F584006}"
+            type        = "BOOL"
+            xml_io      = "attribute"
+            descr       = "Whether or not the image should be interpreted as having an alpha channel.">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Bright"
+            id          = "{247D23F3-EA52-48c6-A3F8-D41690FC72D9}"
+            descr       = "If TRUE, the gauge will NOT be tinted or darkened at night."                        
+            type        = "BOOL">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Luminous"
+            id          = "{27D96904-3CA3-45bb-BA35-49038A079CF4}"
+            type        = "BOOL">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Bilinear"
+            id          = "{97DCA7C5-1372-41a4-9B08-62316367F0FA}"
+            type        = "BOOL"
+            descr       = "If TRUE, a bilinear filter will be applied to smooth edges."                        
+            default     = "True">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DegreesPointsTo"
+            id          = "{0055A668-E645-42b9-97AC-485192199068}"
+            type        = "FLOAT"
+            descr       = "The starting value for a rotation">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "PointsTo"
+            id          = "{D839C433-EE4A-4989-AD44-0B1886ED1090}"
+            type        = "ENUM"
+            default     = "EAST"
+            descr       = "The starting value for a rotation">
+            <EnumDef symbolprefix="POINTS_TO_">
+                <EnumVal name = "NORTH"/>
+                <EnumVal name = "EAST"/>
+                <EnumVal name = "SOUTH"/>
+                <EnumVal name = "WEST"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Name"
+            id          = "{C353EFA6-9E03-4fbb-9DD5-C42FBA79F99A}"
+            type        = "TEXT"
+            xml_io      = "attribute"
+            descr       = "Filename for image">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "File"
+            id          = "{FBA069CD-4A66-4da1-A226-13A0D6F64C88}"
+            type        = "TEXT"
+            xml_io      = "attribute"
+            descr       = "Filename to include">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ArtDirectory"
+            id          = "{67F2F245-D0B8-4bf1-8C5D-58164288FA48}"
+            type        = "TEXT"
+            xml_io      = "attribute"
+            descr       = "Directory where art for this gauge is located">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "HorizontalAlign"
+            id          = "{F9CF8326-E6D2-4d69-9E17-60232983FEB1}"
+            type        = "ENUM"
+            descr       = "Align text with the left edge, center, or right of the specified box">            
+            <EnumDef symbolPrefix="HORIZALIGN_">
+                <EnumVal name = "LEFT"/>
+                <EnumVal name = "CENTER"/>
+                <EnumVal name = "RIGHT"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontColorScript"
+            id          = "{DE460517-7882-4587-9206-4CBB20B3D619}"
+            type        = "MLTEXT"
+            descr       = "Expression for foreground color for gauge text. Enclose strings in single quotes.  e.g. 'Blue'">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FontFaceLocalize"
+            id          = "{F10CEB32-2A41-48b7-9300-BE688316B9B2}"
+            type        = "BOOL"
+            descr       = "Whether or not to look for a localized font (one which contains all of the characters required for the current language">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BackgroundColor"
+            id          = "{FEBA635A-0367-4979-AD7C-7179A0FD47E8}"
+            type        = "TEXT"
+            descr       = "Background color for gauge text.  Use hex value (e.g. 0xFF00FF) or string (e.g. magenta) for color name">            
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "BackgroundColorScript"
+            id          = "{ED7F29AC-9822-4ca4-93EA-5F18E6904C16}"
+            type        = "MLTEXT"
+            descr       = "Expression for background color for gauge text. Enclose strings in single quotes.  e.g. 'Blue'">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "LineColor"
+            id          = "{B52E9F7A-1223-4d86-B3AF-92EF83FAE0F4}"
+            type        = "TEXT"
+            descr       = "Line color for shapes - hex value or string.  Do not need to enclose strings in single quotes.">            
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "LineColorScript"
+            id          = "{8A1BB8CC-1BFD-4c3f-B385-479946A1CBAD}"
+            type        = "MLTEXT"
+            descr       = "Expression for line color for shapes.  Enclose strings in single quotes.  e.g. 'Blue'">            
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "FillColor"
+            id          = "{3F48CFC9-930D-4a67-8417-018ED525FA37}"
+            type        = "TEXT"
+            descr       = "Fill color for shapes. Do not need to enclose strings in single quotes.">            
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "FillColorScript"
+            id          = "{5E82308A-723B-4d54-9795-A0EB4AA425A3}"
+            type        = "MLTEXT"
+            descr       = "Expression for fill color for shapes. Enclose strings in single quotes.  e.g. 'Blue'">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Charset"
+            id          = "{CB636C94-CA23-4639-8F18-EE7783E21128}"
+            type        = "TEXT">            
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "DelayValue"
+            id          = "{F4D689A9-6AD6-4769-8F9F-03FFEC9EB8D0}"
+            type        = "FLOAT"
+            descr       = "How much to slow down the motion of the gauge element in the specified uints">            
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "DelayUnits"
+            id          = "{D89C57AE-99FC-408d-91EE-268F30DF13F0}"
+            type        = "ENUM">
+            <EnumDef  symbolprefix="DELAY_">
+                <EnumVal name = "PIXELS_PER_SECOND"/>
+                <EnumVal name = "VALUE_PER_SECOND"/>
+                <EnumVal name = "DEGREES_PER_SECOND"/>
+                <EnumVal name = "RADIANS_PER_SECOND"/>
+            </EnumDef>
+        </PropertyDef>
+                
+        <PropertyDef
+            name        = "WrapMin"
+            id          = "{FCB28BAC-21A2-4975-99B6-77BC853B839D}"
+            type        = "FLOAT2"
+            descr       = "The minimum value associated with a shift">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "WrapMax"
+            id          = "{A8930667-9D84-4063-84A2-F907A8E372BF}"
+            type        = "FLOAT2"
+            descr       = "The maximum value associated with a shift">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Visibility"
+            id          = "{66AD0ED5-A8A1-4a03-A43F-EA0CEEA6E998}"
+            type        = "MLTEXT"
+            descr       = "An expression (which should evaluate to TRUE or FALSE to control the visibility of the element">        
+        </PropertyDef>            
+        
+        <PropertyDef
+            name        = "Fail_Key"
+            id          = "{C2BA8763-A9CF-441b-B972-F8B98A517C5B}"
+            type        = "ENUM"
+            descr       = "The failure to trigger the associated action"
+            default     = "NONE">
+            <EnumDef symbolprefix="FAILURE_">
+                <EnumVal name = "NONE"/>
+                <EnumVal name = "GAUGE_ADF"/>
+                <EnumVal name = "GAUGE_AIRSPEED"/>
+                <EnumVal name = "GAUGE_ALTIMETER"/>
+                <EnumVal name = "GAUGE_ATTITUDE"/>
+                <EnumVal name = "GAUGE_COMMUNICATIONS"/>
+                <EnumVal name = "GAUGE_COMMUNICATIONS_COM2"/>
+                <EnumVal name = "GAUGE_FUEL_INDICATORS"/>
+                <EnumVal name = "GAUGE_GYRO_HEADING"/>                    
+                <EnumVal name = "GAUGE_MAGNETIC_COMPASS"/>
+                <EnumVal name = "GAUGE_NAVIGATION_VOR1"/>
+                <EnumVal name = "GAUGE_NAVIGATION_VOR2"/>
+                <EnumVal name = "GAUGE_TRANSPONDER"/>
+                <EnumVal name = "GAUGE_TURN_COORDINATOR"/>
+                <EnumVal name = "GAUGE_VERTICAL_SPEED"/>
+                <EnumVal name = "SYSTEM_ELECTRICAL_PANELS"/>
+                <EnumVal name = "SYSTEM_ELECTRICAL_AVIONICS"/>
+                <EnumVal name = "SYSTEM_ENGINE"/>
+                <EnumVal name = "SYSTEM_PITOT_STATIC"/>
+                <EnumVal name = "SYSTEM_VACUUM"/>
+            </EnumDef>
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Fail_Action"
+            id          = "{3C38B41D-630C-4302-BC46-56D70DBC7D6A}"
+            type        = "ENUM"
+            default     = "NONE">
+            <EnumDef symbolprefix="FAILURE_ACTION">
+                <EnumVal 
+                    name = "NONE"
+                    xml_name = "None"/>
+                <EnumVal
+                    name = "FREEZE"
+                    xml_name = "Freeze"/>
+                <EnumVal
+                    name = "ZERO"
+                    xml_name = "Zero"/>
+                <EnumVal
+                    name = "COVER"
+                    xml_name = "Cover"/>
+                <EnumVal
+                    name = "NO_DRAW"
+                    xml_name = "NoDraw"/>                                     
+            </EnumDef>
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "Fixed"
+            id          = "{B55FC65A-99AB-4b0a-AE6F-5F415BB5C740}"
+            type        = "BOOL">            
+        </PropertyDef>        
+        
+        <PropertyDef
+            name        = "Length"
+            id          = "{20F6498E-2527-4556-A663-A688C8587041}"
+            type        = "LONG"
+            descr       = "Max number of characters in string to display.  Leaving this property blank imposes no limit on the string length.">            
+        </PropertyDef>        
+                
+        <PropertyDef
+            name        = "GaugeString"
+            id          = "{87099A1C-7DFF-4099-977D-42C8F86C0817}"            
+            type        = "MLTEXT"
+            descr       = "The actual text to display">            
+        </PropertyDef>        
+        
+        <PropertyDef
+            name        = "LineSpacing"
+            id          = "{44F32EE0-3CEB-4968-9AD6-8772BA0ACAB0}"
+            type        = "FLOAT">                        
+        </PropertyDef>        
+        
+        <PropertyDef
+            name        = "Tabs"
+            id          = "{76392206-588F-4dc4-AFFA-48662359CD72}"
+            descr       = "Defines the tab settings.  For example: 15L, 100C, 180R"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "VerticalAlign"
+            id          = "{E3F106CC-9877-463f-9510-82680C48F7CC}"
+            type        = "ENUM"
+            descr       = "Top, center, or bottom.  DOES NOT WORK">            
+            <EnumDef symbolprefix="VERTALIGN_">
+                <EnumVal name = "TOP"/>
+                <EnumVal name = "CENTER"/>
+                <EnumVal name = "BOTTOM"/>
+            </EnumDef>
+        </PropertyDef>        
+        
+        <PropertyDef
+            name        = "WidthFit"
+            id          = "{94C78575-CCB8-45a4-934D-28E5188D61C3}"
+            type        = "BOOL">            
+        </PropertyDef>        
+        
+        <PropertyDef
+            name        = "KeyEvent"
+            id          = "{C4548FE4-583C-4fb6-AF25-19FC6F532CA8}"
+            type        = "TEXT">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "KeyboardKey"
+            id          = "{0A986EB0-0E10-4e78-8681-392714D389D7}"
+            type        = "TEXT">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "ClickType"
+            id          = "{108D5D64-3B45-4df2-9B7F-6040E3D38D00}"
+            type        = "TEXT"
+            descr       = "Example: LeftSingle+LeftDrag">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "MouseWheelFlip"
+            id          = "{1EFA4596-3254-4d4b-8AC3-62CA43F891F0}"
+            type        = "BOOL"
+            descr       = "Have the event/script associated with the 2nd mouserect be associated with the wheel-up instead of wheel-down.">            
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ClickRepeat"
+            id          = "{776F33FA-7DED-4308-AE4A-01F07A31650F}"            
+            type        = "BOOL"
+            descr       = "Whether or not to repeat the mouse click when the user holds down the mouse button." >            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "CursorType"
+            id          = "{882139D3-E796-4aad-9437-6EAAACDC43E3}"
+            type        = "ENUM">
+            <EnumDef symbolprefix="CURSORTYPE_">
+                <EnumVal 
+                    name = "NONE"
+                    xml_name = "None"/>
+                <EnumVal 
+                    name = "NORMAL"
+                    xml_name = "Normal"/>
+                <EnumVal 
+                    name = "UPARROW"
+                    xml_name = "UpArrow"/>
+                <EnumVal 
+                    name = "DOWNARROW"
+                    xml_name = "DownArrow"/>
+                <EnumVal 
+                    name = "LEFTARROW"
+                    xml_name = "LeftArrow"/>
+                <EnumVal 
+                    name = "RIGHTARROW"
+                    xml_name = "RightArrow"/>
+                <EnumVal 
+                    name = "HAND"
+                    xml_name = "Hand"/>
+                <EnumVal 
+                    name = "CROSSHAIR"
+                    xml_name = "Crosshair"/>
+                <EnumVal 
+                    name = "GRAB"
+                    xml_name = "Grab"/>
+                <EnumVal 
+                    name = "GRAB_OPEN"
+                    xml_name = "GrabOpen"/>
+                <EnumVal 
+                    name = "TURNLEFT"
+                    xml_name = "TurnLeft"/>
+                <EnumVal 
+                    name = "TURNRIGHT"
+                    xml_name = "TurnRight"/>
+                <EnumVal 
+                    name = "TURNLEFT_SMALL"
+                    xml_name = "TurnLeft_Small"/>
+                <EnumVal 
+                    name = "TURNRIGHT_SMALL"
+                    xml_name = "TurnRight_Small"/>
+                <EnumVal
+                    name = "TURNLEFT_UPSIDEDOWN"
+                    xml_name = "TurnLeft_UpSideDown"/>
+                <EnumVal
+                    name = "TURNRIGHT_UPSIDEDOWN"
+                    xml_name = "TurnRight_UpSideDown"/>
+                <EnumVal 
+                    name = "UPDOWNARROWS"
+                    xml_name = "UpDownArrows"/>
+                <EnumVal 
+                    name = "LEFTRIGHTARROWS"
+                    xml_name = "LeftRightArrows"/>
+                <EnumVal 
+                    name = "DIAGONALARROWS"
+                    xml_name = "DiagonalArrows"/>
+                <EnumVal 
+                    name = "LOCK"
+                    xml_name = "Lock"/>
+                <EnumVal 
+                    name = "DYNAMIC"
+                    xml_name = "Dynamic"/>
+                <EnumVal
+                    name = "ANIMTIP"
+                    xml_name = "AnimTip"/>
+            </EnumDef>        
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "HelpId"
+            id          = "{3B6D4551-C522-473d-944D-2FE5FE82EE19}"
+            type        = "TEXT"
+            descr       = "Static text to be displayed when user places mouse cursor in this area."
+            devnote     = "Reference the Tooltip Text document in the SDK for a complete list">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "EnglishId"
+            id          = "{2DCB36BA-5A85-41f1-A1B0-EB7D2C4DF6F1}"
+            type        = "TEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area when user has english units selected."
+            devnote     = "Reference the Tooltip Text document in the SDK for a complete list">
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "DefaultId"
+            id          = "{49E0106E-D30E-408e-BA0D-4520BAC045D6}"
+            type        = "TEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area."
+            devnote     = "Reference the Tooltip Text document in the SDK for a complete list">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "MetricId"
+            id          = "{803341B5-8A0C-4ff4-8CF5-D52A61D97F15}"
+            type        = "TEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area when the user has metric units selected."
+            devnote     = "Reference the Tooltip Text document in the SDK for a complete list">                      
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "DefaultScript"
+            id          = "{526FFBAB-4C66-4522-A31D-A8B55958DAB8}"
+            type        = "MLTEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area if Metric and English tooltips haven't been defined.">                      
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "MetricScript"
+            id          = "{04630793-13EB-449e-B581-626F586BB0FB}"
+            type        = "MLTEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area when the user has metric units selected.">                      
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "EnglishScript"
+            id          = "{91A98137-B7C2-4427-9277-D91715726F76}"
+            type        = "MLTEXT"
+            descr       = "Dynamic text to be displayed when user places mouse cursor in this area when the user has English units selected.">                      
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "Radians"
+            id          = "{309BE3A5-E2DB-43dd-A172-5C7EB8DF77FB}"
+            type        = "FLOAT"
+            default     = "-99999">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "Degrees"
+            id          = "{98D033DF-87D7-456a-8B39-2240CDFAA5E1}"
+            type        = "FLOAT"
+            default     = "-99999">            
+        </PropertyDef>        
+
+        <PropertyDef
+            name        = "Value"
+            id          = "{2FECAC5F-001C-4147-B4E9-03606F7FB776}"
+            type        = "MLTEXT"            
+            descr       = "Text value for customdraw param.">            
+        </PropertyDef>     
+
+        <PropertyDef
+            name        = "MacroValue"
+            id          = "{600C6121-9B29-4dc9-8B1D-6665D6B94C6D}"
+            type        = "MLTEXT"            
+            descr       = "Text value for Macro propset. Wherever the macro is used in script, it will be replaced by this value.">            
+        </PropertyDef>     
+        
+        <PropertyDef
+            name        = "HeightScript"
+            id          = "{35EAD36C-D9BE-44a1-BD30-8CE6544F5C33}"
+            type        = "TEXT"
+            descr       = "Script to evaluate at load-time to specify height.  Use instead of size.">            
+        </PropertyDef>     
+             
+        <PropertyDef
+            name        = "WidthScript"
+            id          = "{D68E4BA7-D2B6-4fc1-9A4A-A79B20EA65EE}"
+            type        = "TEXT"
+            descr       = "Script to evaluate at load-time to specify width.  Use instead of size.">            
+        </PropertyDef>          
+
+        <PropertyDef
+            name        = "LeftScript"
+            id          = "{DC7028DB-C25A-49e5-B768-AFD06D03416B}"
+            type        = "TEXT"
+            descr       = "Script to evaluate at load-time to specify X position.  Use instead of FloatPosition.">            
+        </PropertyDef>          
+        
+        <PropertyDef
+            name        = "TopScript"
+            id          = "{60091E83-CFDC-47d6-ABBA-27E96B20D3DA}"
+            type        = "TEXT"
+            descr       = "Script to evaluate at load-time to specify Y position.  Use instead of FloatPosition.">            
+        </PropertyDef>    
+              
+        <PropertyDef
+            name        = "FontHeightScript"
+            id          = "{FF933189-DE8B-499b-BC8E-1601BF23584F}"
+            type        = "TEXT"
+            descr       = "Script to evaluate at load-time to specify FontHeight.  Use instead of FontHeight.">            
+        </PropertyDef>          
+        
+        <PropertyDef
+            name        = "ScrollY"
+            id          = "{F3C5861E-CE61-4a0c-912A-F3A8DF8C7D3E}"
+            type        = "TEXT"
+            descr       = "Script to evaluate to determine how much the text should be scrolled.">            
+        </PropertyDef>          
+
+        <PropertyDef
+            name        = "BlinkCode"
+            id          = "{FDA6EC2D-05DB-4ddb-B585-D1BF6FD5AD44}"
+            type        = "MLTEXT"
+            descr       = "Script to evaluate to determine how text should blink.">            
+        </PropertyDef>          
+
+        <PropertyDef
+            name        = "Frequency"
+            id          = "{87153197-865D-47cb-9CDC-BCB5B4479104}"
+            type        = "LONG"
+            descr       = "How often update should be processed.">            
+        </PropertyDef>          
+        
+        <PropertyDef
+            name        = "Update_When_Hidden"
+            id          = "{DC2C4614-D90C-4994-9BCD-C716E2F31E7A}"
+            type        = "BOOL"
+            descr       = "Whether or not gauge should be updated when not visible.">            
+        </PropertyDef>          
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{3B979263-6F71-469d-AD9E-702081A14197}"
+            name        = "Gauge"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Include"/>
+            <property name = "ArtDirectory"/>
+            <property name = "Comment"/>
+            <property name = "Size"/>
+            <property name = "FloatPosition"/>
+            <property name = "Element"/>
+            <property name = "KeyMap"/>
+            <property name = "Macro"/>
+            <property name = "MouseArea"/>
+            <property name = "Name"/>
+            <property name = "Image"/>
+            <property name = "MaskImage"/>
+            <property name = "Update"/>
+            <property name = "Update_When_Hidden"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{9698704D-55EF-4266-9244-E4D3C8FF4E01}"
+            name        = "Panel"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Size"/>
+            <property name = "FloatPosition"/>
+            <property name = "Gauge"/>
+            <property name = "Image"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{39D679ED-5523-4e65-BAE1-0F46E3E5DBB2}"
+            name        = "Comment"            
+            policy      = "inclusive" >
+            <property name ="id"/>
+            <property name ="Value"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{9277C8A2-70CF-4166-9F25-21704E3605FB}"
+            name        = "Case"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/> 
+            <property name = "ExpressionResult"/>
+            <property name = "Minimum"/>
+            <property name = "Maximum"/>
+            <property name = "GaugeText"/>
+            <property name = "Image"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F5663865-00A6-4b87-BE65-3235F6983DBC}"
+            name        = "ClipRect">
+            <property name = "id"/>
+            <property name = "FloatPosition"/>
+            <property name = "Size" />
+        </SetDef>
+
+        <SetDef
+            id          = "{169931B6-8952-44fc-B1F8-ACC27E751E11}"           
+            name        = "Delay"
+            policy      = "inclusive">            
+            <property name = "id"/>
+            <property name = "DelayUnits"/>
+            <property name = "DelayValue"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{46345A3B-E629-4b20-8247-CA6C860D44B4}"
+            name        = "Element"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Arc"/>
+            <property name = "Circle"/>
+            <property name = "Comment"/>
+            <property name = "ClipRect"/>
+            <property name = "CustomDraw"/>
+            <property name = "Element"/>
+            <property name = "Ellipse"/>
+            <property name = "FloatPosition"/>
+            <property name = "FailureTable"/>
+            <property name = "GaugeText"/>
+            <property name = "HorizontalLine"/>
+            <property name = "Image"/>
+            <property name = "Include"/>            
+            <property name = "LeftScript"/>
+            <property name = "MaskImage"/>
+            <property name = "Pie"/>
+            <property name = "Polygon"/>
+            <property name = "Polyline"/>
+            <property name = "Rectangle"/>
+            <property name = "Rotation"/>
+            <property name = "SizeScale"/>
+            <property name = "Select"/>
+            <property name = "Shift"/>
+            <property name = "TopScript"/>
+            <property name = "VerticalLine"/>
+            <property name = "Visibility"/>
+        </SetDef>
+
+        <SetDef
+            name        = "Expression"
+            id          = "{1A95E367-E142-440f-B7D9-0393D6643468}"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Minimum"/>
+            <property name = "Maximum"/>
+            <property name = "Script"/>            
+        </SetDef>
+
+        <SetDef
+            id          = "{1FC21B93-F54E-459b-90A2-2CDB49BD5CAB}"
+            name        = "FailureTable"
+            policy      = "inclusive">    
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Failure"/>
+        </SetDef>
+        
+        <SetDef
+            id          = "{F65A3037-22FA-4fb7-B930-14D4117B3D49}"
+            name        = "Failure"
+            policy      = "inclusive">            
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Fail_Key"/>
+            <property name = "Fail_Action"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{DFCFEAE8-D283-4419-80C8-AA942BF105F3}"
+            name        = "AlternateColor"
+            policy      = "inclusive">            
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "FontColor"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{51611BC4-C1E8-4a54-B8B0-39BB0A0A90AD}"
+            name        = "AlternateFont"
+            policy      = "inclusive">            
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Charset"/>
+            <property name = "FontFace"/>
+            <property name = "FontFaceLocalize"/>
+            <property name = "FontHeight"/>
+            <property name = "FontWeight"/>
+            <property name = "Italic"/>
+            <property name = "Bold"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{576FB07C-10B6-490a-93E8-A761F6D847CE}"
+            name        = "Image"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Transparent"/>
+            <property name = "Alpha"/>
+            <property name = "Axis"/>
+            <property name = "Bright"/>
+            <property name = "Luminous"/>
+            <property name = "Bilinear"/>            
+            <property name = "Name"/>            
+        </SetDef>
+
+		<SetDef
+			id			="{CD53303F-D900-4717-BEC6-436524710A5A}"
+			name		="KeyMap"
+			policy		="inclusive">
+			<property name = "id"/>
+			<property name = "Trigger"/>
+		</SetDef>
+		
+        <SetDef
+            id          = "{59188FEA-5149-4524-858C-33B10027B79C}"
+            name        = "Limit">
+        </SetDef>
+
+        <SetDef
+            id          = "{A7602497-E63B-4e55-A0B3-64939856C86D}"
+            name        = "Macro"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Name"/>            
+            <property name = "MacroValue"/>            
+            <property name = "Macro"/>            
+        </SetDef>
+
+        <SetDef
+            id          = "{269B2F53-25AE-431a-A0A2-3ACF6B880019}"
+            name        = "MaskImage"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Name"/>
+            <property name = "Axis"/>
+            <property name = "Transparent"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{303D0C31-244A-4de2-85BF-D55CE6DC2AF7}"
+            name        = "MouseArea"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Visibility"/>
+            <property name = "FloatPosition"/>
+            <property name = "Size"/>
+            <property name = "MouseArea"/>
+            <property name = "MouseClick"/>
+            <property name = "CursorType"/>
+            <property name = "HelpID"/>
+            <property name = "Tooltip"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{956A46F7-4931-473f-A678-99DA43126CE3}"
+            name        = "NonlinearityTable"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "NonlinearityEntry"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5D7330F9-D695-46ee-B3D6-5626F0431F5F}"
+            name        = "NonlinearityEntry"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "ExpressionResult"/>
+            <property name = "Degrees"/>
+            <property name = "Radians"/>
+            <property name = "FloatPosition"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{CEAEC513-8D2C-4ea6-A359-13770470E702}"
+            name        = "Rotation"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Delay"/>
+            <property name = "NonlinearityTable"/>
+            <property name = "Expression"/>
+            <property name = "FailureTable"/>            
+            <property name = "PointsTo"/>
+            <property name = "DegreesPointsTo"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B07359B9-10D6-489a-BE0F-4CB7C34E6B9E}"
+            name        = "Select"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Case"/>
+            <property name = "Comment"/>
+            <property name = "Expression"/>
+            <property name = "FailureTable"/>            
+        </SetDef>
+
+        <SetDef
+            id          = "{C53CA098-F2B8-4d42-8184-3950FE77880F}"
+            name        = "Shift"
+            policy      = "inclusive">     
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Delay"/>
+            <property name = "NonlinearityTable"/>
+            <property name = "Scale"/>                                    
+            <property name = "Expression"/>
+            <property name = "WrapMin"/>
+            <property name = "WrapMax"/>
+            <property name = "FailureTable"/>            
+        </SetDef>
+        
+        <SetDef
+            id          = "{ADDAA647-324E-411c-8EFA-3C1AF29B8ED3}"
+            name        = "GaugeText"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Alpha"/>
+            <property name = "AlternateColor"/>
+            <property name = "AlternateFont"/>
+            <property name = "Axis"/>
+            <property name = "BackgroundColor"/>
+            <property name = "BackgroundColorScript"/>
+            <property name = "BlinkCode"/>
+            <property name = "Bold"/>
+            <property name = "Bright"/>
+            <property name = "Caption"/>
+            <property name = "Charset"/>
+            <property name = "Comment"/>
+            <property name = "Fixed"/>
+            <property name = "FontFace"/>
+            <property name = "FontFaceLocalize"/>
+            <property name = "FontColor"/>
+            <property name = "FontColorScript"/>
+            <property name = "FontHeight"/>
+            <property name = "FontHeightScript"/>
+            <property name = "FontWeight"/>
+            <property name = "GaugeString"/>
+            <property name = "HilightColor"/>
+            <property name = "HorizontalAlign"/>
+            <property name = "Italic"/>
+            <property name = "Image"/>            
+            <property name = "Length"/>
+            <property name = "Linespacing"/>
+            <property name = "Luminous"/>
+            <property name = "Multiline"/>
+            <property name = "Size"/>  
+            <property name = "WidthScript"/>  
+            <property name = "HeightScript"/>  
+            <property name = "ScrollY"/>     
+            <property name = "Strikethrough"/>     
+            <property name = "Tabs"/>     
+            <property name = "Transparent"/>
+            <property name = "Underline"/>
+            <property name = "VerticalAlign"/>
+            <property name = "WidthFit"/>            
+        </SetDef>
+
+        <SetDef
+            id          = "{D001EC4A-7C36-4921-AA5F-5E8443F155AD}"
+            name        = "Arc"
+            policy      = "inclusive">                 
+            <property name = "id"/>
+            <property name = "Bright"/>            
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "Radius"/>
+            <property name = "LineWidth"/>
+            <property name = "StartAngle"/>
+            <property name = "EndAngle"/>
+            <property name = "StartAngleScript"/>
+            <property name = "EndAngleScript"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{94F4DC0E-E835-4a9d-97BD-E4A17B4DF285}"
+            name        = "Circle"
+            policy      = "inclusive">                 
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "FillColor"/>
+            <property name = "FillColorScript"/>
+            <property name = "Radius"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{6DF72318-0E84-48eb-8B51-42A5578B7B6F}"
+            name        = "Ellipse"
+            policy      = "inclusive">                 
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "FillColor"/>
+            <property name = "FillColorScript"/>
+            <property name = "Height"/>
+            <property name = "Width"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{31A277B4-5E2F-4983-BEB1-E28DB7A56839}"
+            name        = "HorizontalLine"
+            policy      = "inclusive">                 
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "Width"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{77FEDD18-3BBD-4c08-B756-88BBB6DF0BF2}"
+            name        = "Pie"
+            policy      = "inclusive">     
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "FillColor"/>
+            <property name = "FillColorScript"/>
+            <property name = "Radius"/>
+            <property name = "StartAngle"/>
+            <property name = "EndAngle"/>
+            <property name = "LineWidth"/>            
+            <property name = "Axis"/>
+            <property name = "StartAngleScript"/>
+            <property name = "EndAngleScript"/>
+        </SetDef>       
+
+        <SetDef
+            id          = "{D31F59CE-57CE-4e84-A6FD-0F38C47C17F0}"
+            name        = "Polygon"
+            policy      = "inclusive">     
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "FillColor"/>
+            <property name = "FillColorScript"/>
+            <property name = "Point"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{63E4DB95-8388-44f6-882F-93215E698BD8}"
+            name        = "PolyLine"
+            policy      = "inclusive">     
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "Point"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5725E1DF-12B4-4ce1-A4D8-078617113FED}"
+            name        = "Point"
+            policy      = "inclusive">     
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "FloatPosition"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{13AA466C-0E70-4805-A8FB-CD4D2BF65D55}"
+            name        = "Rectangle"
+            policy      = "inclusive">  
+            <property name = "id"/>
+            <property name = "Transparency"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "FillColor"/>
+            <property name = "FillColorScript"/>
+            <property name = "Width"/>
+            <property name = "Height"/>
+            <property name = "WidthScript"/>
+            <property name = "HeightScript"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7851E90F-9731-411e-B8DF-2FB2275BD577}"
+            name        = "VerticalLine"
+            policy      = "inclusive">             
+            <property name = "id"/>
+            <property name = "Bright"/>
+            <property name = "Comment"/>
+            <property name = "LineColor"/>
+            <property name = "LineColorScript"/>
+            <property name = "Height"/>
+            <property name = "LineWidth"/>
+            <property name = "Axis"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{9F903968-A1C3-4ebc-A142-D99887BC62B6}"
+            name        = "MouseClick"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "KeyEvent"/>
+            <property name = "Script"/>
+            <property name = "ClickType"/>
+            <property name = "MouseWheelFlip"/>
+            <property name = "ClickRepeat"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{C9FFFDD5-CCCD-44dd-9862-5AD219A794F5}"
+            name        = "Tooltip"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>  
+            <property name = "DefaultID"/>
+            <property name = "EnglishID"/>
+            <property name = "MetricID"/>            
+            <property name = "DefaultScript"/>            
+            <property name = "EnglishScript"/>            
+            <property name = "MetricScript"/>            
+        </SetDef>
+
+        <SetDef
+            id          = "{BB5499B3-345B-439c-8DA4-236E9E50BB9A}"
+            name        = "CustomDrawParam"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Name"/>
+            <property name = "Value"/>    
+        </SetDef>
+        
+        <SetDef
+            id          = "{D93A76F0-6186-4e3c-B15E-04F67507EC98}"
+            name        = "CustomDraw"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Name"/>
+            <property name = "Size"/>    
+            <property name = "Bright"/>
+            <property name = "CustomDrawParam"/>    
+        </SetDef>
+        
+        <SetDef
+            id          = "{6C3BB818-01AD-45bf-B088-7846E1336D91}"
+            name        = "Include"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "File"/>            
+        </SetDef>
+
+		<SetDef
+			id			="{31FF7E00-7864-4ee2-AAA2-3641A63B388F}"
+			name		="Trigger"
+			policy		="inclusive">
+			<property name = "id"/>
+			<property name = "KeyEvent"/>
+			<property name = "KeyboardKey"/>
+			<property name = "Visibility"/>
+			<property name = "Script"/>
+		</SetDef>
+		
+        <SetDef
+            id          = "{E91B3121-C4D9-492c-9D23-A6DE4BC8B455}"
+            name        = "Update"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Comment"/>
+            <property name = "Script"/>            
+            <property name = "Frequency"/>            
+            <property name = "Update"/>            
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

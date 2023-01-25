@@ -16,7 +16,7 @@ namespace SimControls.Shell
     {
         public SimServer Server { get; }
         private readonly INavigationWindow navWindow;
-        public RootViewModel(INavigationWindow navWindow, IYokeConnection yoke, SimServer server)
+        public RootViewModel(INavigationWindow navWindow, SimServer server)
         {
             Server = server;
             this.navWindow = navWindow;

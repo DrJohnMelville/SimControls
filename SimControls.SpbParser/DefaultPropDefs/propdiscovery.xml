@@ -1,0 +1,186 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "Discovery"
+    id           = "{688666AD-50F9-4881-A877-5885128C8954}"
+    descr        = "SimProp Discovery property, type and set definitions."
+    chdr         = "propdiscovery.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+
+  <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  propdiscovery.h
+    //
+    //  FlightSim propdiscovery AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+    //
+    //	Namespace
+    //
+    namespace Discovery {
+
+  </cpptext>
+
+  <PropertyDefs
+        symbolprefix = "SPID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+        name        = "RealTime"
+        id          = "{AADDA5EB-1148-462C-A953-0EA126322E88}"
+        type        = "BOOL"
+        desc        = "Is real time">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "ObjectRadius"
+        id          = "{62C79A79-90BB-4979-8691-92695F2FA88F}"
+        type        = "FLOAT"
+        desc        = "Radius in meters">
+    </PropertyDef>
+    
+    <PropertyDef
+       name        = "Rank"
+       id          = "{12BF0FE4-3D5B-4DAE-8BBE-2B9DF8F47061}"
+       type        = "LONG"
+       desc        = "Photo ranking">
+    </PropertyDef>
+    
+    <PropertyDef
+        name        = "Expression"
+        id          = "{711AF875-CF0D-4C2E-BB11-1CFF769BE684}"
+        type        = "TEXT"
+        desc        = "Expression to be evaluated">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "ConditionName"
+        id          = "{E99A9ECE-1B17-42B2-A2AD-8E41AD195804}"
+        type        = "TEXT"
+        xml_io      = "attribute"
+        desc        = "EName of the condition">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "PointOfView"
+        id          = "{35B69EA9-0FC0-45AA-9317-47A951AABF2A}"
+        type        = "ENUM"
+        descr       = "Point of view">
+      <EnumDef symbolprefix="ENUM_POV">
+        <EnumVal name = "COCKPIT" xml_name="Cockpit"/>
+        <EnumVal name = "OUTSIDE" xml_name="Outside"/>
+        <EnumVal name = "PASSENGER" xml_name="Passenger"/>
+        <EnumVal name = "COPILOT" xml_name="Copilot"/>
+        <EnumVal name = "ANY" xml_name="Any"/>
+      </EnumDef>
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+        id          = "{DAEA2F17-7048-44B4-BC4A-8B44389E9F66}"
+        name        = "ConditionWeather"
+        policy      = "inclusive"
+        descr       = "weather conditions"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "RealTime"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{1A4C9841-965D-4592-BF65-F9DC0C32E1DB}"
+        name        = "ConditionTime"
+        policy      = "inclusive"
+        descr       = "date, time of day condition"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "RealTime"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{4AFBCDD7-9E71-4EC9-9B79-3DD14F8DB6B2}"
+        name        = "ConditionPointOfView"
+        policy      = "inclusive"
+        descr       = "point of view condition"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "PointOfView"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{705BF868-8EC0-4D24-B245-335B211B4BA2}"
+        name        = "ConditionInFrustrum"
+        policy      = "inclusive"
+        descr       = "Object in frustrum condition"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "AttachedWorldPosition"/>
+      <property name = "AttachedWorldObject"/>
+      <property name = "RelativePosition"/>
+      <property name = "ObjectRadius"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{D566089B-93B5-4594-B068-B89EC6B49BD6}"
+        name        = "ConditionPlane"
+        policy      = "inclusive"
+        descr       = "plane situation condition"
+        cardinality = "multiple">
+      <property name = "ConditionName"/>
+      <property name = "Expression"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5CA0EAB1-58EB-41E6-AF5C-813E1F432B63}"
+        name        = "Conditions"
+        policy      = "inclusive"
+        descr       = "Conditions to validate the photo">
+      <property name = "ConditionWeather"/>
+      <property name = "ConditionTime"/>
+      <property name = "ConditionPointOfView"/>
+      <property name = "ConditionInFrustrum"/>
+      <property name = "ConditionPlane"/>
+    </SetDef>
+
+    <SetDef
+      id          = "{23E89E90-D8E9-4512-907A-3ADF35F31AEA}"
+      classid     = "{C6598C95-5B17-44F6-9128-9893FC985424}"
+      name        = "DiscoveryPhoto"
+      policy      = "inclusive"
+      descr       = "Discovery photo object">
+      <property name = "Title"/>
+      <property name = "Descr"/>
+      <property name = "Rank"/>
+      <property name = "InstanceId"/>
+      <property name = "Conditions"/>
+      <property name = "Expression"/>
+    </SetDef>
+
+  </SetDefs>
+  <cpptext pass="2">
+    }
+  </cpptext>
+</SymbolDef>

@@ -1,0 +1,271 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- FlightSim mission property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimMissionUI"
+    id           = "{EEC77FEA-7777-4ed4-8744-95FB55164B03}"
+    descr        = "SimProp Mission UI property, type and set definitions."
+    chdr         = "propmissionui.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propmission.xml"
+        id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propmissionui.h    
+//
+//  FlightSim Mission UI AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+</cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+<cpptext pass="2">
+//  
+//  Property Identifiers
+//
+</cpptext>
+    
+        <PropertyDef
+            name        = "ScenarioFileName"
+            id          = "{36FE2A94-F40E-4b1b-971D-314F263ECD30}"
+            type        = "TEXT"
+            descr       = "Filename of the key scenario file">
+        </PropertyDef>
+        <PropertyDef
+            name        = "ScenarioFileDirectory"
+            id          = "{4744927D-4A8B-405d-85FA-9047E06426E9}"
+            type        = "TEXT"
+            descr       = "Directory where  scenario file resides">
+        </PropertyDef>
+        <PropertyDef
+            name        = "UserObject"
+            id          = "{2DAE71F8-D941-4aa3-AA45-843CBB837665}"
+            type        = "TEXT"
+            descr       = "Name of Vehicle User will control">
+        </PropertyDef>
+        <PropertyDef
+            name        = "StartLocation"
+            ID          = "{DA257B07-085A-460a-8010-DD5EB4F0036E}"
+            type        = "LLA"
+            descr       = "World Position where scneario user starts">
+        </PropertyDef>
+        <PropertyDef
+            name        = "ScenarioType"
+            id          = "{808C6760-F808-47f8-9682-F1D1089A9CCD}"
+            type        = "TEXT"
+            desc        = "High Level Type of Scenario">
+        </PropertyDef>
+        <PropertyDef
+            name        = "IsMultiplayer"
+            id          = "{F2FFAF77-BEFF-43bb-B801-E425FC517399}"
+            type        = "BOOL"
+            default     = "False"
+            desc        = "If True, denotes a multiplayer compatible Mission">
+        </PropertyDef>
+        <PropertyDef
+            name        = "SkillLevel"
+            id          = "{D13AD01D-25B3-49f0-AE7F-2B9585486B1B}"
+            type        = "ENUM"
+            default     = "BEGINNER">
+            <EnumDef symbolprefix="SIMPROP_SKILL_LEVEL">
+                <EnumVal name = "BEGINNER"         xml_name = "Beginner"      /> 
+                <EnumVal name = "INTERMEDIATE"     xml_name = "Intermediate"  /> 
+                <EnumVal name = "ADVANCED"         xml_name = "Advanced"      /> 
+                <EnumVal name = "EXPERT"           xml_name = "Expert"        /> 
+            </EnumDef>
+        </PropertyDef>
+        <PropertyDef
+            name        = "LocationDescr"
+            id          = "{044B2434-E895-4ec7-95A8-00B34C815EBF}"
+            type        = "TEXT"
+            desc        = "Text description of scenario geographic location">
+        </PropertyDef>
+        <PropertyDef
+            name        = "DifficultyLevel"
+            id          = "{1FD1CFB8-C3D0-47d6-997F-C82842985546}"
+            type        = "ULONG"
+            desc        = "Numeric indication of difficulty of scenario">
+        </PropertyDef>
+        <PropertyDef
+            name        = "EstimatedTime"
+            id          = "{46A30BF3-C840-42c6-B878-CE61FAF07AE1}"
+            type        = "TEXT"
+            desc        = "Text description for estimated time to complete scenario">
+        </PropertyDef>
+        <PropertyDef
+            name        = "UncompletedImage"
+            id          = "{82DAA9C3-FE88-4462-8B6D-EA3AB8361C4E}"
+            type        = "TEXT"
+            desc        = "Reference to file containing UncompletedImage, relative to scenario directory">
+        </PropertyDef>
+        <PropertyDef
+            name        = "CompletedImage"
+            id          = "{91C9CEED-F98E-4174-83BB-1145DE7F51E7}"
+            type        = "TEXT"
+            desc        = "Reference to file containing CompletedIimage, relative to scenario directory">
+        </PropertyDef>
+        <PropertyDef
+            name        = "PreviewImage"
+            id          = "{60AC7775-DF90-4a02-9E20-69E1B8A121EB}"
+            type        = "TEXT"
+            desc        = "Reference to file containing the preview image, relative to scenario directory">
+        </PropertyDef>
+        <PropertyDef
+              name      = "MissionBrief"
+              id        = "{3D0C6AEB-1F61-41e1-AE33-1267FA702F6D}"
+              type      = "TEXT"
+              desc      = "Reference to HTML file containing Mission Brief, relative to scenario directory">
+        </PropertyDef>
+        <PropertyDef
+              name      = "AbbreviatedMissionBrief"
+              id        = "{1B2B29C0-D039-40ef-88C5-E569A1DF28E8}"
+              type      = "TEXT"
+              desc      = "Reference to HTML file containing short Mission Brief for the kneeboard, relative to scenario directory">
+        </PropertyDef>
+        <PropertyDef
+            name        = "CategoryRef"
+            id          = "{10F3002F-E4DA-4566-95C9-1EBD27B40772}"
+            cardinality = "multiple"
+            type        = "GUID"
+            desc        = "Reference to a Category">
+        </PropertyDef>
+        <PropertyDef
+            name        = "SuccessMessage"
+            id          = "{ABABA13A-9D58-44fe-95F4-E7804C23838F}"
+            type        = "TEXT"
+            desc        = "Message displayed when scenario is completed successfully">
+        </PropertyDef>
+        <PropertyDef
+            name        = "FailureMessage"
+            id          = "{82BD1F84-78A3-4b0b-A3A1-622E207A5C16}"
+            type        = "TEXT"
+            desc        = "Message displayed when one or more objectives in scenario are not achieved">
+        </PropertyDef>
+        <PropertyDef
+            name        = "UserCrashMessage"
+            id          = "{D761CC49-FCFC-4b93-9F49-82CFD31ACECF}"
+            type        = "TEXT"
+            desc        = "Message displayed when the user vehicle is crashed during scenario">
+        </PropertyDef>
+        <PropertyDef
+            name        = "SavePoint"
+            id          = "{C3651414-22F3-4dbb-9A3E-CAD72289479E}"
+            type        = "BOOL"
+            desc        = "The scenario is a saved game session">
+        </PropertyDef>
+        <PropertyDef
+            name        = "SaveTime"
+            id          = "{FE6BE0AA-DF8D-40c6-9A33-17AC30A1FA64}"
+            type        = "FILETIME"
+            desc        = "Date and time the saved game session was saved">
+        </PropertyDef>
+        <PropertyDef
+            name        = "ExitMissionImage"
+            id          = "{42FF2643-DDF4-4459-9AC2-83163137CF0D}"
+            type        = "TEXT"
+            desc        = "Image show in the EndMission screen">
+        </PropertyDef>
+    </PropertyDefs>
+
+
+    <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+        
+<cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+</cpptext>
+
+        <SetDef
+            id          = "{5F64A93E-1326-4a43-AA38-8D71497041B0}"
+            name        = "ScenarioStaticData"
+            policy      = "inclusive"
+            descr       = "A set of properties that describe the static data of a game scenario">
+            <property name = "id"/>
+            <property name = "InstanceId"/>
+            <property name = "Title"/>
+            <property name = "Descr"/>
+            <property name = "ScenarioType"/>
+            <property name = "IsMultiplayer"/>
+            <property name = "UserObject"/>
+            <property name = "StartLocation"/>
+            <property name = "ScenarioFileName"/>
+            <property name = "ScenarioFileDirectory"/>
+            <property name = "SkillLevel"/>
+            <property name = "LocationDescr"/>
+            <property name = "DifficultyLevel"/>
+            <property name = "EstimatedTime"/>
+            <property name = "UncompletedImage"/>
+            <property name = "CompletedImage"/>
+            <property name = "PreviewImage"/>
+            <property name = "MissionBrief"/>
+            <property name = "SuccessMessage"/>
+            <property name = "FailureMessage"/>
+            <property name = "UserCrashMessage"/>
+            <property name = "CategoryRef"/>
+            <property name = "RewardRef"/>
+            <property name = "SavePoint"/>
+            <property name = "SaveTime"/>
+            <property name = "AbbreviatedMissionBrief"/>
+            <property name = "ExitMissionImage"/>
+        </SetDef>
+        <SetDef
+            id          = "{DC875325-F087-48c7-9171-1745FBD619C9}"
+            classid     = "{E6E7934E-FD79-4081-8680-60B1FDCC9BC9}"
+            name        = "ScenarioMetadata"
+            descr       = "Contains information about the scenario for the UI"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "InstanceId"/>
+            <property name = "Descr"/>
+            <property name = "ScenarioType"/>
+            <property name = "IsMultiplayer"/>
+            <property name = "SkillLevel"/>
+            <property name = "LocationDescr"/>
+            <property name = "DifficultyLevel"/>
+            <property name = "EstimatedTime"/>
+            <property name = "UncompletedImage"/>
+            <property name = "CompletedImage"/>
+            <property name = "ExitMissionImage"/>
+            <property name = "MissionBrief"/>
+            <property name = "AbbreviatedMissionBrief"/>
+            <property name = "SuccessMessage"/>
+            <property name = "FailureMessage"/>
+            <property name = "UserCrashMessage"/>
+            <property name = "CategoryRef"/>
+        </SetDef>
+        <SetDef
+            id          = "{C6E584F9-12E6-4676-86D0-9A1CAB8947CB}"
+            name        = "ScenarioCategory"
+            descr       = "A category of scenarios"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "InstanceId"/>
+            <property name = "Title"/>
+            <property name = "Descr"/>
+            <property name = "PreviewImage"/>
+            <property name = "FileName"/>
+        </SetDef>            
+    </SetDefs>
+</SymbolDef>
+

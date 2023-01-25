@@ -1,0 +1,280 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- XXX property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimControls"
+    id           = "{DDE59830-480A-49fc-A13F-B1771E2BD41D}"
+    descr        = "SimProp Controls property, type and set definitions."
+    chdr         = "propcontrols.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propcontrols.h    
+//
+//  FlightSim Controls AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+        
+        <!-- Begin: map entry property sets -->
+        <PropertyDef
+            name        = "Key"
+            id          = "{F2E1EBE9-12C7-494c-9C53-FCB729B392D8}"
+            type        = "TEXT"
+            descr       = "Key"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Index"
+            id          = "{DFF8359E-57F0-4526-BC54-313110DDE883}"
+            type        = "LONG"
+            descr       = "Index"
+            serialize   = "both,default"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Down"
+            id          = "{0A7730A4-3FBA-402c-BF9D-78ED3A02F624}"
+            type        = "TEXT"
+            descr       = "Down Event"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Up"
+            id          = "{7DB895C3-BB76-49ed-9A3B-8CBDBBD4B732}"
+            type        = "TEXT"
+            descr       = "Up Event"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DownVal"
+            id          = "{D2F20C11-BCF7-4fc2-A8F0-5DD9F992F39C}"
+            type        = "LONG"
+            descr       = "Down subcode"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "UpVal"
+            id          = "{ED13713A-C0FD-40bb-BDAD-A71621A97D6C}"
+            type        = "LONG"
+            descr       = "Up subcode"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DownRpt"
+            id          = "{2F146BA7-09CD-46c8-B246-D990C8A9D4AE}"
+            type        = "LONG"
+            descr       = "Down repeat"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AxName"
+            id          = "{F92D63E2-3379-4bdd-AAD4-4D23E622CB2E}"
+            cardinality = "multiple"
+            type        = "TEXT"
+            descr       = "Axis Name"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AxEvent"
+            id          = "{71DC2834-4478-412c-98EA-56896C075321}"
+            type        = "TEXT"
+            descr       = "Axis event"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AxScale"
+            id          = "{C736EEF5-9CDC-41e9-8598-8D2C09A8F28A}"
+            type        = "LONG"
+            descr       = "Axis scale"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AxNull"
+            id          = "{2D2C7DD5-9D51-45a7-A736-419713F34FA0}"
+            type        = "LONG"
+            descr       = "Axis null"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "POVScale"
+            id          = "{3321125C-D264-4893-B730-3851B322F81F}"
+            type        = "FLOAT"
+            descr       = "POV scale"
+            devnote     = "TODO: ">
+        </PropertyDef>
+        <!-- End: keyboard map entry property sets -->
+
+        <!-- Begin: Map property sets -->
+        <PropertyDef
+            name        = "Name"
+            id          = "{E226D51C-9867-441c-94DA-364BE060A4C2}"
+            cardinality = "multiple"
+            type        = "TEXT"
+            descr       = "map set name"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Locked"
+            id          = "{C1D13FD8-C84D-4007-88E0-92877F7AFA02}"
+            type        = "LONG"
+            descr       = "joystick locking flag"
+            devnote     = "TODO: ">
+        </PropertyDef>
+        <!-- End: keyboard group mapping property sets -->
+
+        <!-- Begin: Association property sets -->
+        <PropertyDef
+            name        = "Event"
+            id          = "{7EA7028E-0C57-432b-A574-539824E078BE}"
+            type        = "GUID"
+            descr       = "association event ident"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Token"
+            id          = "{9E042665-3D53-4ad2-B99F-3A6C02CFA981}"
+            type        = "TEXT"
+            descr       = "association token"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Description"
+            id          = "{F9A871CB-1882-4f84-913E-4AD1C65DC355}"
+            type        = "TEXT"
+            descr       = "association description"
+            devnote     = "TODO: ">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DescrFlags"
+            id          = "{880218AA-EBF8-4281-BA02-5F95ACDB9B4F}"
+            type        = "LONG"
+            descr       = "association description flags"
+            devnote     = "TODO: ">
+        </PropertyDef>
+        <!-- End: Association property sets -->
+
+
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{F3BE0FDB-7830-4a83-B7F7-3729B146A93F}"
+            name        = "Map"
+            policy      = "inclusive">
+
+            <property name = "Name"/>
+            <property name = "Entry"/>
+            <property name = "Axis"/>
+            <property name = "POV"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{1984E1D4-5999-4713-880B-BEAF0E4214A1}"
+            name        = "Entry"
+            policy      = "inclusive">
+
+            <property name = "Key"/>
+            <property name = "Index"/>
+            <property name = "Down"/>
+            <property name = "Up"/>
+            <property name = "DownVal"/>
+            <property name = "UpVal"/>
+            <property name = "DownRpt"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{8B06D8A9-7D8F-44a4-BD8B-28320149922C}"
+            name        = "Axis"
+            policy      = "inclusive">
+
+            <property name = "Index"/>
+            <property name = "AxName"/>
+            <property name = "AxEvent"/>
+            <property name = "AxScale"/>
+            <property name = "AxNull"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B5800D8C-743B-4bbf-B3F0-7230F493ECAB}"
+            name        = "POV"
+            policy      = "inclusive">
+
+            <property name = "Index"/>
+            <property name = "Down"/>
+            <property name = "Up"/>
+            <property name = "DownVal"/>
+            <property name = "UpVal"/>
+            <property name = "DownRpt"/>
+            <property name = "POVScale"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{FC1A5BDF-EFFE-489e-9F6D-BF1E18A50BCC}"
+            name        = "Associations"
+            policy      = "inclusive">
+
+            <property name = "Name"/>
+            <property name = "AssnRcrd"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{3625A92D-F10F-459e-A6D9-899CD54252A9}"
+            name        = "AssnRcrd"
+            policy      = "inclusive">
+
+            <property name = "Event"/>
+            <property name = "Token"/>
+            <property name = "Description"/>
+            <property name = "DescrFlags"/>
+        </SetDef>
+
+    </SetDefs>
+
+</SymbolDef>

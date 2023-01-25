@@ -1,0 +1,2450 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- SimUI property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimUI"
+    id           = "{B06F0C66-5D4D-4e93-9839-4081D8D93C0C}"
+    descr        = "SimProp UI property, type and set definitions."
+    chdr         = "propui.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propbaseui.xml"
+        id       = "{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propui.h    
+//
+//  FlightSim UI AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property identifiers
+//
+        </cpptext>
+    
+        <PropertyDef
+            name        = "NoCaptionText"
+            id          = "{B50C5B32-FE81-479f-8221-AB2B058E135B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Prompt"
+            id          = "{A04634B4-2111-4ee0-AAA4-557A58F6BEA5}"
+            type        = "TEXT">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Tip"
+            id          = "{17A6840F-4010-40dd-B051-1C1CDE71D686}"
+            type        = "TEXT">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "HelpUrl"
+            id          = "{2548F600-76ED-41e8-83F5-2D63DB83D7BB}"
+            type        = "TEXT">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "CaptionPos"
+            id          = "{A8A34D8C-EAE5-4e4f-89A7-3EA5C10CEBC8}"
+            type        = "TEXT"
+            devnote     = "todo: convert to ENUM type">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TabPos"
+            id          = "{20579AE6-572F-41ba-AB19-243EB5897636}"
+            type        = "TEXT"
+            devnote     = "todo: convert to ENUM type">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndSizing"
+            id          = "{FA6284B2-C00D-4417-B6A8-9C3AA4823D6E}"
+            type        = "ENUM"
+            default     = "Stretch">
+            <EnumDef symbolprefix="BKGNDSIZING_">
+                <EnumVal 
+                    name = "STRETCH" 
+                    xml_name = "Stretch"/>
+                <EnumVal 
+                    name = "TILEHORZ" 
+                    xml_name = "TileHorz"/>
+                <EnumVal 
+                    name = "TILEVERT" 
+                    xml_name = "TileVert"/>
+                <EnumVal 
+                    name = "CLIP" 
+                    xml_name = "Clip"/>
+                <EnumVal 
+                    name = "CONTENT" 
+                    xml_name = "True"/>
+            </EnumDef>
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SizeClipBkgnd"
+            id          = "{974BC76F-963A-4ccc-8288-AABA812D6106}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SizeToBkgnd"
+            id          = "{FFC7FD85-04B3-4cda-98E5-05B35679D752}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SizeToContent"
+            id          = "{2789FC5F-0662-4e3d-B32E-8A1A81BC29C3}"
+            type        = "BOOL"
+            serialize   = "both,default"
+            default     = "False">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Resolution"
+            id          = "{6C11FEED-EC51-407c-93CE-ECE95E7DDB80}"
+            type        = "LONG2">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "FocusId"
+            id          = "{5323B997-7C63-4336-8D5A-DD6CC55A81BC}"
+            type        = "TEXT">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SelDensity"
+            id          = "{AB5798CA-2033-43fb-9145-AC08C8463EFE}"
+            type        = "ULONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "NormalColor"
+            id          = "{9B780F27-4B41-4932-A8A5-900134FD83DA}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextColor"
+            id          = "{1DAE0119-F943-47e7-9809-59A08028A57A}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NormalTextColor"
+            id          = "{9D4764CC-A35B-4d37-8C7F-E5C63D46119E}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SelColor"
+            id          = "{839DF166-33DF-45e4-9956-B5087455D551}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SelTextColor"
+            id          = "{767F623B-3376-4ba3-9B2F-E034CFAD4CBE}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SelMargins"
+            id          = "{991EB0C5-6182-4654-B916-8BC0FE68B1F9}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SelOnFocus"
+            id          = "{49A3D25E-514E-42b8-925C-706DD8FA3750}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "FocusDensity"
+            id          = "{21AAEF22-0589-4184-916A-2DF3D7FFDAA8}"
+            type        = "ULONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "FocusColor"
+            id          = "{491C2785-EF07-459b-88CD-BE5F3FCF8A6D}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "FocusTextColor"
+            id          = "{0782D0D3-5F40-4d06-89A0-FA2030345866}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "IMEState"
+            id          = "{1C7633D1-FEF4-4bd3-98DA-320F1FBE2187}"
+            serialize   = "both,default"
+            type        = "ENUM"
+            default     = "Inactive"
+            devnote     = "Input Method Editor state for edit controls">
+            <EnumDef symbolprefix="IMESTATE_">
+                <EnumVal 
+                    name = "OFF" 
+                    xml_name = "Off"/>
+                <EnumVal 
+                    name = "INACTIVE" 
+                    xml_name = "Inactive"/>
+                <EnumVal 
+                    name = "ACTIVE" 
+                    xml_name = "Active"/>
+            </EnumDef>
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AlignTop"
+            id          = "{D7A82C19-BFFA-4c17-BF14-64E2C8D05E34}"
+            type        = "BOOL"
+            devnote     = "todo: Combine into single Align enum property">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AlignLeft"
+            id          = "{5EC329EB-0BBB-433c-B8C6-C2C0662D1720}"
+            type        = "BOOL"
+            devnote     = "todo: Combine into single Align enum property">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AlignRight"
+            id          = "{ABB2F59E-A2ED-4eb8-9274-B707B47A6F3E}"
+            type        = "BOOL"
+            devnote     = "todo: Combine into single Align enum property">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AlignCenter"
+            id          = "{8043082E-4D98-47ac-B4FB-3ABC544A7D47}"
+            type        = "BOOL"
+            devnote     = "todo: Combine into single Align enum property">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AlignBottom"
+            id          = "{5861B970-D82B-4033-98F4-4C93404320A5}"
+            type        = "BOOL"
+            devnote     = "todo: Combine into single Align enum property">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TopResizeY"
+            id          = "{993FE80F-BF88-442d-8513-B0E48E4DBE0A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Margins"
+            id          = "{C55C0FFE-524A-4a3b-B2A1-F78FB88FA78A}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Moveable"
+            id          = "{2D1A49E0-2356-4df0-ACD7-4A710A2D46B7}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ButtonOffset"
+            id          = "{FC41250D-8AF7-43db-94A2-2787740A5351}"
+            type        = "LONG2"
+            serialize   = "both,default">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "OrderIndices"
+            id          = "{50EF8304-0CAC-46d2-9468-997F5B4FC851}"
+            type        = "TEXT"
+            devnote      = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SoundList"
+            id          = "{83AFBFD2-0932-4558-BED9-D9B89412E8C8}"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SoundStates"
+            id          = "{606423A2-4CB0-402a-B9DD-D4AC883D0A2A}"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "StateCount"
+            id          = "{3869A4E9-40E8-4bd3-8435-F84664A9500C}"
+            type        = "LONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "NoBkgnd"
+            id          = "{989DA59A-0189-460b-81A4-8C1127E64FA0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndDrawFrame"
+            id          = "{3BA42BBF-9B92-479a-9F88-05364D9D0023}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImage"
+            id          = "{E4CCFD1E-D748-4ef1-9205-E6A5319D5130}"
+            type        = "TEXT">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndOpaque"
+            id          = "{C4AA5ADB-73CE-414c-80E8-CE0A1117DE02}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTransparent"
+            id          = "{7A0B4750-C944-4bdd-BEC2-6C620B872785}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTransparencyType"
+            id          = "{CB197C6D-3FD3-4399-B567-EA50870B2D97}"
+            type        = "LONG"
+            devnote     = "todo: convert to ENUM type">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTransColor"
+            id          = "{BEC072B0-E96A-4bd9-B1AD-0BAD7C0DF0D9}"
+            serialize   = "both,default"
+            type        = "BYTE4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndSizeGrid"
+            id          = "{43449691-EDEF-4819-890F-25441AD4D1E5}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndCreateRgn"
+            id          = "{6054D997-409E-494f-A9B5-0EB29D778E40}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndCreateRgnInv"
+            id          = "{27D89971-52CE-478f-B621-4FA201C7D448}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndCreateRgnConcave"
+            id          = "{F7753401-134A-4ddc-9D0E-C22E0E584560}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndSetClipRgn"
+            id          = "{83FDE95F-1D20-408a-AD5D-41603B5764ED}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndSetWinRgn"
+            id          = "{3E11DB0D-1E2B-44f3-BCFE-B1381FCDF4BC}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndInvHorz"
+            id          = "{47D88D9E-E3BF-44de-9558-058DF9CA6163}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndInvVert"
+            id          = "{FD7D9BC0-0C6F-498e-AF0E-E075A571262D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTile"
+            id          = "{53145C85-F691-473f-BA20-71CC8C972BB3}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchHorz"
+            id          = "{8385D3CF-03C7-4ed5-B57D-DA68FB31E031}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchVert"
+            id          = "{3BD892D8-7CA2-4cd7-988D-91161507831A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchOffsetHorz"
+            id          = "{28B08B0A-5812-44bd-B502-A94EB49B8BAC}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchOffsetVert"
+            id          = "{05396F9A-A4EC-4fe1-8E4C-DF4E249618A3}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchSizeHorz"
+            id          = "{5911F5FF-C8D2-424f-994E-3DDE83C0DE42}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndStretchSizeVert"
+            id          = "{6FBE3EB1-97DD-40fe-99EC-A7279B962A10}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndRect"
+            id          = "{D9BBE743-7B24-4283-8A37-C6D3EF0B86A8}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTextRect"
+            id          = "{FEC8FC06-9DE0-4d14-A94E-E406887F6F7F}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ButtonTextRect"
+            id          = "{22968BF2-DFB0-482f-ABF7-E1081B5D3FA7}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTransRect"
+            id          = "{DFBDEE4C-2077-48e5-976B-A91E044CAD91}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndTransRectType"
+            id          = "{FF71ED17-3257-4a10-BA09-7B177D06750F}"
+            type        = "ENUM">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndBoundaryRect"
+            id          = "{5FD665EC-58CF-4ee5-9266-A3C401F59AAD}"
+            type        = "LONG4">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImage1stCellTrans"
+            id          = "{1EAAC70D-F0E3-41cb-BCA4-17F9B7B65951}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImageStripHorz"
+            id          = "{8753AF31-1076-4afe-AF9C-AFF2E3288168}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImageStripVert"
+            id          = "{4F001876-5D9E-4ab8-BCB5-7397D63849F9}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImageDynamic"
+            id          = "{8F135706-CA50-4b8a-9989-C925052A3E49}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImageMirrorHorz"
+            id          = "{9A9FFED4-9982-40e2-9D77-2F1A79324ED1}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndImageMirrorVert"
+            id          = "{0FF1AB0A-ABA7-4a07-83CC-149E9CA918B3}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "BkgndUseBuddy"
+            id          = "{DABE6842-96C9-40b3-BA69-1E5AC734649E}"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "LegacyDlgAttr"
+            id          = "{E9B32661-7E91-4be4-9E00-3874C82F3089}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LegacyCtlAttr"
+            id          = "{1342BDF5-1ACF-4a6f-B83F-CEEA39631680}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LegacyDlgTemplate"
+            id          = "{2CBB435A-C67D-4a1f-81A2-AA268E0F49E8}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BaseDialog"
+            id          = "{6E7C44C4-E43B-4a1b-B2F8-591F5BAB6F84}"
+            type        = "TEXT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DragRegion"
+            id          = "{848C163B-D1E5-4c59-924C-78AA3E2FCDB5}"
+            type        = "LONG4">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextTransparent"
+            id          = "{BF7E9C0E-8E03-41ad-A973-67BD8B3D4A80}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignHorz"
+            id          = "{75FEAC60-D94A-4357-9482-23BC0C4BA967}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignLeft"
+            id          = "{DD3D8DD3-7E27-4fc1-9CF2-D9CEBF57D73F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignRight"
+            id          = "{F6B8EF88-5A49-4cdd-ABFE-884DB4504012}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignVert"
+            id          = "{5AEB1D85-AFC5-4599-900F-482E433E6A17}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignTop"
+            id          = "{4EFBB947-963A-4be0-B2EF-F110F5ECA7D6}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignBottom"
+            id          = "{7296D9B6-72A2-441a-8BEF-6FBD80CD52AB}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextAlignCenter"
+            id          = "{F30F6781-846D-4bfc-8D54-3C7C51AB7CE4}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextPosition"
+            id          = "{9DE24E1F-5D0E-4c68-9DDD-5BDAADF13058}"
+            type        = "LONG">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "WndClass"
+            id          = "{5E93FFDD-3CD4-4eba-A421-D0FA07BEB9D6}"
+            serialize   = "none"
+            type        = "TEXT">
+        </PropertyDef>
+    
+    
+        <PropertyDef
+            name        = "DlgModalFrame"
+            id          = "{8C9F35AE-DCA5-41ee-BE10-4AF6532AB33B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoParentNotify"
+            id          = "{EEC38557-F072-49ce-842D-68B347EF559C}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Topmost"
+            id          = "{5FB14155-578B-4e5c-82AA-DB5E0524D344}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AcceptFiles"
+            id          = "{AC243B0C-115A-42b3-8CC9-9322803F3305}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "MdiChild"
+            id          = "{C22D327D-E9A8-43ab-BC01-DE33EB256398}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ToolWindow"
+            id          = "{01A05049-EDB9-4a0f-82CD-AB9FA6BDEB86}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "WindowEdge"
+            id          = "{53B6F1B0-2D8B-4c3e-BA3D-AB55B8ACE646}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ClientEdge"
+            id          = "{DFE082DC-696A-4304-A4E6-6A63805371FD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ContextHelp"
+            id          = "{64BC4BAF-33C8-4f78-8337-1BD46372A981}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Right"
+            id          = "{A752F788-5C88-4066-BA61-A0FA604CB6D1}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Left"
+            id          = "{03E8BDBA-0A6F-466d-8381-0BF0E2B0FF39}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "RtlReading"
+            id          = "{8173ACE0-9B17-49f1-A8C1-7911AAC9D901}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LtrReading"
+            id          = "{CBC59050-C6E7-4f85-8FBA-E32B12BCA1E6}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LeftScrollbar"
+            id          = "{8989241C-1001-4069-8796-00A65905F51A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "RightScrollbar"
+            id          = "{5C2C0B53-B01E-402b-96B4-3EBEB08AB79B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ControlParent"
+            id          = "{ECCA3A90-C1AC-4e25-9DAE-16A9BE41A5E0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "StaticEdge"
+            id          = "{301CF2DE-B14F-4755-A458-C517DB133AFD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AppWindow"
+            id          = "{DF588E86-14F6-46e9-A92F-5F33F654CE2D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LayeredWindow"
+            id          = "{A5DAFF09-CEDC-4cb8-9B94-BFF75EA1EA4A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoInheritLayout"
+            id          = "{DA320055-8CA2-41e5-B0FE-426A23F6C073}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "LayoutRtl"
+            id          = "{7CF66664-D1F9-4137-851D-DB0E14875AA4}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Composited"
+            id          = "{EC984945-B8CD-492c-A237-06112B71E7F7}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Noactivate"
+            id          = "{76CE00D3-0D26-46cd-B749-1F52462181C5}"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "Overlapped"
+            id          = "{60BF00CE-69DF-4d5e-9EDF-4270B4D1DE0A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Popup"
+            id          = "{B1B8444B-1A91-4bba-9731-418AB887B135}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Child"
+            id          = "{EDE12DBB-6523-4917-AFB5-08695748E175}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Minimize"
+            id          = "{AC8EB862-274D-48dc-A35C-DFC401CA90A7}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Clipsiblings"
+            id          = "{06E88011-1230-4816-B518-82AC7CBDE899}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Clipchildren"
+            id          = "{787A22A6-82BA-4986-A5F0-1362EBAFF4D8}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Maximize"
+            id          = "{E6C4A1AD-9856-49cf-A876-AF053D774574}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "HasCaption"
+            id          = "{EA29FC62-DB4C-479f-AF74-6C28CC93FC9E}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Border"
+            id          = "{82CAA7B8-94B7-45a5-ADFC-EE8CE9F286B2}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "DlgFrame"
+            id          = "{72303580-34A6-42f4-9EE3-0D8DD8EA03F7}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "VScroll"
+            id          = "{03F64568-0B8C-457f-8057-87292A4CC31E}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "HScroll"
+            id          = "{CD31ECCD-DBB8-4c9b-9EB1-672B9A3557A0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SysMenu"
+            id          = "{8222E57A-B794-4fc0-9CC3-F7674DE36F52}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Resizeable"
+            id          = "{39BDCC49-21DE-4efa-8153-62DF7A605A07}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Group"
+            id          = "{E52CF8DC-A82B-4ed5-9A47-89106C00CD6B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Tabstop"
+            id          = "{347E48BF-6180-4b0d-8F02-4F4A0A227DBA}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "MinimizeBox"
+            id          = "{69E45227-25A3-44df-9AAD-EDA563FA6AA9}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "maximizeBox"
+            id          = "{02CB6D09-C73D-41f6-B7FD-866607329599}"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "dsAbsAlign"
+            id          = "{0A9C86B8-635E-42e9-811A-25D0FBECA9B0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsSysModal"
+            id          = "{B6F1DD00-A6F1-430f-99BC-8D25BEBE9DDD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsLocalEdit"
+            id          = "{15B15BD0-7A03-474c-946D-DA877DF2421D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsSetFont"
+            id          = "{C79020FD-80B6-40fe-A37F-DBA9EDE77C24}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsModalFrame"
+            id          = "{3302150E-8A48-4fac-B4DC-BC2023774CB0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsNoIdleMsg"
+            id          = "{83581EA1-BAE5-4586-80E9-65379F479B29}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "dsSetForeground"
+            id          = "{79EB261C-A1B0-4c6b-9600-FF8F92BF1264}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+    
+        <PropertyDef
+            name        = "bsLefttext"
+            id          = "{B1566ECC-017A-4ca4-838A-17419CDCE029}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsTextbtn"
+            id          = "{481DC494-2E0A-4bdc-BD0F-831B3C292091}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsIconbtn"
+            id          = "{BCC55E4D-D6E8-48e5-AF4C-00359B1C5F8E}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsBitmapbtn"
+            id          = "{D670851B-DC3A-4646-BEAF-B5BD35DC3143}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsLeft"
+            id          = "{04B2A7ED-E9DA-428c-8E7C-E9C37503BDBC}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsRight"
+            id          = "{E733C5D1-AF7B-4c4f-B36D-7B5C1DE92149}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsCenter"
+            id          = "{F81E1314-F457-4685-AE2D-855693383338}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsTop"
+            id          = "{AFC4F220-DFA1-40e1-8D6E-A4922CA1DC65}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsBottom"
+            id          = "{2256E21A-9CF7-45f3-83A4-68AC11CDCC33}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsVCenter"
+            id          = "{69452FF4-C721-4b2d-83C6-6DC9BB98703C}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsPushlike"
+            id          = "{D28ECD42-E0DF-40e9-A6CF-5D70903E849F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsMultiline"
+            id          = "{AA9540D1-D481-4728-AB64-E366A724060E}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsNotify"
+            id          = "{6C4F07D8-2A27-4656-8863-24DBFF170C97}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsFlat"
+            id          = "{C0C3D944-FFB9-46d7-9436-B5635A8B949D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "bsRightbutton"
+            id          = "{F63CB0AE-E3CD-4160-9808-A2BE9D642C0E}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ChangeNotify"
+            id          = "{9BCDE64E-4A2F-41cd-9AB9-499661CA6AD6}"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "LeftText"
+            id          = "{9391E8E7-C280-4687-B60E-A4868A1263FD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "CenterText"
+            id          = "{15E31467-13E4-40ba-BD5A-C3A32365BA13}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "RightText"
+            id          = "{4F92F314-8246-4389-A9E4-7F1782E1A7F5}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Uppercase"
+            id          = "{7481CB87-8E56-42a2-9B40-8B7D66CFE2FF}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Lowercase"
+            id          = "{13AB6CB0-8485-4440-8A5B-55E398035EDC}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "PasswordStyle"
+            id          = "{6126321D-57FA-42d3-BE90-9B5947D7B9D0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AutoVScroll"
+            id          = "{829139F9-4F85-4577-AA44-9BEC33CA77FF}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AutoHScroll"
+            id          = "{D402C8AD-CAD8-4ccb-A4FB-0B99947904BE}"
+            type        = "BOOL"
+            serialize   = "both,default">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Nohidesel"
+            id          = "{0C6E1FA0-3503-44e8-BA43-BC506DA32599}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "Oemconvert"
+            id          = "{B78857F8-8CC9-4642-8770-BA8891C023AD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ReadOnly"
+            id          = "{B71F2E87-638C-4947-91F3-DB10059140B6}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "WantReturn"
+            id          = "{09183164-A5C0-4d8b-B160-A656AA2C41C0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NumberStyle"
+            id          = "{996BACFB-1323-430b-888D-7D74F7F9988A}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextLimit"
+            id          = "{020CFDC7-B019-4918-BE8E-C0FAA0F83B06}"
+            type        = "ULONG">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "ssLeft"
+            id          = "{684FA992-230B-4a26-B5A3-75F5096F6C0F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssCenter"
+            id          = "{7E840141-DD1C-409e-BAF0-994C0C221ED3}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssRight"
+            id          = "{0B638606-30CB-47d6-B5C4-07E57456FBF8}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssIcon"
+            id          = "{05AFA313-6050-4920-87DB-5AC1AAD09D6F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssBlackrect"
+            id          = "{6007D7C5-D156-442c-A029-A4012418099B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssGrayrect"
+            id          = "{5456E253-1F4C-4bb8-BBA2-6B4D41D3462A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssWhitekrect"
+            id          = "{C1F4A7E8-F736-43fc-BBAE-8671CBBBDBF9}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssBlackframe"
+            id          = "{3E4A8AAD-09DF-49f3-B4F4-BDDBA1FBC6EC}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssGrayframe"
+            id          = "{3E90DCAA-2750-471d-84AB-11EC80956A7D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssWhiteframe"
+            id          = "{0C6DE592-A63F-483d-B370-54F651169EDA}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssUseritem"
+            id          = "{FB9BF1DC-3CC3-4984-BF7C-762AFEA2BF57}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssSimple"
+            id          = "{16E4D754-E905-49f3-AF9B-98E535A044A8}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssLeftnowordwrap"
+            id          = "{B63C3B7E-2C38-4af0-A68A-990F9EC49399}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssOwnerdraw"
+            id          = "{98FB040D-AF02-45a6-862B-812EBB1308F8}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssBitmap"
+            id          = "{6733F1A1-8576-46d5-AFF7-F1833639E56D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEnhmetafile"
+            id          = "{E6A7520F-40C6-479d-AAA7-D3461D7E90F9}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEtchedhorz"
+            id          = "{E3E6A94F-08A5-4a3d-9FF3-D49B755F6ECE}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEtchedvert"
+            id          = "{1ACA5067-5B48-4c05-AB7A-0603DB789505}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEtchedframe"
+            id          = "{F7114EEA-500A-461f-8CAC-405219534FF7}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssNoprefix"
+            id          = "{CEEE4EA3-3316-430c-A553-FDFF880704A2}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssNotify"
+            id          = "{B2BF4958-9CB8-43b7-A3CC-821BEEBAEC2F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssCenterimage"
+            id          = "{A0DC2AFD-6F54-44d2-A71D-1A16A5EEDD3B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssRightjust"
+            id          = "{22EB9E61-043C-47bf-AE00-3059AFB5DC3A}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssRealsizeimage"
+            id          = "{2D23335A-AF31-41b3-9C19-D62817811C5D}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssSunken"
+            id          = "{4C6DD287-9864-416b-87EA-96CB1A2D1D47}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEditcontrol"
+            id          = "{7EB1C6F4-C701-486b-AB16-6B340065ADFD}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssEndEllipsis"
+            id          = "{064BA51E-774D-44ce-BF29-B36E0C26E969}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssPathEllipsis"
+            id          = "{500F3DBF-3E76-4ef2-BD5F-757A18AD9E41}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ssWordEllipsis"
+            id          = "{23F0DAB1-02BA-4297-A39B-85CEBF09BF20}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TextOnly"
+            id          = "{02B0C2C9-0A82-4f74-95FF-DB959B7F2F79}"
+            type        = "BOOL"
+            default     = "True">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NonLabel"
+            id          = "{28522CFC-7288-4983-9517-2A0821809DC7}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AutoAlign"
+            id          = "{17214530-D2BC-4807-8C18-957E4153DE3C}"
+            type        = "BOOL"
+            default     = "True">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "cbsSimple"
+            id          = "{3B2B87A6-E011-4962-B8AE-79E1E2329C5B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsDropdown"
+            id          = "{22CF5370-1178-454b-B1C8-87ED7675BF8B}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsDropdownList"
+            id          = "{02153998-0F62-4049-ABCA-82DF7564B138}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsOwnerDrawFixed"
+            id          = "{8B05CCAE-684B-41ef-B61E-3805A297FE2C}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsOwnerDrawVar"
+            id          = "{665CFC53-F5A7-4994-8AB8-6842CF1BD7F4}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsAutoHScroll"
+            id          = "{509EC150-15C7-4837-9CCB-D9179CE56676}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsOemConvert"
+            id          = "{C7A4F08A-C9C6-4187-9E7F-88F3DDAF65A8}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsSort"
+            id          = "{B0274D8A-9B5B-4758-9974-9F9800D7CD37}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsHasStrings"
+            id          = "{66E550C5-88CC-4a87-99FA-3AF45D72CCAC}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsNoIntegralHeight"
+            id          = "{DB78D05F-62B2-4f52-836A-5F581BEDB135}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsDisableNoScroll"
+            id          = "{0119D011-25E6-407e-9856-0ADB4C740424}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsUpperCase"
+            id          = "{2E8BEB73-6815-4a8a-A3F4-8C68B98251FE}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "cbsLowerCase"
+            id          = "{DE88D613-02D0-4a3f-8347-22507E66B3CE}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "lbsNotify"
+            id          = "{74826601-07CF-4793-970F-F393069C2DD3}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsSort"
+            id          = "{D3DF34FA-22C5-46dc-8A8C-5E0AABC061FC}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsNoRedraw"
+            id          = "{E494D58F-BFE3-42cb-BC6E-36D255FC1B8C}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsMultipleSelect"
+            id          = "{E0285EDF-A2D4-4908-9CD8-627115DD9AE1}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsOwnerDrawFixed"
+            id          = "{122B709B-03FA-42e1-AB93-D2B8E33078FB}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsOwnerDrawVar"
+            id          = "{490513ED-30B8-4364-B706-FF72349B4385}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsHasStrings"
+            id          = "{9028F8CD-C5A4-4d77-A166-FF3999A7C68A}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsUseTabstops"
+            id          = "{33E7058A-EA2E-43b6-927A-4CCB577BB8EA}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsNoIntegralHeight"
+            id          = "{D125B93C-AB7E-4ba2-8F85-E8E5D10FC587}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsMulticolumn"
+            id          = "{6EFBA3E8-34E8-4b9c-A12B-1B76F961A7AC}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsWantKeys"
+            id          = "{F7B0FFA0-6993-46d4-BE28-C6F244406BC0}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsExtEndSel"
+            id          = "{B766F99F-AAF4-41e0-A66E-44EAA50CED9C}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsDisableNoScroll"
+            id          = "{20D8190E-3D55-4075-92C2-2C52BE3132F4}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsNoData"
+            id          = "{F5756E6F-4661-46c4-81AD-4C243D6DF7D4}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsNoSel"
+            id          = "{52385E4B-5E57-497d-BC1E-4661719BB896}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "lbsCombobox"
+            id          = "{D69A8F84-2F60-4d94-8959-584FFFE4F58B}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+    
+        <PropertyDef
+            name        = "sbsHorz"
+            id          = "{38744689-88C8-48b6-8594-259EA295BBEF}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsVert"
+            id          = "{957AA657-EA5D-4e04-9951-9C41B3A4B3D2}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsTopAlign"
+            id          = "{D16C3BDF-B146-4213-B7EC-F142FD8BBECB}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsLeftAlign"
+            id          = "{BF51EF3C-B4A0-43da-928B-F0DE78BED4EF}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsBottomAlign"
+            id          = "{630F2A41-7DF3-4931-8649-B00FBF4725D0}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsRightAlign"
+            id          = "{85FACBB3-14A2-4647-9B24-2BF7765F1132}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsSizeBoxLeftTopLeft"
+            id          = "{3AECF954-028D-4722-A2B2-3F16064BBA4E}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsSizeBottomRight"
+            id          = "{E9EA432F-9E36-4b9d-BE31-E0A856A1275A}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ScrollBarProportional"
+            id          = "{E4FD10F3-B7FC-4b7d-BBBD-24AC4B08B13B}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsSizeBox"
+            id          = "{A7881D32-6B06-44ab-8BAF-7B2A82160B32}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "sbsSizeGrip"
+            id          = "{FC4D122C-63C8-4f61-863A-FA7E2F690BBF}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "IconStyle"
+            id          = "{9F8E2A5C-DC30-4d52-A46C-2327F0D4F6B6}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ReportStyle"
+            id          = "{A905BFC2-BB40-4a19-A13B-1E245EE23E56}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SmallIconStyle"
+            id          = "{4AF7155A-1B40-4858-9844-E18FB9F3448F}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ListStyle"
+            id          = "{AE9934A2-3203-4618-8785-DADE0FDFF5D0}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SingleSelect"
+            id          = "{7F51F0B3-B69D-49fe-88DA-E95D31393EB7}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ShowSelAlways"
+            id          = "{5BAD61A4-F5A2-4eba-BA4C-A7D00AAF80B0}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SortAscending"
+            id          = "{0D97E85C-7002-423a-B0AB-0516208E387F}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SortDescending"
+            id          = "{43FB7ED8-9C86-409f-8F73-6441F71C2622}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SharedImageList"
+            id          = "{1ACAA59A-88D2-4c08-A549-B9504442EE4D}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoLabelWrap"
+            id          = "{DDC30293-D931-4162-BE6A-CE89F125A3EA}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AutoArrange"
+            id          = "{7DBA1DD8-4B3F-4c14-9FA8-CD0976283630}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "EditLables"
+            id          = "{38E51ACB-1EDD-420e-ADD6-BC8780F47470}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "OwnerData"
+            id          = "{B3957796-78B1-46f1-BB2D-55A4AFF6595B}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoScroll"
+            id          = "{D111FA47-4312-495e-8B49-95D71B162FD8}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "OwnerDrawnFixed"
+            id          = "{BF454A45-6CBD-40f9-B142-6C24A5BFB706}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoColumnHeader"
+            id          = "{3C582450-202B-42de-AC60-0C5BE0ECF14B}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoSortHeader"
+            id          = "{DB4BC547-4074-43ec-9D93-7C03B2F49C97}"
+            serialize   = "both"
+            type        = "BOOL"
+            default     = "True">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ColumnCount"
+            id          = "{03982E79-A0F0-4c27-9929-6C1F0C239101}"
+            serialize   = "both"
+            type        = "ULONG">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "ColumnWidthPercent"
+            id          = "{7B9CC7CF-774D-4f0a-8AE0-314D0347C817}"
+            serialize   = "both"
+            type        = "FLOAT"
+            min         = "0.0"
+            max         = "1.0"
+            descr       = "Column width in percent">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ColumnWidthPixels"
+            id          = "{4623E47B-A763-41db-80A7-D60909441696}"
+            serialize   = "both"
+            type        = "LONG"
+            descr       = "Column width in pixels">
+        </PropertyDef>
+        
+        <PropertyDef
+            name        = "ColumnBeforeRow"
+            id          = "{0573D230-19CE-41a0-832D-7FAF3B3B0BAA}"
+            serialize   = "both"
+            type        = "BOOL"
+            descr       = "Look for Column Attributes before Row Attributes">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ColumnWidths"
+            id          = "{503FA4CD-C630-4562-986C-DA304FCE066A}"
+            serialize   = "both"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ColumnLabels"
+            id          = "{A2470BD8-A95C-4f55-A621-39A416422123}"
+            serialize   = "both"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ColumnSpacing"
+            id          = "{673C4AAC-7061-4b29-B351-44E4993D0818}"
+            serialize   = "both"
+            type        = "TEXT"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "SpinWrap"
+            id          = "{D6132101-1D07-4356-8013-466703700B05}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinSetBuddyInt"
+            id          = "{77095008-752E-4184-A853-D60427BEE017}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinAutoBuddy"
+            id          = "{A58517F9-45CA-468c-8541-0B2E0458569A}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinArrowKeys"
+            id          = "{73B59C9C-9A6C-4088-9177-80CEF8377566}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinHorz"
+            id          = "{45211C70-BAC9-4a6b-A7C0-39EFBF780002}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinNoThousands"
+            id          = "{EB5A265C-5944-474b-BD92-8C6F14E33667}"
+            serialize   = "both"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinHottrack"
+            id          = "{15259B02-80ED-49de-8FE2-D88FD173BC1F}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinBuddyOffset"
+            id          = "{ED673F7D-9503-4543-94DD-0066D2E8BA51}"
+            type        = "LONG2">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SpinBtnHeight"
+            id          = "{1BA9A55F-B687-4eb1-95D3-87FFD6966608}"
+            type        = "LONG">
+        </PropertyDef>
+
+
+        <PropertyDef
+            name        = "SliderHorz"
+            id          = "{61144374-7EBF-4d93-A76B-FB870363BA74}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "SliderVert"
+            id          = "{100E7A6D-1DC4-4386-9FA6-EA67B2A098E2}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "AutoTicks"
+            id          = "{4411637F-CD46-406c-9AA5-F8E5717669B9}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TicksBoth"
+            id          = "{3C74296C-E186-4fc8-8CE2-E525BB954D5C}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TicksLeft"
+            id          = "{23846550-7E84-4590-9CA6-2674204FA964}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TicksRight"
+            id          = "{D8DE34CF-54A4-417c-B362-457B78988134}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TicksTop"
+            id          = "{58DDE324-86A9-4ca2-B550-8A4ED8665A76}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TicksBottom"
+            id          = "{AE810A09-FFF8-401f-9C32-F239FF6FC784}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoTicks"
+            id          = "{CB54621B-24E9-4c07-A304-7DF7FE10208C}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "NoThumb"
+            id          = "{FA50BF15-9B72-4cf1-A8C1-0CD1D6877BC0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "RangeReversed"
+            id          = "{0B7EB684-E884-4243-9C16-4141A9D8F640}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "EnableSelRange"
+            id          = "{AD81A2F7-83E8-415d-B864-1F5D656BF3D0}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "FixedLength"
+            id          = "{6F342A2D-E6E3-449c-9B3A-A06D1ECDBDFC}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "HasButtons"
+            id          = "{B9E54798-6CE6-4021-801E-B44E96596E12}"
+            type        = "BOOL"
+            default     = "True"
+            descr       = "Has button 'subcontrols' (slider control, etc)">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TickCount"
+            id          = "{191D05F8-AB69-4177-BD2A-0649C80B1D6A}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "DynTickCount"
+            id          = "{A229E4AA-F9B6-475c-8AE5-ED88EAC31625}"
+            type        = "BOOL">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickTop"
+            id          = "{B505AC5F-6D20-4e7e-94AE-257A55098E73}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickHeight"
+            id          = "{CB5C2157-CD39-4279-ADC4-201DC91BA27E}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickThumbVPos"
+            id          = "{3CF51859-7B22-48fd-81AA-205431ADF0A1}"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickMinorInterval"
+            id          = "{86A4E8B3-046D-482f-8C1D-D830F85A3336}"
+            serialize   = "both"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickMajorInterval"
+            id          = "{292D724E-D9F7-4e69-8F05-71B30C189B8B}"
+            default     = "5"
+            type        = "LONG">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "ValueLabelPos"
+            id          = "{C191EBE4-4A93-4a67-80B5-21FF1E08DA62}"
+            type        = "LONG"
+            devnote     = "TODO: convert to enum">
+        </PropertyDef>
+    
+        <PropertyDef
+            name        = "TickColor"
+            id          = "{3D8CFB59-FE6F-4cf1-8F16-6C5D8D4C2264}"
+            type        = "BYTE4"
+            devnote     = "Legacy/obsolete: delimited text.  Should use array type instead">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ImageDir"
+            id          = "{854E2670-5C0A-423d-8635-168D2776BC6D}"
+            type        = "TEXT"
+            devnote     = "The directory to locate the UI resource files (bitmaps, etc.).">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ImeOn"
+            id          = "{FE3FE8A9-6972-4523-BCB4-FF863F1B6690}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "symbolColorText"
+            id          = "{8EF5F015-0419-4ed4-89E2-DED5A94258B7}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "symbolPlacement"
+            id          = "{F4EA27D3-51E8-4abe-A786-E3E18B35BE27}"
+            type        = "LONG"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "candColorBase"
+            id          = "{C844B747-2A42-4835-8C74-2C6CDEE069E1}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "candColorBorder"
+            id          = "{C9B95831-FB98-40e9-870F-ABFC1F614ECE}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "candColorText"
+            id          = "{CA88E1BD-B46C-481f-9567-37A0677F528A}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorInput"
+            id          = "{9F6B3C9D-8F63-4de2-AE35-C61EC8685656}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorTargetConv"
+            id          = "{FBCC3315-C314-42c3-9EE8-DEB29342F0ED}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorConverted"
+            id          = "{AE070F60-AC15-4521-9FC3-9D87F633EB6A}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorTargetNotConv"
+            id          = "{75A6A795-7BCB-46ee-8ED6-F0A92AFA1FC7}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorInputErr"
+            id          = "{51B82180-DBEF-4fa2-92FF-57482064994B}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "compColorText"
+            id          = "{73E6E04B-0669-46b6-8600-7102C54B8059}"
+            type        = "BYTE4"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "symbolXOffset"
+            id          = "{D94523F6-C71D-4e6e-B0A0-D725211C4CDE}"
+            type        = "LONG"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "symbolYOffset"
+            id          = "{CFBFF9E3-D418-467e-B23C-725ECB0C27B0}"
+            type        = "LONG"
+            devnote     = "An IME appearance property">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "CopyAttrs"
+            id          = "{63E09C9A-5927-4677-B01A-4B3ACF782D8B}"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextOffset"
+            id          = "{4719F0BE-1692-4545-8A69-F60A4AAAD9EB}"
+            type        = "LONG">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "SupportedCodepage"
+            id          = "{A901FF11-C95B-409a-8587-DBF562AD8DFD}"
+            type        = "LONG"
+            cardinality = "multiple">
+        </PropertyDef>
+
+    </PropertyDefs>
+
+    <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <SetDef
+            id          = "{631CC8F2-C98B-4c7e-B65A-E756D8E3AC67}"
+            name        = "RtfDocument"
+            policy      = "inclusive">
+
+            <property name = "id"/>
+            <property name = "Filename"/>
+            <property name = "version"/>
+            <property name = "Locdescr"/>
+            
+        </SetDef>
+    
+        <SetDef
+            id          = "{0811BEA0-E034-45d8-820E-29150535564A}"
+            name        = "HtmlDocument"
+            policy      = "inclusive">
+
+            <property name = "id"/>
+            <property name = "Filename"/>
+            <property name = "version"/>
+            <property name = "Locdescr"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{17062829-8A60-42f7-BADA-47E823E73723}"
+            name        = "ImageFile">
+        </SetDef>
+    
+        <SetDef
+            id          = "{CBBB2843-15E7-4251-BFEA-7C49818727C6}"
+            name        = "Dialog"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "version"/>
+            <property name = "Size"/>
+            <property name = "Position"/>
+            <property name = "BaseDialog"/>
+            <property name = "DragRegion"/>
+            <property name = "Caption"/>
+            <property name = "Descr"/>
+            <property name = "LocDescr"/>
+            <property name = "BkgndImage"/>
+            <property name = "BkgndCreateRgn"/>
+            <property name = "SizeToBkgnd"/>
+            <property name = "SizeToContent"/>
+            <property name = "Moveable"/>
+            <property name = "FocusId"/>
+            <property name = "HelpUrl"/>
+            <property name = "Visible"/>
+            <property name = "Popup"/>
+            <property name = "ClipSiblings"/>
+            <property name = "ControlParent"/>
+            <property name = "Transparent"/>
+            <property name = "BkgndTransparent"/>
+            <property name = "Disabled"/>
+            <property name = "BkgndFillColor"/>
+            <property name = "FontIndex"/>
+            <property name = "FontFace"/>
+            <property name = "FontColor"/>
+            <property name = "FontHeight"/>
+            <property name = "FontWeight"/>
+            <property name = "Bold"/>
+            <property name = "Italic"/>
+            <property name = "Underline"/>
+            <property name = "Strikethrough"/>
+            <property name = "RtfDocument"/>
+            <property name = "HtmlDocument"/>
+            <property name = "String"/>
+            <property name = "dsAbsAlign"/>
+            <property name = "dsSysModal"/>
+            <property name = "dsLocalEdit"/>
+            <property name = "dsSetFont"/>
+            <property name = "dsModalFrame"/>
+            <property name = "dsSetForeground"/>
+            <property name = "Dialog"/>
+            <property name = "Control"/>
+            <property name = "Book"/>
+            <property name = "Button"/>
+            <property name = "DefButton"/>
+            <property name = "Checkbox"/>
+            <property name = "Link"/>
+            <property name = "Edit"/>
+            <property name = "Password"/>
+            <property name = "Listbox"/>
+            <property name = "Combobox"/>
+            <property name = "GroupBox"/>
+            <property name = "RadioBtn"/>
+            <property name = "Label"/>
+            <property name = "ImageCtl"/>
+            <property name = "HScrollbarCtl"/>
+            <property name = "VScrollbarCtl"/>
+            <property name = "Slider"/>
+            <property name = "Spin"/>
+            <property name = "Progress"/>
+            <property name = "Hotkey"/>
+            <property name = "Listview"/>
+            <property name = "Thumbview"/>
+            <property name = "Treeview"/>
+            <property name = "Tab"/>
+            <property name = "Animation"/>
+            <property name = "RichEdit"/>
+            <property name = "DateTime"/>
+            <property name = "MonthCal"/>
+            <property name = "IPEdit"/>
+            <property name = "ComboBoxEx"/>
+            <property name = "RasterImage"/>
+        </SetDef>
+    
+        <SetDef
+            id          = "{0755AB31-5371-45c9-93A6-6D3802A90592}"
+            name        = "Book">
+        </SetDef>
+    
+        <SetDef
+            id          = "{71AF57C0-C4C5-4b92-979C-A5D871B7C629}"
+            name        = "Button">
+        </SetDef>
+    
+        <SetDef
+            id          = "{E0AEDA5E-039D-4573-A9CC-482F9BCAF1C0}"
+            name        = "DefButton">
+        </SetDef>
+
+        <SetDef
+            id          = "{D07640F3-CAD2-4b00-9D56-9C6E9FA1B559}"
+            name        = "Checkbox">
+        </SetDef>
+    
+        <SetDef
+            id          = "{9ADA7817-642F-456e-9D8C-C68916F79F94}"
+            name        = "Link">
+        </SetDef>
+    
+        <SetDef
+            id          = "{1774C2ED-B195-4268-9D3D-F752D69DEEF7}"
+            name        = "Edit">
+        </SetDef>
+    
+        <SetDef
+            id          = "{893E3D1F-2C24-45b7-B272-03826F211C8B}"
+            name        = "Password">
+        </SetDef>
+    
+        <SetDef
+            id          = "{2C57447A-454D-4a97-88A9-D613AAA4FD61}"
+            name        = "Listbox">
+        </SetDef>
+    
+        <SetDef
+            id          = "{9C690E5D-ED39-4a4d-BF2F-19E1B5C2585F}"
+            name        = "Combobox">
+        </SetDef>
+    
+        <SetDef
+            id          = "{DC37D0A2-C54C-439c-B45C-BFA430536ED0}"
+            name        = "GroupBox">
+        </SetDef>
+    
+        <SetDef
+            id          = "{BD626228-2F21-4ac4-9B1A-2E077E76D40C}"
+            name        = "RadioBtn">
+        </SetDef>
+    
+        <SetDef
+            id          = "{8CC62246-9227-4f63-873D-E990D89E072A}"
+            name        = "Label">
+        </SetDef>
+    
+        <SetDef
+            id          = "{217F8207-6D93-4866-99D6-6FF44A22C47B}"
+            name        = "ImageCtl">
+        </SetDef>
+    
+        <SetDef
+            id          = "{46EE7FD1-14C8-4d1d-BDFB-6C38D8D51782}"
+            name        = "HScrollbarCtl">
+        </SetDef>
+    
+        <SetDef
+            id          = "{33B77ACE-3464-4da0-B4B2-B66321284954}"
+            name        = "VScrollbarCtl">
+        </SetDef>
+    
+        <SetDef
+            id          = "{68B72305-3E02-49ff-B538-1624B8FD3B6E}"
+            name        = "Slider">
+        </SetDef>
+    
+        <SetDef
+            id          = "{5FEE15D8-35EB-47e5-9F13-4F09F57722DC}"
+            name        = "Spin">
+        </SetDef>
+    
+        <SetDef
+            id          = "{6119B9A3-980D-4f21-894A-359DA2004C7B}"
+            name        = "Progress">
+        </SetDef>
+    
+        <SetDef
+            id          = "{F7A42FA2-3DF6-4060-B00D-9ADD13FD39CF}"
+            name        = "Hotkey">
+        </SetDef>
+    
+        <SetDef
+            id          = "{BD3BA271-E1D6-4d89-8DB2-5A52886D8B2F}"
+            name        = "Listview">
+            <property name = "ListviewColumnList"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{304583E8-35E0-4bdf-AD49-69EC993E2865}"
+            name        = "Treeview">
+        </SetDef>
+    
+        <SetDef
+            id          = "{0FEFD747-1170-48bf-8603-FA4ED4546064}"
+            name        = "Thumbview">
+        </SetDef>
+    
+        <SetDef
+            id          = "{008904CB-9D5A-4196-8B9B-305ECE86BCA5}"
+            name        = "Tab">
+        </SetDef>
+    
+        <SetDef
+            id          = "{D68AE433-F735-4574-A35C-ED38AF3D60A4}"
+            name        = "Animation">
+        </SetDef>
+    
+        <SetDef
+            id          = "{784401CF-B681-43d1-B924-B83FB8F2E534}"
+            name        = "RichEdit">
+        </SetDef>
+    
+        <SetDef
+            id          = "{3407A227-537B-4068-8D1E-C185AE474256}"
+            name        = "DateTime">
+        </SetDef>
+    
+        <SetDef
+            id          = "{DCDACA00-F79A-4693-9EFB-F71FAF39CCE9}"
+            name        = "MonthCal">
+        </SetDef>
+    
+        <SetDef
+            id          = "{8A44FA0B-5C9B-4389-8F43-DA1453C4FF7B}"
+            name        = "IPEdit">
+        </SetDef>
+    
+        <SetDef
+            id          = "{6F776613-2037-4c12-BA15-64D5FD5D5D03}"
+            name        = "ComboBoxEx">
+        </SetDef>
+
+        <SetDef
+            id          = "{62504978-E8EF-4b4f-B749-893B79844451}"
+            name        = "Control">
+        </SetDef>
+        
+        <SetDef
+            id          = "{363B6C67-1808-48f3-8D5A-DFB74AA3DDA3}"
+            name        = "RasterImage"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Filename"/>
+        </SetDef>
+        
+        <SetDef
+            id          = "{96659E49-0479-4b97-AFCE-8DF4A5CEA2D6}"
+            name        = "RasterImageList"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "RasterImage"/>
+        </SetDef>
+        
+        <SetDef
+            id          = "{B6CF76C2-FB1F-48c9-BD68-ED74979C1DB6}"
+            name        = "BackgroundImage"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "RasterImage"/>
+        </SetDef>
+        
+        <SetDev
+            id          = "{2EE38D17-7B74-4479-B07A-2FB6CF54F011}"
+            name        = "ListviewColumn"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "Text"/>
+            <property name = "RasterImageList"/>
+            <property name = "ColumnWidthPercent"/>
+            <property name = "ColumnWidthPixels"/>
+            <property name = "NormalColor"/>
+            <property name = "NormalTextColor"/>
+            <property name = "SelColor"/>
+            <property name = "SelTextColor"/>
+            <property name = "FocusColor"/>
+            <property name = "FocusTextColor"/>
+            <property name = "FontIndex"/>
+            <property name = "FontFace"/>
+            <property name = "FontHeight"/>
+            <property name = "FontWeight"/>
+            <property name = "Bold"/>
+            <property name = "Italic"/>
+            <property name = "Underline"/>
+            <property name = "Strikethrough"/>
+        </SetDev>
+        
+        <SetDef
+            id          = "{9D4704BC-3408-45a9-A53B-5144FDF7D2B9}"
+            name        = "ListviewColumnList"
+            policy      = "inclusive">
+            <property name = "id"/>
+            <property name = "RasterImageList"/>
+            <property name = "ListviewColumn"/>
+            <property name = "ColumnBeforeRow"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{E99B6524-3E27-4250-BBF5-3FEBC5E70EFD}"
+            name        = "FontDef"
+            policy      = "inclusive">
+            <property name = "id" />
+            <property name = "FontFace" />
+            <property name = "FontHeight" />
+            <property name = "FontWeight" />
+            <property name = "FontShadow" />
+            <property name = "FontAntialias" />
+            <property name = "FontSpacing" />
+        </SetDef>
+
+        <SetDef
+            id          = "{BFEA555F-AA27-4bf3-AB58-4B89EC1523E1}"
+            name        = "Shell"
+            policy      = "unrestricted">
+        </SetDef>
+
+        <SetDef
+            id          = "{7AE99E49-EF0C-4e3e-A8E4-15883565475C}"
+            name        = "InGame"
+            policy      = "unrestricted">
+        </SetDef>
+
+        <SetDef
+            id          = "{F8B05662-E602-4bcd-9376-C96A300ACB2B}"
+            name        = "ImeSettings"
+            policy      = "inclusive">
+            <property name =  "SupportedCodepage"/>
+            <property name =  "symbolColorText"/>
+            <property name =  "symbolPlacement"/>
+            <property name =  "candColorBase"/>
+            <property name =  "candColorBorder"/>
+            <property name =  "candColorText"/>
+            <property name =  "compColorInput"/>
+            <property name =  "compColorTargetConv"/>
+            <property name =  "compColorConverted"/>
+            <property name =  "compColorTargetNotConv"/>
+            <property name =  "compColorInputErr"/>
+            <property name =  "compColorText"/>
+            <property name =  "Shell"/>
+            <property name =  "InGame"/>
+        </SetDef>
+    </SetDefs>
+
+</SymbolDef>

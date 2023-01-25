@@ -1,0 +1,480 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- FlightSim mission property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "MissionBuilder"
+    id           = "{23665D53-7AE6-4708-9293-DA6A41E3B609}"
+    descr        = "SimProp mission builder property, type and set definitions."
+    chdr         = "propbuilder.h"
+    version      = "1,0" >
+
+    <SymbolInclude
+        filename = "Common\propcontain.xml"
+        id       = "{37232F83-DC75-46b3-BC26-F142957A50FF}"
+        version  = "1,0" />
+
+    <SymbolInclude
+        filename = "Common\propeventtrigger.xml"
+        id="{0F1DFC3E-2C40-4D74-AE5F-3338A07331F4}"
+        version  = "1,0" />
+
+    <SymbolInclude
+        filename = "Common\propmissionui.xml"
+        id="{EEC77FEA-7777-4ed4-8744-95FB55164B03}"
+        version  = "1,0" />
+
+    <SymbolInclude
+      filename = "Common\propvisualeffect.xml"
+      id="{40763C70-05B8-44CC-9C92-B869C5013876}"
+      version  = "1,0" />
+
+    <SymbolInclude
+        filename = "Common\propflightplan.xml"
+        id="{94407AEB-45AB-46c7-AE32-854F590DDCE9}"
+        version  = "1,0" />
+
+    <SymbolInclude
+        filename = "Common\propcontain.xml"
+        id="{37232F83-DC75-46b3-BC26-F142957A50FF}"
+        version  = "1,0" />
+
+    <SymbolInclude
+      filename = "Common\propedition.xml"
+      id="{625EC4C6-4EC1-4743-9F85-832838CE6534}"
+      version  = "1,0" />
+
+    <SymbolInclude
+       filename = "Common\propsceneryobjects.xml"
+       id="{9EE96FC0-10FB-4702-9CCA-F945242661E6}" 
+       version  = "1,0" />
+
+    <SymbolInclude
+     filename = "Common\propservice.xml"
+     id="{D699D20C-2B87-47AA-9C4B-7D696E9DF58B}"
+     version  = "1,0" />
+  
+  <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propbuilder.h    
+//
+//  FlightSim mission AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+
+    </PropertyDefs>
+
+    <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:   optional prefix for C/C++ property identifier.
+    -->
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{5391B41B-F02F-45d5-BD7E-F0D5ADE3604F}"
+            name        = "MissionBuilder"
+            policy      = "unrestricted"
+            descr       = "Top level bag for mission builder debug goo.">
+        </SetDef>
+
+        <SetDef
+            ID          = "{421541B6-3F67-4378-B416-9E1B3AE2F854}"
+            name        = "TriggerList"
+            policy      = "inclusive"
+            descr       = "All possible triggers">
+            <property name = "AirportLandingTrigger"/>
+            <property name = "AnimationEventTrigger"/>
+            <property name = "AreaLandingTrigger"/>
+            <property name = "CameraEventTrigger"/>
+            <property name = "CollisionTrigger"/>
+            <property name = "CounterTrigger"/>
+            <property name = "EventTrigger"/>
+            <property name = "FlowEventTrigger"/>
+            <property name = "LastLapTrigger"/>
+            <property name = "MenuPromptTrigger"/>
+            <property name = "ObjectInteractionTrigger"/>
+            <property name = "ParkingTrigger"/>
+            <property name = "PropertyTrigger"/>
+            <property name = "ProximityTrigger"/>
+            <property name = "RaceEndTrigger"/>
+            <property name = "TimerTrigger"/>
+            <property name = "TimerTriggerFlowStateAction"/>
+            <property name = "NodeDistanceTrigger"/>
+            <property name = "OnSpawnTrigger"/>
+        </SetDef>
+        
+        <SetDef
+            ID          = "{72BC82FA-63FD-4926-8DEA-80931ADB208D}"
+            name        = "ActionList"
+            policy      = "inclusive"
+            descr       = "All possible actions">
+            <property name = "ActivateWaypointsAction"/>
+            <property name = "AdjustPayloadAction"/>
+            <property name = "AITakeControlsAction"/>
+            <property name = "AttachDroppablePayloadAction"/>
+            <property name = "AttachEffectAction"/>
+            <property name = "ChangeAssistanceItemAction"/>
+            <property name = "ChangeObjectTypeAction"/>
+            <property name = "CountAction"/>
+            <property name = "CustomAction"/>
+            <property name = "DialogAction"/>
+            <property name = "InstructorDialogAction"/>
+            <property name = "DisqualifyPlayerAction"/>
+            <property name = "EventTriggerAction"/>
+            <property name = "FadeToColorAction"/>
+            <property name = "FailureAction"/>
+            <property name = "FlowEventAction"/>
+            <property name = "FlowStateAction"/>
+            <property name = "TimelineAction"/>
+            <property name = "GoalResolutionAction"/>
+            <property name = "GrantRewardAction"/>
+            <property name = "ObjectActivationAction"/>
+            <property name = "OneShotSoundAction"/>
+            <property name = "PlayAnimationAction"/>
+            <property name = "PlaySoundAction"/>
+            <property name = "PlayBlendTreeStateAction"/>
+            <property name = "PlayFlightRecordingAction"/>
+            <property name = "PlayListAction"/>
+            <property name = "PlayReplayAction"/>
+            <property name = "PointOfInterestActivationAction"/>
+            <property name = "RaceClockStartAction"/>
+            <property name = "RaceCourseActivateAction"/>
+            <property name = "RandomAction"/>
+            <property name = "RefillAction"/>
+            <property name = "RequestTeleportAction"/>
+            <property name = "ResetTimerAction"/>
+            <property name = "RumbleAction"/>
+            <property name = "RTPCAction"/>
+            <property name = "SpawnAction"/>
+            <property name = "SendMessageToAIAction"/>
+            <property name = "StopSoundAction"/>
+            <property name = "SubGoalResolutionAction"/>
+            <property name = "TimerAdjustAction"/>
+            <property name = "TimePenaltyAction"/>
+            <property name = "SoundEffectAction"/>
+            <property name = "ChangeRopeLinkAction"/>
+            <property name = "WaitAction"/>
+            <property name = "StopObjectActionQueueAction"/>
+            <property name = "ExecuteListAction"/>          
+        </SetDef>
+      
+        <SetDef
+            ID          = "{2AF9CFDF-B0BC-4f95-8E49-9068F7899D53}"
+            name        = "AreaDefList"
+            policy      = "inclusive"
+            descr       = "All possible area definitions">
+            <property name = "CylinderArea"/>
+            <property name = "InGameMarker"/>
+            <property name = "RectangleArea"/>
+            <property name = "PolygonArea"/>
+        </SetDef>
+        
+        <SetDef
+            ID          = "{AB3F35CA-747B-4e88-872E-4885C4A9BF5E}"
+            name        = "MissionObjectList"
+            policy      = "inclusive"
+            descr       = "All possible mission objects">
+            <property name = "AllowableContainerList"/>
+            <property name = "Camera"/>
+            <property name = "ConditionRacePoint"/>
+            <property name = "GateRacePoint"/>
+            <property name = "Goal"/>
+            <property name = "LivingWorldExclusion"/>
+            <property name = "MissionBushTrip"/>
+            <property name = "MissionRefueling"/>
+            <property name = "PictureInPictureViewController"/>
+            <property name = "Player"/>
+            <property name = "PointOfInterest"/>
+            <property name = "PylonRacePoint"/>
+            <property name = "RealismOverrides"/>
+            <property name = "RaceCourse"/>
+            <property name = "RaceInfo"/>
+            <property name = "RidgeLift"/>
+            <!--<property name = "ScenarioMetadata"/>-->
+            <property name = "SubGoal"/>
+            <property name = "Thermal"/>
+            <property name = "Tutorial"/>
+            <property name = "VolumeRacePoint"/>
+            <property name = "Calculator"/>
+            <property name = "AirportCalculator"/>
+            <property name = "Rope"/>
+        </SetDef>
+
+
+      <SetDef
+         ID          = "{82BC82FA-63FD-4926-8DEA-80931ADB208D}"
+         name        = "WWiseList"
+         policy      = "inclusive"
+         descr       = "All wwise stuff">
+        <property name = "FlowStateWise"/>
+        <property name = "FlowSwitchWwise"/>
+        
+      </SetDef>
+
+      <SetDef
+            ID             = "{B380AD08-FE52-4460-B921-4B6E80BAF454}"
+            name           = "EditionObjects">
+            <property name = "CommentNode"/>
+        </SetDef>
+      
+        <SetDef
+            ID          = "{C73CC25D-B7C1-48B1-92F5-631142F2F2FF}"
+            name        = "RTCList"
+            policy      = "inclusive"
+            descr       = "All possible RTC objects">
+            <property name = "RTCCameraShot"/>
+            <property name = "RTCSequencer"/>
+            <property name = "RTCShot"/>
+            <property name = "RTCLocationsPreloadAction"/>
+        </SetDef>
+
+        <SetDef
+            ID          = "{D8403EE3-E115-4BC1-B36F-B447848FC68A}"
+            name        = "FlightPlan"
+            policy      = "inclusive"
+            descr       = "FlightPlan objects">
+            <property name = "ATCWaypoint"/>
+        </SetDef>
+
+        <SetDef
+            ID          = "{DD1BECEF-BFC7-4DD9-BE12-D01B7FD60D4F}"
+            name        = "SimObjects"
+            policy      = "inclusive"
+            descr       = "Sim Objects">
+            <property name = "Container"/>
+            <property name = "Flock"/>
+        </SetDef>
+
+        <SetDef
+            ID             = "{E8071DE4-16E8-46A5-A270-4A82E1A0177C}"
+            name           = "LibraryObjects">
+        <property name = "LibraryObject"/>
+        </SetDef>
+      
+        <SetDef
+            id          = "{47DE51CD-8532-4a32-940A-BB58F0E7AF76}"
+            name        = "GroupedObjects"
+            policy      = "inclusive"
+            descr       = "List of objects contained in the group">
+            <property name = "ObjectReference"/>
+        </SetDef>
+
+        <SetDef
+            id             = "{798952E2-BE87-4979-A79C-BAF7B801576F}"
+            name           = "ObjectGroup">
+            <property name = "Descr"/>      
+            <property name = "WorldPosition"/>
+            <property name = "GroupedObjects"/>
+            <property name = "LocalDistance"/>
+            <property name = "LocalHeading"/>
+            <property name = "LocalAltitude"/>
+            <property name = "LocalOffsetXYZ"/>
+            <property name = "LocalOrientation"/>
+        </SetDef>
+
+        <!-- VFX Block list -->
+        <!-- Here be dragons -->
+        <SetDef
+          ID          = "{0DFF08F1-9FCF-46EB-A7F9-F3D7B3BCB7C4}"
+          name        = "VisualEffectBlocks"
+          policy      = "inclusive"
+          descr       = "All possible visual effect blocks">
+          <property name = "VisualEffect"/>
+          <property name = "Emitter"/>
+          <property name = "BlockParticleInit"/>
+          <property name = "BlockParticleUpdate"/>
+          <property name = "Output"/>
+          <property name = "StaticMesh"/>
+        </SetDef>
+        <!-- VFX Node categories -->
+        <SetDef
+          ID          = "{6B185ABD-16E3-4F41-BF99-A31E06D9A3E3}"
+          name        = "VisualEffectNodes_Types"
+          policy      = "inclusive"
+          descr       = "Raw types">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "Float"/>
+          <property name = "Split"/>
+          <property name = "Vector2"/>
+          <property name = "Vector3"/>
+          <property name = "Vector4"/>
+        </SetDef>
+        <SetDef
+          ID          = "{A51F26AF-B83C-478D-8B9B-AACB3F57E0D1}"
+          name        = "VisualEffectNodes_Arithmetic"
+          policy      = "inclusive"
+          descr       = "Arithmetic operations">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "AddOperation"/>
+          <property name = "DivideOperation"/>
+          <property name = "MultiplyOperation"/>
+          <property name = "PowOperation"/>
+          <property name = "SubtractOperation"/>
+        </SetDef>
+        <SetDef
+          ID          = "{B65B39F6-2756-4A44-908E-A2C22CBF5752}"
+          name        = "VisualEffectNodes_ValueControl"
+          policy      = "inclusive"
+          descr       = "Simple value control functions">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "GetBezierCurve" /> <!--Displayed as "BezierCurve" in editor-->
+          <property name = "Clamp"/>
+          <property name = "Lerp"/>
+          <property name = "SetScale"/>
+        </SetDef>
+        <SetDef
+          ID          = "{B7FFAA88-9C20-4073-B731-E4477DA9BCE3}"
+          name        = "VisualEffectNodes_Color"
+          policy      = "inclusive"
+          descr       = "Color specific operations">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "Color"/>
+          <property name = "ColorSpaceConversion"/>
+        </SetDef>
+        <SetDef
+          ID          = "{A5D7D0B3-1348-4A1D-BF25-E11EE32931CE}"
+          name        = "VisualEffectNodes_Environment"
+          policy      = "inclusive"
+          descr       = "Effect and environment values">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "EmitterDirection"/>
+          <property name = "GetGroundAttribute"/>
+          <property name = "GetInstanceAttribute"/>
+          <property name = "GetParticleAttribute"/>
+          <property name = "GravityVector"/>
+          <property name = "GroundDirection"/>
+          <property name = "LocalDirection"/>
+          <property name = "WindDirection"/>
+        </SetDef>
+        <SetDef
+          ID          = "{E944D04A-2E1A-45DA-AB78-D0816E76BDA6}"
+          name        = "VisualEffectNodes_Simulation"
+          policy      = "inclusive"
+          descr       = "Values from the simulation">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "GraphParameter"/>
+          <property name = "GetSimVar"/> <!--Displayed as "SimVar" in editor-->
+        </SetDef>
+        <SetDef
+          ID          = "{B7154E8C-AA9D-4B55-B69F-3FE0B2346EF2}"
+          name        = "VisualEffectNodes_Random"
+          policy      = "inclusive"
+          descr       = "Random values generators">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "RandomDirectionInCone"/>
+          <property name = "RandomValue"/>
+          <property name = "SampleNoise"/>
+        </SetDef>
+        <SetDef
+          ID          = "{B616CB4B-7007-4A22-A1FE-20387DD03F6A}"
+          name        = "VisualEffectNodes_Animation"
+          policy      = "inclusive"
+          descr       = "Animating particles">
+          <!-- SORT ALPHABETICALLY -->
+          <property name = "AtlasPlayer"/>
+        </SetDef>
+        <!-- propmath.xml TODO -->
+        <!--<SetDef
+                id          = "{0}"
+                name        = "Math">-->
+          <!-- arithmetic -->
+          <!--property name = "Add"/>
+          <property name = "Substract"/>
+          <property name = "Mul"/>
+          <property name = "Divide"/>
+          <property name = "OneMinus"/>
+          <property name = "Negate"/>
+          <property name = "Frac"/>
+          <property name = "Abs"/>
+          <property name = "Modulo"/-->
+          <!-- interpolations -->
+          <!--property name = "Lerp"/>
+          <property name = "Smoothstep"/-->
+          <!-- cutoffs -->
+          <!--property name = "floor"/>
+          <property name = "ceil"/>
+          <property name = "Clamp"/>
+          <property name = "Saturate"/-->
+          <!-- constants -->
+          <!--property name = "Epsilon"/>
+          <property name = "PI"/-->
+          <!-- Trigonometry -->
+          <!--property name = "cos"/>
+          <property name = "sin"/>
+          <property name = "tan"/>
+          <property name = "acos"/>
+          <property name = "asin"/>
+          <property name = "atan"/-->
+          <!-- Exonential and logarithms -->
+          <!--property name = "Exp"/>
+          <property name = "Log2"/>
+          <property name = "Log10"/-->
+          <!-- Geometry -->
+          <!--property name = "Position"/>
+          <property name = "Rotation"/>
+          <property name = "Position"/>
+          <property name = "Rotation"/-->
+          <!-- Remap -->
+          <!--property name = "Remap"/>
+          <property name = "Remap01"/-->
+          <!-- Vector -->
+          <!--property name = "Float"/>
+          <property name = "Vector2"/>
+          <property name = "Vector3"/>
+          <property name = "Vector4"/>
+          <property name = "Dot"/>
+          <property name = "Cross"/>
+          <property name = "Length"/-->
+          <!-- Time and Delta time-->
+          <!--property name = "Time"/-->
+          <!-- Time between current and precedent frames -->
+          <!--property name = "DeltaTime"/-->
+        <!--</SetDef>-->
+        <!-- SimWeather -->
+        <!--SetDef
+              id          = "{0DFF08F1-9FCF-46EB-A7F9-F3D7B3BCB7C4}"
+              name        = "SimWeather">
+          <property name = "WindDirection"/>
+          <property name = "WindSpeed"/>
+          <property name = "Humidity"/>
+        </SetDef-->
+
+                
+        <SetDef
+          id             = "{DA32EC37-A005-48E8-9A92-8AC0F4A5DF19}"
+          name           = "Service">
+          <property name = "GroundService"/>
+          <property name = "States"/>
+          <property name = "GroupedObjects"/>
+          <property name = "State"/>
+          <property name = "name"/>
+          <property name = "ObjectReferenceList"/>
+        </SetDef>
+      
+    </SetDefs>
+</SymbolDef>

@@ -1,0 +1,1218 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- FlightSim mission property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "VisualEffect"
+    id           = "{40763C70-05B8-44CC-9C92-B869C5013876}"
+    descr        = "Visual Effect property, type and set definitions."
+    chdr         = "propvisualeffect.h"
+    version      = "1,0">
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+  <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+  <SymbolInclude
+        filename = "Common\propmission.xml"
+        id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+        version  = "1,0" />
+  <SymbolInclude
+        filename = "Common\propgauge.xml"
+        id       = "{2B1F7CE9-C6CF-4131-8783-46689D7ABDB2}"
+        version  = "1,0" />
+  <!--<SymbolInclude
+        filename = "Common\propmath.xml"
+        id       = "{0}"
+        version  = "1,0"/>-->
+  <!-- awfully needs some propcommon.xml, propworld.xml & propmath.xml to make something cool -->
+
+  <PropertyDefs symbolprefix = "SPID_">
+    <PropertyDef
+        name        = "TimeEmission"
+        id          = "{9556E6BB-6808-4F0F-931B-AE09721DFFC0}"
+        type        = "FLOAT"
+        default     = "-1.0"
+        descr       = "In seconds, -1. means the emitter never stops."/>
+        
+    <PropertyDef
+        name        = "Delay"
+        id          = "{724C740D-CC14-4506-AE57-4A58C57EF486}"
+        type        = "FLOAT"
+        default     = "0.0"
+        descr       = "In seconds"/>
+    <PropertyDef
+        name        = "Capacity"
+        id          = "{73D8A80A-0608-4908-A1E2-CA142FF3E6B7}"
+        type        = "FLOAT"
+        default     = "16.0"
+        min         = "0.0"
+        max         = "10000.0"
+        descr       = "Maximum amount of particles at any time"/>
+      <PropertyDef
+        name        = "MaxDistanceEmission"
+        id          = "{7E715AB1-A368-4721-95A4-311C78423D8A}"
+        type        = "FLOAT"
+        default     = "2000.0"
+        descr       = "Maximum distance from camera in meters within which the Emitter is allowed to Emit"/>
+
+    <PropertyDef
+        name        = "FirstValue"
+        id          = "{C248A004-CED8-4EF4-BB92-0CCD882474EB}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "SecondValue"
+        id          = "{861556B7-F940-4F9E-96B2-F987CA0CD46F}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "FXTime"
+        label       = "t"
+        id          = "{AD79BA16-8BF7-4A41-8D5F-48B920852AA4}"
+        type        = "INPUTFLOAT"/>
+
+    <PropertyDef
+        name        = "CurveLoop"
+        label       = "Loop"
+        id          = "{983B66DD-5835-49E0-9832-B3465BB6128A}"
+        type        = "BOOL"/>
+
+    <PropertyDef
+        name        = "FrameRate"
+        id          = "{578E850B-5A3B-4E8F-8AED-C26443F7C35D}"
+        type        = "INPUTFLOAT"/>
+
+    <PropertyDef
+        name        = "MinRandValue"
+        id          = "{098E7301-8D77-47B7-A1E6-A9CBF75640DB}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "MaxRandValue"
+        id          = "{4EF48DEA-2C5F-442B-9F0E-0A2C88A633C5}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "RandSeed"
+        id          = "{28CA5AAD-EE6D-4AA4-AEBC-5EF060FFC723}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "RandIndex"
+        id          = "{125EE98C-9F21-4066-B8B5-3B7AFD4C3496}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "Curve"
+        id          = "{82FF57A5-AE46-41AD-8F1B-24C1AEE9954B}"
+        type        = "BEZIERCURVE"/>
+    <PropertyDef
+        name        = "NoiseType"
+        id          = "{32A9E533-371A-4491-9E60-E0550F68DA5E}"
+        type        = "ENUM"
+        default     = "Perlin"
+        descr       = "Type of noise sampled">
+      <EnumDef symbolprefix="NOISE_TYPE">
+        <EnumVal name="PERLIN"             xml_name="Perlin"/>
+        <EnumVal name="SIMPLEX"            xml_name="Simplex"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+        name        = "x"
+        id          = "{DD9EA005-088E-4BDB-9EFD-5A1EF10B6971}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "outX"
+        id          = "{71706CAE-8D8B-4293-9111-EE3EED42A718}"
+        type        = "OUTPUTVALUE"/>
+    <PropertyDef
+        name        = "y"
+        id          = "{6B1C6C3C-B8DA-4085-99D8-D014AD0E413A}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "outY"
+        id          = "{4407529F-473E-45C3-97BA-D4BCAEC656BC}"
+        type        = "OUTPUTVALUE"/>
+    <PropertyDef
+        name        = "z"
+        id          = "{12059FE5-853E-484C-86ED-8A0C133C57D5}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "outZ"
+        id          = "{7E25EBBB-C2CE-44CD-A204-207B69E4E63D}"
+        type        = "OUTPUTVALUE"/>
+    <PropertyDef
+        name        = "w"
+        id          = "{44029057-D51B-4127-99A1-2E3BEBCB2E1D}"
+        type        = "INPUTFLOAT"/>
+    <PropertyDef
+        name        = "outW"
+        id          = "{61129D10-CD9C-48D9-93C1-806168D342DC}"
+        type        = "OUTPUTVALUE"/>
+    <PropertyDef
+        name        = "GravityScale"
+        ID          = "{40D7D47D-4443-4E0A-AB51-F6676B5394E4}"
+        label       = "scale"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 9.807"
+        descr       = "Scale 1D"/>
+    <PropertyDef
+        name        = "xVariant"
+        label       = "x"
+        id          = "{EAE730B0-86C2-40D1-BA77-2A783B9D5B89}"
+        type        = "INPUTVARIANT"/>
+    <PropertyDef
+        name        = "yVariant"
+        label       = "y"
+        id          = "{76C4E816-5579-4E9E-B962-A3FCB258B55C}"
+        type        = "INPUTVARIANT"/>
+
+    <PropertyDef
+        name        = "FXScale"
+        label       = "Scale"
+        id          = "{823C4869-D601-45D6-B3BA-FEF34EBDB18D}"
+        type        = "INPUTFLOAT"/>
+
+    <PropertyDef
+        name        = "Coordinate3D"
+        label       = "Coordinate"
+        id          = "{698DB7B8-1C1D-4D6C-93D8-53DAB78A230F}"
+        type        = "INPUTFLOAT3"/>
+
+    <PropertyDef
+        name        = "AttachToEmitterTranslation"
+        id          = "{E3AFC658-8E13-4ACF-929C-21C4D999EB05}"
+        type        = "BOOL"
+        default     = "false"
+        descr       = "Coordinate system origin is based on Emitter"
+        obsolete    = "true"/>
+    <PropertyDef
+        name        = "AttachToEmitterRotation"
+        id          = "{3B4C93BD-9A91-4090-AECD-CE83A83D66B7}"
+        type        = "BOOL"
+        default     = "false"
+        descr       = "Coordinate system orientation is based on Emitter"
+        obsolete    = "true"/>
+    <PropertyDef
+        name        = "EmitInLocalSpace"
+        id          = "{0BB3CC14-9430-49D4-9DEA-71EF3FB41BF5}"
+        type        = "BOOL"
+        default     = "false"
+        descr       = "Coordinate system is based on Emitter"/>
+
+    <PropertyDef
+        name        = "DisableOcclusion"
+        id          = "{959334B0-9B8C-4A1C-B1C4-BC35DAABA2FB}"
+        type        = "BOOL"
+        default     = "false"
+        descr       = "Disable the occlusion of particles inside occluder volumes"/>
+    <PropertyDef
+        name        = "Material"
+        id          = "{084E6ED5-45E8-426F-91BA-85E6FE51AF6D}"
+        type        = "GUID"
+        default     = "{B88D7628-C0AD-4F34-A191-639DB9449E93}"
+        descr       = "Material from Material Library"/>
+    <PropertyDef
+        name        = "Mesh"
+        id          = "{6B2BC117-DDCE-4B78-A1B0-10D63398BCDE}"
+        type        = "GUID"
+        default     = "{00000000-0000-0000-0000-000000000000}" 
+        descr       = "Mesh from Objects Library"/>
+    <PropertyDef
+        name        = "StaticMeshPosition"
+        id          = "{A917DB95-2FD4-437E-B96F-ED2237574ED1}"
+        type        = "INPUTFLOAT3"
+        default     = "{00000000-0000-0000-0000-000000000000},0,0,0"
+        descr       = "Mesh position to the visual effects position"/>
+    <PropertyDef
+        name        = "StaticMeshRotation"
+        id          = "{751157BD-582B-4FF4-A24D-174DF8820CC1}"
+        type        = "INPUTFLOAT3"
+        default     = "{00000000-0000-0000-0000-000000000000},0,0,0"
+        descr       = "Mesh rotation to the visual effects rotation"/>
+    <PropertyDef
+        name        = "StaticMeshScale"
+        id          = "{B257D169-9CFB-4534-A071-401D7F8E92BE}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000},1"
+        descr       = "Mesh scale relative to the visual effects scale"/>
+    <!---->
+    <PropertyDef
+        name        = "UVMode"
+        id          = "{61456EDE-9777-4E65-88B2-4220F544C924}"
+        type        = "ENUM"
+        default     = "Default"
+        descr       = "Type of UV sampler">
+      <EnumDef symbolprefix="ENUM_UVMODE">
+        <EnumVal name="DEFAULT"   xml_name="Default"/>
+        <EnumVal name="ATLAS"    xml_name="Atlas"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+        name        = "AtlasSize"
+        id          = "{F44504E1-DDAD-4764-99A3-2C7F4EB970F8}"
+        type        = "INPUTFLOAT2"
+        default     = "{00000000-0000-0000-0000-000000000000},0,0"
+        descr       = "Atlas size"/>
+    <PropertyDef
+          name        ="ParticleLocationType"
+          id          ="{B8DA528C-1469-474F-83C3-E2113E403514}"
+          type        = "ENUM"
+          default     = "Current"
+          descr       = "Type of location">
+      <EnumDef symbolprefix="ENUM_LOCATION">
+        <EnumVal name="CURRENT"   xml_name="Current"/>
+        <EnumVal name="SOURCE"    xml_name="Source"/>
+      </EnumDef>
+    </PropertyDef>
+    <PropertyDef
+          name        ="ParticleAttributeType"
+          id          ="{94E4FE4D-2081-460E-8367-5DB712F4D1A8}"
+          type        = "ENUM"
+          default     = "Age"
+          descr       = "Type of particle attribute">
+      <EnumDef symbolprefix="ENUM_PARTICLE_ATTRIBUTE">
+        <EnumVal name="AGE"                     xml_name="Age"/>
+        <EnumVal name="AGEOVERLIFETIME"         xml_name="AgeOverLifetime"/>
+        <EnumVal name="LIFETIME"                xml_name="Lifetime"/>
+        <EnumVal name="POSITION"                xml_name="Position"/>
+        <EnumVal name="ROTATION"                xml_name="Rotation"/>
+        <EnumVal name="VELOCITY"                xml_name="Velocity"/>
+        <EnumVal name="SIZE"                    xml_name="Size"/>
+        <EnumVal name="SCALE"                   xml_name ="Scale"/>
+        <EnumVal name="TEXTUREINDEX"            xml_name="TextureIndex"/>
+        <EnumVal name="ID"                      xml_name="id"/>
+        <EnumVal name="COLOR"                   xml_name="Color"/>
+        <EnumVal name="VELOCITY_ROTATION_AXIS"  xml_name="VelocityRotationAxis"/>
+        <EnumVal name="VELOCITY_ROTATION_RATE"  xml_name="VelocityRotationRate"/>
+        <!-- ALWAYS ADD NEW NEUM VALUES AT THE END OR YOU WILL BREAK COMPILED VFXs
+        Because the value is serialized as an int in the binary SPB file and may be
+        deserialized back to the wrong enum value if the declaration order changes here -->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="EmitterDirectionType"
+          id          ="{5F917FFB-AE81-49CF-A774-9AC3AD932400}"
+          type        = "ENUM"
+          default     = "X+"
+          descr       = "Direction">
+      <EnumDef symbolprefix="ENUM_EMITTER_DIRECTION">
+        <EnumVal name="X_POSITIVE"    xml_name="X+"/>
+        <EnumVal name="X_NEGATIVE"    xml_name="X-"/>
+        <EnumVal name="Y_POSITIVE"    xml_name="Y+"/>
+        <EnumVal name="Y_NEGATIVE"    xml_name="Y-"/>
+        <EnumVal name="Z_POSITIVE"    xml_name="Z+"/>
+        <EnumVal name="Z_NEGATIVE"    xml_name="Z-"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="FromColorSpace"
+          id          ="{2ED4448A-7E93-4E26-91AB-DDDB72EE0072}"
+          type        = "ENUM"
+          default     = "RGB"
+          descr       = "Source color space">
+      <EnumDef symbolprefix="ENUM_FROM_COLOR_SPACE">
+        <EnumVal name="RGB"   xml_name="RGB"/>
+        <EnumVal name="HSV"    xml_name="HSV"/>
+        <EnumVal name="YUV"    xml_name="YUV"/>
+        <!--EnumVal name="sRGB"    xml_name="sRGB"/>
+        <EnumVal name="Linear"    xml_name="Linear"/-->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="ToColorSpace"
+          id          ="{E1660400-496E-448F-9FE7-D8381B871465}"
+          type        = "ENUM"
+          default     = "RGB"
+          descr       = "Target color space">
+      <EnumDef symbolprefix="ENUM_TO_COLOR_SPACE">
+        <EnumVal name="RGB"   xml_name="RGB"/>
+        <EnumVal name="HSV"    xml_name="HSV"/>
+        <EnumVal name="YUV"    xml_name="YUV"/>
+        <!--EnumVal name="sRGB"    xml_name="sRGB"/>
+        <EnumVal name="Linear"    xml_name="Linear"/-->
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="WindDirOptions"
+          id          ="{B0BCCFCE-7EA0-42F3-B293-D40A0245A7EA}"
+          type        = "ENUM"
+          default     = "Raw"
+          descr       = "Options for WindDir Node, Raw the wind direction multiplied by the strength. Normalized : the direction only.">
+      <EnumDef symbolprefix="ENUM_WINDDIROPTIONS">
+        <EnumVal name="RAW"           xml_name="Raw"/>
+        <EnumVal name="NORMALIZED"    xml_name="Normalized"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="PrimitiveType"
+          id          ="{5B1FD495-A9DC-4201-802B-58CE90B891D8}"
+          type        = "ENUM"
+          default     = "Quad"
+          descr       = "Type of primitive">
+      <EnumDef symbolprefix="ENUM_PRIMITIVE">
+        <EnumVal name="QUAD"              xml_name="Quad"/>
+        <EnumVal name="RIBBON"            xml_name="Ribbon"/>
+        <EnumVal name="GROUND_RIBBON"     xml_name="GroundRibbon"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="QuadOrientationType"
+          id          ="{D30C6C56-6420-4220-BA75-AB60D6095D42}"
+          type        = "ENUM"
+          default     = "FaceCamera"
+          descr       = "Type of orientation">
+      <EnumDef symbolprefix="ENUM_QUAD_ORIENTATION">
+        <EnumVal name="FACE_CAMERA"              xml_name="FaceCamera"/>
+        <EnumVal name="FIXED_AXIS"               xml_name="FixedAxis"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="InstanceAttributeType"
+          id          ="{595671ED-DC7E-4B2A-A4DF-0110CCB08119}"
+          type        = "ENUM"
+          default     = "ContactPoint"
+          descr       = "Type of instance attribute">
+      <EnumDef symbolprefix="ENUM_INSTANCE_ATTRIBUTE">
+        <EnumVal name="CONTACTPOINT"  xml_name="ContactPoint"/>
+        <EnumVal name="AGE" xml_name="Age"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="GroundAttributeType"
+          id          ="{8EAA259C-DEE4-4C7F-A95C-E2480858964A}"
+          type        = "ENUM"
+          default     = "Position"
+          descr       = "Type of ground attribute">
+      <EnumDef symbolprefix="ENUM_GROUND_ATTRIBUTE">
+        <EnumVal name="POSITION" xml_name="Position"/>
+        <EnumVal name="COLOR"    xml_name="Color"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "BoolIn"
+     id          = "{A8D3E4A5-7CFA-49E7-AC90-64C9E478EE02}"
+     type        = "INPUTBOOL"
+     descr       = "Bool value, default value when nothing branched. Prefer using a const bool node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "LongIn"
+     id          = "{DCCE61AB-1064-4C56-86A7-A34E277342C6}"
+     type        = "INPUTLONG"
+     descr       = "Long value, default value when nothing branched. Prefer using a const long node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "ULongIn"
+     id          = "{E539FD86-C9E4-4E5A-B3F9-BB248E83FCE5}"
+     type        = "INPUTULONG"
+     descr       = "Unsigned long value, default value when nothing branched. Prefer using a const unsigned long node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "FloatIn"
+     id          = "{C015DE22-7294-46DF-A39C-AC0DC51FE0D6}"
+     type        = "INPUTFLOAT"
+     descr       = "Float value, default value when nothing branched. Prefer using a const float node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "Float2In"
+     id          = "{40ED2617-C6D9-43A8-82DA-8738C1E6381C}"
+     type        = "INPUTFLOAT2"
+     descr       = "Float2 value, default value when nothing branched. Prefer using a const vector node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "Float3In"
+     id          = "{64BB2C5A-44E1-44E6-B77F-97E9170A6650}"
+     type        = "INPUTFLOAT3"
+     descr       = "Float3 value, default value when nothing branched. Prefer using a const vector node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "ColorIn"
+     id          = "{4D26BEF8-BC12-4DC8-8F29-CAC194727EC4}"
+     type        = "INPUTCOLOR"
+     descr       = "Color value, default value when nothing branched. Prefer using a const color node instead.">
+    </PropertyDef>
+
+    <PropertyDef
+      name        = "OutputValue"
+      id          = "{CB559D4C-0089-4D1C-B7C5-2BE579819605}"
+      type        = "OUTPUTVALUE">
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="LerpType"
+          id          ="{296598B9-DD4F-42E7-A40C-8153FAF1495E}"
+          type        = "ENUM"
+          default     = "Lerp"
+          descr       = "Type of Lerp">
+      <EnumDef symbolprefix="ENUM_LERP">
+        <EnumVal name="LERP"          xml_name="Lerp"/>
+        <EnumVal name="SMOOTHSTEP"    xml_name="SmoothStep"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+          name        ="SimvarType"
+          id          ="{92B6FDC8-6B93-43DB-AF06-1914BBC3F554}"
+          type        = "TEXT"
+          default     = "NONE"
+          descr       = "Type of Simvar">
+    </PropertyDef>
+    <PropertyDef
+          name        ="SimvarIndex"
+          id          ="{2E682CDD-CAE2-44B7-96CE-94C17DD3829C}"
+          type        = "INPUTULONG"
+          descr       = "Simvar index">
+    </PropertyDef>
+    <PropertyDef
+          name        ="Unit"
+          id          ="{778760F4-7F47-4A5E-8C9B-5E5B12F3BA15}"
+          type        = "ULONG"
+          default     = "0"
+          descr       = "Simvar unit">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "ParticleRate"
+        id          = "{D8D7FF39-196A-448A-A909-139B681C7EB8}"
+        type        = "INPUTFLOAT"
+        label       = "Rate"
+        default     = "{00000000-0000-0000-0000-000000000000}, 2"/>
+
+    <PropertyDef
+        name        = "ParticleRateType"
+        id          = "{1C8B9A05-F159-401F-AA33-92DE44606E10}"
+        type        = "ENUM"
+        label       = "RateType"
+        default     = "Time"
+        descr       = "Dimension over which the particle spawn rate is expressed.">
+      <EnumDef symbolprefix="ENUM_PARTICLERATETYPE">
+        <EnumVal name="TIME"		xml_name="Time"/>
+        <EnumVal name="DISTANCE"	xml_name="Distance"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "Name"
+        id          = "{F2AD0D84-25D9-4609-BE90-F9472FA62606}"
+        type        = "TEXT"
+        default     = "DefaultName"
+        descr       = "Node name"/>
+
+    <PropertyDef
+        name        = "GraphParamName"
+        id          = "{A75CFFE2-B655-46FA-B6E3-10A74B2F48C2}"
+        type        = "TEXT"
+        default     = ""
+        label       = "Name"
+        descr       = "Name of the Graph Parameter to compute and retrieve"/>
+
+    <PropertyDef
+        name        = "GraphParamDefaultValue"
+        id          = "{D25F20FA-7603-4089-AFFE-184B22025281}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        label       = "Default Value"
+        descr       = "Default value to output if the Graph Parameter could not be found"/>
+
+    <PropertyDef
+        name        = "HeatDeformDeformation"
+        id          = "{7EA175C7-20A3-4FA2-A6EC-4C0086596499}"
+        type        = "INPUTFLOAT2"
+        default     = "{00000000-0000-0000-0000-000000000000}, 1.0, 1.0"
+        label       = "Deformation"
+        descr       = "Deformation"/>
+
+    <PropertyDef
+        name        = "HeatDeformBlur"
+        id          = "{DF751AA1-8732-4091-80D3-53DD34A5080A}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 1.0"
+        label       = "Blur"
+        descr       = "Blur"/>
+
+    <PropertyDef
+        name        = "AfterburnerPower"
+        id          = "{6E7DF1DB-82C8-4DD9-AEC3-6BB41419D6C8}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 1.0"
+        label       = "Power"
+        descr       = "Power"/>
+
+    <PropertyDef
+        name        = "InputPitch"
+        id          = "{9409AD21-BB06-4B1F-B2A9-5D93A8EE45E9}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        label       = "Pitch"
+        descr       = "Unit is degrees"/>
+
+    <PropertyDef
+        name        = "InputHeading"
+        id          = "{5FFAC55A-6F52-4A05-995F-F517682E4A25}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        label       = "Heading"
+        descr       = "Unit is degrees"/>
+
+    <PropertyDef
+        name        = "InputBank"
+        id          = "{FE5F75CE-49AA-456A-A530-33E950E2CCC6}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        label       = "Bank"
+        descr       = "Unit is degrees"/>
+
+    <PropertyDef
+        name        = "InnerAngle"
+        id          = "{423C3C58-F1F8-43C9-8588-70572ADBF2C7}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        min         = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        max         = "{00000000-0000-0000-0000-000000000000}, 180.0"
+        descr       = "Unit is degrees"/>
+
+    <PropertyDef
+        name        = "OuterAngle"
+        id          = "{EBF866FD-4829-4930-9F77-78F44EAFA663}"
+        type        = "INPUTFLOAT"
+        default     = "{00000000-0000-0000-0000-000000000000}, 30.0"
+        min         = "{00000000-0000-0000-0000-000000000000}, 0.0"
+        max         = "{00000000-0000-0000-0000-000000000000}, 180.0"
+        descr       = "Unit is degrees"/>
+    
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_">
+    <!-- Main Node, mandatory to build the effect -->
+    <SetDef
+        id          = "{9B199A8A-3B7D-4265-8B45-B71A8982CD1A}"
+        classId     = "{9DFC0383-83EA-4C86-A111-36CA59B44EC9}"
+        policy      = "inclusive"
+        name        = "VisualEffect">
+      <property name = "InstanceId"/>
+      <property name = "Name"/>
+      <property name = "EmitterList"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5989764C-AC1F-409C-9541-3ADF799E2EB1}"
+        policy      = "inclusive"
+        label       = "Lifetime"
+        name        = "ParticleLifetime">
+      <property name = "FloatIn"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{71204EFD-84F4-4BFB-81E9-C69D63DEBC64}"
+        policy      = "inclusive"
+        label       = "Size"
+        name        = "ParticleSize">
+      <property name = "FloatIn"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{129E5917-0D14-438C-B58A-2559EE05446D}"
+        policy      = "inclusive"
+        label       = "Scale"
+        name        = "ParticleScale">
+      <property name = "Float3In"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{2B50D671-BEB9-435A-95EE-D378CDBB208D}"
+        policy      = "inclusive"
+        label       = "TextureIndex"
+        name        = "ParticleTextureIndex">
+      <property name = "FloatIn"/>
+    </SetDef>
+    
+    <SetDef
+        id          = "{367FF2D5-58AF-48D8-BCB8-363C04A8544B}"
+        policy      = "inclusive"
+        label       = "Rotation"
+        name        = "ParticleRotation">
+      <property name = "Float3In"/>
+    </SetDef>
+    
+    <SetDef
+        id          = "{348F0A59-1D9A-4191-A47F-1CC39F175B8A}"
+        policy      = "inclusive"
+        label       = "Position"
+        name        = "ParticlePosition">
+      <property name = "Float3In"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{B299CC39-F60B-4C51-BB79-6E8F4348570B}"
+        policy      = "inclusive"
+        label       = "Velocity"
+        name        = "ParticleVelocity">
+      <property name = "Float3In"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{8B60D5EF-7BAF-4907-B10B-B2FDF3E76F68}"
+        policy      = "inclusive"
+        label       = "Velocity Rotation Axis"
+        name        = "ParticleVelocityRotationAxis">
+      <property name = "Float3In"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{C28FF97D-AF3A-4143-B3D7-94FF3B5A122B}"
+        policy      = "inclusive"
+        label       = "Velocity Rotation Rate"
+        name        = "ParticleVelocityRotationRate"
+        descr       = "Degrees per second">
+      <property name = "FloatIn"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{2433ACB2-EEC8-409E-B2FD-87540261D812}"
+        policy      = "inclusive"
+        label       = "Color (RGBA)"
+        name        = "ParticleColor">
+      <property name = "ColorIn"/>
+    </SetDef>
+  
+    <SetDef
+        id          = "{4E37B386-23FF-43CC-8EFA-F06A929D85FE}"
+        name        = "EmitterList"
+        policy      = "inclusive"
+        label       = "Emitters and StaticMeshes list"
+        descr       = "List of Emitters and StaticMeshes spawned by this Visual Effect">
+      <!-- Emitter referenced by InstanceId -->
+      <property name = "ObjectReference">
+        <property name="TemplateInstanceId"/>
+      </property>
+    </SetDef>
+
+    <SetDef
+        name        = "MaterialDiffuseColor"
+        old_names   = "AfterburnerColor1"
+        id          = "{3EF0A22E-71EB-48A7-801E-5B3FBCF28095}"
+        label       = "Material Diffuse"
+        policy      = "inclusive">
+        <property name = "ColorIn"/>
+    </SetDef>
+
+    <SetDef
+        name        = "MaterialEmissiveColor"
+        old_names   = "AfterburnerColor2"
+        id          = "{9850AADF-103D-476B-8F1B-2F703C2A2DDF}"
+        label       = "Material Emissive"
+        policy      = "inclusive">
+        <property name = "ColorIn"/>
+    </SetDef>
+
+
+
+    <!--StaticMesh goes to EmitterList, Allow to spawn a static mesh -->
+    <SetDef
+        id          = "{9598E579-57F9-441E-8F9F-55368692D418}"
+        classId     = "{F82620C7-F6BD-40D6-94B0-CD52F4447CCD}"
+        policy      = "inclusive"
+        name        = "StaticMesh">
+      <!-- Ids-->
+      <property name = "InstanceId"/>
+      <!-- Properties -->
+      <property name = "Material"/>
+      <property name = "Mesh"/>
+      <property name = "StaticMeshPosition"/>
+      <property name = "StaticMeshRotation"/>
+      <property name = "StaticMeshScale"/>
+      <property name = "HeatDeformDeformation"/>
+      <property name = "HeatDeformBlur"/>
+      <property name = "AfterburnerPower"/>
+      <property name = "MaterialDiffuseColor"/>
+      <property name = "MaterialEmissivecolor"/>
+    </SetDef>
+    
+    <!-- Emitter goes to Emitter list -->
+    <SetDef
+        id          = "{D592FC4B-880E-4E01-88E1-78DEFB08E795}"
+        classId     = "{D63863C2-DAF7-460E-B1CD-F1F495E38A6C}"
+        policy      = "inclusive"
+        name        = "Emitter">
+      <!-- Ids-->
+      <property name = "InstanceId"/>
+      <!-- Properties -->
+      <property name = "AttachToEmitterTranslation"/>
+      <property name = "AttachToEmitterRotation"/>
+      <property name = "EmitInLocalSpace"/>
+      <property name = "TimeEmission"/>
+      <property name = "Delay"/>
+      <property name = "Capacity"/>
+      <property name = "MaxDistanceEmission"/>
+      <property name = "ParticleRateType"/>
+      <property name = "ParticleRate"/>
+      <property name = "ParticleInit"/>
+    </SetDef>
+    <SetDef
+        id          = "{ABF67D2D-CB83-4184-8BAC-CD03D395CB86}"
+        policy      = "inclusive"
+        label       = "Init"
+        name        = "ParticleInit">
+      <!-- A reference to Particle a InstanceId -->
+      <property name = "ObjectReference"/>
+    </SetDef>
+    <SetDef
+        id          = "{DEEC17C0-852D-4D1D-908B-DAA180609347}"
+        policy      = "inclusive"
+        label       = "Update"
+        name        = "ParticleUpdate">
+      <!-- A reference to Particle a InstanceId -->
+      <property name = "ObjectReference"/>
+    </SetDef>
+    <SetDef
+        id          = "{0EEAF978-520F-4ED7-B528-FADC22551639}"
+        policy      = "inclusive"
+        name        = "ParticleOutput">
+      <!-- A reference to Output a InstanceId -->
+      <property name = "ObjectReference"/>
+    </SetDef>
+
+    <!-- Particle goes to either init or update -->
+    <SetDef
+        id          = "{B263EEE1-706C-4E1C-A9C9-9704444647EC}"
+        classid     = "{C5DCDF28-56CB-4D14-AE9C-08DEC9C25D11}"
+        name        = "BlockParticleInit"
+        label       = "Init"
+        policy      = "inclusive">
+      <!-- Ids-->
+      <property name = "InstanceId"/>
+      <!-- Properties -->
+      <property name = "ParticleLifetime"/>
+      <property name = "ParticleSize"/>
+      <property name = "ParticleScale"/>
+      <property name = "ParticlePosition"/>
+      <property name = "ParticleRotation"/>
+      <property name = "ParticleVelocity"/>
+      <property name = "ParticleVelocityRotationAxis"/>
+      <property name = "ParticleVelocityRotationRate"/>
+      <property name = "ParticleTextureIndex"/>
+      <property name = "ParticleColor"/>
+
+      <property name = "ParticleUpdate"/>
+    </SetDef>
+
+    <!-- Particle goes to either init or update -->
+    <SetDef
+        id          = "{E6E0F5CE-D1BF-49EF-85AB-553E12E03930}"
+        classid     = "{A2293798-6F53-4E84-B277-F996415706E0}"
+        name        = "BlockParticleUpdate"
+        label       = "Update"
+        policy      = "inclusive">
+      <!-- Ids-->
+      <property name = "InstanceId"/>
+      <!-- Properties -->
+      <property name = "ParticleLifetime"/>
+      <property name = "ParticleSize"/>
+      <property name = "ParticleScale"/>
+      <property name = "ParticlePosition"/>
+      <property name = "ParticleRotation"/>
+      <property name = "ParticleVelocity"/>
+      <property name = "ParticleVelocityRotationAxis"/>
+      <property name = "ParticleVelocityRotationRate"/>
+      <property name = "ParticleTextureIndex"/>
+      <property name = "ParticleColor"/>
+
+      <property name = "ParticleOutput"/>
+    </SetDef>
+    <!-- Output goes to an Emitter -->
+    <SetDef
+        id          = "{E91778EF-695F-468D-809F-F0C1EF29C982}"
+        classId     = "{B672F03C-1C62-41EE-BF0E-BD332FA0903B}"
+        policy      = "inclusive"
+        name        = "Output">
+      <!-- Ids-->
+      <property name = "InstanceId"/>
+      <!-- Properties -->
+      <property name = "PrimitiveType"/>
+      <property name = "DisableOcclusion"/>
+      <property name = "QuadOrientationType"/>
+      <property name = "ParticleColor"/>
+      <property name = "UVMode"/>
+      <property name = "AtlasSize"/>
+      <!--<property name = "Orientation"/>-->
+      <property name = "Material"/>
+      <property name = "HeatDeformDeformation"/>
+      <property name = "HeatDeformBlur"/>
+      <property name = "AfterburnerPower"/>
+      <property name = "MaterialDiffuseColor"/>
+      <property name = "MaterialEmissiveColor"/>
+      <!--<PropertyDef
+          name        ="Orientation"
+          id          ="{24872DF1-8514-4585-A644-98102BEB85AB}"
+          type        = "ENUM"
+          default     = "FaceToCamera"
+          descr       = "Sprite orientation">
+        <EnumDef symbolprefix="ENUM_OUTPUT_ORIENT">
+          <EnumVal name="FACETOCAMERA"    xml_name="FaceToCamera"/>
+          <EnumVal name="WORLD"           xml_name="World"/>
+        </EnumDef>
+      </PropertyDef>-->
+    </SetDef>
+    <SetDef
+        id          = "{6FF8A45D-84D5-4DDA-8C53-62329CEFE46B}"
+        classId     = "{6AADD566-5277-4A51-9982-9B7710B50A58}"
+        policy      = "inclusive"
+        name        = "GetParticleAttribute">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "ParticleLocationType"/>
+      <property name = "ParticleAttributeType"/>
+    </SetDef>
+
+    <!-- START: Coordinate Space Operations -->
+    <SetDef
+        id          = "{A7DD1C2E-0970-4C5D-B63F-E759403B63BA}"
+        classId     = "{7762CFAE-539A-4C3C-83BB-5413C7B4FE02}"
+        policy      = "inclusive"
+        name        = "EmitterDirection">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "EmitterDirectionType"/>
+    </SetDef>
+    <SetDef
+        id          = "{8998F298-6BBC-4188-9F22-40EF50914DD8}"
+        classId     = "{B9124B2D-4FB8-4C40-8978-459640A9E1D0}"
+        policy      = "inclusive"
+        name        = "LocalDirection">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+      <property name = "y"/>
+      <property name = "z"/>
+    </SetDef>
+    <SetDef
+        id          = "{D9CE99D0-7F7B-418B-856E-FD7FCE109CA4}"
+        classId     = "{25A38D79-51AE-4E9F-9C98-4CFEDF66B10B}"
+        policy      = "inclusive"
+        name        = "GroundDirection">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "X"/>
+      <property name = "y"/>
+      <property name = "z"/>
+    </SetDef>
+    <SetDef
+        id          = "{39BC9AB1-3B20-4E7A-BE4D-A194905F185B}"
+        classId     = "{8A64CFAB-4B9E-47A2-8F7B-6185C2EE522B}"
+        policy      = "inclusive"
+        name        = "GravityVector">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "GravityScale"/>
+    </SetDef>
+    <SetDef
+        id          = "{D52DE999-68DA-43DD-B859-EE2A8C2C06DE}"
+        classId     = "{653BDE7F-45FB-496C-8217-69DD930F6C93}"
+        policy      = "inclusive"
+        name        = "WindDirection">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "WindDirOptions"/>
+    </SetDef>
+    <!-- END: Coordinate Space Operations-->
+  
+    <SetDef
+        id          = "{617EE077-413F-432D-A179-8B488819CF7B}"
+        classId     = "{EAC019B7-E08B-4814-BCD2-6B78F8436F66}"
+        policy      = "inclusive"
+        label       = "SimVar"
+        name        = "GetSimVar">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "SimvarType"/>
+      <property name = "SimvarIndex"/>
+      <property name = "Unit"/>
+    </SetDef>
+
+    <SetDef
+        id          ="{C7A18314-B926-47D8-9FA6-B39FD9B09831}"
+        classId     ="{49608F35-43C2-4DF2-B055-42E4C0217255}"
+        policy      ="inclusive"
+        name        ="GraphParameter">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "GraphParamName"/>
+      <property name = "GraphParamDefaultValue"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{D4B5750C-1B54-433F-A2DA-817A6A3AFAAD}"
+        classId     = "{6064C834-434B-434B-A724-DDCAF8910BBB}"
+        policy      = "inclusive"
+        name        = "GetInstanceAttribute">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "InstanceAttributeType"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5DBA5C6E-53D9-41A2-9DBD-6A358D07A527}"
+        classId     = "{A86A345A-F470-4AF7-9607-1D112D14C21C}"
+        policy      = "inclusive"
+        name        = "Lerp">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "LerpType"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+      <property name = "FXTime"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{4DC52D32-7363-4DDD-B2B4-245948FC6AA6}"
+        classId     = "{31372E01-8BB8-43B1-9B80-B880C8F9704D}"
+        policy      = "inclusive"
+        name        = "Clamp">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+      <property name = "y"/>
+      <property name = "z"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{69C5612C-6FA5-4268-BD6D-9214E8AC7D2C}"
+        classId     = "{3B06999C-74BD-4139-85C0-60EE9F72C964}"
+        policy      = "inclusive"
+        name        = "SetScale">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "FXScale"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{026D7BA9-7D2F-439E-9B1B-238FCF94F09C}"
+        classId     = "{411CC04F-FBA2-430C-8831-17EE1627B793}"
+        policy      = "inclusive"
+        name        = "Split">
+      <property name = "InstanceId"/>
+      <property name = "outX"/>
+      <property name = "outY"/>
+      <property name = "outZ"/>
+      <property name = "outW"/>
+      <property name = "x"/>
+    </SetDef>
+
+
+    <SetDef
+        id          = "{925F77C8-9B44-48B7-903C-89453FC07B2D}"
+        classId     = "{62DD40EC-99AE-4FEB-88B7-D5B6A49F1F8E}"
+        policy      = "inclusive"
+        label       = "SampleNoise"
+        name        = "SampleNoise">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "NoiseType"/>
+      <property name = "Coordinate3D"/>
+    </SetDef>
+    <SetDef
+        id          = "{EB5D94DE-D471-495E-904C-FF9467BCB0D2}"
+        classId     = "{6E39C057-8B03-406E-BBF0-99CE9443C4B5}"
+        policy      = "inclusive"
+        label       = "Add"
+        name        = "AddOperation">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+    </SetDef>
+    <SetDef
+        id          = "{B485B373-C704-4684-B816-AE6F795B2A9A}"
+        classId     = "{8DE848A8-E608-413C-AE68-DCB0EF7115A3}"
+        policy      = "inclusive"
+        label       = "Subtract"
+        name        = "SubtractOperation">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+    </SetDef>
+    <SetDef
+        id          = "{3D2F8FDB-7D8A-4327-9AFE-7D1F6F2DE0CE}"
+        classId     = "{C9D720ED-1936-4C1E-8602-41FE258F8D28}"
+        policy      = "inclusive"
+        label       = "Multiply"
+        name        = "MultiplyOperation">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+    </SetDef>
+    <SetDef
+        id          = "{E7F5D19C-A4A4-4C05-9D55-EA8A075BE003}"
+        classId     = "{2CE757C8-C987-4108-AE70-700599A5B542}"
+        policy      = "inclusive"
+        label       = "Divide"
+        name        = "DivideOperation">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+    </SetDef>
+    <SetDef
+        id          = "{FCFD5EAA-0FD5-42AE-8F6E-C77E029AF67A}"
+        classId     = "{0172DA7C-1068-4CB5-A16B-0592E1E9CFBC}"
+        policy      = "inclusive"
+        label       = "Pow"
+        name        = "PowOperation">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "xVariant"/>
+      <property name = "yVariant"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{8F027B8A-3CAD-42A9-9949-60189CD4037A}"
+        classId     = "{7AD281BA-A028-48FA-9F47-FF25FE5FF9A0}"
+        policy      = "inclusive"
+        name        = "Float">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{75A8EE00-FCAE-4A9F-B0C8-8F860F1FC93C}"
+        classId     = "{19B2782A-BFA4-41E7-8F8B-092052C174C3}"
+        policy      = "inclusive"
+        name        = "Vector2">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+      <property name = "y"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{12981D39-817F-4ADD-B3D7-70BFC44E6956}"
+        classId     = "{74381FEB-D0FA-453C-93A1-585774881E1D}"
+        policy      = "inclusive"
+        name        = "Vector3">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+      <property name = "y"/>
+      <property name = "z"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{AD390293-F2C6-49A0-B6F6-6686AAC01FCA}"
+        classId     = "{289C060C-149D-4E13-AF13-C7F9C46B5207}"
+        policy      = "inclusive"
+        name        = "Vector4">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "x"/>
+      <property name = "y"/>
+      <property name = "z"/>
+      <property name = "w"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{7591EAF0-23E3-4D40-AB98-AE758C592C60}"
+        classId     = "{36157E44-B91A-4165-A7E9-419558B372C7}"
+        policy      = "inclusive"
+        name        = "RandomValue">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "MinRandValue"/>
+      <property name = "MaxRandValue"/>
+      <property name = "RandSeed"/>
+      <property name = "RandIndex"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{57972BB6-9EC6-497B-B564-0380256E8505}"
+        classId     = "{A6797C14-864D-49EC-A993-42D598DE9975}"
+        policy      = "inclusive"
+        name        = "RandomDirectionInCone">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "InputPitch"/>
+      <property name = "InputHeading"/>
+      <property name = "InnerAngle"/>
+      <property name = "OuterAngle"/>
+      <property name = "RandSeed"/>
+      <property name = "RandIndex"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{6DB4C36C-4CF1-41CF-8A13-D2C4F26C0C98}"
+        classId     = "{025D66A4-8BBD-4709-82EE-4B9016F2B957}"
+        policy      = "inclusive"
+        label       = "BezierCurve"
+        name        = "GetBezierCurve">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "FXTime"/>
+      <property name = "Curve"/>
+      <Property name = "CurveLoop"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{5FB45FCB-1DD6-42A2-A4C9-A2C236A0B16E}"
+        classId     = "{5A3A57BB-3004-4E71-8960-8346E20157AE}"
+        policy      = "inclusive"
+        name        = "AtlasPlayer">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "FrameRate"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{52F01EA2-6A74-4547-BCB3-1A754BD15C90}"
+        classId     = "{8A566529-EB09-49D9-8126-9D46F24D8D3D}"
+        policy      = "inclusive"
+        name        = "GetGroundAttribute">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "GroundAttributeType"/>
+      <property name = "Position" obsolete = "true"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{428C430D-1E2C-4461-82FE-5EBB59A990E3}"
+        classId     = "{8207E634-E5A8-4D3F-8BE3-E843BCF7E12A}"
+        policy      = "inclusive"
+        name        = "ColorSpaceConversion">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "ColorIn"/>
+      <property name = "FromColorSpace"/>
+      <property name = "ToColorSpace"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{B3FCFFB6-9DEA-478F-80DD-3B0CC485B782}"
+        classId     = "{C4622451-5323-4C40-ADD6-EDA7F5C46051}"
+        policy      = "inclusive"
+        name        = "Color">
+      <property name = "InstanceId"/>
+      <property name = "OutputValue"/>
+      <property name = "ColorIn"/>
+    </SetDef>
+
+  </SetDefs>
+</SymbolDef>

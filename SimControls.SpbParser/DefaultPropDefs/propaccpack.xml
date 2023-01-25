@@ -1,0 +1,247 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- FlightSim acceleration pack property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "SimAccPack"
+    id           = "{90C29823-22D9-4987-BD09-C78B1904F959}"
+    descr        = "SimProp acceleration pack property, type and set definitions."
+    chdr         = "propaccpack.h"
+    version      = "1,0" >
+	
+	<!-- TODO: REMOVE UNUSED INCLUDES -->
+	<SymbolInclude
+		filename = "Common\propflightplan.xml"
+		id       = "{94407AEB-45AB-46c7-AE32-854F590DDCE9}"
+		version  = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propworldbase.xml"
+		id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+		version  = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propsceneryobjects.xml"
+		id="{9EE96FC0-10FB-4702-9CCA-F945242661E6}"
+		version  = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propbaseui.xml"
+		id="{4E8ACFBF-79DE-4136-9DA2-A0AE96185229}"
+		version  = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propassistancepresets.xml"
+		id="{3BD03A03-3C23-4B14-834C-2E24CA0019DF}"
+		version  = "1,0" />
+
+	<SymbolInclude
+		filename = "Common\propcontain.xml"
+		id="{37232F83-DC75-46b3-BC26-F142957A50FF}"
+		version  = "1,0" />
+	
+	<SymbolInclude
+		filename = "Common\propmission.xml"
+		id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+		version  = "1,0" />
+
+
+	<cpptext pass="1">
+		//-------------------------------------------------------------------------//
+		//  propaccpack.h
+		//
+		//  FlightSim acceleration pack AceXML property and property set symbol
+		//  definitions
+		//-------------------------------------------------------------------------//
+		//
+
+		//
+		//  Namespace
+		//
+	</cpptext>
+
+	<PropertyDefs symbolprefix = "SPID_">
+
+		<cpptext pass="2">
+			//
+			//  Property Identifiers
+			//
+		</cpptext>
+
+		<PropertyDef
+		  name        ="RenoCategory"
+		  id          ="{1BEBE184-09E5-4DD2-B8B5-12B57E86FECC}"
+		  type        = "ENUM"
+		  default     = "Unlimited"
+		  descr       = "Category of a reno race">
+			<EnumDef symbolprefix="RENOCATEGORY_">
+				<EnumVal name="JET" xml_name="Jet"/>
+				<EnumVal name="UNLIMITED" xml_name="Unlimited"/>
+				<EnumVal name="T6" xml_name="T6"/>
+				<EnumVal name="BIPLANES" xml_name="Biplanes"/>
+			</EnumDef>
+		</PropertyDef>
+
+    <PropertyDef
+			name        = "EventChangeVariationModel"
+			id          = "{7F9D8D9B-5016-43D3-AC20-E1FDD95D58DA}"
+			type        = "TEXT"
+			descr       = "FlowPlaneSelectionVariation - EventChangeVariationModel">
+    </PropertyDef>
+
+    <PropertyDef
+  name        = "ServerRaceStateName"
+  id          = "{D0EEFF84-3749-4F76-AE35-0F77C2093AF1}"
+  type        = "TEXT"
+  descr       = "Server RaceState name">
+    </PropertyDef>
+		
+	</PropertyDefs>
+
+	<SetDefs symbolprefix = "SSID_">
+
+		<SetDef
+		   id          = "{1DD9B649-7543-4A4D-A6B4-903688CB8F81}"
+		   classid     = "{B8364DFD-8F96-4157-BA31-5C71DF2513EB}"
+		   name        = "MissionRaceReno"
+		   policy      = "inclusive">
+			<property name = "id"/>
+			<property name = "Descr"/>
+			<property name = "SuccessText"/>
+			<property name = "FailureText"/>
+			<property name = "AbortedText"/>
+			<property name = "SpentTime"/>
+			<property name = "ImagePath"/>
+			<property name = "InstanceId"/>
+			<property name = "VRDependency"/>
+			<property name = "Activated"/>
+      <property name = "DisableToolbar" />
+			<property name = "Objectives"/>
+			<property name = "BreadcrumbReference"/>
+			<property name = "RaceCourseReference"/>
+			<property name = "TemplateInstanceId"/>
+			<property name = "Score"/>
+			<property name = "CrashActions"/>
+			<property name = "RaceCourseReference"/>
+		</SetDef>
+
+		<SetDef
+        id          = "{3BE9CDBB-7A73-4365-B6F2-ACE851882689}"
+        classid     = "{11E9CB3E-E620-43A8-A323-FBC8E1D32436}"
+        name        = "FlowPlaneSelection"
+        policy      = "inclusive"
+        descr       = "">
+			<property name = "Descr"/>
+			<property name = "InstanceId"/>
+			<property name = "UniqueRefId"/>
+			<property name = "TemplateInstanceId"/>
+			<property name = "VRDependency"/>
+			<property name = "FlowPlaneSelectionChoices"/>
+      <property name = "EventGoToChoice"/>
+			<property name = "EventSelectChoice"/>
+      <property name = "EventCurrentSelectionChanged"/>
+    </SetDef>
+
+		<SetDef
+			id          = "{3622FD8A-CEB2-4F24-9D4D-F5988AB5A254}"
+			name        = "FlowPlaneSelectionChoices"
+			policy      = "inclusive"
+			descr       = "">
+			<property name = "Descr"/>
+			<property name = "InstanceId"/>
+			<property name = "VRDependency"/>
+			<property name = "FlowPlaneSelectionChoice"/>
+			<property name = "CurrentIndex"/>
+			<property name = "IsLooping"/>
+		</SetDef>
+
+		<SetDef
+			id          = "{7309FAFA-E356-4BA2-BA5D-2E9995DE3666}"
+			name        = "FlowPlaneSelectionChoice"
+			policy      = "inclusive"
+			descr       = "">
+			<property name = "Descr"/>
+			<property name = "InstanceId"/>
+			<property name = "VRDependency"/>
+			<property name = "Name"/>
+			<property name = "RenoCategory"/>
+			<property name = "CameraName"/>
+			<property name = "RTCToChoice"/>
+			<property name = "RTCOnStart"/>
+			<property name = "RTCBack"/>
+			<property name = "RTCLoop"/>
+			<property name = "RTCSelect"/>
+			<property name = "ObjectReferenceList"/>
+		</SetDef>
+
+    <SetDef
+			id          = "{029A96D5-CE09-47EE-968A-ACA3AAE57E8F}"
+      classid     = "{98B12C83-ABAA-4D62-A949-1507A856EE9E}"
+			name        = "FlowPlaneSelectionVariation"
+			policy      = "inclusive"
+			descr       = "">
+      <property name = "Descr"/>
+      <property name = "InstanceId"/>
+      <property name = "VRDependency"/>
+      <property name = "ObjectReference"/> <!-- Base aircraft -->
+      <property name = "EventChangeVariationModel"/>
+    </SetDef>
+
+		<SetDef
+			 id          = "{BBEC8EB1-B985-44D0-9CD7-ECB31E17D6C7}"
+			 name        = "Carrier"
+			 policy      = "inclusive">
+			<property name = "ObjectReference"/>
+		</SetDef>
+
+		<SetDef
+			 id          = "{06D9654A-E51D-4261-9216-CE71298D25F2}"
+			 classid     = "{C1131D97-7127-49B0-B666-F0C08663C39B}"
+			 name        = "MissionLandingChallengeCarrier"
+			 policy      = "inclusive">
+			<property name = "id"/>
+			<property name = "Descr"/>
+			<property name = "SuccessText"/>
+			<property name = "FailureText"/>
+			<property name = "AbortedText"/>
+			<property name = "SpentTime"/>
+			<property name = "ImagePath"/>
+			<property name = "InstanceId"/>
+			<property name = "VRDependency"/>
+			<property name = "Activated"/>
+			<property name = "Objectives"/>
+			<property name = "Score"/>
+			<property name = "Carrier"/>
+			<property name = "CrashActions"/>
+      <property name = "DisableToolbar"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{6CA53D40-8145-4787-9224-1C219DD0F878}"
+        classid     = "{E4BE4184-2AAD-4992-AF6F-008455BB5032}"
+        name        = "ServerToClientAction"
+        policy      = "inclusive"
+        descr       = "">
+      <property name = "Descr"/>
+      <property name = "InstanceId"/>
+      <property name = "ObjectReferenceList"/>
+    </SetDef>
+
+    <SetDef
+			  id          ="{A1E7A9BB-2469-4C05-91FD-A1021B8AEF6E}"
+			  classid     ="{5FDBAAF1-A0F5-40B0-906E-28FF2E564358}"
+			  name        = "ServerRaceStateAction"
+			  policy      = "inclusive"
+			  descr       = "">
+      <property name = "Descr"/>
+      <property name = "InstanceId"/>
+      <property name = "StartActions"/>
+      <property name = "ServerRaceStateName"/>
+    </SetDef>
+    
+	</SetDefs>
+
+</SymbolDef>

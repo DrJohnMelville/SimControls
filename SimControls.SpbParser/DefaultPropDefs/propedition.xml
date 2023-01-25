@@ -1,0 +1,126 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Asobo Edition properties symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "SimEdition"
+    id           = "{625EC4C6-4EC1-4743-9F85-832838CE6534}"
+    descr        = "SimProp sets edition properties."
+    chdr         = "propedition.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+      filename      = "Common\propworldbase.xml"
+      id            ="{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+      version       = "1,0" />
+
+  <SymbolInclude
+      filename      = "Common\propui32.xml"
+      id            ="{670105CC-3B4A-4ef5-B28F-CBD3343ADCB7}"
+      version       = "1,0" />
+
+  <cpptext pass="1">
+    //-------------------------------------------------------------------------//
+    //  propedition.h
+    //
+    //  Asobo edition properties symbol definition document
+    //-------------------------------------------------------------------------//
+    //
+
+    //
+    //  Namespace
+    //
+  </cpptext>
+
+  <PropertyDefs
+      symbolprefix = "SPID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Identifiers
+      //
+    </cpptext>
+
+    <PropertyDef
+        name        = "RelatedInstanceId"
+        id          = "{5C920A89-EE07-466C-B176-08905481FE95}"
+        type        = "GUID"
+        xml_io      = "attribute"
+        descr       = "Reference PropSet Id">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "NodePosition"
+        id          = "{D7C79572-3945-4709-8691-BA3F4DF6E844}"
+        type        = "FLOAT2"
+        descr       = "Node X,Y position in graph">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "NodeSize"
+        id          = "{DB1C791C-9571-452D-A8B4-1A27FCCF81C4}"
+        type        = "FLOAT2"
+        default     = "200, 300"
+        descr       = "Node W,H size in graph">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "NodeComment"
+        id          = "{3F9DEE1A-6248-4A5F-B139-BF954EA7EB3A}"
+        type        = "TEXT"
+        descr       = "A node's comment">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "NodeColor"
+        id          = "{F041F790-69F6-4B4F-967D-B7CCC606F831}"
+        type        = "BYTE4"
+        default     = "239, 233, 183, 255"
+        descr       = "Node's color with alpha channel (default is sticky's yellow color)">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+
+  <!-- 
+        Element: SetDefs - Optional block of property set definitions
+        
+            symbolprefix:  optional prefix for C/C++ property identifier.
+    -->
+
+  <SetDefs symbolprefix = "SSID_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+        id          = "{F6DE37BD-50F2-4AA8-9F64-B36C628B20A5}"
+        name        = "EditionInfo"
+        policy      = "inclusive"
+        descr       = "Edition properties related to an instance of another data PropSet">
+      <property name = "RelatedInstanceId"/>
+      <property name = "Enabled" obsolete = "true"/>
+      <property name = "NodePosition"/>
+      <property name = "NodeSize"/>
+      <property name = "Visible" obsolete = "true"/>
+    </SetDef>
+
+    <SetDef
+        id          = "{39539114-E024-4A72-82D3-249F3B2B216E}"
+        name        = "CommentNode"
+        policy      = "inclusive"
+        descr       = "Resizable Comment Node, that also provides grouping feature">
+      <property name = "InstanceId"/>
+      <property name = "id"/>
+      <property name = "NodeComment"/>
+      <property name = "NodeColor"/>
+    </SetDef>
+    
+  </SetDefs>
+</SymbolDef>

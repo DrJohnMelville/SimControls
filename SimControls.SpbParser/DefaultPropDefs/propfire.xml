@@ -1,0 +1,261 @@
+<?xml version= "1.0" encoding= "utf-8" ?> 
+
+<!-- FlightSim fire grid and burnable object property symbol definition document
+  
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef 
+    name         = "SimFire"
+    id           = "{8380807B-BCA9-40b6-A948-20360461A4D0}"
+    descr        = "SimProp fire grid and burnable object property, type and set definitions."
+    chdr         = "propfire.h"
+    version      = "1,0" >
+    
+    <SymbolInclude
+        filename = "Common\propworldbase.xml"
+        id       = "{AE1B7598-3DE6-40d8-A8B8-ED52E281399F}"
+        version  = "1,0" />
+    
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//       
+//  propfire.h    
+//
+//  FlightSim fire grid and burnable object AceXML property and property set 
+//  symbol definitions
+//-------------------------------------------------------------------------//       
+//
+
+//  
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs 
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//  
+//  Property Identifiers
+//
+        </cpptext>
+        
+        <!-- Begin: Burnable object properties -->
+        <PropertyDef
+            name        = "CharredObjectGuid"
+            id          = "{3C9879AE-DCBE-4c99-9927-3201388A53D3}"
+            type        = "GUID"
+            descr       = "Guid of the charred library object">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "WholeObjectGuid"
+            id          = "{0100E300-E7E2-48b5-A4D5-DB0591DF3ACD}"
+            type        = "GUID"
+            descr       = "Guid of the whole library object">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BurnableObjectState"
+            id          = "{611BE431-A1FF-4944-B954-4965153C2275}"
+            type        = "ENUM"
+            default     = "Whole">
+            <EnumDef symbolprefix="SIMPROP_BURNABLE_OBJECT_STATE">
+                <EnumVal 
+                    name = "WHOLE" 
+                    xml_name = "Whole"/>
+                <EnumVal 
+                    name = "CHARRED" 
+                    xml_name = "Charred"/>
+            </EnumDef>
+        </PropertyDef>		
+        <!-- End: Burnable object properties -->
+    
+        <!-- Begin: fire grid properties -->
+        <PropertyDef
+        	name		= "RateOfTravel"
+        	id			= "{E6853E58-9989-4111-A2A2-A84E9E802C2D}"
+        	type		= "FLOAT"
+        	descr		= "Rate of fire spread in meters per second">
+        </PropertyDef>
+        <PropertyDef
+        	name		= "RateOfBurn"
+        	id			= "{CA1AAE66-DCE7-4b6b-9C7C-B3F8BA12BF2D}"
+        	type		= "FLOAT"
+        	descr		= "Amount of seconds each cell will burn before it starts steaming">
+        </PropertyDef>
+        <PropertyDef
+        	name		= "SimulationQmidLevel"
+        	id			= "{9BBFA7D5-F007-4959-B403-DE4B0A32EC92}"
+        	type		= "ULONG"
+        	descr		= "The QMID level we will be simulating fire at">
+       	</PropertyDef>        	     
+        <PropertyDef
+            name        = "FireState"
+            id          = "{6FFD384A-7C0A-4152-9F2B-AEA46723D389}"
+            type        = "ENUM"
+            default     = "Nothing">
+            <EnumDef symbolprefix="SIMPROP_FIRE_STATE">
+                <EnumVal 
+                    name = "NOTHING" 
+                    xml_name = "Nothing"/>
+                <EnumVal 
+                    name = "BURNING" 
+                    xml_name = "Burning"/>
+                <EnumVal
+                	name = "BURNT"
+                	xml_name = "Burnt"/>
+                <EnumVal
+                	name = "WET"
+                	xml_name = "Wet"/>
+            </EnumDef>
+        </PropertyDef>
+		<PropertyDef
+			name		= "BurningFx"
+			id 			= "{D2A73EF1-B732-4165-9CAC-E90C98D112D0}"
+			type		= "TEXT"
+			descr		= "Visual FX for the burning state">
+		</PropertyDef>
+		<PropertyDef
+			name		= "WetFx"
+			id 			= "{208F6A2A-4989-4a00-B5A4-2F64D25CA53B}"
+			type		= "TEXT"
+			descr		= "Visual FX for the wet state">
+		</PropertyDef>
+		<PropertyDef
+			name		= "BurntFx"
+			id 			= "{FAB5104A-C73C-4de9-B0D2-53B9F57452FF}"
+			type		= "TEXT"
+			descr		= "Visual FX for the burnt state">
+		</PropertyDef>
+		<PropertyDef
+			name		= "QmidLevel"
+			id 			= "{26D58502-6BD2-4e99-969C-FC8F80E65007}"
+			type		= "ULONG"
+			descr		= "Qmid Level to map">
+		</PropertyDef>
+		<PropertyDef
+			name		= "RenderGridLines"
+			id 			= "{0DD8F6E4-21D2-4ebd-B77B-74CC709EEE0D}"
+			type		= "BOOL"
+			descr		= "Render the gridlines in the terrain">
+		</PropertyDef>
+		<PropertyDef
+			name		= "CollisionBoxHeight"
+			id 			= "{B3D01782-36DA-4b84-8037-28C4351E02AB}"
+			type		= "FLOAT"
+			descr		= "Height of the collision boxes">
+		</PropertyDef>
+		<PropertyDef
+			name		= "UpperLeftWorldPosition"
+			id 			= "{63209B70-B646-4aae-A2B3-975413CB0DF8}"
+			type		= "LLA">
+		</PropertyDef>
+		<PropertyDef
+			name		= "LowerRightWorldPosition"
+			id 			= "{5143573F-F9A6-4c91-BDE4-48972451D953}"
+			type		= "LLA">
+		</PropertyDef>
+		<PropertyDef
+			name		= "DirectionOfTravel"
+			id 			= "{042BB3F4-556F-43c6-951C-1EE77674486E}"
+            type        = "ENUM"
+            default     = "North">
+            <EnumDef symbolprefix="SIMPROP_TRAVEL_DIRECTION">
+                <EnumVal 
+                    name = "NORTH" 
+                    xml_name = "North"/>
+                <EnumVal 
+                    name = "NORTHEAST" 
+                    xml_name = "Northeast"/>
+                <EnumVal
+                	name = "EAST"
+                	xml_name = "East"/>
+                <EnumVal
+                	name = "SOUTHEAST"
+                	xml_name = "SouthEast"/>
+                <EnumVal
+                	name = "SOUTH"
+                	xml_name = "South"/>
+                <EnumVal
+                	name = "SOUTHWEST"
+                	xml_name = "SouthWest"/>
+                <EnumVal
+                	name = "WEST"
+                	xml_name = "West"/>
+                <EnumVal
+                	name = "NORTHWEST"
+                	xml_name = "NorthWest"/>
+            </EnumDef>
+		</PropertyDef>
+
+        <!-- End: fire grid properties -->
+        
+    </PropertyDefs>
+
+
+    <SetDefs symbolprefix = "SSID_">
+        
+        <cpptext pass="2">
+//  
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <!-- Begin: burnable object property sets -->
+		<SetDef
+			id 			= "{7E012F68-D1F6-4f50-933D-BB264BCA53CF}"
+			classid     = "{F4775C18-645A-4843-97A5-E9A941C28A78}"
+			name		= "BurnableObject">
+			<property name = "WorldPosition"/>
+      <property name = "LocalDistance"/>
+      <property name = "LocalHeading"/>
+      <property name = "LocalAltitude"/>
+      <property name = "LocalOffsetXYZ"/>
+      <property name = "LocalOrientation"/>
+			<property name = "CharredObjectGuid"/>
+			<property name = "WholeObjectGuid"/>
+			<property name = "BurnableObjectState"/>
+		</SetDef>	
+        <!-- End: burnable object property sets -->
+
+        <!-- Begin: fire grid property sets -->
+		<SetDef
+			id 			= "{48D00181-3BBB-422c-875E-6ECB9D1060EC}"
+			classid     = "{602922E2-017F-4359-B2AE-2D7790604D2A}"
+			name		= "FireGrid"
+			descr		= "Fire grid.  Note: There can only be one of these in the world">
+			<property name = "RateOfTravel"/>
+			<property name = "RateOfBurn"/>
+			<property name = "SimulationQmidLevel"/>
+			<property name = "FireCell"/>
+			<property name = "RenderGridLines"/>
+			<property name = "CollisionBoxHeight"/>
+			<property name = "DirectionOfTravel"/>
+		</SetDef>
+		<SetDef
+			id 			= "{87AC3A96-3AC2-4b81-AD41-47F2EF6B1365}"
+			name		= "FireFxMap"
+			descr		= "">
+			<property name = "QmidLevel"/>
+			<property name = "BurningFx"/>
+		</SetDef>
+		<SetDef
+			id 			= "{79687609-1A6D-470f-B3BF-B5C58E908B20}"
+			name		= "FireCell">
+			<property name = "Qmid"/>
+			<property name = "FireState"/>
+		</SetDef>
+		<SetDef
+			id			= "{4264D861-158C-4ae4-AB26-34ECF1E693B8}"
+			name		= "FireRectangle">
+			<property name = "UpperLeftWorldPosition"/>
+			<property name = "LowerRightWorldPosition"/>
+			<property name = "FireState"/>
+		</SetDef>
+
+        <!-- End: fire grid property sets -->
+
+    </SetDefs>
+
+</SymbolDef>

@@ -1,0 +1,714 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+<SymbolDef
+    name         = "MissionGenerator"
+    id           = "{E5BE0793-61EF-478E-90EE-C87FFEB3BE5B}"
+    descr        = "SimProp MissionGenerator property, type and set definitions."
+    chdr         = "propmissiongenerator.h"
+    version      = "1,0" >
+
+  <SymbolInclude
+        filename = "Common\propbase.xml"
+        id       = "{8042AB84-8003-4ff1-9D4A-6D0D057F00DE}"
+        version  = "1,0" />
+  <SymbolInclude
+          filename = "Common\propmission.xml"
+          id       = "{A2E52D91-C9FB-46ae-8958-B3CB121EDDBC}"
+          version  = "1,0" />
+
+  <SymbolInclude
+            filename = "Common\proplivingworld.xml"
+            id       = "{74E774BF-6E78-46c5-B36A-8F610DDF9DCA}"
+            version  = "1,0" />
+
+  <SymbolInclude
+            filename = "Common\propgroups.xml"
+            id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+            version  = "1,0" />
+
+  <SymbolInclude
+             filename = "Common\propcontain.xml"
+             id       = "{37232F83-DC75-46b3-BC26-F142957A50FF}"
+             version  = "1,0" />
+
+  <SymbolInclude
+             filename = "Common\propactivity.xml"
+             id       = "{04B5D554-4AA3-42F9-8ED4-4B6C504EEAAE}"
+             version  = "1,0" />
+
+  <cpptext pass="1">
+
+    //-------------------------------------------------------------------------//
+    //  propmissiongenerator.h
+    //
+    //  FlightSim service AceXML property and property set symbol definitions
+    //-------------------------------------------------------------------------//
+
+
+  </cpptext>
+
+  <PropertyDefs
+        symbolprefix = "SPID_MISSIONGENERATOR_">
+
+    <PropertyDef
+       name        = "Name"
+       id          = "{7D91713A-678D-4BCD-8E1E-85E3E4CB5C71}"
+       type        = "TEXT"
+       descr       = "Name">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "MinDuration"
+            id          = "{C476633F-6F79-4ACF-A2BA-2D2C32890DB3}"
+            type        = "FLOAT"
+            descr       = "MinDuration for a generated flight (minutes)">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "MaxDuration"
+            id          = "{7A748E1F-DE8A-434C-A2AA-A9F780D88897}"
+            type        = "FLOAT"
+            descr       = "MaxDuration for a generated flight (minutes)">
+    </PropertyDef>
+
+    <PropertyDef
+        name        = "Difficulty"
+        id          = "{A263BB14-514E-4316-8B7F-2BF3C5957B80}"
+        type        = "LONG"
+        default     = "0"
+        descr       = "Difficulty level of a generated flight">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Weight"
+            id          = "{2FAE1B3E-24B5-436A-8796-1668E61232E2}"
+            type        = "FLOAT"
+            default     = "0"
+            descr       = "Weight of a character">
+    </PropertyDef>    
+
+    <!--
+    <PropertyDef
+        name        = "ChangeDestination"
+        id          = "{BB798008-D162-4FDA-804B-A58178A9C181}"
+        type        = "LONG"
+        default     = "0"
+        descr       = "Number of change of destination during a generated flight">
+    </PropertyDef>
+    -->
+
+    <PropertyDef
+      name        = "Directory"
+      id          = "{EA60A41A-C6D4-45DF-80DD-B823AABE8B8F}"
+      type        = "TEXT"
+      descr       = "Directory">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "Fuel"
+            id          = "{1F00A3D1-4C79-4841-9617-82CE8FD2F5E5}"
+            type        = "BOOL"
+            default     = "False"
+            descr       = "Fuel constraints">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "NbFlightToGenerate"
+            id          = "{91B676D1-18D6-4228-A257-F4C67769126F}"
+            type        = "LONG"
+            default     = "1"
+            descr       = "Number of flights to generate for flight structure">
+    </PropertyDef>
+
+    
+    <PropertyDef
+         name        = "LocationType"
+         id          = "{F7F95E0C-90DC-4405-BDA4-5334CFACD84C}"
+         type        = "ENUM"
+         serialize	  = "default"
+         descr       = "Type of Location">
+      <EnumDef symbolprefix="eLocationType">
+        <EnumVal						name = "AIRPORT"						xml_name = "AIRPORT"/>
+        <EnumVal						name = "POI"						    xml_name = "POI"/>
+        <EnumVal						name = "WORLDLOCATION"			xml_name = "WORLDLOCATION"/>
+      </EnumDef>
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "MaxDistanceToNextLocation"
+           id          = "{25D8DFF8-4F93-49AD-85F6-B4DF13C5CEC0}"
+           type        = "FLOAT"
+           default     = "0"
+           descr       = "Max Distance To Next Location (nautical miles)">
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "MaxDistanceFomLastLocation"
+           id          = "{0E583C6B-3FA5-4FC4-BBE7-AC9E6F104E28}"
+           type        = "FLOAT"
+           default     = "0"
+           descr       = "Max Distance From Last Location  (nautical miles)">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "BackToFirstLocation"
+            id          = "{904B4876-F62A-4C6B-805A-69765C82AED6}"
+            type        = "BOOL"
+            default     = "False"
+            descr       = "BackToFirstLocation">
+    </PropertyDef>
+
+    <PropertyDef
+      name        = "TTStart"
+      id          = "{41DD2EDA-FDFE-42D4-9ED4-CEBB46A85BAC}"
+      type        = "TEXT"
+      descr       = "TTStart for presentation">
+    </PropertyDef>
+
+      <PropertyDef
+      name        = "TTEnd"
+      id          = "{884A8563-DFE9-4B92-8F18-CA26491F9F1C}"
+      type        = "TEXT"
+      descr       = "TTEnd for presentation">
+    </PropertyDef>
+
+    <PropertyDef
+      name        = "MinLocalTime"
+      id          = "{92BF5E3F-DBD8-4255-B0D8-3CCF751AD6F1}"
+      type        = "FLOAT"
+      descr       = "Min Local Time for a flight in a story">
+    </PropertyDef>
+
+    <PropertyDef
+      name        = "MaxLocalTime"
+      id          = "{7D554FC7-1603-4572-B258-57C77C6A7478}"
+      type        = "FLOAT"
+      descr       = "Max Local Time for a flight in a story">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "StartDate"
+     id          = "{C04EDA68-B889-4B57-AA5F-A473C0BA54F9}"
+     type        = "TEXT"
+     descr       = "Start available date for a flight in a story">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "EndDate"
+     id          = "{F19D1B2C-3D35-441C-BDF6-29AE89AE90B8}"
+     type        = "TEXT"
+     descr       = "End available date for a flight in a story">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "SimFilename"
+     id          = "{84EC0894-3E4D-497E-938E-1564D9351942}"
+     type        = "TEXT"
+     descr       = "Sim file applied at the start of a new flight between 2 locations">
+    </PropertyDef>
+
+    <PropertyDef
+     name        = "LogicFilename"
+     id          = "{B4131117-4241-4EF8-8316-25A78E97A80A}"
+     type        = "TEXT"
+     descr       = "Logic file loaded at the start of a new flight between 2 locations">
+    </PropertyDef>
+
+    <PropertyDef
+            name        = "ChangeAircraft"
+            id          = "{DD972080-7625-43B1-81D1-0E51326442B7}"
+            type        = "BOOL"
+            default     = "False"
+            descr       = "Change aircraft between 2 locations">
+    </PropertyDef>
+
+    <PropertyDef
+           name        = "TimeToStayBeforeNextLocation"
+           id          = "{28B1C490-EA58-4F99-81CF-AF461EA8EAB0}"
+           type        = "FLOAT"
+           default     = "0"
+           descr       = "Time To Stay Before Next Location">
+    </PropertyDef>
+
+    <PropertyDef
+               name        = "UnicName"
+               id          = "{7AB62D7B-22DE-4344-80D8-E2F5B7E81670}"
+               type        = "TEXT"
+               descr       = "UnicName for generated location">
+    </PropertyDef>
+
+
+    <PropertyDef
+              name        = "MinLevel"
+              id          = "{B17A7D4D-75C2-4B2A-9F4D-BCC350162CAD}"
+              type        = "LONG"
+              default     = "0"
+              descr       = "MinLevel">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "MaxLevel"
+              id          = "{DFA041DD-EFD4-49D6-8F16-D28D498CB4D7}"
+              type        = "LONG"
+              default     = "0"
+              descr       = "MaxLevel">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "Percentage"
+              id          = "{94A61CE1-6941-4D92-8E6E-5E7D7AA77B21}"
+              type        = "FLOAT"
+              default     = "0"
+              descr       = "Percentage">
+    </PropertyDef>
+
+    <PropertyDef
+              name        = "MaxQuantity"
+              id          = "{83B45B39-52BE-4BB4-8D91-96258BBD7C6E}"
+              type        = "LONG"
+              default     = "0"
+              descr       = "MaxQuantity for constaints">
+    </PropertyDef>
+
+    <PropertyDef
+                   name        = "MissionTemplateName"
+                   id          = "{DFA96A4B-6349-4092-A322-FD68731F9A49}"
+                   type        = "TEXT"
+                   descr       = "MissionTemplateName in profile">
+    </PropertyDef>
+
+    <PropertyDef
+                       name        = "MissionTypeName"
+                       id          = "{25547138-DE73-47C5-B552-A02AE7BDF450}"
+                       type        = "TEXT"
+                       descr       = "MissionTemplateType in profile">
+    </PropertyDef>
+
+  </PropertyDefs>
+
+  <SetDefs symbolprefix = "SSID_MISSIONGENERATOR_">
+
+    <cpptext pass="2">
+      //
+      //  Property Set Identifiers
+      //
+    </cpptext>
+
+    <SetDef
+                    id="{D9AE0509-D35A-48C9-8F59-AD7729FEBC9B}"
+                    name="IntroScripts"
+                    policy="inclusive"
+                    descr="IntroScripts Set Def">
+      <property name = "Directory"/>
+    </SetDef>    
+
+    <SetDef
+                    id="{A46637C9-C39A-46E6-866F-A878DFDDC925}"
+                    name="OutroScripts"
+                    policy="inclusive"
+                    descr="OutroScripts Set Def">
+      <property name = "Directory"/>
+    </SetDef>
+
+
+    <SetDef
+                     id="{FAD6B286-4F65-4FBE-84AB-11BC6BC4DC22}"
+                     name="Location"
+                     policy="inclusive"
+                     descr="Location Set Def">
+      <property name = "LocationType"/>
+      <property name = "MaxDistanceToNextLocation"/>
+      <property name = "MaxDistanceFomLastLocation"/>
+      <property name = "BackToFirstLocation"/>
+      <property name = "Tags"/>
+      <property name = "ExportedProductTags"/>
+      <property name = "ImportedProductTags"/>
+      <property name = "SimFilename"/>
+      <property name = "FirstFlightState"/>
+      <property name = "LogicFilename"/>
+      <property name = "ChangeAircraft"/>
+      <property name = "Presentations"/>
+      <property name = "TimeToStayBeforeNextLocation"/>
+      <property name = "Flight"/>
+    </SetDef>
+
+    <SetDef
+                     id="{B90F12AB-C689-403C-8D56-2F5AA0BE79DB}"
+                     name="FlightStructure"
+                     policy="inclusive"
+                     descr="FlightStructure Set Def">
+    <property name = "Location"/>
+  </SetDef>
+
+    <SetDef
+                      id="{C4A11DFE-9BC5-4607-BC9B-A9FBD4647454}"
+                      name="Presentation"
+                      policy="inclusive"
+                      descr="Presentation Set Def">
+      <property name = "TTStart"/>
+      <property name = "TTEnd"/>
+    </SetDef>
+
+    <SetDef
+                   id="{2AEEFCC5-55EA-4E2D-943B-7764263E5454}"
+                   name="Presentations"
+                   policy="inclusive"
+                   descr="Presentations Set Def">
+      <property name = "Presentation"/>
+    </SetDef>
+
+
+    <SetDef
+                   id="{1024FB02-C24D-4B36-8D11-6AD990374182}"
+                   name="DepartureTime"
+                   policy="inclusive"
+                   descr="DepartureTime Set Def">
+      <property name = "MinLocalTime"/>
+      <property name = "MaxLocalTime"/>
+    </SetDef>
+
+    <SetDef
+                   id="{A51DDCBE-107E-484E-9DB3-CB9E82A65FC4}"
+                   name="Date"
+                   policy="inclusive"
+                   descr="Date Set Def">
+      <property name = "StartDate"/>
+      <property name = "EndDate"/>
+    </SetDef>
+
+    <SetDef
+                   id="{217EBBC0-3856-4F08-A280-FC56FA6BAE7B}"
+                   name="SpecificAircrafts"
+                   policy="inclusive"
+                   descr="SpecificAircrafts Set Def">
+      <property name = "ContainerTitle"/>
+    </SetDef>
+    
+
+    <SetDef
+                   id="{38A637E6-4C76-44E7-9FD3-828CEE2516B4}"
+                   name="Story"
+                   policy="inclusive"
+                   descr="Story Set Def">
+      <property name = "Name"/>
+      <property name = "NbFlightToGenerate"/>
+      <property name = "FlightStructure"/>
+      <property name = "CharactersTags"/>
+      <property name = "VehiclesTags"/>
+      <property name = "Presentations"/>
+      <property name = "DepartureTime"/>
+      <property name = "Date"/>
+      <property name = "SpecificAircrafts"/>      
+    </SetDef>
+        
+    <SetDef
+                   id="{706A2169-8866-4CFF-AAEC-CBDB5C258CC0}"
+                   name="Stories"
+                   policy="inclusive"
+                   descr="Stories Set Def">
+      <property name = "Directory"/>
+      <property name = "Story"/>
+    </SetDef>
+
+    <SetDef
+                    id="{3842777E-76FB-497E-B29E-FA8E64D025EB}"
+                    name="Character"
+                    policy="inclusive"
+                    descr="Character Set Def">
+      <property name = "ContainerTitle"/>
+      <property name = "Weight"/>
+      <property name = "VehiclesTags"/>
+      <property name = "Tags"/>
+      <property name = "Name"/>
+      <property name = "Constraints"/>
+    </SetDef>
+
+
+    <SetDef
+                     id="{8353D7ED-F15A-40FC-B644-52CCD6CBBD51}"
+                     name="GeneratedLocation"
+                     policy="inclusive"
+                     descr="GeneratedLocation Set Def">
+      <property name = "UnicName"/>
+      <property name = "ContainerTitle"/>
+    </SetDef>
+
+
+    <SetDef
+                      id="{ABFE6256-1628-43B9-9994-8026FABF6054}"
+                      name="GeneratedLocations"
+                      policy="inclusive"
+                      descr="GeneratedLocations Set Def">
+      <property name = "GeneratedLocation"/>
+    </SetDef>
+    
+    <SetDef
+                       id="{BE8FFEDE-70D0-4CC2-9E3D-951F1D3843BA}"
+                       name="GeneratedFlightStructure"
+                       policy="inclusive"
+                       descr="GeneratedFlightStructure Set Def">
+      <property name = "GeneratedLocations"/>
+    <!--  <property name = "MissionTemplate"/>
+      <property name = "MissionType"/> -->
+      <property name = "Story"/>
+    </SetDef>
+
+    <SetDef
+                        id="{1EF2E063-DE3D-40F7-BE94-14710B87C451}"
+                        name="GeneratedFlightStructures"
+                        policy="inclusive"
+                        descr="GeneratedFlightStructures Set Def">
+      <property name = "GeneratedFlightStructure"/>
+    </SetDef>
+    
+    <SetDef
+                    id="{73E8F23B-9F65-45BD-99E7-4D9888C11173}"
+                    name="Characters"
+                    policy="inclusive"
+                    descr="Characters Set Def">
+      <property name = "Directory"/>
+    </SetDef>
+
+    <SetDef
+                    id="{4F71FD7C-51CF-45C9-81BC-D2884CE1B330}"
+                    name="Constraints"
+                    policy="inclusive"
+                    descr="Constraints Set Def">
+      <property name = "Fuel"/>
+    </SetDef>
+
+    <SetDef
+                    id="{DD5A3810-C22C-472F-95AE-708F80A76DDF}"
+                    name="Weathers"
+                    policy="inclusive"
+                    descr="Weathers Set Def">
+      <property name = "Directory"/>
+    </SetDef>
+
+    <SetDef
+                    id="{D5D0CD67-82E5-4824-A252-2BFE21BA294D}"
+                    name="Evaluators"
+                    policy="inclusive"
+                    descr="Evaluators Set Def">
+      <property name = "Directory"/>
+    </SetDef>
+
+    <SetDef
+                    id="{68347FC7-FEE7-4A8F-ABBF-C3CD2D163D3F}"
+                    name="Tag"
+                    policy="inclusive"
+                    descr="Tag Set Def">
+      <property name = "Name"/>
+      <property name = "Weight"/>
+      <property name = "Descr"/>
+    </SetDef>
+    
+    <SetDef
+                    id="{DEC32F0F-C42E-4A8C-9638-ADEE85CFA5F6}"
+                    name="Tags"
+                    policy="inclusive"
+                    descr="Tags Set Def">
+      <property name = "Directory"/>
+      <property name = "Tag"/>
+    </SetDef>
+
+    <SetDef
+                    id="{72A51BB7-4623-4758-9185-AC77293FE487}"
+                    name="VehiclesTags"
+                    policy="inclusive"
+                    descr="VehiclesTags Set Def">
+      <property name = "Tag"/>
+    </SetDef>
+
+    <SetDef
+                    id="{892BDE64-1484-42C2-9683-882DA824E9CC}"
+                    name="CharactersTags"
+                    policy="inclusive"
+                    descr="CharactersTags Set Def">
+      <property name = "Tag"/>
+    </SetDef>
+
+    <SetDef
+                    id="{6541E196-2DC9-411D-8968-C5195685BEFB}"
+                    name="ImportedProductTags"
+                    policy="inclusive"
+                    descr="ImportedProductTags Set Def">
+      <property name = "Tag"/>
+    </SetDef>
+
+    <SetDef
+                    id="{197D28AA-CDD9-4099-A866-B7A26E566CF0}"
+                    name="ExportedProductTags"
+                    policy="inclusive"
+                    descr="ImportedProductTags Set Def">
+      <property name = "Tag"/>
+    </SetDef>
+
+    <SetDef
+                    id="{0B8AF12A-25D8-4EDE-99F3-FED1D5329783}"
+                    name="Vehicle"
+                    policy="inclusive"
+                    descr="Vehicle Set Def">
+      <property name = "ContainerTitle"/>
+      <property name = "Tags"/>
+      <property name = "Name"/>
+    </SetDef>
+
+    <SetDef
+                    id="{D06D994B-BFFC-4147-B0EE-F55631D14C2A}"
+                    name="Vehicles"
+                    policy="inclusive"
+                    descr="Vehicles Set Def">
+      <property name = "Directory"/>
+    </SetDef>
+
+
+    <SetDef
+                   id="{5154DFB1-1998-4347-BEFD-A6DC8D461368}"
+                   name="Rewards"
+                   policy="inclusive"
+                   descr="Rewards Set Def">
+
+    </SetDef>
+
+    <SetDef
+                    id="{0D65F0C8-C025-4BB1-A430-E6985D35FA85}"
+                    name="Flight"
+                    policy="inclusive"
+                    descr="Flights Set Def">
+      <property name = "MinDuration"/>
+      <property name = "MaxDuration"/>
+      <property name = "Difficulty"/>
+<!--      <property name = "ChangeDestination"/>-->
+    </SetDef>
+
+    <SetDef
+                id="{AB15B305-2E71-4475-BA92-32D23DB06F58}"
+                name="Flights"
+                policy="inclusive"
+                descr="Flights Set Def">
+      <property name = "Flight"/>
+    </SetDef>
+
+    <SetDef
+                id="{991D6BC9-0214-4572-9E7B-74AD98BA5F6A}"
+                name="PossibleAircrafts"
+                policy="inclusive"
+                descr="PossibleAircrafts Set Def">
+      <property name = "ContainerTitle"/>
+    </SetDef>
+
+    <SetDef
+                id="{221C419C-1440-4D27-A241-7F27D1C71E94}"
+                name="MissionType"
+                policy="inclusive"
+                descr="MissionType Set Def">
+      <property name = "Name"/>
+      <property name = "Filename"/>
+      <property name = "PossibleAircrafts"/>
+      <property name = "IntroScripts"/>
+      <property name = "OutroScripts"/>
+      <property name = "Stories"/>
+    </SetDef>
+
+    <SetDef
+            id="{667E4236-BE87-43F8-8997-C85B3A108057}"
+            name="MissionTemplate"
+            policy="inclusive"
+            descr="MissionTemplate Set Def">
+      <property name = "Name"/>
+      <property name = "Filename"/>
+      <property name = "MissionType"/>
+      <property name = "Characters"/>
+      <property name = "Weathers"/>
+      <property name = "Evaluators"/>
+      <property name = "Tags"/>
+      <property name = "Vehicles"/>
+    </SetDef>
+
+    <!-- Profiles -->
+
+    <SetDef
+           id="{FCA515BD-639A-4234-AC2D-F9D9739543C0}"
+           name="ProfileConstraints"
+           policy="inclusive"
+           descr="ProfileConstraints Set Def">
+      <property name = "Percentage"/>
+      <property name = "MaxQuantity"/>      
+    </SetDef>
+
+    <SetDef
+           id="{995643AE-A94A-425E-A9C7-9979371D5C56}"
+           name="ProfileFlightStructure"
+           policy="inclusive"
+           descr="ProfileFlightStructure Set Def">
+      <property name = "MinLevel"/>
+      <property name = "MaxLevel"/>
+      <property name = "Percentage"/>
+    </SetDef>
+
+    <SetDef
+          id="{335808AB-16EE-4793-AF36-11C6CB6B5F59}"
+          name="ProfileMission"
+          policy="inclusive"
+          descr="ProfileMission Set Def">
+      <property name = "MissionTemplateName"/>
+      <property name = "MissionTypeName"/>
+      <property name = "Percentage"/>
+    </SetDef>
+
+    <SetDef
+            id="{DC19359C-5F0E-42AC-B192-625980CB6E8D}"
+            name="Profile"
+            policy="inclusive"
+            descr="Profile Set Def">
+      <property name = "Name"/>
+      <property name = "MinLevel"/>
+      <property name = "MaxLevel"/>
+      <property name = "ProfileFlightStructure"/>
+      <property name = "ProfileConstraints"/>
+      <property name = "ProfileMission"/>      
+    </SetDef>
+    
+    <SetDef
+            id="{E42AE666-D5FF-4DEF-95C4-82A4774EE14D}"
+            name="Profiles"
+            policy="inclusive"
+            descr="Profiles Set Def">
+      <property name = "Profile"/>
+    </SetDef>
+
+    <!-- FlightStates -->
+
+    <SetDef
+            id="{9B2B08B3-7DC9-4B75-835E-BCB17E31B428}"
+            name="FlightStates"
+            policy="inclusive"
+            descr="FlightStates Set Def">
+      <property name = "filename"/>
+    </SetDef>
+
+    <!-- LogicalFiles -->
+
+    <SetDef
+            id="{90D5120E-F8AA-4929-B9FB-F0CC71822B16}"
+            name="LogicalFilename"
+            policy="inclusive"
+            descr="LogicalFilenames Set Def">
+      <property name = "Name"/>
+      <property name = "filename"/>
+      <property name = "difficulty"/>
+    </SetDef>
+
+    <SetDef
+            id="{BE3A0227-7095-4A81-B660-22F8BBDA0EF0}"
+            name="LogicalFilenames"
+            policy="inclusive"
+            descr="LogicalFilenames Set Def">
+      <property name = "LogicalFilename"/>
+    </SetDef>
+
+  </SetDefs>
+  <cpptext pass="2">
+
+  </cpptext>
+</SymbolDef>

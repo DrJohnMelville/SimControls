@@ -1,0 +1,508 @@
+<?xml version= "1.0" encoding= "utf-8" ?>
+
+<!-- Material property symbol definition document
+
+    see propbase.xml for an explanation of property symbol definition document schema
+-->
+
+<SymbolDef
+    name         = "Materials"
+    id           = "{816850C2-78D8-456e-AC50-49153839591E}"
+    descr        = "SimProp XXX property, type and set definitions."
+    chdr         = "propmaterial.h"
+    version      = "1,0" >
+
+<!--    <SymbolInclude
+        filename = "Common\propautogen.xml"
+        id       = "{C6772D61-7F28-40f1-94C4-8EA43BC687F6}"
+        version  = "1,0" />-->
+
+
+    <SymbolInclude
+        filename = "Common\propgroups.xml"
+        id       = "{63370ACD-3F33-446a-BB06-4C96DD56396A}"
+        version  = "1,0" />
+
+    <cpptext pass="1">
+//-------------------------------------------------------------------------//
+//  propmaterial.h
+//
+//  FlightSim Material AceXML property and property set symbol definitions
+//-------------------------------------------------------------------------//
+//
+
+//
+//  Namespace
+//
+    </cpptext>
+
+    <PropertyDefs
+        symbolprefix = "SPID_">
+
+        <cpptext pass="2">
+//
+//  Property Identifiers
+//
+        </cpptext>
+
+        <!-- Enumerations -->
+        <PropertyDef
+            name        = "BlendMode"
+            id          = "{41FD74B4-93BA-4941-AE59-5D334E238FA3}"
+            type        = "ENUM"
+            default     = "ONE"
+            devnote     = "3D blend mode">
+            <EnumDef symbolprefix="BLEND_MODE_">
+                <EnumVal name = "ZERO"/>
+                <EnumVal name = "ONE"/>
+                <EnumVal name = "SOURCE_COLOR"/>
+                <EnumVal name = "INVERSE_SOURCE_COLOR"/>
+                <EnumVal name = "SOURCE_ALPHA"/>
+                <EnumVal name = "INVERSE_SOURCE_ALPHA"/>
+                <EnumVal name = "DESTINATION_ALPHA"/>
+                <EnumVal name = "INVERSE_DESTINATION_ALPHA"/>
+                <EnumVal name = "DESTINATION_COLOR"/>
+                <EnumVal name = "INVERSE_DESTINATION_COLOR"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "CompareFunction"
+            id          = "{795AA318-8892-4fc9-8E7C-94AE5AE1142E}"
+            type        = "ENUM"
+            default     = "ALWAYS"
+            devnote     = "3D compare function">
+            <EnumDef symbolprefix="COMPARE_FUNCTION_">
+                <EnumVal name = "NEVER"/>
+                <EnumVal name = "LESS"/>
+                <EnumVal name = "EQUAL"/>
+                <EnumVal name = "LESS_EQUAL"/>
+                <EnumVal name = "GREATER"/>
+                <EnumVal name = "NOT_EQUAL"/>
+                <EnumVal name = "GREATER_EQUAL"/>
+                <EnumVal name = "ALWAYS"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "EmissiveBlend"
+            id          = "{C12738EC-3E74-44fa-980F-139B7C63DBF3}"
+            type        = "ENUM"
+            default     = "ADDITIVE"
+            devnote     = "3D emissive blend">
+            <EnumDef symbolprefix="EMISSIVE_BLEND_">
+                <EnumVal name = "ADDITIVE"/>
+                <EnumVal name = "DAY_NIGHT_BLEND"/>
+                <EnumVal name = "MULTIPLY"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DiffuseBlend"
+            id          = "{59BAC31B-3B8A-4021-8C86-2AC7F567D71B}"
+            type        = "ENUM"
+            default     = "BY_DIFFUSE_ALPHA"
+            devnote     = "3D diffuse blend">
+            <EnumDef symbolprefix="DIFFUSE_BLEND_">
+                <EnumVal name = "BY_DIFFUSE_ALPHA"/>
+                <EnumVal name = "BY_INVERSE_SPECULAR_ALPHA"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "EnvironmentBlend"
+            id          = "{2089F7DD-9D4A-4c59-8EC6-F7973322C4FC}"
+            type        = "ENUM"
+            default     = "NONE"
+            devnote     = "3D diffuse blend">
+            <EnumDef symbolprefix="ENVIRONMENT_BLEND_">
+                <EnumVal name = "NONE"/>
+                <EnumVal name = "BY_INVERSE_DIFFUSE_ALPHA"/>
+                <EnumVal name = "BY_SPECULAR_ALPHA"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BloomMode"
+            id          = "{935D5865-0A42-47d1-8598-E1E6D323DDA3}"
+            type        = "ENUM"
+            default     = "NONE"
+            devnote     = "3D diffuse blend">
+            <EnumDef symbolprefix="BLOOM_">
+                <EnumVal name = "NONE"/>
+                <EnumVal name = "BY_COPY"/>
+                <EnumVal name = "MODULATE_BY_ALPHA"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "TextureAddressMode"
+            id          = "{19EFAF48-E906-4e62-BC7E-C58084CA3884}"
+            type        = "ENUM"
+            default     = "WRAP"
+            devnote     = "3D diffuse blend">
+            <EnumDef symbolprefix="TEXTURE_ADDRESS_">
+                <EnumVal name = "CLAMP"/>
+                <EnumVal name = "WRAP"/>
+            </EnumDef>
+        </PropertyDef>
+
+        <!-- Properties -->
+        <PropertyDef
+            name        = "AffectSpecular"
+            id          = "{972FF6EF-8990-49eb-8A42-DAA9B0ADA626}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AffectEnvironment"
+            id          = "{F5AC62A9-76CC-4293-A15D-F990091C6DD9}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AffectDiffuse"
+            id          = "{832B8BA2-C5EB-4cb8-ACD9-1C3C87666024}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            id          = "{0DC0E17F-53E4-46bb-B16F-84433B93C3EB}"
+            name        = "UsePrecipitationEffect"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "UsePrecipitationEffectOffset"
+            id          = "{6F4BD470-5EDF-4af6-96C2-61DB6A169B7B}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "PrecipitationEffectOffset"
+            id          = "{EBD0CF58-3457-403c-9F21-856F774439D5}"
+            default     = "0.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "FinalAlphaBlend"
+            id          = "{8B9BBEF5-BF61-43b2-9902-7626CD72045A}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "EmissiveBloom"
+            id          = "{3DB29E36-03B9-47d2-98B6-97895E1C3085}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NoSpecularBloom"
+            id          = "{4BE75EA4-B67A-4210-BB5A-AFCBE280A53D}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "SpecularBloomFloor"
+            id          = "{91999D04-CA11-4f3f-9E5D-1E9BC98D982B}"
+            default     = "0.9"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AmbientLightScale"
+            id          = "{52D2DB63-F9FA-43c0-891E-2CF10B60E4BA}"
+            default     = "1.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AssumeVerticalNormal"
+            id          = "{708E6299-512E-4c92-9859-4AB46F651B06}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "AlphaTestZWrite"
+            id          = "{19A0E194-D706-4614-86B0-74A30A895F55}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Threshold"
+            id          = "{51AFFA35-EF79-49ac-937A-E9A2E419E780}"
+            default     = "0.0"
+            type        = "FLOAT">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "ZWriteAlpha"
+            id          = "{065E0C6C-469A-49b0-96B0-88F777C73137}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NoZWrite"
+            id          = "{013CDD0D-B51B-4db1-AA27-BE2694FF58DB}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "VolumeShadow"
+            id          = "{B2A97859-8233-4cca-947D-FF0142A6DB8C}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NoShadow"
+            id          = "{0526AAEE-953F-4fcd-B21B-A847F9BA740D}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "NoBaseMaterialSpecular"
+            id          = "{4705AE7E-9F3D-484f-81A7-068FEC7F5E17}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Prelit"
+            id          = "{ADCA39A1-3C7B-4353-BD61-B3F42A0EE3C5}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "Skinned"
+            id          = "{16677F7E-776A-4c40-838B-A59C095600B1}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "DoubleSided"
+            id          = "{DE17409D-6ADE-46ce-9324-F2AC2E4C92DA}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "BlendConstant"
+            id          = "{6C0026F3-BAB2-4b24-A838-B2DED2EEA267}"
+            default     = "FALSE"
+            type        = "BOOL">
+        </PropertyDef>
+
+        <PropertyDef
+            name        = "MaterialReference"
+            id          = "{50D02B72-1015-4269-B64A-341A1F515D11}"
+            cardinality = "multiple"
+            type        = "GUID"
+            descr       = "Guid of material to use">
+        </PropertyDef>
+
+    </PropertyDefs>
+
+    <SetDefs symbolprefix = "SSID_">
+
+        <cpptext pass="2">
+//
+//  Property Set Identifiers
+//
+        </cpptext>
+
+        <SetDef
+            id          = "{0B456A04-96BF-44e4-AD09-EDCE115C09D9}"
+            name        = "Material" >
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "MaterialDefinition"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{5D71F301-6B12-4b8b-BDE5-6D7CCCD85EC1}"
+            name        = "DiffuseMap" >
+            <property name = "FileName"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7EF42C74-5333-46b7-9036-0BE78F43FD29}"
+            name        = "DiffuseColor" >
+            <property name = "RGBA"/>
+        </SetDef>
+
+
+        <SetDef
+            id          = "{1581D0CB-4423-43a2-846B-DB9A4C113390}"
+            name        = "BaseSpecular" >
+            <property name = "RGBA"/>
+            <property name = "Scale"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{1CA10FE7-0A08-4ed1-AC44-A3DF45ADA5DE}"
+            name        = "SpecularMap" >
+            <property name = "FileName"/>
+            <property name = "Scale"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7430DE42-239C-417b-8407-B3E3B385066A}"
+            name        = "DetailMap" >
+            <property name = "FileName"/>
+            <property name = "Scale"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7A85BEDA-2919-42fa-8489-0CF70B2D264E}"
+            name        = "BumpMap" >
+            <property name = "FileName"/>
+            <property name = "Scale"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F48C2D4A-614E-48df-83BE-E45053847D98}"
+            name        = "EnvironmentMap" >
+            <property name = "FileName"/>
+            <property name = "Scale"/>
+            <property name = "EnvironmentBlend"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F11E8F5D-5934-41b6-8B6F-886A761A331C}"
+            name        = "Fresnel" >
+            <property name = "FileName"/>
+            <property name = "AffectSpecular"/>
+            <property name = "AffectEnvironment"/>
+            <property name = "AffectDiffuse"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B9319660-E6BF-4db1-878C-2A0A216C7200}"
+            name        = "EmissiveMap" >
+            <property name = "FileName"/>
+            <property name = "EmissiveBlend"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{D4F6701F-AC28-4248-AA42-4D90BB1A5300}"
+            name        = "SourceBlend" >
+            <property name = "BlendMode"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{0602E8D8-E394-41cd-9161-6C020D3DB5F7}"
+            name        = "DestinationBlend" >
+            <property name = "BlendMode"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{B71014DF-9729-4f3d-9DDC-89257B465DBB}"
+            name        = "MaterialDefinition" >
+            <property name = "DiffuseMap"/>
+            <property name = "BaseSpecular"/>
+            <property name = "SpecularMap"/>
+            <property name = "DetailMap"/>
+            <property name = "BumpMap"/>
+            <property name = "EnvironmentMap"/>
+            <property name = "DiffuseBlend"/>
+            <property name = "Fresnel"/>
+            <property name = "EmissiveMap"/>
+            <property name = "UsePrecipitationEffect"/>
+            <property name = "UsePrecipitationEffectOffset"/>
+            <property name = "PrecipitationEffectOffset"/>
+            <property name = "AlphaTestZWrite"/>
+            <property name = "CompareFunction"/>
+            <property name = "Threshold"/>
+            <property name = "FinalAlphaBlend"/>
+            <property name = "BloomMode"/>
+            <property name = "EmissiveBloom"/>
+            <property name = "NoSpecularBloom"/>
+            <property name = "SpecularBloomFloor"/>
+            <property name = "AmbientLightScale"/>
+            <property name = "SourceBlend"/>
+            <property name = "DestinationBlend"/>
+            <property name = "AssumeVerticalNormal"/>
+            <property name = "ZWriteAlpha"/>
+            <property name = "NoZWrite"/>
+            <property name = "VolumeShadow"/>
+            <property name = "NoShadow"/>
+            <property name = "Prelit"/>
+            <property name = "Skinned"/>
+            <property name = "DoubleSided"/>
+            <property name = "BlendConstant"/>
+            <property name = "TextureAddressMode"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{F24C40E2-F8D0-4717-9D6E-7A8A84A98C22}"
+            name        = "MaterialSet">
+            <property name = "id"/>
+            <property name = "FriendlyName"/>
+            <property name = "MaterialReference"/>
+        </SetDef>
+
+
+        //
+        // Global scoped sets
+        //
+        <SetDef
+            id          = "{154FD735-74B7-4506-8C8C-6F946FF85117}"
+            name        = "Materials"
+            policy      = "inclusive"
+            descr       = "Top level bag of materials" >
+            <property name="Material"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{767A5F2B-D936-456f-B769-895D0AADA7F6}"
+            name        = "MaterialSets"
+            policy      = "inclusive"
+            descr       = "Top level bag of material sets" >
+            <property name="MaterialSet"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{383CC5B8-892A-4e5b-8DA3-B669A61A23AD}"
+            name        = "MaterialGroupings"
+            policy      = "inclusive"
+            descr       = "Top level bag of material grouping" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{AF13DD09-D5F7-476c-83F2-7678AAC27373}"
+            name        = "MaterialSetGroupings"
+            policy      = "inclusive"
+            descr       = "Top level bag of material sets grouping" >
+            <property name="Grouping"/>
+            <property name="Regionalization"/>
+        </SetDef>
+
+        <SetDef
+            id          = "{7044787E-11F0-44f2-9122-80ECE63ACC92}"
+            name        = "MaterialList">
+            <property name="MaterialReference"/>
+        </SetDef>
+
+
+    </SetDefs>
+
+</SymbolDef>
