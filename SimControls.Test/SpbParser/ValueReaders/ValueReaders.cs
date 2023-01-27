@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Buffers;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Input;
 using SimControls.SpbParser.ValueReaders;
 using Xunit;
 
@@ -17,8 +15,7 @@ public class ValueReaders
         result.TryWriteBytes(buffer);
         var reader = new SequenceReader<byte>(new ReadOnlySequence<byte>(buffer));
         var parser = new BltParser<Guid>();
-        Assert.True(parser.TryParse(ref reader, out Guid pv));
-        Assert.Equal(result,pv);
+        AssertAllRead(reader, parser, result);
     }
     [Theory]
     [InlineData("00000000", 0)]
@@ -31,8 +28,7 @@ public class ValueReaders
     {
         var reader = input.BitsFromHex().AsSequenceReader();
         var parser = new BltParser<int>();
-        Assert.True(parser.TryParse(ref reader, out int pv));
-        Assert.Equal(value, pv);
+        AssertAllRead(reader, parser, value);
     }
     [Theory]
     [InlineData("00000000", false)]
@@ -42,8 +38,7 @@ public class ValueReaders
     {
         var reader = input.BitsFromHex().AsSequenceReader();
         var parser = new BoolParser();
-        Assert.True(parser.TryParse(ref reader, out bool pv));
-        Assert.Equal(value, pv);
+        AssertAllRead(reader, parser, value);
     }
     [Theory]
     [InlineData("00000000", 0)]
@@ -55,8 +50,7 @@ public class ValueReaders
     {
         var reader = input.BitsFromHex().AsSequenceReader();
         var parser = new BltParser<uint>();
-        Assert.True(parser.TryParse(ref reader, out uint pv));
-        Assert.Equal(value, pv);
+        AssertAllRead(reader, parser, value);
     }
 
     [Fact]
@@ -64,19 +58,7 @@ public class ValueReaders
     {
         var reader = "01000000 02000000".BitsFromHex().AsSequenceReader();
         var parser = new BltParser<(int,int)>();
-        Assert.True(parser.TryParse(ref reader, out (int,int) pv));
-        Assert.Equal(1, pv.Item1);
-        Assert.Equal(2, pv.Item2);
-    }
-
-    [Fact]
-    public void SkipOverValue()
-    {
-        var reader = "12345678 02000000".BitsFromHex().AsSequenceReader();
-        var parser = new BltParser<int>();
-        parser.Skip(ref reader);
-        Assert.True(parser.TryParse(ref reader, out int pv));
-        Assert.Equal(2, pv);
+        AssertAllRead(reader, parser, (1,2));
     }
 
     [Fact]
@@ -84,11 +66,16 @@ public class ValueReaders
     {
         var reader = "00000000 00000080 FFFFFFFF 00000000".BitsFromHex().AsSequenceReader();
         var parser = new BltParser<PbhStruct>();
+        var expected = "(P: 0.0, B: 180.0, H: 360.0, Pad: 0)";
+
+        AssertRead(reader, parser, expected);
+        AssertSkip(reader, parser);
+
         Assert.True(parser.InnerTryParse(ref reader, out PbhStruct output));
         Assert.Equal(0.0, output.P, 2);
         Assert.Equal(180, output.B, 2);
         Assert.Equal(360.0, output.H, 2);
-        Assert.Equal("(P: 0.0, B: 180.0, H: 360.0)", output.ToString());
+        Assert.Equal(expected, output.ToString());
     }
 
     [Theory]
@@ -102,13 +89,54 @@ public class ValueReaders
         var reader = source.BitsFromHex().AsSequenceReader();
         var parser = new EnumParser("Zero", "One", "Two");
         AssertRead(reader, parser, value);
-        AssertRead(reader, parser, name);
+        AssertAllRead(reader, parser, name);
         AssertRead(reader, parser, (value,name));
     }
 
-    private static void AssertRead<T>(SequenceReader<byte> reader, EnumParser parser, T value)
+    [Theory]
+    [InlineData("00000000", "")]
+    [InlineData("02000000 4100", "A")]
+    [InlineData("06000000 410042004300", "ABC")]
+    public void ParseString(string source, string value)
+    {
+        var reader = source.BitsFromHex().AsSequenceReader();
+        var parser = new StringParser();
+        AssertAllRead(reader, parser, value);
+    }
+
+    private static void AssertAllRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
+    {
+        AssertRead(reader, parser, value);
+        AssertRead(reader, parser, value.ToString());
+        AssertSkip(reader, parser);
+        var missingOneByte = new SequenceReader<byte>(reader.Sequence.Slice(0, reader.Remaining-1));
+        var onlyOneByte = new SequenceReader<byte>(reader.Sequence.Slice(0, 1));
+        AssertSkipFail(missingOneByte, parser);
+        AssertSkipFail(onlyOneByte, parser);
+        AssertReadFail(missingOneByte, parser);
+        AssertReadFail(onlyOneByte, parser);
+    }
+    private static void AssertRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
     {
         Assert.True(parser.TryParse(ref reader, out T parsedValue));
         Assert.Equal(value, parsedValue);
+        Assert.Equal(0, reader.Remaining);
+    }
+    private static void AssertSkip(SequenceReader<byte> reader, ValueParser parser)
+    {
+        Assert.True(parser.Skip(ref reader));
+        Assert.Equal(0, reader.Remaining);
+    }
+    private static void AssertSkipFail(SequenceReader<byte> reader, ValueParser parser)
+    {
+        var remaining = reader.Remaining;
+        Assert.False(parser.Skip(ref reader));
+        Assert.Equal(remaining, reader.Remaining);
+    }
+    private static void AssertReadFail(SequenceReader<byte> reader, ValueParser parser)
+    {
+        var remaining = reader.Remaining;
+        Assert.False(parser.InnerTryParse(ref reader, out string _));
+        Assert.Equal(remaining, reader.Remaining);
     }
 }

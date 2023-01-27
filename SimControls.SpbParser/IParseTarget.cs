@@ -11,6 +11,6 @@ namespace SimControls.SpbParser
     {
         IParseTarget BeginSet (SetDecl set);
         void EndSet (SetDecl set);
-        void PushProperty();
+        void PushProperty(PropertyDecl Property);
     }
 }

@@ -18,7 +18,7 @@ public readonly struct PbhStruct
     public double B => b * Factor;
     public double H => h * Factor;
 
-    public override string ToString() => $"(P: {P:##0.0}, B: {B:##0.0}, H: {H:##0.0} Pad: {pad})";
+    public override string ToString() => $"(P: {P:##0.0}, B: {B:##0.0}, H: {H:##0.0}, Pad: {pad})";
 }
 
 public readonly struct LlaStruct

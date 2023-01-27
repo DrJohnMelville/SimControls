@@ -4,7 +4,7 @@ using SimControls.SpbParser.PropertyAndSetDeclarations;
 
 namespace SimControls.SpbParser.ValueReaders;
 
-public class EnumParser : IValueParser, ICanParseTo<int>, ICanParseTo<string>, ICanParseTo<(int,string)>
+internal class EnumParser : BltParser<int>, ICanParseTo<(int,string)>
 {
     private string[] Names { get; }
 
@@ -12,25 +12,8 @@ public class EnumParser : IValueParser, ICanParseTo<int>, ICanParseTo<string>, I
     {
         Names = names;
     }
-    public bool Skip(ref SequenceReader<byte> sourceBytes) => sourceBytes.TryAdvance(4);
 
-    public bool TryParse<T>(ref SequenceReader<byte> sourceBytes, out T value)
-    {
-        if (this is not ICanParseTo<T> casted)
-            throw new InvalidOperationException($"Cannot parse an enum to {typeof(T)}");
-        return casted.InnerTryParse(ref sourceBytes, out value);
-    }
-
-    public string? TryParseToString(ref SequenceReader<byte> sourceBytes, PropertyDecl property)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public bool InnerTryParse(ref SequenceReader<byte> sourceBytes, out int value) => 
-        sourceBytes.TryReadBlt(out value);
-
-
-    public bool InnerTryParse(ref SequenceReader<byte> sourceBytes, out string value) =>
+    public override bool InnerTryParse(ref SequenceReader<byte> sourceBytes, out string value) =>
         InnerTryParse(ref sourceBytes, out int intVal).WithAssignment(StringFromValue(intVal), out value);
 
 

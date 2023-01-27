@@ -7,6 +7,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="SpbParser\Alaska.spb" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="SpbParser\Alaska.spb" />
+    </ItemGroup>
+
+    <ItemGroup>
         <PackageReference Include="Melville.Mvvm.TestHelpers" Version="0.5.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
         <PackageReference Include="Moq" Version="4.16.1" />

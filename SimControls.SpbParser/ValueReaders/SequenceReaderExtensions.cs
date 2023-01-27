@@ -1,17 +1,24 @@
 ﻿using System;
 using System.Buffers;
 using System.Runtime.InteropServices;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-public static class SequenceReaderExtensions
+internal static class SequenceReaderExtensions
 {
     public static unsafe bool TryReadBlt<T>(
         this ref SequenceReader<byte> sourceBytes, out T value) where T : unmanaged
     {
         fixed (T* outPtr = &value)
         {
-            Span<byte> buff2 = new Span<byte>(outPtr, sizeof(T));
-            return sourceBytes.TryCopyTo(buff2);
+            return sourceBytes.TryConsumeBytes(new Span<byte>(outPtr, sizeof(T)));
         }
+    }
+
+    public static bool TryConsumeBytes(this ref SequenceReader<byte> source, Span<byte> output)
+    {
+        if (!source.TryCopyTo(output)) return false;
+        source.Advance(output.Length);
+        return true;
     }
 
     public static unsafe bool TryAdvanceOver<T>(
