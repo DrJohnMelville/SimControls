@@ -8,10 +8,10 @@ using SimControls.SpbParser.ValueReaders;
 
 namespace SimControls.SpbParser.PropertyAndSetDeclarations
 {
-    public abstract partial class PropertyDecl: ISetOrProperty
+    public partial class PropertyDecl: ISetOrProperty
     {
         [FromConstructor] public Guid Guid { get; }
         [FromConstructor]public string Name { get;}
-        [FromConstructor]private ValueParser Parser { get; }
+        [FromConstructor]internal ValueParser Parser { get; }
     }
 }

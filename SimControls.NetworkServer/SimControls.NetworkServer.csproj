@@ -10,9 +10,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Melville.FileSystem" Version="0.5.1" />
-      <PackageReference Include="Melville.MVVM" Version="0.5.1" />
-      <PackageReference Include="Nerdbank.Streams" Version="2.6.81" />
+      <PackageReference Include="Melville.FileSystem" Version="0.6.8" />
+      <PackageReference Include="Melville.MVVM" Version="0.6.8" />
+      <PackageReference Include="Nerdbank.Streams" Version="2.9.112" />
     </ItemGroup>
 
 </Project>

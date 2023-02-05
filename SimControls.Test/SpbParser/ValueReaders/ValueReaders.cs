@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Buffers;
+using SimControls.SpbParser;
+using SimControls.SpbParser.PropertyAndSetDeclarations;
 using SimControls.SpbParser.ValueReaders;
 using Xunit;
 
@@ -107,7 +109,8 @@ public class ValueReaders
     private static void AssertAllRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
     {
         AssertRead(reader, parser, value);
-        AssertRead(reader, parser, value.ToString());
+        AssertAccessorRead(reader, parser, value);
+        AssertRead(reader, parser, value?.ToString());
         AssertSkip(reader, parser);
         var missingOneByte = new SequenceReader<byte>(reader.Sequence.Slice(0, reader.Remaining-1));
         var onlyOneByte = new SequenceReader<byte>(reader.Sequence.Slice(0, 1));
@@ -115,6 +118,14 @@ public class ValueReaders
         AssertSkipFail(onlyOneByte, parser);
         AssertReadFail(missingOneByte, parser);
         AssertReadFail(onlyOneByte, parser);
+    }
+
+    private static void AssertAccessorRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
+    {
+        var pa = new PropertyAccessor(ref reader, new PropertyDecl(Guid.NewGuid(), "Title", parser));
+        Assert.True(pa.PropertyDisplayString(out var strValue));
+        Assert.Equal(0, reader.UnreadSequence.Length);
+        Assert.Equal("Title: "+value.ToString(), strValue);
     }
     private static void AssertRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
     {

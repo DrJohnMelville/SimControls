@@ -3,7 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using ZXing;
 using ZXing.Common;
-using ZXing.Presentation;
+using ZXing.Windows.Compatibility;
 
 namespace SimControls.Shell
 {
