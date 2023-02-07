@@ -12,6 +12,11 @@ namespace SimControls.SpbParser.PropertyAndSetDeclarations
     {
         [FromConstructor] public Guid Guid { get; }
         [FromConstructor]public string Name { get;}
+        [FromConstructor]public string Description { get;}
+        [FromConstructor]public string Default { get;}
         [FromConstructor]internal ValueParser Parser { get; }
+
+        public override string ToString() => 
+            $"{Guid}, {Name}, {Description}, {Default}, {Parser.TypeString}";
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualBasic.CompilerServices;
+﻿using System;
+using Microsoft.VisualBasic.CompilerServices;
 
 namespace SimControls.SpbParser.ValueReaders;
 
@@ -33,4 +34,12 @@ public readonly struct LlaStruct
     public double Altitude => altitude2 + (altitude / (65536.0 * 65536.0));
 
     public override string ToString() => $"(Lat: {Latitude}, Lon: {Longitude}, Alt:{Altitude}, )";
+}
+
+public readonly struct FileTime
+{
+    // this class is a total guess that Spb filetime records are just the filetime structure
+    //from minwinbase written directly out to a file.
+    public readonly UInt32 LowFileTime;
+    public readonly UInt32 HighFileTime;
 }

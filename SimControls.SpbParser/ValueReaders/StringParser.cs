@@ -34,4 +34,6 @@ internal class StringParser : ValueParser
         sourceBytes = tempReader;
         return true;
     }
+
+    public override string TypeString => "String";
 }

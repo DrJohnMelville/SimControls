@@ -122,10 +122,10 @@ public class ValueReaders
 
     private static void AssertAccessorRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
     {
-        var pa = new PropertyAccessor(ref reader, new PropertyDecl(Guid.NewGuid(), "Title", parser));
+        var pa = new PropertyAccessor(ref reader, new PropertyDecl(Guid.NewGuid(), "Title", "descr", "DefaULT", parser));
         Assert.True(pa.PropertyDisplayString(out var strValue));
         Assert.Equal(0, reader.UnreadSequence.Length);
-        Assert.Equal("Title: "+value.ToString(), strValue);
+        Assert.Equal("Title: "+value?.ToString(), strValue);
     }
     private static void AssertRead<T>(SequenceReader<byte> reader, ValueParser parser, T value)
     {

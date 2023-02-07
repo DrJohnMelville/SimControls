@@ -3,6 +3,7 @@ using System.IO;
 using System.IO.Pipelines;
 using System.Threading.Tasks;
 using Melville.INPC;
+using SimControls.SpbParser.PropertyAndSetDeclarations;
 
 namespace SimControls.SpbParser;
 
@@ -10,7 +11,8 @@ public partial class SbpReader
 {
     [FromConstructor]private readonly PipeReader pipe;
     [FromConstructor] private readonly IParseTarget target;
-    private const int headerBlockSize = (4*12)+2;
+    [FromConstructor] private readonly IPropertyRegistry properties;
+    private const int headerBlockSize = (4*7)+2;
 
     public async ValueTask Read()
     {
@@ -32,6 +34,6 @@ public partial class SbpReader
         if (!reader.TryReadBlt(out uint numberOfTags))
             throw new InvalidDataException("Cannot Read Tag Count");
 
-        return new TagTable(numberOfTags-1);
+        return new TagTable(numberOfTags, properties);
     }
 }

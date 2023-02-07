@@ -21,6 +21,6 @@ internal class EnumParser : BltParser<int>, ICanParseTo<(int,string)>
         InnerTryParse(ref sourceBytes, out int intVal).WithAssignment(
             (intVal, StringFromValue(intVal)), out value);
 
-    private string StringFromValue(int intValue) =>
+    public string StringFromValue(int intValue) =>
         intValue >= 0 && intValue < Names.Length ? Names[intValue] : "<Undefined>";
 }

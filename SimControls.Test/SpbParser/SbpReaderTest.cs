@@ -6,34 +6,12 @@ using System.IO.Pipelines;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Melville.Hacks;
 using Moq;
 using SimControls.SpbParser;
-using SimControls.SpbParser.PropertyAndSetDeclarations;
+using SimControls.SpbParser.DefaultPropDefs;
 using Xunit;
 
 namespace SimControls.Test.SpbParser;
-
-public class IndentedWritingTarget : IParseTarget
-{
-    private IndentingStringBuilder target = new();
-    public IParseTarget BeginSet(SetDecl set)
-    {
-        target.AppendLine($"{set.Name} ({set.Description})");
-        target.BeginIndent();
-        return this;
-    }
-
-    public void EndSet(SetDecl set) => target.EndIndent();
-
-    public void PushProperty(ref PropertyAccessor accessor)
-    {
-        if (accessor.PropertyDisplayString(out var pds))
-            target.AppendLine(pds);
-    }
-
-    public override string ToString() => target.ToString();
-}
 
 public class SbpReaderTest
 {
@@ -45,7 +23,8 @@ public class SbpReaderTest
     public async Task ReadFileAsync()
     {
         var target = new IndentedWritingTarget();
-        var reader = new SbpReader(PipeReader.Create(SourceStream()), target);
+        var reader = new SbpReader(PipeReader.Create(SourceStream()), target,
+            await DefaultPropertyLibrary.GlobalRegistryAsync());
         await reader.Read();
         Assert.Equal("xx", target.ToString());
     }
