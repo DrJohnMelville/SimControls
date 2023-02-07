@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualBasic.CompilerServices;
 
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 #pragma warning disable 0649
 // These structures are read out of the file in unsafe code that the compiler does not know about so the

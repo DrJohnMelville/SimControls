@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Melville.INPC;
-using SimControls.SpbParser.ValueReaders;
+using SimControls.SbpViewer.ValueReaders;
 
-namespace SimControls.SpbParser.PropertyAndSetDeclarations
+namespace SimControls.SbpViewer.PropertyAndSetDeclarations
 {
     public partial class PropertyDecl: ISetOrProperty
     {

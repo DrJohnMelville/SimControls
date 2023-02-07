@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Buffers;
-using SimControls.SpbParser.PropertyAndSetDeclarations;
-
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 internal class EnumParser : BltParser<int>, ICanParseTo<(int,string)>
 {

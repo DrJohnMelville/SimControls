@@ -1,6 +1,6 @@
 ﻿using System.Buffers;
 
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 internal class BoolParser : ValueParser<bool>
 {

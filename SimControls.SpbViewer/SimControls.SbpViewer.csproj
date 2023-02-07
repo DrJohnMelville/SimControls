@@ -1,0 +1,249 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="DefaultPropDefs\propaccpack.xml" />
+    <None Remove="DefaultPropDefs\propachievement.xml" />
+    <None Remove="DefaultPropDefs\propactivity.xml" />
+    <None Remove="DefaultPropDefs\propaircraft.xml" />
+    <None Remove="DefaultPropDefs\propairlines.xml" />
+    <None Remove="DefaultPropDefs\propanim.xml" />
+    <None Remove="DefaultPropDefs\propassistancepresets.xml" />
+    <None Remove="DefaultPropDefs\propautogen.xml" />
+    <None Remove="DefaultPropDefs\propbase.xml" />
+    <None Remove="DefaultPropDefs\propbaseui.xml" />
+    <None Remove="DefaultPropDefs\propbuilder.xml" />
+    <None Remove="DefaultPropDefs\propchecklist.xml" />
+    <None Remove="DefaultPropDefs\propchecklistbase.xml" />
+    <None Remove="DefaultPropDefs\propcheckpointlibrary.xml" />
+    <None Remove="DefaultPropDefs\propcontain.xml" />
+    <None Remove="DefaultPropDefs\propcontrols.xml" />
+    <None Remove="DefaultPropDefs\propdiscovery.xml" />
+    <None Remove="DefaultPropDefs\propedition.xml" />
+    <None Remove="DefaultPropDefs\propendscreen.xml" />
+    <None Remove="DefaultPropDefs\propeventtrigger.xml" />
+    <None Remove="DefaultPropDefs\propextrusions.xml" />
+    <None Remove="DefaultPropDefs\propfire.xml" />
+    <None Remove="DefaultPropDefs\propflightplan.xml" />
+    <None Remove="DefaultPropDefs\propgauge.xml" />
+    <None Remove="DefaultPropDefs\propgroups.xml" />
+    <None Remove="DefaultPropDefs\propicao.xml" />
+    <None Remove="DefaultPropDefs\propingamepanels.xml" />
+    <None Remove="DefaultPropDefs\proplaunch.xml" />
+    <None Remove="DefaultPropDefs\proplivingworld.xml" />
+    <None Remove="DefaultPropDefs\propmaterial.xml" />
+    <None Remove="DefaultPropDefs\propmeta.xml" />
+    <None Remove="DefaultPropDefs\propmission.xml" />
+    <None Remove="DefaultPropDefs\propmissiongenerator.xml" />
+    <None Remove="DefaultPropDefs\propmissionui.xml" />
+    <None Remove="DefaultPropDefs\propoptionsgeneral.xml" />
+    <None Remove="DefaultPropDefs\proppoi.xml" />
+    <None Remove="DefaultPropDefs\proprenoracesettings.xml" />
+    <None Remove="DefaultPropDefs\propsceneryobjects.xml" />
+    <None Remove="DefaultPropDefs\propScreenReader.xml" />
+    <None Remove="DefaultPropDefs\propservice.xml" />
+    <None Remove="DefaultPropDefs\propsimconnect.xml" />
+    <None Remove="DefaultPropDefs\propsimvar.xml" />
+    <None Remove="DefaultPropDefs\proptemplate.xml" />
+    <None Remove="DefaultPropDefs\PropTextSubstitutions.XML" />
+    <None Remove="DefaultPropDefs\proptimezones.xml" />
+    <None Remove="DefaultPropDefs\propui.xml" />
+    <None Remove="DefaultPropDefs\propui32.xml" />
+    <None Remove="DefaultPropDefs\propUIComponent.xml" />
+    <None Remove="DefaultPropDefs\propvisualeffect.xml" />
+    <None Remove="DefaultPropDefs\propwater.xml" />
+    <None Remove="DefaultPropDefs\propweatherpreset.xml" />
+    <None Remove="DefaultPropDefs\propwidget.xml" />
+    <None Remove="DefaultPropDefs\propworldbase.xml" />
+    <None Remove="DefaultPropDefs\propworldmapfilters.xml" />
+    <None Remove="DefaultPropDefs\propxui.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="DefaultPropDefs\propaccpack.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propachievement.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propactivity.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propaircraft.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propairlines.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propanim.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propassistancepresets.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propautogen.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propbase.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propbaseui.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propbuilder.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propchecklist.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propchecklistbase.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propcheckpointlibrary.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propcontain.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propcontrols.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propdiscovery.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propedition.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propendscreen.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propeventtrigger.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propextrusions.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propfire.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propflightplan.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propgauge.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propgroups.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propicao.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propingamepanels.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proplaunch.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proplivingworld.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propmaterial.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propmeta.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propmission.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propmissiongenerator.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propmissionui.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propoptionsgeneral.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proppoi.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proprenoracesettings.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propsceneryobjects.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propScreenReader.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propservice.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propsimconnect.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propsimvar.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proptemplate.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\PropTextSubstitutions.XML">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\proptimezones.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propui.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propui32.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propUIComponent.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propvisualeffect.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propwater.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propweatherpreset.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propwidget.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propworldbase.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propworldmapfilters.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DefaultPropDefs\propxui.xml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Melville.WpfAppFramework" Version="0.6.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CompositionRoot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SimControls.SpbParser\SimControls.SpbParser.csproj" />
+  </ItemGroup>
+
+</Project>

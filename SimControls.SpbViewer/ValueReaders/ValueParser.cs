@@ -3,7 +3,7 @@ using System.Buffers;
 using System.IO;
 using Melville.INPC;
 
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 public interface ICanParseTo<T>
 {

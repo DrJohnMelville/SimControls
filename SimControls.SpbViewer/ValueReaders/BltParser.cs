@@ -1,6 +1,6 @@
 ﻿using System.Buffers;
 
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 internal class BltParser<T> : ValueParser<T> where T: unmanaged 
 {

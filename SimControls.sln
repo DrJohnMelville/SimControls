@@ -27,12 +27,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SimulatorConnection", "Simu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Network", "Network", "{F6004765-C995-47D7-8C6F-9C2E29BDEB08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimControls.SpbParser", "SimControls.SpbParser\SimControls.SpbParser.csproj", "{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.SpbParser", "SimControls.SpbParser\SimControls.SpbParser.csproj", "{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BD97280-2F89-45DF-ADD7-67A9AE292013}"
 	ProjectSection(SolutionItems) = preProject
 		Directory.Build.Props = Directory.Build.Props
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.SbpViewer", "SimControls.SpbViewer\SimControls.SbpViewer.csproj", "{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +86,10 @@ Global
 		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D2EE808-0EE0-4B82-B072-CEDD5E526BCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

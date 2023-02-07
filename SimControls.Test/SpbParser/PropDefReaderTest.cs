@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SimControls.SpbParser.DefaultPropDefs;
-using SimControls.SpbParser.PropertyAndSetDeclarations;
-using SimControls.SpbParser.ValueReaders;
+﻿using System.Threading.Tasks;
+using SimControls.SbpViewer.DefaultPropDefs;
+using SimControls.SbpViewer.PropertyAndSetDeclarations;
+using SimControls.SbpViewer.ValueReaders;
 using Xunit;
 
 namespace SimControls.Test.SpbParser;

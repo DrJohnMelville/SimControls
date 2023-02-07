@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using SimControls.SpbParser.ValueReaders;
+using SimControls.SbpViewer.ValueReaders;
 
-namespace SimControls.SpbParser.PropertyAndSetDeclarations;
+namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
 
 internal static class PropertyRegistryParser
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimControls.SpbParser.PropertyAndSetDeclarations;
+namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
 
 public interface ISetOrProperty
 {

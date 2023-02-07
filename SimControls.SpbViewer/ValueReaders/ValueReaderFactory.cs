@@ -1,7 +1,7 @@
 ﻿using System; // needed for the ArgumentException type
 using Melville.INPC;
 
-namespace SimControls.SpbParser.ValueReaders;
+namespace SimControls.SbpViewer.ValueReaders;
 
 [MacroItem("UNDEFINED", "UndefinedValueParser(\"Undefined\");//")]
 [MacroItem("LONG", "BltParser<int>")]

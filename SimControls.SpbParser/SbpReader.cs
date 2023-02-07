@@ -1,9 +1,10 @@
-﻿using System.Buffers;
+﻿using System;
+using System.Buffers;
+using System.Drawing;
 using System.IO;
 using System.IO.Pipelines;
 using System.Threading.Tasks;
 using Melville.INPC;
-using SimControls.SpbParser.PropertyAndSetDeclarations;
 
 namespace SimControls.SpbParser;
 
@@ -11,8 +12,8 @@ public partial class SbpReader
 {
     [FromConstructor]private readonly PipeReader pipe;
     [FromConstructor] private readonly IParseTarget target;
-    [FromConstructor] private readonly IPropertyRegistry properties;
     private const int headerBlockSize = (4*7)+2;
+    private const int TagCountOffset = 26;
 
     public async ValueTask Read()
     {
@@ -27,13 +28,23 @@ public partial class SbpReader
 
     private TagTable ParseHeaderBlock(ReadOnlySequence<byte> buffer)
     {
-        var reader = new SequenceReader<byte>(buffer);
-        if (!reader.TryReadBlt(out ushort flag) || flag != 0xEBAC)
+        if (buffer.Read<ushort>() != 0xEBAC)
             throw new InvalidDataException("Invalid SBP checksum");
-        reader.Advance(4*6);
-        if (!reader.TryReadBlt(out uint numberOfTags))
-            throw new InvalidDataException("Cannot Read Tag Count");
-
-        return new TagTable(numberOfTags, properties);
+        return new TagTable(buffer.Slice(TagCountOffset).Read<uint>());
     }
+}
+
+public interface ISingleField
+{
+    Guid Guid { get; }
+    int Size { get; }
+    ValueTask ReadToSpan(Span<byte> target);
+    ValueTask Skip();
+    ValueTask PushSetDeclaration(IParseTarget target);
+}
+
+public interface IParseTarget
+{
+    ValueTask ParseItem(ISingleField field);
+    void EndScope();
 }
