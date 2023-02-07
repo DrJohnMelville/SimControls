@@ -10,7 +10,7 @@ namespace SimControls.SbpViewer.DefaultPropDefs;
 
 public static class DefaultPropertyLibrary
 {
-    public static Stream GetDefaultStream(string fileName) =>
+    public static Stream? GetDefaultStream(string fileName) =>
         typeof(DefaultPropertyLibrary).Assembly.GetManifestResourceStream(
             typeof(DefaultPropertyLibrary), fileName);
 
@@ -21,7 +21,7 @@ public static class DefaultPropertyLibrary
         var assembly = type.Assembly;
         return assembly.GetManifestResourceNames()
             .Where(i=> MyCompare(prefix, i))
-            .Select(i=>assembly.GetManifestResourceStream(i))
+            .Select(assembly.GetManifestResourceStream)
             .OfType<Stream>();
     }
 

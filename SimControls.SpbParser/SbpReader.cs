@@ -1,5 +1,4 @@
-﻿using System;
-using System.Buffers;
+﻿using System.Buffers;
 using System.Drawing;
 using System.IO;
 using System.IO.Pipelines;
@@ -32,15 +31,6 @@ public partial class SbpReader
             throw new InvalidDataException("Invalid SBP checksum");
         return new TagTable(buffer.Slice(TagCountOffset).Read<uint>());
     }
-}
-
-public interface ISingleField
-{
-    Guid Guid { get; }
-    int Size { get; }
-    ValueTask ReadToSpan(Span<byte> target);
-    ValueTask Skip();
-    ValueTask PushSetDeclaration(IParseTarget target);
 }
 
 public interface IParseTarget

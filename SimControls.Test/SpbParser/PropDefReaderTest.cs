@@ -12,7 +12,7 @@ public class PropDefReaderTest
     public async Task ReadPropertyXmlAsync()
     {
         var src = DefaultPropertyLibrary.GetDefaultStream("propflightplan.xml");
-        var reg = await PropertyRegistryParser.ParseAsync(src);
+        var reg = await PropertyRegistryParser.ParseAsync(src!);
         var fpset = reg.Get("AB92F550-AE71-49a9-A8D2-4432FC710E41") as SetDecl;
         Assert.Equal("FlightPlan", fpset!.Name);
         Assert.Equal("Flight Plan", fpset.Description);
@@ -31,7 +31,17 @@ public class PropDefReaderTest
 
         var values = new string[]
         {
-            "GPS","VOR","NDB","ILS","LOCALIZER","SDF","LDA","VORDME","NDBDME","RNAV","LOCALIZER_BACK_COURSE"
+            "GPS (0)",
+            "VOR (1)",
+            "NDB (2)",
+            "ILS (3)",
+            "LOCALIZER (4)",
+            "SDF (5)",
+            "LDA (6)",
+            "VORDME (7)",
+            "NDBDME (8)",
+            "RNAV (9)",
+            "LOCALIZER_BACK_COURSE (10)"
         };
         for (int i = 0; i < values.Length; i++)
 

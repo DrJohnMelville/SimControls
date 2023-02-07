@@ -1,5 +1,6 @@
 ﻿using System; // needed for the ArgumentException type
 using Melville.INPC;
+using SimControls.SpbParser.FsTypes;
 
 namespace SimControls.SbpViewer.ValueReaders;
 
@@ -8,7 +9,7 @@ namespace SimControls.SbpViewer.ValueReaders;
 [MacroItem("LONG2", "BltParser<(int,int)>")]
 [MacroItem("LONG4", "BltParser<(int,int,int,int)>")]
 [MacroItem("ULONG", "BltParser<uint>")]
-[MacroItem("BOOL", "BoolParser")]
+[MacroItem("BOOL", "BltParser<BoolStruct>")]
 [MacroItem("FLOAT", "BltParser<float>")]
 [MacroItem("FLOAT2", "BltParser<(float,float)>")]
 [MacroItem("FLOAT3", "BltParser<(float,float,float)>")]
@@ -29,7 +30,6 @@ namespace SimControls.SbpViewer.ValueReaders;
     Postfix = "    _=> SecondChanceLookup(key) \r\n};")]
 internal static partial class ValueReaderFactory
 {
-
     private static ValueParser SecondChanceLookup(ReadOnlySpan<char> key) =>
         key switch
         {

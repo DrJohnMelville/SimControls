@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Buffers;
+using System.Threading.Tasks;
+using SimControls.SpbParser;
+
 namespace SimControls.SbpViewer.ValueReaders;
 
 internal class EnumParser : BltParser<int>, ICanParseTo<(int,string)>
@@ -11,14 +14,13 @@ internal class EnumParser : BltParser<int>, ICanParseTo<(int,string)>
         Names = names;
     }
 
-    public override bool InnerTryParse(ref SequenceReader<byte> sourceBytes, out string value) =>
-        InnerTryParse(ref sourceBytes, out int intVal).WithAssignment(StringFromValue(intVal), out value);
+    public override async ValueTask<string> Parse(ISingleField field)
+    {
+        return StringFromValue((await field.GetByteSequence()).Read<int>());
+    }
 
+    public string StringFromValue(int intValue) => $"{EnumName(intValue)} ({intValue})";
 
-    public bool InnerTryParse(ref SequenceReader<byte> sourceBytes, out (int, string) value) =>
-        InnerTryParse(ref sourceBytes, out int intVal).WithAssignment(
-            (intVal, StringFromValue(intVal)), out value);
-
-    public string StringFromValue(int intValue) =>
+    private string EnumName(int intValue) => 
         intValue >= 0 && intValue < Names.Length ? Names[intValue] : "<Undefined>";
 }
