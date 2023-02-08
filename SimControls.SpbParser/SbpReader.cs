@@ -23,6 +23,8 @@ public partial class SbpReader
         blockResult = await pipe.ReadAtLeastAsync(tagTable.DiskSizeInBytes);
         tagTable.ReadTags(blockResult.Buffer);
         pipe.AdvanceTo(blockResult.Buffer.GetPosition(tagTable.DiskSizeInBytes));
+
+        await new FieldVisitor(pipe, tagTable, target).Parse();
     }
 
     private TagTable ParseHeaderBlock(ReadOnlySequence<byte> buffer)
@@ -31,6 +33,7 @@ public partial class SbpReader
             throw new InvalidDataException("Invalid SBP checksum");
         return new TagTable(buffer.Slice(TagCountOffset).Read<uint>());
     }
+
 }
 
 public interface IParseTarget

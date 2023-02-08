@@ -240,6 +240,7 @@
 
   <ItemGroup>
     <Folder Include="CompositionRoot\" />
+    <Folder Include="ParseTargets\" />
   </ItemGroup>
 
   <ItemGroup>

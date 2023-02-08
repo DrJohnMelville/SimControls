@@ -16,7 +16,7 @@ public static class ReadOnlySequenceExtension
         {
             var span = new Span<byte>(ptr, sizeof(T));
             Debug.Assert(seq.Length >= span.Length);
-            seq.CopyTo(span);
+            seq.Fill(span);
         }
     }
 
@@ -25,4 +25,7 @@ public static class ReadOnlySequenceExtension
         seq.Read(out T ret);
         return ret;
     }
+
+    public static void Fill<T>(this ReadOnlySequence<T> seq, Span<T> target) =>
+        seq.Slice(0, target.Length).CopyTo(target);
 }

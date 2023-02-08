@@ -25,7 +25,7 @@ internal readonly struct TagTable
 
     public void ReadTags(ReadOnlySequence<byte> source)
     {
-        source.CopyTo(MemoryMarshal.Cast<TagData, byte>(tags.AsSpan()));
+        source.Fill(MemoryMarshal.Cast<TagData, byte>(tags.AsSpan()));
     }
 
     public override string ToString()
@@ -38,4 +38,6 @@ internal readonly struct TagTable
     {
         return $"{arg.ItemLength:X}, {arg.Guid}";
     }
+
+    public ref TagData this[int i] => ref tags[i];
 }

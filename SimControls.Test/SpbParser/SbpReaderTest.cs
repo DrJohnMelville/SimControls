@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
+using SimControls.SbpViewer.DefaultPropDefs;
+using SimControls.SpbParser;
+using SimControls.SpbViewer.ParseTargets;
 using Xunit;
 
 namespace SimControls.Test.SpbParser;
@@ -20,8 +23,9 @@ public class SbpReaderTest
     [Fact]
     public async Task ReadFileAsync()
     {
-        // var reader = new SbpReader(PipeReader.Create(SourceStream()), target,
-        //     await DefaultPropertyLibrary.GlobalRegistryAsync());
-        Assert.Fail("Not Done Yet");
+        var target = new StringParseTarget(await DefaultPropertyLibrary.GlobalRegistryAsync());
+         var reader = new SbpReader(PipeReader.Create(SourceStream()), target);
+         await reader.Read();
+        Assert.Contains("Alaska", target.ToString());
     }
 }

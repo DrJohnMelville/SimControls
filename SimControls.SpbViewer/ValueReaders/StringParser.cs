@@ -12,11 +12,13 @@ internal class StringParser : ValueParser
     public override async ValueTask<string> Parse(ISingleField field)
     {
         var buf = await field.GetByteSequence();
-        return string.Create((int)(buf.Length / 2), buf, StringFromBuf);
+        return TextDecode.Decode(buf);
+//        return string.Create((int)(buf.Length / 2), buf, StringFromBuf);
     }
 
-    private void StringFromBuf(Span<char> span, ReadOnlySequence<byte> arg) => 
-        arg.CopyTo(MemoryMarshal.Cast<char,byte>(span));
+    private void StringFromBuf(Span<char> span, ReadOnlySequence<byte> arg) =>
+        arg.Fill(MemoryMarshal.Cast<char,byte>(span));
 
     public override string TypeString => "String";
 }
+
