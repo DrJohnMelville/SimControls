@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using SimControls.SbpViewer.DefaultPropDefs;
-using SimControls.SbpViewer.PropertyAndSetDeclarations;
-using SimControls.SbpViewer.ValueReaders;
+using SimControls.SpbViewer.DefaultPropDefs;
+using SimControls.SpbViewer.PropertyAndSetDeclarations;
+using SimControls.SpbViewer.ValueReaders;
 using Xunit;
 
 namespace SimControls.Test.SpbParser;

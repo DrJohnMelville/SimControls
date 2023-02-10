@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
+namespace SimControls.SpbViewer.PropertyAndSetDeclarations;
 
 internal static class EnumerableExtensions
 {

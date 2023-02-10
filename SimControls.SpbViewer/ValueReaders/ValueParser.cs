@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Buffers;
-using System.Configuration;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Melville.INPC;
 using SimControls.SpbParser;
 
-namespace SimControls.SbpViewer.ValueReaders;
+namespace SimControls.SpbViewer.ValueReaders;
 
 public interface ICanParseTo<T>
 {

@@ -26,10 +26,13 @@ internal partial class FieldVisitor
             needsOperation = next;
         }
 
-        public void VerifyOperationDone()
+        public async ValueTask VerifyOperationDone()
         {
             switch (needsOperation)
             {
+                case OperationState.Ready:
+                    await Skip();
+                    goto case OperationState.Read;
                 case OperationState.Read:
                     parent.pipe.Consume();
                     break;

@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace SimControls.SbpViewer.ValueReaders;
+namespace SimControls.SpbViewer.ValueReaders;
 
 static partial class TextDecode
 {

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Melville.Hacks;
-using Melville.INPC;
 using Microsoft.CodeAnalysis.Diagnostics;
-using SimControls.SbpViewer.PropertyAndSetDeclarations;
+using SimControls.SpbViewer.PropertyAndSetDeclarations;
 using SimControls.SpbParser;
 
 namespace SimControls.SpbViewer.ParseTargets;

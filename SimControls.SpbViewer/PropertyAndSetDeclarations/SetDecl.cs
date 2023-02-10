@@ -1,7 +1,6 @@
 ﻿using System;
-using Melville.INPC;
 
-namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
+namespace SimControls.SpbViewer.PropertyAndSetDeclarations;
 
 public partial class SetDecl: ISetOrProperty
 {

@@ -32,12 +32,13 @@
     <ItemGroup>
       <ProjectReference Include="..\SimControls.Model\SimControls.Model.csproj" />
       <ProjectReference Include="..\SimControls.SpbParser\SimControls.SpbParser.csproj" />
-      <ProjectReference Include="..\SimControls.SpbViewer\SimControls.SbpViewer.csproj" />
+      <ProjectReference Include="..\SimControls.SpbViewer\SimControls.SpbViewer.csproj" />
       <ProjectReference Include="..\SimControls\SimControls.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <Folder Include="Model\AirportData" />
+      <Folder Include="SpbViewer\" />
     </ItemGroup>
 
 </Project>

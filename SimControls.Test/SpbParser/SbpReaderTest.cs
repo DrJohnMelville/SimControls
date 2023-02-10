@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Moq;
-using SimControls.SbpViewer.DefaultPropDefs;
+using SimControls.SpbViewer.DefaultPropDefs;
 using SimControls.SpbParser;
 using SimControls.SpbViewer.ParseTargets;
 using Xunit;
@@ -25,7 +25,7 @@ public class SbpReaderTest
     {
         var target = new StringParseTarget(await DefaultPropertyLibrary.GlobalRegistryAsync());
          var reader = new SbpReader(PipeReader.Create(SourceStream()), target);
-         await reader.Read();
+         await reader.ReadAsync();
         Assert.Contains("Alaska", target.ToString());
     }
 }

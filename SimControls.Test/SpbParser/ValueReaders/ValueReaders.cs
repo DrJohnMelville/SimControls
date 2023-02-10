@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Buffers;
 using System.Threading.Tasks;
-using System.Windows.Media.TextFormatting;
 using Moq;
-using SimControls.SbpViewer.ValueReaders;
 using SimControls.SpbParser;
 using SimControls.SpbParser.FsTypes;
+using SimControls.SpbViewer.ValueReaders;
 using Xunit;
 
 namespace SimControls.Test.SpbParser.ValueReaders;

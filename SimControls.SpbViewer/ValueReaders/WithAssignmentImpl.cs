@@ -1,4 +1,4 @@
-﻿namespace SimControls.SbpViewer.ValueReaders;
+﻿namespace SimControls.SpbViewer.ValueReaders;
 
 public static class WithAssignmentImpl
 {

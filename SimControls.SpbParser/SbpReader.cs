@@ -14,7 +14,7 @@ public partial class SbpReader
     private const int headerBlockSize = (4*7)+2;
     private const int TagCountOffset = 26;
 
-    public async ValueTask Read()
+    public async ValueTask ReadAsync()
     {
         var blockResult = await pipe.ReadAtLeastAsync(headerBlockSize);
         var tagTable = ParseHeaderBlock(blockResult.Buffer);

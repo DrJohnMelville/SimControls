@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Melville.INPC;
-using SimControls.SbpViewer.ValueReaders;
+using SimControls.SpbViewer.ValueReaders;
 
-namespace SimControls.SbpViewer.PropertyAndSetDeclarations
+namespace SimControls.SpbViewer.PropertyAndSetDeclarations
 {
     public partial class PropertyDecl: ISetOrProperty
     {

@@ -36,11 +36,11 @@ internal partial class FieldVisitor
     {
         var field = new SingleField(this);
         do
-        {
+        { 
             var next = tags[await ReadInt()];
             field.InitializeSingleField(next.Guid, await ComputeLength(next.ItemLength));
             await context.Peek().Target.ParseItem(field);
-            field.VerifyOperationDone();
+            await field.VerifyOperationDone();
             TryEndSets();
         } while (context.Count > 1);
     }

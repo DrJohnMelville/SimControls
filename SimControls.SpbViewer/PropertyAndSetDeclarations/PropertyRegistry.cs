@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
+namespace SimControls.SpbViewer.PropertyAndSetDeclarations;
 
 //public interface IPropertyRegistry
 

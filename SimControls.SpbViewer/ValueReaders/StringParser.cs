@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Buffers;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using SimControls.SpbParser;
 
-namespace SimControls.SbpViewer.ValueReaders;
+namespace SimControls.SpbViewer.ValueReaders;
 
 internal class StringParser : ValueParser
 {

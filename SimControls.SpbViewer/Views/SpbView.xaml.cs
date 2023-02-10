@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SimControls.SpbViewer
+namespace SimControls.SpbViewer.Views
 {
     /// <summary>
-    /// Interaction logic for RootView.xaml
+    /// Interaction logic for SpbView.xaml
     /// </summary>
-    public partial class RootView : UserControl
+    public partial class SpbView : UserControl
     {
-        public RootView()
+        public SpbView()
         {
             InitializeComponent();
         }

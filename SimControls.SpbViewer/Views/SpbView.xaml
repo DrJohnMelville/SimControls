@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="SimControls.SpbViewer.Views.SpbView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SimControls.SpbViewer.Views"
+             xmlns:eventBindings="clr-namespace:Melville.MVVM.Wpf.EventBindings;assembly=Melville.MVVM.Wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type local:SpbNode}" ItemsSource="{Binding Children}">
+            <TextBlock Text="{Binding Declaration.Name}"
+                       ToolTip="{Binding Declaration.Description}">
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Click="{eventBindings:EventBinding CopyGuid}" Header="Copy Guid"/>
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+
+        <DataTemplate DataType="{x:Type local:SpbLeaf}">
+            <TextBlock>
+                <TextBlock Margin = "5 0" Text="{Binding Declaration.Name}"></TextBlock>:
+                <TextBlock Margin = "5 0" Text="{Binding .Value}"></TextBlock>
+                <TextBlock.ToolTip>
+                    <StackPanel>
+                        <TextBlock><TextBlock FontWeight="Bold">Description</TextBlock><TextBlock Margin="15 0 0 0" Text="{Binding Declaration.Description}"/></TextBlock>
+                        <TextBlock><TextBlock FontWeight="Bold">Default</TextBlock><TextBlock Margin="15 0 0 0" Text="{Binding Declaration.Default}"/></TextBlock>
+                    </StackPanel>
+                </TextBlock.ToolTip>
+                <TextBlock.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Click="{eventBindings:EventBinding CopyGuid}" Header="Copy Guid"/>
+                    </ContextMenu>
+                </TextBlock.ContextMenu>
+            </TextBlock>
+        </DataTemplate>
+    </UserControl.Resources>
+    <TreeView ItemsSource="{Binding Root}"></TreeView>
+</UserControl>

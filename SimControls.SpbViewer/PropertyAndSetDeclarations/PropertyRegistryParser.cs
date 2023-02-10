@@ -1,13 +1,12 @@
-﻿using System;
+﻿using System.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Xml.Linq;
-using SimControls.SbpViewer.ValueReaders;
+using SimControls.SpbViewer.ValueReaders;
 
-namespace SimControls.SbpViewer.PropertyAndSetDeclarations;
+namespace SimControls.SpbViewer.PropertyAndSetDeclarations;
 
 internal static class PropertyRegistryParser
 {

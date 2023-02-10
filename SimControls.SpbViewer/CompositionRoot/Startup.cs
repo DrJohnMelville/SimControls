@@ -5,6 +5,10 @@ using Melville.SystemInterface.WindowMessages;
 using Melville.WpfAppFramework.StartupBases;
 using System;
 using System.Windows;
+using Melville.MVVM.Wpf.MvvmDialogs;
+using SimControls.SpbViewer.DefaultPropDefs;
+using SimControls.SpbViewer.PropertyAndSetDeclarations;
+using SimControls.SpbViewer.Views;
 
 namespace SimControls.SpbViewer.CompositionRoot;
 
@@ -26,6 +30,10 @@ public sealed class Startup : StartupBase
             .To<RootNavigationWindow>()
             .AsSingleton();
         service.Bind<IWindowMessageSource>().To<WindowMessageSource>().AsSingleton();
+
+        service.Bind<IOpenSaveFile>().To<OpenSaveFileAdapter>();
+        service.Bind<Func<Task<IPropertyRegistry>>>()
+            .ToConstant(DefaultPropertyLibrary.GlobalRegistryAsync);
 
     }
 }

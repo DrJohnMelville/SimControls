@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.Props = Directory.Build.Props
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.SbpViewer", "SimControls.SpbViewer\SimControls.SbpViewer.csproj", "{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimControls.SpbViewer", "SimControls.SpbViewer\SimControls.SpbViewer.csproj", "{5A04A6C6-4E37-47FC-BD11-805E9D7F8E6B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

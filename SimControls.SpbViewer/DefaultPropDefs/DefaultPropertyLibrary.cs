@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using SimControls.SbpViewer.PropertyAndSetDeclarations;
+using SimControls.SpbViewer.PropertyAndSetDeclarations;
 
 
-namespace SimControls.SbpViewer.DefaultPropDefs;
+namespace SimControls.SpbViewer.DefaultPropDefs;
 
 public static class DefaultPropertyLibrary
 {
